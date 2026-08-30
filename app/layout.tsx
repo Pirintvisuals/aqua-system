@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lexend, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import ChatWidget from "./components/ChatWidget";
 
 const lexend = Lexend({
   variable: "--font-lexend",
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </noscript>
         <Navbar />
         {children}
+        <ChatWidget />
       </body>
     </html>
   );
