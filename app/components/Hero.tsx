@@ -175,11 +175,11 @@ export default function Hero() {
             </div>
 
             <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
-              Gyors. Biztonságos.{" "}
               <span className="relative whitespace-nowrap text-brand">
-                Profi.
+                Gázkészülék csere
                 <WaveUnderline />
-              </span>
+              </span>{" "}
+              1 nap alatt — gyorsan és biztonságosan
             </h1>
 
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft">

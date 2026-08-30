@@ -3,6 +3,8 @@ import { Lexend, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import ChatWidget from "./components/ChatWidget";
+import StructuredData from "./components/StructuredData";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "./lib/site";
 
 const lexend = Lexend({
   variable: "--font-lexend",
@@ -16,10 +18,44 @@ const sourceSans = Source_Sans_3({
   display: "swap",
 });
 
+const TITLE = "Aqua System Service Kft. – Egynapos gázkészülék csere";
+
 export const metadata: Metadata = {
-  title: "Aqua System Service Kft. – Egynapos gázkészülék csere",
-  description:
-    "Gyors, biztonságos és profi gázkészülék- és kazáncsere egyetlen nap alatt. 50 év tapasztalat, fix ár, 100% garancia minden készülékre. Már 500+ sikeres csere.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: TITLE,
+    template: "%s | Aqua System",
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  alternates: {
+    canonical: "/",
+  },
+  keywords: [
+    "gázkészülék csere",
+    "kazáncsere",
+    "gázkazán csere",
+    "egynapos kazáncsere",
+    "Budapest",
+    "Érd",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "hu_HU",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -32,6 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
         </noscript>
+        <StructuredData />
         <Navbar />
         {children}
         <ChatWidget />
