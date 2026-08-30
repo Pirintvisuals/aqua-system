@@ -1,26 +1,121 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-source-sans), system-ui, sans-serif;
+  --font-display: var(--font-lexend), system-ui, sans-serif;
+
+  /* Brand — Aqua System (bright, white + blue) */
+  --color-ink: #232b36; /* charcoal body/headings */
+  --color-ink-soft: #566175; /* muted text */
+
+  --color-sky: #eaf3ff; /* soft sky wash */
+  --color-sky-200: #d6e6ff;
+
+  --color-brand: #2b5fd0; /* deep brand blue — headlines & accents */
+  --color-brand-light: #4b7be5; /* cornflower (their headline tone) */
+  --color-cyan: #7fc4e8; /* logo wave cyan */
+  --color-cta: #0f2a5e; /* deep navy — the single action accent */
+  --color-cta-700: #0a1f47; /* navy hover */
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  background: #ffffff;
+  color: var(--color-ink);
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Subtle dot grid — 21st.dev-style texture behind the hero copy.
+   Faded via mask so it never competes with the content. */
+.bg-dotgrid {
+  background-image: radial-gradient(
+    rgba(43, 95, 208, 0.14) 1px,
+    transparent 1.4px
+  );
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(60% 60% at 20% 20%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(60% 60% at 20% 20%, #000 0%, transparent 75%);
+}
+
+/* Scroll-reveal — toggled by the <Reveal> component via IntersectionObserver. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Animations ---------- */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(24px, -18px, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+.animate-drift {
+  animation: drift 20s ease-in-out infinite;
+}
+.fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-drift,
+  .fade-up {
+    animation: none !important;
+  }
 }
