@@ -24,21 +24,49 @@ declare global {
   }
 }
 
+// Megnyitja a sarokban ülő widgetet (a saját lebegő gombja lekattintásával).
+// A script aszinkron tölt, ezért pár próbát teszünk, amíg a gomb megjelenik.
+function openWidget(attempt = 0) {
+  const launcher = document.querySelector<HTMLButtonElement>(".faq-chat-launcher");
+  if (launcher) {
+    // A gomb váltó (toggle): csak akkor kattintsuk, ha épp zárva van.
+    if (!launcher.classList.contains("active")) launcher.click();
+    return;
+  }
+  if (attempt < 20) setTimeout(() => openWidget(attempt + 1), 150);
+}
+
 export default function ChatWidget() {
   useEffect(() => {
-    // Csak egyszer töltsük be (React StrictMode kétszer futtathatja az effectet).
-    if (document.getElementById("aqua-widget-script")) return;
+    // A scriptet csak egyszer töltsük be (StrictMode kétszer futtat).
+    if (!document.getElementById("aqua-widget-script")) {
+      window.AQUA_CONFIG = {
+        apiUrl: `${AGENT_ORIGIN}/api/faq-agent`,
+        assetsUrl: AGENT_ORIGIN,
+      };
 
-    window.AQUA_CONFIG = {
-      apiUrl: `${AGENT_ORIGIN}/api/faq-agent`,
-      assetsUrl: AGENT_ORIGIN,
+      const script = document.createElement("script");
+      script.id = "aqua-widget-script";
+      script.src = `${AGENT_ORIGIN}/widget.js`;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    // A "árajánlatot kérek" CTA-k az asszisztensre mutatnak. JS-sel ne új
+    // oldalt nyissanak, hanem itt helyben a widgetet. A href megmarad
+    // fallbacknek (JS nélkül / új lapon nyitáskor továbbra is működik).
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+        return;
+      }
+      const link = (e.target as HTMLElement | null)?.closest("a");
+      const href = link?.getAttribute("href");
+      if (!href || !href.startsWith(AGENT_ORIGIN)) return;
+      e.preventDefault();
+      openWidget();
     };
-
-    const script = document.createElement("script");
-    script.id = "aqua-widget-script";
-    script.src = `${AGENT_ORIGIN}/widget.js`;
-    script.async = true;
-    document.body.appendChild(script);
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
   }, []);
 
   return null;
