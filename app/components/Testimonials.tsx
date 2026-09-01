@@ -42,13 +42,20 @@ export default function Testimonials() {
     <section id="velemenyek" className="scroll-mt-24 py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
-          <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+          <span className="inline-flex items-center gap-2 rounded-full bg-sky px-4 py-1.5 text-sm font-semibold text-brand ring-1 ring-sky-200">
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+            500+ sikeres csere
+          </span>
+          <h2 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Mit mondanak ügyfeleink?
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-            Ügyfeleink azért keresnek minket, mert fontos nekik a gyors
-            ügyintézés és az átlátható kommunikáció. A megbeszéltek szerint
-            dolgozunk – időre, kiszámíthatóan.
+            Több mint 500 sikeres kazáncsere áll mögöttünk. Ügyfeleink azért
+            keresnek minket, mert fontos nekik a gyors ügyintézés és az átlátható
+            kommunikáció. A megbeszéltek szerint dolgozunk – időre,
+            kiszámíthatóan.
           </p>
         </div>
 

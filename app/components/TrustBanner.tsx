@@ -49,10 +49,11 @@ export default function TrustBanner() {
                 Végig fogjuk a kezed – az első hívástól a beüzemelésig
               </h2>
               <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/85">
-                Egyszerűen elmagyarázzuk, mit miért csinálunk, mire számíthatsz,
-                és hogyan zajlik a csere. Nem siettetünk, nem beszélünk
-                szakzsargonnal, és mindig visszahívunk – hogy nyugodtan tudj
-                dönteni. A kezdéshez elég pár kérdés az{" "}
+                Több mint 500 sikeres csere tapasztalatával egyszerűen
+                elmagyarázzuk, mit miért csinálunk, mire számíthatsz, és hogyan
+                zajlik a csere. Nem siettetünk, nem beszélünk szakzsargonnal, és
+                mindig visszahívunk – hogy nyugodtan tudj dönteni. A kezdéshez
+                elég pár kérdés az{" "}
                 <span className="font-semibold text-white">
                   online árajánló asszisztensünkben
                 </span>{" "}
