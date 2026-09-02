@@ -1,29 +1,32 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 
+// A hash-linkek "/#…" alakban a főoldal szekcióira mutatnak, így bármelyik
+// aloldalról is működnek (nem csak a főoldalon).
 const NAV_LINKS = [
-  { label: "Szolgáltatás", href: "#szolgaltatas" },
-  { label: "Kínálat", href: "#kinalat" },
-  { label: "Kalkulátor", href: "#kalkulator" },
-  { label: "Folyamat", href: "#folyamat" },
-  { label: "Rólunk", href: "#rolunk" },
-  { label: "Kapcsolat", href: "#kapcsolat" },
+  { label: "Szolgáltatás", href: "/#szolgaltatas" },
+  { label: "Kínálat", href: "/#kinalat" },
+  { label: "Kalkulátor", href: "/#kalkulator" },
+  { label: "Folyamat", href: "/#folyamat" },
+  { label: "Rólunk", href: "/rolunk" },
+  { label: "Kapcsolat", href: "/kapcsolat" },
 ];
 
 function Logo() {
   return (
-    <a href="#" className="flex items-center" aria-label="Aqua System – főoldal">
+    <Link href="/" className="flex items-center" aria-label="Aqua System – főoldal">
       <Image
         src={logo}
         alt="Aqua System Épületgépészet"
         priority
         className="h-14 w-auto sm:h-16"
       />
-    </a>
+    </Link>
   );
 }
 
@@ -53,12 +56,12 @@ export default function Navbar() {
         <ul className="hidden items-center gap-8 lg:flex">
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
-              <a
+              <Link
                 href={l.href}
                 className="text-sm font-medium text-ink-soft transition-colors hover:text-brand"
               >
                 {l.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -103,13 +106,13 @@ export default function Navbar() {
           <ul className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <a
+                <Link
                   href={l.href}
                   onClick={() => setOpen(false)}
                   className="block rounded-lg px-3 py-2.5 text-base font-medium text-ink transition-colors hover:bg-sky hover:text-brand"
                 >
                   {l.label}
-                </a>
+                </Link>
               </li>
             ))}
             <li className="mt-2 flex flex-col gap-2">

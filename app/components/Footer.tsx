@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import logo from "../assets/logo.png";
 import { CHATBOT_URL } from "../lib/links";
 
@@ -8,12 +9,12 @@ const PHONE_HREF = "tel:+36203990093";
 
 const LINKS = [
   { label: "Azonnali árajánlat", href: CHATBOT_URL },
-  { label: "Szolgáltatás", href: "#szolgaltatas" },
-  { label: "Miért mi", href: "#miert-mi" },
-  { label: "Kazán kalkulátor", href: "#kalkulator" },
-  { label: "Folyamat", href: "#folyamat" },
-  { label: "Rólunk", href: "#rolunk" },
-  { label: "GYIK", href: "#gyik" },
+  { label: "Szolgáltatás", href: "/#szolgaltatas" },
+  { label: "Kínálat", href: "/#kinalat" },
+  { label: "Kazán kalkulátor", href: "/#kalkulator" },
+  { label: "Folyamat", href: "/#folyamat" },
+  { label: "Rólunk", href: "/rolunk" },
+  { label: "Kapcsolat", href: "/kapcsolat" },
 ];
 
 export default function Footer() {
@@ -36,12 +37,12 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5">
               {LINKS.map((l) => (
                 <li key={l.href}>
-                  <a
+                  <Link
                     href={l.href}
                     className="text-sm text-ink-soft transition-colors hover:text-brand"
                   >
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

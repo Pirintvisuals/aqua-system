@@ -11,7 +11,6 @@ import Team from "./components/Team";
 import Gallery from "./components/Gallery";
 import Faq from "./components/Faq";
 import Contact from "./components/Contact";
-import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -29,7 +28,6 @@ export default function Home() {
       <Gallery />
       <Faq />
       <Contact />
-      <Footer />
     </main>
   );
 }

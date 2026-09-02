@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lexend, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import ChatWidget from "./components/ChatWidget";
 import StructuredData from "./components/StructuredData";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "./lib/site";
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <StructuredData />
         <Navbar />
         {children}
+        <Footer />
         <ChatWidget />
       </body>
     </html>
