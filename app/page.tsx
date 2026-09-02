@@ -1,5 +1,6 @@
 import Hero from "./components/Hero";
 import Services from "./components/Services";
+import ServicesShowcase from "./components/ServicesShowcase";
 import WhyUs from "./components/WhyUs";
 import BoilerCalculator from "./components/BoilerCalculator";
 import Process from "./components/Process";
@@ -17,6 +18,7 @@ export default function Home() {
     <main className="flex-1">
       <Hero />
       <Services />
+      <ServicesShowcase />
       <Testimonials />
       <WhyUs />
       <BoilerCalculator />

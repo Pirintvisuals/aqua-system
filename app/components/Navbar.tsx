@@ -7,6 +7,7 @@ import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 
 const NAV_LINKS = [
   { label: "Szolgáltatás", href: "#szolgaltatas" },
+  { label: "Kínálat", href: "#kinalat" },
   { label: "Kalkulátor", href: "#kalkulator" },
   { label: "Folyamat", href: "#folyamat" },
   { label: "Rólunk", href: "#rolunk" },
