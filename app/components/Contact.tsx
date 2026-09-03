@@ -8,14 +8,37 @@ const EMAIL = "keszulekcsere@aqua-system.hu";
 const PHONE_DISPLAY = "(06 20) 399 0093";
 const PHONE_HREF = "tel:+36203990093";
 
+const WORK_TYPES = [
+  "Gázkészülék csere",
+  "Gázépítés / gázhálózat",
+  "Víz- és fűtésszerelés",
+  "Helyszíni felmérés",
+  "Egyéb / még nem tudom",
+] as const;
+
 export default function Contact() {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
+  const [workType, setWorkType] = useState("");
+  const [place, setPlace] = useState("");
+  const [photos, setPhotos] = useState<File[]>([]);
   const [message, setMessage] = useState("");
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const body = `Név: ${name}\nElérhetőség: ${contact}\n\n${message}`;
+    const photoLine =
+      photos.length > 0
+        ? `\nCsatolt képek: ${photos
+            .map((f) => f.name)
+            .join(", ")} (kérlek, csatold őket az e-mailhez)`
+        : "";
+    const body =
+      `Név: ${name}\n` +
+      `Elérhetőség: ${contact}\n` +
+      `Milyen munka: ${workType || "—"}\n` +
+      `Helyszín: ${place || "—"}` +
+      photoLine +
+      `\n\n${message}`;
     // Chatbot/űrlap-backend később; addig e-mail kliens nyílik meg.
     window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
       "Ajánlatkérés – gázkészülék csere",
@@ -129,6 +152,66 @@ export default function Contact() {
                 placeholder="anna@example.hu / +36 20 123 4567"
                 className={inputClass}
               />
+            </div>
+            <div>
+              <label htmlFor="c-work" className="text-sm font-medium text-ink">
+                Milyen munka?
+              </label>
+              <select
+                id="c-work"
+                required
+                value={workType}
+                onChange={(e) => setWorkType(e.target.value)}
+                className={`${inputClass} ${
+                  workType ? "text-ink" : "text-ink-soft/60"
+                }`}
+              >
+                <option value="" disabled>
+                  Válaszd ki, mire van szükséged
+                </option>
+                {WORK_TYPES.map((w) => (
+                  <option key={w} value={w} className="text-ink">
+                    {w}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="c-place" className="text-sm font-medium text-ink">
+                Helyszín
+              </label>
+              <input
+                id="c-place"
+                type="text"
+                required
+                value={place}
+                onChange={(e) => setPlace(e.target.value)}
+                placeholder="Település / kerület – pl. Budapest, XIII. kerület"
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label htmlFor="c-photo" className="text-sm font-medium text-ink">
+                Fénykép a készülékről{" "}
+                <span className="font-normal text-ink-soft">(opcionális)</span>
+              </label>
+              <input
+                id="c-photo"
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => setPhotos(Array.from(e.target.files ?? []))}
+                className="mt-1.5 w-full cursor-pointer rounded-xl border border-sky-200 bg-white px-4 py-3 text-sm text-ink-soft outline-none transition file:mr-4 file:cursor-pointer file:rounded-lg file:border-0 file:bg-sky file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand hover:file:bg-sky-200 focus:border-brand focus:ring-2 focus:ring-brand/20"
+              />
+              <p className="mt-1.5 text-xs text-ink-soft">
+                Egy fotó a jelenlegi kazánról / a helyszínről sokat segít a
+                pontos árban. A levelezőben tudod majd csatolni.
+              </p>
+              {photos.length > 0 && (
+                <p className="mt-1 text-xs font-medium text-brand">
+                  {photos.length} kép kiválasztva
+                </p>
+              )}
             </div>
             <div>
               <label htmlFor="c-msg" className="text-sm font-medium text-ink">

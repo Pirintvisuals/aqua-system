@@ -60,6 +60,24 @@ const STATS = [
   { value: "1 nap", label: "alatt kész a legtöbb csere" },
 ];
 
+const MILESTONES = [
+  {
+    year: "1970-es évek",
+    title: "Elindul a családi műhely",
+    body: "A szakma az első generációval kezdődik – víz-, gáz- és fűtésszerelés a környék otthonaiban.",
+  },
+  {
+    year: "1990–2000-es évek",
+    title: "Apáról fiúra száll a tudás",
+    body: "A vállalkozás megerősödik, a szaktudás generációról generációra öröklődik, egyre több nagyobb gázépítési munkával.",
+  },
+  {
+    year: "Ma",
+    title: "Gyors, biztonságos gázkészülék csere",
+    body: "Mára a fő profilunk a fix áras, egynapos gázkészülék csere – a teljes épületgépészeti háttérrel a hátunk mögött.",
+  },
+];
+
 /* Egyszerű képhely – a valós fotók később kerülnek be. */
 function ImagePlaceholder({ label }: { label: string }) {
   return (
@@ -112,6 +130,16 @@ export default function RolunkPage() {
               kapkodunk, nem trükközünk – szabályosan, átláthatóan és tiszta
               munkával dolgozunk.
             </p>
+
+            <figure className="mt-8 rounded-2xl border-l-4 border-brand bg-sky/40 p-6">
+              <blockquote className="font-display text-lg font-semibold leading-relaxed text-ink">
+                „Ugyanazzal a hozzáállással megyünk minden otthonba, mintha a
+                sajátunk lenne – ezt tanultuk a szüleinktől, és ezt adjuk tovább.”
+              </blockquote>
+              <figcaption className="mt-3 text-sm text-ink-soft">
+                <span className="font-semibold text-ink">Nagy Ferenc</span> — tulajdonos, Aqua System Service Kft.
+              </figcaption>
+            </figure>
           </div>
         </Reveal>
       </section>
@@ -134,8 +162,44 @@ export default function RolunkPage() {
         </div>
       </section>
 
-      {/* Amivel foglalkozunk */}
+      {/* Idővonal */}
       <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="max-w-2xl">
+            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
+              Az utunk
+            </span>
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Fél évszázad, három generáció
+            </h2>
+          </div>
+
+          <Reveal stagger className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {MILESTONES.map((m, i) => (
+              <div
+                key={m.year}
+                className="relative rounded-2xl border border-sky-200 bg-white p-7 shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)]"
+              >
+                <span className="inline-flex items-center gap-2 rounded-full bg-sky px-3 py-1 text-xs font-semibold text-brand">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="mt-4 font-display text-sm font-bold uppercase tracking-wide text-brand">
+                  {m.year}
+                </div>
+                <h3 className="mt-1 font-display text-lg font-bold text-ink">
+                  {m.title}
+                </h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+                  {m.body}
+                </p>
+              </div>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Amivel foglalkozunk */}
+      <section className="border-t border-sky-200 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
