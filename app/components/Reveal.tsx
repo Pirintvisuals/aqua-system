@@ -1,72 +1,38 @@
-"use client";
+import type { ReactNode } from "react";
 
-import {
-  Children,
-  cloneElement,
-  isValidElement,
-  useEffect,
-  useRef,
-  useState,
-  type HTMLAttributes,
-  type ReactElement,
-  type ReactNode,
-} from "react";
+/* ------------------------------------------------------------------ *
+ *  Görgetésre beúszó tartalom - JAVASCRIPT NÉLKÜL.
+ *
+ *  Korábban ez kliens komponens volt IntersectionObserverrel, és 21
+ *  helyen szerepel az oldalon. Ez volt a legnagyobb hidratálandó fa a
+ *  főoldalon. Most szerver komponens: csak osztályt tesz a wrapperre,
+ *  az animációt a CSS `animation-timeline: view()` intézi.
+ *
+ *  Fontos: a tartalom alapból LÁTHATÓ. Ahol a böngésző nem támogatja a
+ *  görgetésvezérelt animációt (jelenleg pl. a Firefox), ott egyszerűen
+ *  nincs animáció - de minden olvasható. Így nem fordulhat elő, hogy
+ *  JS nélkül üres marad a fél oldal.
+ *
+ *  Az API szándékosan változatlan, hogy a 21 hívási hely érintetlen
+ *  maradjon.
+ * ------------------------------------------------------------------ */
 
 type Props = {
   children: ReactNode;
   className?: string;
-  /** Stagger direct children instead of animating the wrapper as one block. */
+  /** A közvetlen gyerekeket lépcsőzetesen úsztatja be. */
   stagger?: boolean;
-  /** Delay between staggered children, in ms. */
+  /**
+   * Korábban a lépcsőzés késleltetése ms-ban. A CSS-es megoldásban
+   * minden elem a saját görgetési pozíciójához igazodik, így erre nincs
+   * szükség. Csak a hívási helyek kedvéért maradt meg.
+   */
   step?: number;
 };
 
-export default function Reveal({
-  children,
-  className,
-  stagger = false,
-  step = 80,
-}: Props) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setInView(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          io.disconnect();
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  if (stagger) {
-    return (
-      <div ref={ref} className={className}>
-        {Children.map(children, (child, i) => {
-          if (!isValidElement(child)) return child;
-          const el = child as ReactElement<HTMLAttributes<HTMLElement>>;
-          return cloneElement(el, {
-            className: `${el.props.className ?? ""} reveal ${inView ? "is-in" : ""}`,
-            style: { ...(el.props.style ?? {}), transitionDelay: `${i * step}ms` },
-          });
-        })}
-      </div>
-    );
-  }
-
+export default function Reveal({ children, className, stagger = false }: Props) {
   return (
-    <div ref={ref} className={`reveal ${inView ? "is-in" : ""} ${className ?? ""}`}>
+    <div className={`${stagger ? "reveal-stagger" : "reveal"} ${className ?? ""}`}>
       {children}
     </div>
   );

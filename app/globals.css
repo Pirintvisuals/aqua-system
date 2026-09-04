@@ -16,6 +16,13 @@
   --color-cyan: #7fc4e8; /* logo wave cyan */
   --color-cta: #0f2a5e; /* deep navy - the single action accent */
   --color-cta-700: #0a1f47; /* navy hover */
+
+  /* Rez accent. A rezcso a szakma sajat anyaga, es meleg ellenpontot ad
+     a sok kek mellett. Szandekosan visszafogottan hasznaljuk: szamok,
+     kiemelesek, ikonok - nem nagy feluletek. */
+  --color-copper: #b4632f;
+  --color-copper-soft: #fbf1e9;
+  --color-copper-line: #e8cdb8;
 }
 
 :root {
@@ -47,24 +54,36 @@ h3,
   mask-image: radial-gradient(60% 60% at 20% 20%, #000 0%, transparent 75%);
 }
 
-/* Scroll-reveal - toggled by the <Reveal> component via IntersectionObserver. */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
+/* Scroll-reveal, JS nelkul.
+   A tartalom alapbol LATHATO; az animacio csak ott fut, ahol a bongeszo
+   tamogatja a gorgetesvezerelt animaciot. Igy tamogatas hianyaban (vagy
+   kikapcsolt JS mellett) semmi nem tunik el az oldalrol.
+   A tartomany szandekosan rovid (entry 0% -> entry 35%), hogy a magas
+   szekciok es az oldal aljan allo elemek is biztosan vegigfussanak. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
-.reveal.is-in {
-  opacity: 1;
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
+
+/* A `max-height` nem stilus, hanem biztonsagi hatar. Nagyon magas
+   ablaknal (Googlebot renderelo, teljes oldalas screenshot-eszkozok) az
+   elemek soha nem "lepnek be" a nezetbe, igy a `both` kitoltes miatt a
+   kezdo, athatszo allapotban ragadnanak - vagyis a robot ures szekciokat
+   latna. Ilyenkor inkabb nincs animacio, csak lathato tartalom. */
+@media (prefers-reduced-motion: no-preference) and (max-height: 1600px) {
+  @supports (animation-timeline: view()) {
+    .reveal,
+    .reveal-stagger > * {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
   }
 }
 
@@ -197,4 +216,69 @@ h3,
   .faq-chat-launcher {
     bottom: 92px !important;
   }
+}
+
+/* ---------- Velemenyek: "mutasd mind" tisztan CSS-bol ----------
+   A rejtett checkbox allapota nyitja a tovabbi velemenyeket, igy a
+   szekcio szerver komponens maradhat es nulla JS kerul a kliensre.
+   Mind a 12 velemeny benne van a HTML-ben a keresok kedveert. */
+.reviews-extra {
+  display: none;
+}
+#reviews-toggle:checked ~ .reviews-extra {
+  display: block;
+}
+#reviews-toggle:checked ~ .reviews-more {
+  display: none;
+}
+#reviews-toggle:focus-visible ~ .reviews-more label {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+
+/* ---------- Szekcio-texturak ----------
+   A sok feher/vilagoskek kartya osszefolyt. Ezek adnak ritmust: sotet
+   savok, rezes savok es egy finom muszaki racs. */
+
+/* Muszaki racs - halvany kek vonalhalo, mint egy tervrajz. */
+.bg-blueprint {
+  background-image:
+    linear-gradient(rgba(43, 95, 208, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43, 95, 208, 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Ugyanez sotet savokon, vilagos vonallal. */
+.bg-blueprint-dark {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Rezes szekcio-hatter. */
+.bg-copper-wash {
+  background-color: var(--color-copper-soft);
+}
+
+/* Ragados szekciocim asztali nezetben. */
+.sticky-aside {
+  position: sticky;
+  top: 7rem;
+}
+
+/* Finom felso fenycsik sotet savok tetejen. */
+.edge-glow::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(127, 196, 232, 0.55),
+    transparent
+  );
 }

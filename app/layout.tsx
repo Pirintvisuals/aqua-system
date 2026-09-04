@@ -67,9 +67,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${lexend.variable} ${sourceSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-ink pb-[76px] lg:pb-0">
-        <noscript>
-          <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
-        </noscript>
         <StructuredData />
         <Navbar />
         {children}

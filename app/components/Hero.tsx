@@ -85,23 +85,18 @@ function WaveBackdrop() {
   );
 }
 
-/* Cyan brush-wave underline under a headline keyword. */
-function WaveUnderline() {
+/* Lagy kiemeles a cimsor kulcsszava mogott.
+   Korabban egy hullamos SVG alahuzas allt itt, de a tordelt cimsorban
+   belelogott a kovetkezo sorba. A hatterbe tett sav sosem utkozik. */
+function Highlight({ children }: { children: React.ReactNode }) {
   return (
-    <svg
-      className="absolute -bottom-3 left-0 h-3 w-full text-cyan"
-      viewBox="0 0 200 12"
-      fill="none"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M2 8 C 40 2 60 10 100 6 C 140 2 165 9 198 4"
-        stroke="currentColor"
-        strokeWidth="4"
-        strokeLinecap="round"
+    <span className="relative inline-block">
+      <span
+        aria-hidden="true"
+        className="absolute inset-x-[-0.12em] bottom-[0.06em] top-[0.52em] -z-10 rounded-[0.15em] bg-copper/15"
       />
-    </svg>
+      {children}
+    </span>
   );
 }
 
@@ -174,11 +169,10 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="mt-6 font-display text-[2rem] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
-              <span className="relative whitespace-nowrap text-brand">
-                Gázkészülék csere
-                <WaveUnderline />
-              </span>{" "}
+            <h1 className="mt-6 font-display text-[2rem] font-extrabold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
+              <Highlight>
+                <span className="text-brand">Gázkészülék csere</span>
+              </Highlight>{" "}
               1 nap alatt, gyorsan és biztonságosan
             </h1>
 

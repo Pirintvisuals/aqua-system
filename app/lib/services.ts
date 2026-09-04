@@ -40,6 +40,14 @@ export type Service = {
   };
   /** A fotóra úszó kis címke: rövid, tényszerű. */
   badge: { label: string; icon: "clock" | "wrench" | "shield" | "leaf" };
+  /** Aloldali fejléc-szöveg: rövidebb, konkrétabb, mint a teaser. */
+  intro: string;
+  /** Három szám a sötét tény-sávba az aloldal tetején. */
+  facts: { value: string; label: string }[];
+  /** Kinek való ez a szolgáltatás. */
+  who: string[];
+  /** Így zajlik: lépések az aloldalon. */
+  steps: { title: string; body: string }[];
   /** A forrásfotó tájolása - ehhez igazul a képkeret, hogy ne vágjuk szét. */
   orientation: "portrait" | "landscape";
   photo: StaticImageData | null;
@@ -66,6 +74,37 @@ export const SERVICES: Service[] = [
       "Engedélyeztetés, teljes dokumentáció",
     ],
     badge: { label: "Egyetlen munkanap", icon: "clock" },
+    intro:
+      "Reggel leszereljük a régit, estére fűt az új. A felméréstől az engedélyeztetésig mindent mi intézünk, fix áron.",
+    facts: [
+      { value: "1 nap", label: "a legtöbb csere ennyi idő" },
+      { value: "500+", label: "elvégzett készülékcsere" },
+      { value: "Fix ár", label: "felmérés után, írásban" },
+    ],
+    who: [
+      "A kazán 15 évnél idősebb, és egyre többet fogyaszt",
+      "Nyílt égésterű készülék van a lakásban",
+      "Már volt egy nagyobb hiba, és jön a következő",
+      "Új kazán kell, de nem akarsz hetekre fűtés nélkül maradni",
+    ],
+    steps: [
+      {
+        title: "Felmérés és fix ár",
+        body: "Kimegyünk, megnézzük a meglévő rendszert, a kéményt és a gázvezetéket. Ezután kapsz egy fix árat, írásban. Nem becslés, nem sávos ár.",
+      },
+      {
+        title: "Készülék és időpont",
+        body: "Kiválasztjuk a házhoz illő teljesítményű készüléket, beszerezzük, és egyeztetünk egy konkrét napot. Nem kell heteket várnod a szállításra.",
+      },
+      {
+        title: "A csere napja",
+        body: "Reggel érkezünk, leszereljük és elszállítjuk a régi készüléket, beszereljük és bekötjük az újat. A helyiséget úgy hagyjuk, ahogy találtuk.",
+      },
+      {
+        title: "Beüzemelés és papírok",
+        body: "Beüzemeljük, beszabályozzuk, megmutatjuk a kezelését. Az engedélyeztetést és a dokumentációt is mi intézzük.",
+      },
+    ],
     orientation: "portrait",
     photo: kazancsereTarolo,
     alt: "Frissen beszerelt Viessmann kondenzációs kazán rézcsövezéssel és melegvíz-tárolóval",
@@ -89,6 +128,37 @@ export const SERVICES: Service[] = [
       "Nyomáspróba, beüzemelés, átadás",
     ],
     badge: { label: "Egy kézben, egy felelőssel", icon: "wrench" },
+    intro:
+      "Fűtés, víz és gáz egy kézben, egy ütemtervvel és egy felelőssel. Új építésnél és teljes felújításnál.",
+    facts: [
+      { value: "3 szakág", label: "fűtés, víz és gáz együtt" },
+      { value: "1 felelős", label: "nem neked kell hangolni" },
+      { value: "50 év", label: "épületgépészeti tapasztalat" },
+    ],
+    who: [
+      "Új családi ház épül, és kell a teljes gépészet",
+      "Teljes felújítás, ahol a régi rendszer megy a konténerbe",
+      "Padlófűtés, puffertároló, több fűtési kör",
+      "Nem akarsz külön vízszerelőt, gázszerelőt és fűtésszerelőt hangolni",
+    ],
+    steps: [
+      {
+        title: "Tervek és egyeztetés",
+        body: "Átnézzük a terveket, és a többi szakággal is egyeztetünk. Ilyenkor derülnek ki azok az ütközések, amiket később már drága javítani.",
+      },
+      {
+        title: "Nyomvonalak, alapszerelés",
+        body: "Kiépítjük a fűtési, vizes és gázvezetékeket, a padlófűtés köreit, az osztó-gyűjtő helyét. Minden nyomvonalat dokumentálunk.",
+      },
+      {
+        title: "Kazánház és készülékek",
+        body: "Beépítjük a kazánt, a puffert és a melegvíz-tárolót, a szivattyúkat és a szabályozást. Úgy, hogy tíz év múlva is hozzá lehessen férni.",
+      },
+      {
+        title: "Nyomáspróba és átadás",
+        body: "Nyomáspróba, beüzemelés, beszabályozás, majd átadás dokumentációval és a rendszer bemutatásával.",
+      },
+    ],
     orientation: "landscape",
     photo: gepeszetCsovezetek,
     alt: "Elkészült kazánház családi házban: Viessmann kazán, puffertartály, Grundfos szivattyúk és rézcsövezés",
@@ -122,6 +192,37 @@ export const SERVICES: Service[] = [
       sourceUrl: "https://www.viessmann.hu/hu/services-and-support/warranty.html",
     },
     badge: { label: "Fix éves díj", icon: "shield" },
+    intro:
+      "Egy fix éves díjért gondozzuk a rendszeredet, és életben tartjuk a gyári garanciát. A határidőket mi tartjuk fejben.",
+    facts: [
+      { value: "10 évig", label: "élhet a gyári garancia" },
+      { value: "Fix díj", label: "előre kiszámítható, éves" },
+      { value: "Soron kívül", label: "szerződéses partnereinket" },
+    ],
+    who: [
+      "Új kazánod van, és nem akarod elveszíteni a gyári garanciát",
+      "Nem szeretnéd fejben tartani, mikor esedékes a felülvizsgálat",
+      "Társasház vagy több készüléket üzemeltetsz",
+      "Fontos, hogy hiba esetén ne a várólista végére kerülj",
+    ],
+    steps: [
+      {
+        title: "Felvesszük a rendszered adatait",
+        body: "Rögzítjük a készülék típusát, korát, a garancia lejáratát és a kötelező felülvizsgálat idejét. Innentől ezt mi tartjuk nyilván.",
+      },
+      {
+        title: "Éves karbantartás",
+        body: "Évente egyszer jövünk: tisztítás, beszabályozás, égéstermék- és nyomásellenőrzés, a gyártói előírás szerint, eredeti alkatrészekkel.",
+      },
+      {
+        title: "Jegyzőkönyv és emlékeztető",
+        body: "Minden alkalomról jegyzőkönyv készül, és szólunk, mielőtt a következő esedékes lenne. A garanciád így nem tud véletlenül lejárni.",
+      },
+      {
+        title: "Hiba esetén soron kívül",
+        body: "Szerződéses partnereinket hiba esetén előre vesszük. A fűtési szezon közepén ez nem apróság.",
+      },
+    ],
     orientation: "portrait",
     photo: karbantartas,
     alt: "Gázkazán elvégzett műszaki felülvizsgálatot igazoló matricával, 2026-os érvényességgel",
@@ -145,6 +246,37 @@ export const SERVICES: Service[] = [
       "Szabályozás beállítása, betanítás",
     ],
     badge: { label: "Gázfüggetlen fűtés", icon: "leaf" },
+    intro:
+      "Levegő-víz hőszivattyú felméréssel, hőigény-számítással és őszinte beszéddel arról, mikor éri meg és mikor nem.",
+    facts: [
+      { value: "Felmérés", label: "hőigény-számítás előre" },
+      { value: "Hibrid", label: "kazánnal együtt is működik" },
+      { value: "Alacsony", label: "üzemi hőmérséklet, kisebb rezsi" },
+    ],
+    who: [
+      "Csökkentenéd a rezsit, vagy leválnál a gázról",
+      "Padlófűtés van, vagy tervben van a kiépítése",
+      "Új ház épül, és most dől el a fűtés módja",
+      "Meglévő kazán mellé keresel kiegészítést",
+    ],
+    steps: [
+      {
+        title: "Hőigény-számítás",
+        body: "Kiszámoljuk, mennyi hőt igényel a ház. Ebből derül ki a gép mérete, és az is, ha a jelenlegi radiátorokkal nem lenne gazdaságos. Ezt előre megmondjuk.",
+      },
+      {
+        title: "Rendszerterv",
+        body: "Eldöntjük, mi legyen: önálló hőszivattyú vagy hibrid üzem a meglévő kazánnal. Megtervezzük a kültéri egység helyét és a hidraulikát.",
+      },
+      {
+        title: "Telepítés",
+        body: "Kültéri egység, hidraulikus bekötés, puffertároló, szabályozás. A meglévő fűtésrendszerre illesztjük, nem kell mindent újraépíteni.",
+      },
+      {
+        title: "Beszabályozás és betanítás",
+        body: "Beállítjuk a fűtésgörbét és a szabályozást, majd megmutatjuk a használatát. Az első szezonban is elérhetők vagyunk kérdésekkel.",
+      },
+    ],
     orientation: "landscape",
     photo: null,
     alt: "",

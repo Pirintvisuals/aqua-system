@@ -9,8 +9,8 @@ const EMAIL = BUSINESS.email;
 const LINKS = [
   { label: "Azonnali árajánlat", href: CHATBOT_URL },
   { label: "Szolgáltatásaink", href: "/szolgaltatasok" },
-  { label: "Kazán kalkulátor", href: "/#kalkulator" },
-  { label: "Folyamat", href: "/#folyamat" },
+  { label: "Kell-e új kazán?", href: "/kell-e-uj-kazan" },
+  { label: "Munkáink", href: "/munkaink" },
   { label: "Rólunk", href: "/rolunk" },
   { label: "Kapcsolat", href: "/kapcsolat" },
 ];
@@ -21,10 +21,15 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-14">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Image src={logo} alt="Aqua System Épületgépészet" className="h-12 w-auto" />
+            <Image
+              src={logo}
+              alt="Aqua System Épületgépészet"
+              sizes="102px"
+              className="h-12 w-auto"
+            />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">
               Egynapos, teljes körű gázkészülék csere – gyorsan, biztonságosan és
-              kiszámítható áron. Majdnem 50 év épületgépészeti tapasztalattal.
+              kiszámítható áron. Ötven éve, családi vállalkozásként.
             </p>
           </div>
 

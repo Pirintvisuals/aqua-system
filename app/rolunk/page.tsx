@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "../components/PageHero";
 import Team from "../components/Team";
 import CtaBand from "../components/CtaBand";
 import Reveal from "../components/Reveal";
+import nagyFerenc from "../assets/team/nagy-ferenc.png";
+import gepeszetCsovezetek from "../assets/munkak/gepeszet-csovezetek.jpg";
+import gepeszetVitodens from "../assets/munkak/gepeszet-vitodens.jpg";
 
 export const metadata: Metadata = {
-  title: "Rólunk – közel 50 év épületgépészeti tapasztalat",
+  title: "Rólunk – ötven év épületgépészeti tapasztalat",
   description:
-    "Az Aqua System Service Kft. családi vállalkozásként közel 50 éve foglalkozik víz-, gáz- és fűtésszereléssel. Ismerd meg a történetünket, az értékeinket és a csapatot.",
+    "Az Aqua System Service Kft. családi vállalkozásként ötven éve foglalkozik víz-, gáz- és fűtésszereléssel. Ismerd meg a történetünket, az értékeinket és a csapatot.",
   alternates: { canonical: "/rolunk" },
   openGraph: {
     type: "website",
@@ -15,7 +19,7 @@ export const metadata: Metadata = {
     url: "/rolunk",
     title: "Rólunk – Aqua System Service Kft.",
     description:
-      "Családi vállalkozás közel 50 év épületgépészeti tapasztalattal – víz, gáz, fűtés és egynapos gázkészülék csere.",
+      "Családi vállalkozás ötven év épületgépészeti tapasztalattal – víz, gáz, fűtés és egynapos gázkészülék csere.",
   },
 };
 
@@ -54,7 +58,7 @@ const VALUES = [
 ];
 
 const STATS = [
-  { value: "~50", label: "év tapasztalat az épületgépészetben" },
+  { value: "50", label: "év tapasztalat az épületgépészetben" },
   { value: "500+", label: "sikeresen lecserélt gázkészülék" },
   { value: "100%", label: "garancia minden beépített készülékre" },
   { value: "1 nap", label: "alatt kész a legtöbb csere" },
@@ -78,27 +82,16 @@ const MILESTONES = [
   },
 ];
 
-/* Egyszerű képhely – a valós fotók később kerülnek be. */
-function ImagePlaceholder({ label }: { label: string }) {
-  return (
-    <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-3xl border border-sky-200 bg-sky/50">
-      <svg className="h-12 w-12 text-brand/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <rect x="3" y="3" width="18" height="18" rx="2" />
-        <circle cx="8.5" cy="8.5" r="1.5" />
-        <path d="m21 15-5-5L5 21" />
-      </svg>
-      <span className="sr-only">{label}</span>
-    </div>
-  );
-}
-
 export default function RolunkPage() {
   return (
     <main className="flex-1">
       <PageHero
         eyebrow="Rólunk"
-        title="Közel 50 éve az épületgépészet mellett"
-        intro="Az Aqua System Service Kft. családi vállalkozás, amely majdnem öt évtizede foglalkozik víz-, gáz- és fűtésszereléssel. Ma leginkább a gyors, biztonságos gázkészülék cseréről ismernek minket – de a szaktudásunk a teljes fűtésrendszerre kiterjed."
+        image={gepeszetVitodens}
+        imageAlt="Aqua System által épített gépészeti rendszer szivattyúkkal és osztó-gyűjtővel"
+        badge={{ value: "1970-es évek óta", label: "ugyanaz a család" }}
+        title="Ötven éve az épületgépészet mellett"
+        intro="Az Aqua System Service Kft. családi vállalkozás, amely ötven éve foglalkozik víz-, gáz- és fűtésszereléssel. Ma leginkább a gyors, biztonságos gázkészülék cseréről ismernek minket – de a szaktudásunk a teljes fűtésrendszerre kiterjed."
         breadcrumb={[
           { label: "Főoldal", href: "/" },
           { label: "Rólunk", href: "/rolunk" },
@@ -109,7 +102,15 @@ export default function RolunkPage() {
       <section className="py-20 lg:py-28">
         <Reveal className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
           <div className="order-last lg:order-first">
-            <ImagePlaceholder label="Fotó a csapatról / egy munkáról – hamarosan" />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-sky-200 shadow-[0_40px_80px_-30px_rgba(15,42,94,0.45)]">
+              <Image
+                src={gepeszetCsovezetek}
+                alt="Aqua System által épített kazánház rézcsövezéssel"
+                placeholder="blur"
+                sizes="(max-width: 1024px) 90vw, 45vw"
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
           </div>
           <div>
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -269,6 +270,64 @@ export default function RolunkPage() {
       </section>
 
       {/* Csapat */}
+      {/* NAGY FERENC. A velemenyek tobbsegeben ot emlitik nevvel, ezert
+          kap sajat szekciot: arc es nev all a ceg mogott. */}
+      <section className="relative overflow-hidden bg-cta edge-glow py-20 lg:py-28">
+        <div className="pointer-events-none absolute inset-0 bg-blueprint-dark" aria-hidden="true" />
+        <div className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-cyan/15 blur-3xl" />
+        <Reveal className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div className="relative mx-auto w-full max-w-sm">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/20 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)]">
+              <Image
+                src={nagyFerenc}
+                alt="Nagy Ferenc, az Aqua System Service Kft. tulajdonosa"
+                placeholder="blur"
+                sizes="(max-width: 1024px) 80vw, 30vw"
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
+            <div className="absolute -bottom-5 left-6 rounded-2xl bg-white px-5 py-3 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.5)]">
+              <span className="block font-display text-base font-bold text-ink">
+                Nagy Ferenc
+              </span>
+              <span className="mt-0.5 block text-xs font-medium text-ink-soft">
+                tulajdonos, cégvezető
+              </span>
+            </div>
+          </div>
+
+          <div>
+            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-cyan">
+              Aki a cég mögött áll
+            </span>
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+              Nálunk van kihez fordulni
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-sky-200">
+              A legtöbb ügyfelünk nem a céget keresi, hanem Ferencet. Ő méri
+              fel a munkát, ő adja az árat, és ha valami mégsem stimmel, őt
+              lehet hívni. Ötven év alatt ez volt a legfontosabb döntés: hogy
+              mindig legyen egy név és egy arc a munka mögött.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-sky-200">
+              Ez nem marketingszöveg. Az ügyfélvéleményeinkben újra és újra
+              az ő neve jön elő, sokan egyenesen neki címezve írják meg a
+              visszajelzést.
+            </p>
+
+            <figure className="mt-8 rounded-2xl border-l-4 border-cyan bg-white/5 p-6">
+              <blockquote className="text-lg leading-relaxed text-white">
+                Nagy Ferenc cégvezetővel különösen jó, gördülékeny
+                kapcsolatom alakult ki.
+              </blockquote>
+              <figcaption className="mt-3 text-sm text-sky-200">
+                F. Tibor, Budapest XII. kerület
+              </figcaption>
+            </figure>
+          </div>
+        </Reveal>
+      </section>
+
       <Team />
 
       <CtaBand />

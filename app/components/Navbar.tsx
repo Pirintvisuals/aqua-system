@@ -10,8 +10,8 @@ import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 // aloldalról is működnek (nem csak a főoldalon).
 const NAV_LINKS = [
   { label: "Szolgáltatásaink", href: "/szolgaltatasok" },
-  { label: "Kalkulátor", href: "/#kalkulator" },
-  { label: "Folyamat", href: "/#folyamat" },
+  { label: "Kell-e új kazán?", href: "/kell-e-uj-kazan" },
+  { label: "Munkáink", href: "/munkaink" },
   { label: "Rólunk", href: "/rolunk" },
   { label: "Kapcsolat", href: "/kapcsolat" },
 ];
@@ -23,6 +23,7 @@ function Logo() {
         src={logo}
         alt="Aqua System Épületgépészet"
         priority
+        sizes="136px"
         className="h-14 w-auto sm:h-16"
       />
     </Link>

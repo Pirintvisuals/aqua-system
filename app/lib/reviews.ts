@@ -15,7 +15,7 @@ export type Review = {
   rating: 1 | 2 | 3 | 4 | 5;
   /** Bekezdésenként tördelve, ahogy az eredeti szöveg állt. */
   body: string[];
-  /** Kiemelt vélemény - ez kerül előre és a rövid nézetbe. */
+  /** A nagy, kiemelt idézet a szekció tetején. Pontosan egy legyen. */
   featured?: boolean;
 };
 
@@ -35,7 +35,6 @@ export const REVIEWS: Review[] = [
     place: "Érd",
     year: "2025",
     rating: 5,
-    featured: true,
     body: [
       "A cég két alkalommal dolgozott nálunk, első alkalommal komplett fűtést, melegvizet és központi porszívót szereltek, másodjára kazánt cseréltek – 17 év különbséggel, Érden. Ez önmagában is sokat elmond: ha valakihez ennyi idő után is bizalommal fordulunk, az nem véletlen. Számomra a legfontosabb értékek a korrektség, megbízhatóság és kiszámíthatóság. Azt várom, hogy a munkát akkor, úgy és annyiért végezzék el, ahogyan megállapodtunk – és ez mindkét alkalommal maximálisan teljesült. Pontosak, tisztességesek, és a szakértelmük megkérdőjelezhetetlen. Csak ajánlani tudom őket mindenkinek, aki megbízható, kiszámítható szerelőt keres.",
     ],
@@ -45,7 +44,6 @@ export const REVIEWS: Review[] = [
     place: "Érd",
     year: "2025",
     rating: 5,
-    featured: true,
     body: [
       "25 éve veszem igénybe a szolgáltatásukat. (vízhálózat, gázszerelés, kondenzációs gázkazán csere stb.)",
       "Megbízható, jó minőségű munkavégzés a jellemző. Korrekt szakmai tanácsok, új berendezések-eszközök beszerzése, kezelésének a bemutatása.",

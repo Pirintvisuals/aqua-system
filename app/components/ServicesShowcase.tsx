@@ -84,7 +84,7 @@ export default function ServicesShowcase() {
                   {s.teaser}
                 </p>
                 <Link
-                  href={`/szolgaltatasok#${s.slug}`}
+                  href={`/szolgaltatasok/${s.slug}`}
                   className="group/link mt-5 inline-flex cursor-pointer items-center gap-1.5 text-sm font-semibold text-brand transition-colors hover:text-cta focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   Részletek

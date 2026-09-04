@@ -38,8 +38,8 @@ export default function About() {
             Az Aqua System Service Kft.-ről
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-            Majdnem öt évtizede foglalkozunk épületgépészeti kivitelezéssel,
-            családi vállalkozásként. Tapasztalatunk a víz-, gáz- és
+            Ötven éve foglalkozunk épületgépészeti kivitelezéssel, családi
+            vállalkozásként. Tapasztalatunk a víz-, gáz- és
             fűtésszerelési munkák teljes körére kiterjed, így pontosan tudjuk, mi
             számít a megbízható, biztonságos és hosszú távon is működő rendszerek
             kialakításánál.
