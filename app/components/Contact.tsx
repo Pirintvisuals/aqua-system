@@ -36,8 +36,8 @@ export default function Contact() {
     const body =
       `Név: ${name}\n` +
       `Elérhetőség: ${contact}\n` +
-      `Milyen munka: ${workType || "—"}\n` +
-      `Helyszín: ${place || "—"}` +
+      `Milyen munka: ${workType || "nincs megadva"}\n` +
+      `Helyszín: ${place || "nincs megadva"}` +
       photoLine +
       `\n\n${message}`;
     // Chatbot/űrlap-backend később; addig e-mail kliens nyílik meg.
@@ -156,11 +156,11 @@ export default function Contact() {
             </div>
             <div>
               <label htmlFor="c-work" className="text-sm font-medium text-ink">
-                Milyen munka?
+                Milyen munka?{" "}
+                <span className="font-normal text-ink-soft">(opcionális)</span>
               </label>
               <select
                 id="c-work"
-                required
                 value={workType}
                 onChange={(e) => setWorkType(e.target.value)}
                 className={`${inputClass} ${
@@ -179,12 +179,12 @@ export default function Contact() {
             </div>
             <div>
               <label htmlFor="c-place" className="text-sm font-medium text-ink">
-                Helyszín
+                Helyszín{" "}
+                <span className="font-normal text-ink-soft">(opcionális)</span>
               </label>
               <input
                 id="c-place"
                 type="text"
-                required
                 value={place}
                 onChange={(e) => setPlace(e.target.value)}
                 placeholder="Település / kerület – pl. Budapest, XIII. kerület"

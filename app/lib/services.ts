@@ -8,11 +8,11 @@ import karbantartas from "../assets/munkak/karbantartas-felulvizsgalat.jpg";
 import vezerlopanel from "../assets/munkak/vezerlopanel.jpg";
 
 /* ------------------------------------------------------------------ *
- *  A négy szolgáltatás — EGY forrás a főoldali kártyáknak és a
+ *  A négy szolgáltatás - EGY forrás a főoldali kártyáknak és a
  *  /szolgaltatasok aloldalnak, hogy a cím és a szöveg ne csússzon szét.
  *
  *  A `photo` mindig valódi, saját munkafotó. A hőszivattyúnál egyelőre
- *  NINCS saját fotó, ezért ott `photo: null` — a felület rajzolt
+ *  NINCS saját fotó, ezért ott `photo: null` - a felület rajzolt
  *  illusztrációt mutat helyette. Ne tegyünk oda kazánfotót: a
  *  látogatónak félrevezető lenne. Amint van hőszivattyús fotó, elég
  *  ide beimportálni.
@@ -20,17 +20,17 @@ import vezerlopanel from "../assets/munkak/vezerlopanel.jpg";
 
 export type Service = {
   slug: string;
-  /** Rövid cím — kártyákon, menüben. */
+  /** Rövid cím - kártyákon, menüben. */
   title: string;
-  /** Hosszabb cím — az aloldali szekció H2-je. */
+  /** Hosszabb cím - az aloldali szekció H2-je. */
   heading: string;
   /** Egymondatos összefoglaló a kártyákra. */
   teaser: string;
   /** Két bekezdés az aloldali részletes szekcióba. */
   body: string[];
-  /** Mit tartalmaz — pipás lista. */
+  /** Mit tartalmaz - pipás lista. */
   includes: string[];
-  /** Kiemelt tudnivaló a szekció alján — forrásmegjelöléssel. */
+  /** Kiemelt tudnivaló a szekció alján - forrásmegjelöléssel. */
   note?: {
     title: string;
     body: string;
@@ -40,7 +40,7 @@ export type Service = {
   };
   /** A fotóra úszó kis címke: rövid, tényszerű. */
   badge: { label: string; icon: "clock" | "wrench" | "shield" | "leaf" };
-  /** A forrásfotó tájolása — ehhez igazul a képkeret, hogy ne vágjuk szét. */
+  /** A forrásfotó tájolása - ehhez igazul a képkeret, hogy ne vágjuk szét. */
   orientation: "portrait" | "landscape";
   photo: StaticImageData | null;
   alt: string;

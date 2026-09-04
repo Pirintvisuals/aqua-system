@@ -65,7 +65,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Cégadatok — gázmunkánál ez nem formalitás. A látogató ebből
+        {/* Cégadatok - gázmunkánál ez nem formalitás. A látogató ebből
             látja, hogy valódi, ellenőrizhető céggel áll szemben, nem egy
             névtelen landing page-dzsel. */}
         <section

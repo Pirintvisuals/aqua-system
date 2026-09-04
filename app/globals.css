@@ -4,17 +4,17 @@
   --font-sans: var(--font-source-sans), system-ui, sans-serif;
   --font-display: var(--font-lexend), system-ui, sans-serif;
 
-  /* Brand — Aqua System (bright, white + blue) */
+  /* Brand - Aqua System (bright, white + blue) */
   --color-ink: #232b36; /* charcoal body/headings */
   --color-ink-soft: #566175; /* muted text */
 
   --color-sky: #eaf3ff; /* soft sky wash */
   --color-sky-200: #d6e6ff;
 
-  --color-brand: #2b5fd0; /* deep brand blue — headlines & accents */
+  --color-brand: #2b5fd0; /* deep brand blue - headlines & accents */
   --color-brand-light: #4b7be5; /* cornflower (their headline tone) */
   --color-cyan: #7fc4e8; /* logo wave cyan */
-  --color-cta: #0f2a5e; /* deep navy — the single action accent */
+  --color-cta: #0f2a5e; /* deep navy - the single action accent */
   --color-cta-700: #0a1f47; /* navy hover */
 }
 
@@ -35,7 +35,7 @@ h3,
   font-family: var(--font-display);
 }
 
-/* Subtle dot grid — 21st.dev-style texture behind the hero copy.
+/* Subtle dot grid - 21st.dev-style texture behind the hero copy.
    Faded via mask so it never competes with the content. */
 .bg-dotgrid {
   background-image: radial-gradient(
@@ -47,7 +47,7 @@ h3,
   mask-image: radial-gradient(60% 60% at 20% 20%, #000 0%, transparent 75%);
 }
 
-/* Scroll-reveal — toggled by the <Reveal> component via IntersectionObserver. */
+/* Scroll-reveal - toggled by the <Reveal> component via IntersectionObserver. */
 .reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -122,7 +122,7 @@ h3,
 
 /* ---------- Range slider ----------
    `appearance-none` strips the native thumb in Blink/WebKit, so it has to be
-   drawn back by hand — without these rules the kalkulátor handle is invisible
+   drawn back by hand - without these rules the kalkulátor handle is invisible
    in Chrome, Edge and Safari. Firefox needs its own -moz- pair. */
 .range-brand {
   -webkit-appearance: none;
@@ -169,7 +169,7 @@ h3,
   cursor: grabbing;
 }
 
-/* Keyboard focus ring — the input itself carries `outline-none`, so the
+/* Keyboard focus ring - the input itself carries `outline-none`, so the
    visible affordance has to live on the thumb. */
 .range-brand:focus-visible::-webkit-slider-thumb {
   box-shadow:
@@ -186,5 +186,15 @@ h3,
   .range-brand::-webkit-slider-thumb,
   .range-brand::-moz-range-thumb {
     transition: none;
+  }
+}
+
+/* ---------- Ragadós mobil CTA-sáv együttélése a chat widgettel ----------
+   A widget saját lebegő gombja a jobb alsó sarokba ül, pont oda, ahol a
+   CTA-sáv van. Mobilon feljebb toljuk, hogy egyik se takarja a másikat.
+   A widget külső scriptből jön, ezért az osztályát célozzuk. */
+@media (max-width: 1023px) {
+  .faq-chat-launcher {
+    bottom: 92px !important;
   }
 }

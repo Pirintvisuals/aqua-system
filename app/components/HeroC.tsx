@@ -35,7 +35,7 @@ function useCountUp(target: number, duration = 1400) {
   return { value, ref };
 }
 
-/* Technician cutout — transparent background, floats on the sky. Placeholder. */
+/* Technician cutout - transparent background, floats on the sky. Placeholder. */
 function TechnicianCutout() {
   return (
     <svg
@@ -112,18 +112,18 @@ export default function HeroC() {
       </div>
 
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-6 pb-24 pt-28 lg:grid-cols-2 lg:pt-32">
-        {/* LEFT — copy */}
+        {/* LEFT - copy */}
         <div className="fade-up">
           <span className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/70 px-4 py-1.5 text-sm font-semibold text-brand backdrop-blur">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-light opacity-70" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
             </span>
-            Reggel felmérés — estére kész
+            Reggel felmérés, estére kész
           </span>
 
           <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
-            Egynapos gázkészülék csere —{" "}
+            Egynapos gázkészülék csere,{" "}
             <span className="text-brand-light">estére kész.</span>
           </h1>
 
@@ -160,7 +160,7 @@ export default function HeroC() {
           </div>
         </div>
 
-        {/* RIGHT — cutout on sky + floating cards */}
+        {/* RIGHT - cutout on sky + floating cards */}
         <div className="relative fade-up [animation-delay:120ms]">
           <div className="relative mx-auto max-w-sm">
             <div className="mx-auto h-[440px] w-full animate-float-slow">

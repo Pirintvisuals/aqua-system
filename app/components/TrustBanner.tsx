@@ -57,7 +57,7 @@ export default function TrustBanner() {
                 <span className="font-semibold text-white">
                   online árajánló asszisztensünkben
                 </span>{" "}
-                — pár percen belül megvan a tájékoztató ár.
+                és pár percen belül megvan a tájékoztató ár.
               </p>
             </div>
 

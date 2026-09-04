@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
 };
 
-/* A négy szolgáltatás strukturált adatként — a cégprofilhoz kötve.
+/* A négy szolgáltatás strukturált adatként - a cégprofilhoz kötve.
    Ár szándékosan nincs benne: a konkrét árat felmérés adja. */
 const offerCatalog = {
   "@context": "https://schema.org",
@@ -70,7 +70,7 @@ export default function SzolgaltatasokPage() {
         ))}
       </div>
 
-      {/* Saját munkafotók — nem stock, ezek a mi kazánházaink. */}
+      {/* Saját munkafotók - nem stock, ezek a mi kazánházaink. */}
       <section className="border-t border-sky-200 bg-sky/30 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-2xl">

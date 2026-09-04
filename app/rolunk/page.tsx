@@ -137,7 +137,7 @@ export default function RolunkPage() {
                 sajátunk lenne – ezt tanultuk a szüleinktől, és ezt adjuk tovább.”
               </blockquote>
               <figcaption className="mt-3 text-sm text-ink-soft">
-                <span className="font-semibold text-ink">Nagy Ferenc</span> — tulajdonos, Aqua System Service Kft.
+                <span className="font-semibold text-ink">Nagy Ferenc</span>, tulajdonos, Aqua System Service Kft.
               </figcaption>
             </figure>
           </div>

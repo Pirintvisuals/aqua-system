@@ -10,7 +10,7 @@ import {
 } from "../lib/reviews";
 
 /* ------------------------------------------------------------------ *
- *  Ügyfélvélemények — VALÓS visszajelzések (lásd `app/lib/reviews.ts`).
+ *  Ügyfélvélemények - VALÓS visszajelzések (lásd `app/lib/reviews.ts`).
  *
  *  Kőműves-rács (CSS columns) helyett azért nem sima grid: a vélemények
  *  hossza nagyon eltérő, így a kártyák nem nyúlnak fölöslegesen nagyra.
@@ -135,7 +135,7 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Vélemények — eltérő hosszúság miatt oszlopos (masonry) tördelés */}
+        {/* Vélemények - eltérő hosszúság miatt oszlopos (masonry) tördelés */}
         <Reveal className="mt-12">
           <div className="columns-1 gap-6 md:columns-2 lg:columns-3">
             {REVIEWS.map((r, i) => (

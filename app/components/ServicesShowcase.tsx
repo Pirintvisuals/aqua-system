@@ -4,7 +4,7 @@ import Reveal from "./Reveal";
 import { SERVICES } from "../lib/services";
 
 /* ------------------------------------------------------------------ *
- *  Szolgáltatásaink — a négy fő szolgáltatás kártyán, saját
+ *  Szolgáltatásaink - a négy fő szolgáltatás kártyán, saját
  *  munkafotókkal. A szöveg forrása az `app/lib/services.ts`, ugyanaz,
  *  amiből a /szolgaltatasok aloldal is dolgozik.
  *
@@ -59,7 +59,7 @@ export default function ServicesShowcase() {
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
-                  /* Hőszivattyú — még nincs saját fotónk, ezért jelzés
+                  /* Hőszivattyú - még nincs saját fotónk, ezért jelzés
                      értékű rajz áll itt kazánfotó helyett. */
                   <div className="relative flex h-full w-full items-center justify-center">
                     <div className="pointer-events-none absolute inset-0 bg-dotgrid opacity-60" aria-hidden="true" />

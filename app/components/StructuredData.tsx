@@ -2,18 +2,18 @@ import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, BUSINESS } from "../lib/site";
 import { FAQS } from "../lib/faqs";
 
 /* ------------------------------------------------------------------ *
- *  JSON-LD strukturált adat — a keresők és az AI-válaszmotorok (Google
+ *  JSON-LD strukturált adat - a keresők és az AI-válaszmotorok (Google
  *  AI Overviews, ChatGPT, Perplexity) ebből értik meg, ki a cég, mit
  *  csinál és hol. Szerver-komponens: a HTML-be sül, nincs JS-költsége.
  *
- *  Szándékosan NINCS AggregateRating/Review — pedig a véleményeink már
+ *  Szándékosan NINCS AggregateRating/Review - pedig a véleményeink már
  *  valósak (lásd `app/lib/reviews.ts`). Az ok más: a saját oldalon,
  *  saját maga által gyűjtött értékelés a Google szemében "self-serving",
  *  és LocalBusiness/Organization alatt NEM jogosult review rich resultra.
  *  Felrakni kockázat (manuális intézkedés), haszon nélkül.
  *
  *  Ahol ezek a vélemények tényleg hoznak: a Google Cégprofil. Érdemes
- *  megkérni ugyanezeket az ügyfeleket, hogy ott is írják meg — onnan a
+ *  megkérni ugyanezeket az ügyfeleket, hogy ott is írják meg - onnan a
  *  csillagok már megjelenhetnek a találati listában.
  * ------------------------------------------------------------------ */
 export default function StructuredData() {
@@ -41,7 +41,7 @@ export default function StructuredData() {
         addressCountry: BUSINESS.address.addressCountry,
       },
     }),
-    // Adószám és cégjegyzékszám — ezek kötik a weboldalt egy valódi,
+    // Adószám és cégjegyzékszám - ezek kötik a weboldalt egy valódi,
     // ellenőrizhető céghez (entitás-egyértelműsítés a keresőknek).
     taxID: BUSINESS.registration.taxNumber,
     identifier: {

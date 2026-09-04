@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 /* ------------------------------------------------------------------ *
- *  Aloldalak fejléce — egységes címsáv a /rolunk, /kapcsolat stb.
+ *  Aloldalak fejléce - egységes címsáv a /rolunk, /kapcsolat stb.
  *  oldalak tetején. A főoldali Hero-t nem helyettesíti, csak egy
  *  visszafogott, világoskék "page header" a belső oldalakhoz.
  * ------------------------------------------------------------------ */
@@ -13,7 +13,7 @@ type Props = {
   eyebrow: string;
   title: string;
   intro?: ReactNode;
-  /** Morzsamenü — az utolsó elem az aktuális oldal (link nélkül). */
+  /** Morzsamenü - az utolsó elem az aktuális oldal (link nélkül). */
   breadcrumb?: Crumb[];
 };
 

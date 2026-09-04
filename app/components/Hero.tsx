@@ -53,7 +53,7 @@ function useCountUp(target: number, duration = 1200) {
   return { value, ref };
 }
 
-/* Soft branded wave motif — echoes the logo swoosh, fills the background. */
+/* Soft branded wave motif - echoes the logo swoosh, fills the background. */
 function WaveBackdrop() {
   return (
     <svg
@@ -156,7 +156,7 @@ export default function Hero() {
         <WaveBackdrop />
 
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-y-10 px-6 pb-16 pt-16 lg:min-h-[640px] lg:grid-cols-2 lg:gap-12 lg:pb-20 lg:pt-20">
-          {/* LEFT — copy */}
+          {/* LEFT - copy */}
           <div className="fade-up">
             <div className="flex flex-wrap items-center gap-3">
               <span className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/70 px-4 py-1.5 text-sm font-semibold text-brand backdrop-blur">
@@ -179,18 +179,18 @@ export default function Hero() {
                 Gázkészülék csere
                 <WaveUnderline />
               </span>{" "}
-              1 nap alatt — gyorsan és biztonságosan
+              1 nap alatt, gyorsan és biztonságosan
             </h1>
 
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft">
               Elavult, zajos vagy sokat fogyasztó gázkészülék? Ne várj a
-              hibára — új, megbízható berendezést cserélünk{" "}
+              hibára: új, megbízható berendezést cserélünk{" "}
               <strong className="font-semibold text-ink">1 nap alatt</strong>,
               kiszámítható áron. Az{" "}
               <strong className="font-semibold text-ink">
                 online árajánló asszisztensünk
               </strong>{" "}
-              pár kérdés után azonnal ad egy tájékoztató árat — hívás nélkül,
+              pár kérdés után azonnal ad egy tájékoztató árat. Hívás nélkül,
               a nap 24 órájában.
             </p>
 
@@ -228,11 +228,11 @@ export default function Hero() {
             </ul>
           </div>
 
-          {/* RIGHT — spacer that reserves the right half on desktop */}
+          {/* RIGHT - spacer that reserves the right half on desktop */}
           <div className="hidden lg:block" aria-hidden="true" />
         </div>
 
-        {/* PHOTO — in-flow card on mobile, full-bleed panel on desktop */}
+        {/* PHOTO - in-flow card on mobile, full-bleed panel on desktop */}
         <div className="relative mx-auto -mt-2 aspect-[4/5] w-[min(90%,26rem)] overflow-hidden rounded-3xl border border-sky-200 shadow-[0_40px_80px_-30px_rgba(15,42,94,0.5)] lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:mt-0 lg:aspect-auto lg:w-[47vw] lg:rounded-l-[2.5rem] lg:rounded-r-none lg:border-0">
           <Image
             src={heroBoiler}
@@ -247,7 +247,7 @@ export default function Hero() {
           {/* left white fade blends the photo into the copy side (desktop only) */}
           <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-44 bg-gradient-to-r from-white to-transparent lg:block" />
 
-          {/* floating guarantee card — overlaps the photo/white seam */}
+          {/* floating guarantee card - overlaps the photo/white seam */}
           <div className="absolute -left-3 bottom-6 animate-float-slow lg:left-8 lg:bottom-14">
             <GuaranteeCard />
           </div>
@@ -267,7 +267,7 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* stats band — dark contrast strip, grounds the hero */}
+      {/* stats band - dark contrast strip, grounds the hero */}
       <div className="relative overflow-hidden bg-cta">
         <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-cyan/15 blur-3xl" />
         <div className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-brand-light/20 blur-3xl" />

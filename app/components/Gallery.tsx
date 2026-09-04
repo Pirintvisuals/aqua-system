@@ -4,10 +4,10 @@ import Reveal from "./Reveal";
 import { SERVICES, WORK_PHOTOS } from "../lib/services";
 
 /* ------------------------------------------------------------------ *
- *  Korábbi munkáink — VALÓDI, saját fotók a kazánházainkból.
+ *  Korábbi munkáink - VALÓDI, saját fotók a kazánházainkból.
  *
  *  Korábban stockfotók álltak itt kitalált településnevekkel
- *  ("Érd", "Tárnok"…). Kifelé az a látszat, hogy a mi munkánk —
+ *  ("Érd", "Tárnok"…). Kifelé az a látszat, hogy a mi munkánk -
  *  ez egy bizalomra épülő szakmában nem vállalható, ezért kikerült.
  *  A képaláírás most azt mondja, ami tényleg a képen van.
  *

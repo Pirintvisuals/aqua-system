@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 import { CHATBOT_URL } from "../lib/links";
 
 /* ------------------------------------------------------------------ *
- *  ÁLLÍTHATÓ KÜSZÖBÖK — szakmai forrásokkal alátámasztva.
+ *  ÁLLÍTHATÓ KÜSZÖBÖK - szakmai forrásokkal alátámasztva.
  *  Egy gázkazán átlagos élettartama kb. 10–15 év. Kb. 8–10 évig a
  *  javítás éri meg, 15 év fölött a szakértők a cserét javasolják.
  *  (Források: nef.org.uk, uswitch.com, fokabt.hu, vizgazfutesszeged.hu)

@@ -1,9 +1,9 @@
 /* ------------------------------------------------------------------ *
- *  VALÓS ügyfélvélemények — szó szerint, ahogy az ügyfelek megírták.
+ *  VALÓS ügyfélvélemények - szó szerint, ahogy az ügyfelek megírták.
  *
  *  Ezek nem minták: a szövegen ne "szépíts", ne rövidítsd bele az
  *  értelmét, és ne találj ki újat. Ha egy vélemény lekerül, töröld
- *  innen — a `rating` mindig az legyen, amit az ügyfél adott.
+ *  innen - a `rating` mindig az legyen, amit az ügyfél adott.
  *
  *  Csillagok: 11 db ötcsillagos + 1 db négycsillagos.
  * ------------------------------------------------------------------ */
@@ -15,7 +15,7 @@ export type Review = {
   rating: 1 | 2 | 3 | 4 | 5;
   /** Bekezdésenként tördelve, ahogy az eredeti szöveg állt. */
   body: string[];
-  /** Kiemelt vélemény — ez kerül előre és a rövid nézetbe. */
+  /** Kiemelt vélemény - ez kerül előre és a rövid nézetbe. */
   featured?: boolean;
 };
 
@@ -145,7 +145,7 @@ export const REVIEWS: Review[] = [
   },
 ];
 
-/** Átlag és darabszám — mindig a fenti tömbből számolva, kézzel ne írd át. */
+/** Átlag és darabszám - mindig a fenti tömbből számolva, kézzel ne írd át. */
 export const REVIEW_COUNT = REVIEWS.length;
 export const REVIEW_AVERAGE =
   Math.round((REVIEWS.reduce((sum, r) => sum + r.rating, 0) / REVIEW_COUNT) * 10) /

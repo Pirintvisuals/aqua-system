@@ -1,7 +1,7 @@
 import Reveal from "./Reveal";
 import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 
-/* Záró CTA-sáv az aloldalak aljára — árajánló asszisztens + telefon. */
+/* Záró CTA-sáv az aloldalak aljára - árajánló asszisztens + telefon. */
 
 type Props = {
   title?: string;

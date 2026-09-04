@@ -8,7 +8,7 @@ import type { Service } from "../lib/services";
  *  sorszámúaknál a fotó jobbra, a páratlanoknál balra kerül.
  *
  *  Ha a szolgáltatáshoz nincs saját munkafotó (`photo: null`), rajzolt
- *  illusztrációt teszünk a helyére — soha nem másik szolgáltatás
+ *  illusztrációt teszünk a helyére - soha nem másik szolgáltatás
  *  fotóját.
  * ------------------------------------------------------------------ */
 
@@ -55,7 +55,7 @@ function BadgeIcon({ name }: { name: Service["badge"]["icon"] }) {
   );
 }
 
-/* Rajzolt hőszivattyú — kültéri egység, hőleadás a ház felé.
+/* Rajzolt hőszivattyú - kültéri egység, hőleadás a ház felé.
    Addig áll itt, amíg nincs saját fotónk egy elkészült telepítésről. */
 function HeatPumpIllustration() {
   return (
@@ -159,7 +159,7 @@ export default function ServiceSection({
             ))}
           </ul>
 
-          {/* Kiemelt tudnivaló — forrásmegjelöléssel, hogy ellenőrizhető
+          {/* Kiemelt tudnivaló - forrásmegjelöléssel, hogy ellenőrizhető
               legyen. Garanciafeltételt sosem állítunk forrás nélkül. */}
           {service.note && (
             <aside className="mt-8 rounded-2xl border border-amber-200 bg-amber-50/70 p-5">
@@ -226,7 +226,7 @@ export default function ServiceSection({
             )}
           </div>
 
-          {/* lebegő címke — ugyanaz a motívum, mint a főoldali Hero-n */}
+          {/* lebegő címke - ugyanaz a motívum, mint a főoldali Hero-n */}
           <div
             className={`absolute -bottom-5 flex items-center gap-3 rounded-2xl border border-sky-200 bg-white/90 px-5 py-3 shadow-[0_18px_40px_-18px_rgba(15,42,94,0.4)] backdrop-blur ${
               flipped ? "right-6" : "left-6"
