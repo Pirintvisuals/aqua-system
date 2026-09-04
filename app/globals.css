@@ -119,3 +119,72 @@ h3,
     animation: none !important;
   }
 }
+
+/* ---------- Range slider ----------
+   `appearance-none` strips the native thumb in Blink/WebKit, so it has to be
+   drawn back by hand — without these rules the kalkulátor handle is invisible
+   in Chrome, Edge and Safari. Firefox needs its own -moz- pair. */
+.range-brand {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.range-brand::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 3px solid var(--color-brand);
+  box-shadow: 0 4px 12px -2px rgba(15, 42, 94, 0.45);
+  cursor: grab;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.range-brand::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 3px solid var(--color-brand);
+  box-shadow: 0 4px 12px -2px rgba(15, 42, 94, 0.45);
+  cursor: grab;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.range-brand:hover::-webkit-slider-thumb {
+  transform: scale(1.1);
+}
+.range-brand:hover::-moz-range-thumb {
+  transform: scale(1.1);
+}
+.range-brand:active::-webkit-slider-thumb {
+  cursor: grabbing;
+}
+.range-brand:active::-moz-range-thumb {
+  cursor: grabbing;
+}
+
+/* Keyboard focus ring — the input itself carries `outline-none`, so the
+   visible affordance has to live on the thumb. */
+.range-brand:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 4px rgba(43, 95, 208, 0.28),
+    0 4px 12px -2px rgba(15, 42, 94, 0.45);
+}
+.range-brand:focus-visible::-moz-range-thumb {
+  box-shadow:
+    0 0 0 4px rgba(43, 95, 208, 0.28),
+    0 4px 12px -2px rgba(15, 42, 94, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .range-brand::-webkit-slider-thumb,
+  .range-brand::-moz-range-thumb {
+    transition: none;
+  }
+}

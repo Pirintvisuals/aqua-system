@@ -1,5 +1,5 @@
 import Image from "next/image";
-import boilerPhoto from "../assets/boiler-service.jpg";
+import boilerPhoto from "../assets/munkak/gepeszet-kazanhaz.jpg";
 import Reveal from "./Reveal";
 import { CHATBOT_URL } from "../lib/links";
 
@@ -68,7 +68,7 @@ export default function Services() {
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-sky-200 shadow-[0_40px_80px_-30px_rgba(15,42,94,0.45)]">
             <Image
               src={boilerPhoto}
-              alt="Aqua System szerelő gázkészüléket szerel be"
+              alt="Elkészült kazánház: fali kazán, melegvíz-tároló és puffertartály bekötve"
               placeholder="blur"
               sizes="(max-width: 1024px) 90vw, 45vw"
               className="h-full w-full object-cover object-center"

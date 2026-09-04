@@ -14,28 +14,44 @@ export const SITE_DESCRIPTION =
   "Gyors, biztonságos és profi gázkészülék- és kazáncsere egyetlen nap alatt. 50 év tapasztalat, fix ár, 100% garancia minden készülékre. Már 500+ sikeres csere.";
 
 export const BUSINESS = {
-  legalName: "Aqua System Service Kft.",
+  // Teljes, bejegyzett cégnév — a cégkivonat szerint.
+  legalName:
+    "AQUA SYSTEM SERVICE Épületgépészeti Szolgáltató Korlátolt Felelősségű Társaság",
   telephone: "+36203990093",
-  email: "keszulekcsere@aqua-system.hu",
+  email: "kazancsere@aqua-system.hu",
 
-  // ⚠ Cím — töltsd ki a bejegyzett székhely / telephely adataival.
-  //    Területi (kiszállásos) szolgáltatóként is kell egy valós cím a
-  //    Google Cégprofilhoz és a NAP-konzisztenciához.
+  // Bejegyzett székhely. Ez a NAP (név / cím / telefon) alapja — ha
+  //    változik, itt írd át, és mindenhol követi (lábléc, JSON-LD).
   address: {
-    streetAddress: "", // ⚠ pl. "Fő utca 12."
-    addressLocality: "", // ⚠ pl. "Érd"
-    postalCode: "", // ⚠ pl. "2030"
+    streetAddress: "Szent István út 40.",
+    addressLocality: "Érd",
+    postalCode: "2030",
     addressRegion: "Pest",
     addressCountry: "HU",
   },
 
-  // Kiszolgált települések (a GYIK-ből).
+  // Cégazonosítók — ezek teszik ellenőrizhetővé a céget. Gázmunkánál
+  //    ez nem formalitás: a látogató ebből látja, kivel áll szemben.
+  registration: {
+    taxNumber: "12830433-2-13", // adószám
+    companyNumber: "13-09-091027", // cégjegyzékszám
+  },
+
+  // Kiszolgált települések. A második blokk a valós ügyfélvéleményekből
+  //    jött (lásd `app/lib/reviews.ts`) — ezeken a helyeken bizonyítottan
+  //    dolgoztunk már, kár volt kihagyni őket.
   areaServed: [
     "Budapest",
     "Érd",
     "Diósd",
     "Tárnok",
     "Halásztelek",
+    "Törökbálint",
+    "Budaörs",
+    "Páty",
+    "Százhalombatta",
+    "Martonvásár",
+    "Göd",
     "Budapest agglomerációja",
   ],
 

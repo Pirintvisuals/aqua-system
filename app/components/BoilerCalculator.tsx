@@ -106,7 +106,7 @@ export default function BoilerCalculator() {
                   value={age}
                   onChange={(e) => setAge(Number(e.target.value))}
                   aria-label="A gázkészülék kora években"
-                  className="mt-4 h-2 w-full cursor-pointer appearance-none rounded-full outline-none"
+                  className="range-brand mt-4 h-2 w-full cursor-pointer rounded-full outline-none"
                   style={{
                     background: `linear-gradient(to right, var(--color-brand) ${pct}%, var(--color-sky-200) ${pct}%)`,
                   }}
@@ -125,6 +125,7 @@ export default function BoilerCalculator() {
 
               {/* verdict */}
               <div
+                aria-live="polite"
                 className={`flex flex-col justify-between rounded-2xl bg-white p-6 shadow-sm ring-1 ${v.ring} transition-all duration-300`}
               >
                 <div>

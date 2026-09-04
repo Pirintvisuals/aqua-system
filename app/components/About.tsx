@@ -1,5 +1,5 @@
 import Image from "next/image";
-import aboutImg from "../assets/stock/about-team.jpg";
+import aboutImg from "../assets/munkak/vezerlopanel.jpg";
 import Reveal from "./Reveal";
 
 const HIGHLIGHTS = [
@@ -17,7 +17,7 @@ export default function About() {
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-sky-200 shadow-[0_40px_80px_-30px_rgba(15,42,94,0.45)]">
             <Image
               src={aboutImg}
-              alt="Aqua System szerelő gázkészüléken dolgozik"
+              alt="Kazán magyar nyelvű vezérlőpanelje beüzemelés és beszabályozás közben"
               placeholder="blur"
               sizes="(max-width: 1024px) 90vw, 45vw"
               className="h-full w-full object-cover object-center"

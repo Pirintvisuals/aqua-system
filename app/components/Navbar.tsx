@@ -9,8 +9,7 @@ import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 // A hash-linkek "/#…" alakban a főoldal szekcióira mutatnak, így bármelyik
 // aloldalról is működnek (nem csak a főoldalon).
 const NAV_LINKS = [
-  { label: "Szolgáltatás", href: "/#szolgaltatas" },
-  { label: "Kínálat", href: "/#kinalat" },
+  { label: "Szolgáltatásaink", href: "/szolgaltatasok" },
   { label: "Kalkulátor", href: "/#kalkulator" },
   { label: "Folyamat", href: "/#folyamat" },
   { label: "Rólunk", href: "/rolunk" },
@@ -40,6 +39,21 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Nyitott mobil menü: Esc zárja, és ne lehessen mögötte görgetni.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
 
   return (
     <header
@@ -91,7 +105,7 @@ export default function Navbar() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Menü bezárása" : "Menü megnyitása"}
             aria-expanded={open}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-sky-200 text-ink lg:hidden"
+            className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-sky-200 text-ink transition-colors duration-200 hover:bg-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand lg:hidden"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               {open ? <path d="M18 6 6 18M6 6l12 12" /> : <path d="M4 7h16M4 12h16M4 17h16" />}

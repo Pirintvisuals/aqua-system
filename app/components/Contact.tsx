@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Reveal from "./Reveal";
-import { CHATBOT_URL } from "../lib/links";
+import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
+import { BUSINESS } from "../lib/site";
 
-const EMAIL = "keszulekcsere@aqua-system.hu";
-const PHONE_DISPLAY = "(06 20) 399 0093";
-const PHONE_HREF = "tel:+36203990093";
+// Ne legyen második másolat: az e-mail/telefon egy helyen él, különben
+// (mint korábban) észrevétlenül szétcsúszik a valóditól.
+const EMAIL = BUSINESS.email;
 
 const WORK_TYPES = [
   "Gázkészülék csere",

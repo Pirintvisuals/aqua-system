@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ctaBg from "../assets/stock/cta-heating.jpg";
+import ctaBg from "../assets/munkak/gepeszet-vitodens.jpg";
 import Reveal from "./Reveal";
 import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 

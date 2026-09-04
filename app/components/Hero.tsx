@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import heroBoiler from "../assets/stock/hero-boiler.jpg";
+import heroBoiler from "../assets/munkak/kazancsere-ergas.jpg";
 import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 
 const TRUST = [
@@ -174,7 +174,7 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="mt-6 font-display text-[2rem] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
               <span className="relative whitespace-nowrap text-brand">
                 Gázkészülék csere
                 <WaveUnderline />
@@ -183,7 +183,7 @@ export default function Hero() {
             </h1>
 
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft">
-              Elavult, zajos vagy sokat fogyasztó gázkészülék? Ne várjon a
+              Elavult, zajos vagy sokat fogyasztó gázkészülék? Ne várj a
               hibára — új, megbízható berendezést cserélünk{" "}
               <strong className="font-semibold text-ink">1 nap alatt</strong>,
               kiszámítható áron. Az{" "}
@@ -236,7 +236,7 @@ export default function Hero() {
         <div className="relative mx-auto -mt-2 aspect-[4/5] w-[min(90%,26rem)] overflow-hidden rounded-3xl border border-sky-200 shadow-[0_40px_80px_-30px_rgba(15,42,94,0.5)] lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:mt-0 lg:aspect-auto lg:w-[47vw] lg:rounded-l-[2.5rem] lg:rounded-r-none lg:border-0">
           <Image
             src={heroBoiler}
-            alt="Aqua System szerelő gázkészüléket cserél a helyszínen"
+            alt="Frissen beüzemelt kondenzációs kazán és melegvíz-tároló egy elkészült cserénél"
             placeholder="blur"
             priority
             sizes="(max-width: 1024px) 90vw, 47vw"

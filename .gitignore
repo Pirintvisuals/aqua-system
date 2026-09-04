@@ -42,3 +42,10 @@ next-env.d.ts
 
 # dev server log
 dev.log
+
+# Üzleti dokumentumok — NEM tartoznak a weboldal repójába
+Vallalkozasi_szerzodes_*.pdf
+szerzodes-*.md
+
+# A nyers fotók gyökérben lévő másolatai (az éles példány: app/assets/munkak/)
+kép*.jpg

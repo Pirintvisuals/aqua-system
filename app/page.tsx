@@ -16,9 +16,11 @@ export default function Home() {
   return (
     <main className="flex-1">
       <Hero />
+      {/* A vélemények szándékosan rögtön a hero után: a bizalom dönt
+          először, csak utána érdekli a látogatót, mit is csinálunk. */}
+      <Testimonials />
       <Services />
       <ServicesShowcase />
-      <Testimonials />
       <WhyUs />
       <BoilerCalculator />
       <Process />

@@ -1,16 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../assets/logo.png";
-import { CHATBOT_URL } from "../lib/links";
+import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
+import { BUSINESS } from "../lib/site";
 
-const EMAIL = "keszulekcsere@aqua-system.hu";
-const PHONE_DISPLAY = "(06 20) 399 0093";
-const PHONE_HREF = "tel:+36203990093";
+const EMAIL = BUSINESS.email;
 
 const LINKS = [
   { label: "Azonnali árajánlat", href: CHATBOT_URL },
-  { label: "Szolgáltatás", href: "/#szolgaltatas" },
-  { label: "Kínálat", href: "/#kinalat" },
+  { label: "Szolgáltatásaink", href: "/szolgaltatasok" },
   { label: "Kazán kalkulátor", href: "/#kalkulator" },
   { label: "Folyamat", href: "/#folyamat" },
   { label: "Rólunk", href: "/rolunk" },
@@ -67,7 +65,57 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-sky-200 pt-6 text-sm text-ink-soft sm:flex-row sm:items-center">
+        {/* Cégadatok — gázmunkánál ez nem formalitás. A látogató ebből
+            látja, hogy valódi, ellenőrizhető céggel áll szemben, nem egy
+            névtelen landing page-dzsel. */}
+        <section
+          aria-labelledby="cegadatok"
+          className="mt-12 rounded-2xl border border-sky-200 bg-sky/30 p-6"
+        >
+          <h3
+            id="cegadatok"
+            className="font-display text-sm font-bold uppercase tracking-wide text-ink"
+          >
+            Cégadatok
+          </h3>
+          <dl className="mt-4 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="sm:col-span-2 lg:col-span-1">
+              <dt className="text-xs font-medium uppercase tracking-wide text-ink-soft">
+                Cégnév
+              </dt>
+              <dd className="mt-1 text-sm leading-snug text-ink">
+                {BUSINESS.legalName}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs font-medium uppercase tracking-wide text-ink-soft">
+                Székhely
+              </dt>
+              <dd className="mt-1 text-sm leading-snug text-ink">
+                {BUSINESS.address.postalCode} {BUSINESS.address.addressLocality},{" "}
+                {BUSINESS.address.streetAddress}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs font-medium uppercase tracking-wide text-ink-soft">
+                Cégjegyzékszám
+              </dt>
+              <dd className="mt-1 text-sm tabular-nums text-ink">
+                {BUSINESS.registration.companyNumber}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs font-medium uppercase tracking-wide text-ink-soft">
+                Adószám
+              </dt>
+              <dd className="mt-1 text-sm tabular-nums text-ink">
+                {BUSINESS.registration.taxNumber}
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <div className="mt-8 flex flex-col items-start justify-between gap-3 border-t border-sky-200 pt-6 text-sm text-ink-soft sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} Aqua System Service Kft. Minden jog fenntartva.</p>
           <p>Egynapos gázkészülék csere · Budapest és agglomeráció</p>
         </div>
