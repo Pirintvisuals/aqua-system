@@ -1,6 +1,7 @@
 import Image from "next/image";
 import boilerPhoto from "../assets/munkak/gepeszet-kazanhaz.jpg";
 import Reveal from "./Reveal";
+import AnimatedHeading from "./AnimatedHeading";
 import { CHATBOT_URL, CTA_PRIMARY } from "../lib/links";
 
 const INCLUDED = [
@@ -21,9 +22,9 @@ export default function Services() {
           <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
             Szolgáltatásunk
           </span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Egynapos, teljes körű gázkészülék csere
-          </h2>
+          <AnimatedHeading className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Egynapos, teljes körű gázkészülék csere
+            </AnimatedHeading>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
             A régi, elavult vagy hibás készüléket gyorsan és biztonságosan
             cseréljük új, korszerű és energiatakarékos berendezésre – mindezt

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Reveal from "./Reveal";
+import AnimatedHeading from "./AnimatedHeading";
 import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 import { BUSINESS } from "../lib/site";
 
@@ -57,9 +58,9 @@ export default function Contact() {
           <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
             Kapcsolat
           </span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Vedd fel velünk a kapcsolatot
-          </h2>
+          <AnimatedHeading className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Vedd fel velünk a kapcsolatot
+            </AnimatedHeading>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-soft">
             A leggyorsabb út az árhoz az online árajánló asszisztensünk – pár
             kérdés, és máris kapsz egy tájékoztató árat. Ha inkább írnál vagy

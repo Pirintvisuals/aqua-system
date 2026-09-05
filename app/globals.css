@@ -505,3 +505,62 @@ h3,
     }
   }
 }
+
+/* ---------- Gorgetesre rajzolodo osszekoto vonal ----------
+   A "Igy tortenik" szekcio lepesei kozott. Balrol jobbra huzodik ki,
+   ahogy a szekcio a nezetbe er. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    @keyframes draw-x {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    .draw-x {
+      transform-origin: left center;
+      animation: draw-x linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 25%;
+    }
+
+    /* Finom melysegi mozgas a hero fotojan: gorgetes kozben lassabban
+       csuszik, mint a szoveg. Csak transzformacio, tehat olcso. */
+    @keyframes hero-drift {
+      from {
+        transform: translate3d(0, -2.5%, 0) scale(1.06);
+      }
+      to {
+        transform: translate3d(0, 2.5%, 0) scale(1.06);
+      }
+    }
+
+    .hero-parallax {
+      animation: hero-drift linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+
+    /* Szamok es kiemelt ertekek: alulrol usznak be, kicsit kesobb, mint
+       a korulottuk levo szoveg. */
+    @keyframes stat-in {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 12px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .stat-in > * {
+      animation: stat-in linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 45%;
+    }
+  }
+}

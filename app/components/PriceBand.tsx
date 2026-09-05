@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
+import AnimatedHeading from "./AnimatedHeading";
 import { CHATBOT_URL, CTA_NOTE, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 
 /* ------------------------------------------------------------------ *
@@ -48,9 +49,9 @@ export default function PriceBand() {
           <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
             Mennyibe kerül
           </span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Fix ár, felmérés után. Meglepetés nélkül.
-          </h2>
+          <AnimatedHeading className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Fix ár, felmérés után. Meglepetés nélkül.
+            </AnimatedHeading>
           <p className="mt-4 text-lg leading-relaxed text-ink-soft">
             Kitalált „-tól árat” nem írunk ki, mert az a felmérésen úgyis
             megváltozna. Azt viszont előre megmondjuk, mitől függ az ár, és

@@ -218,7 +218,7 @@ export default function Hero() {
             placeholder="blur"
             priority
             sizes="(max-width: 1024px) 90vw, 47vw"
-            className="h-full w-full object-cover object-center"
+            className="hero-parallax h-full w-full object-cover object-center"
           />
           {/* subtle brand tint for cohesion */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-cta/25 via-transparent to-transparent" />

@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import AnimatedHeading from "./AnimatedHeading";
 
 /* ------------------------------------------------------------------ *
  *  Kilenc ok, HAROM csoportba rendezve.
@@ -166,9 +167,9 @@ export default function WhyUs() {
           <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
             Miért minket
           </span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Kilenc dolog, amiért visszahívnak minket
-          </h2>
+          <AnimatedHeading className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Kilenc dolog, amiért visszahívnak minket
+            </AnimatedHeading>
           <p className="mt-4 text-lg leading-relaxed text-ink-soft">
             Három csoportba rendezve: ami a biztonságról szól, ami az időről,
             és ami a pénzről. Ötven év alatt nagyjából ez a kilenc dolog az,

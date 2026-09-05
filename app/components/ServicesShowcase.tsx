@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "./Reveal";
+import AnimatedHeading from "./AnimatedHeading";
 import { SERVICES } from "../lib/services";
 
 /* ------------------------------------------------------------------ *
@@ -20,9 +21,9 @@ export default function ServicesShowcase() {
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
               Szolgáltatásaink
             </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            <AnimatedHeading className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
               Amiben segíteni tudunk
-            </h2>
+            </AnimatedHeading>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">
               Egy kazáncserétől a teljes házgépészetig – és utána is
               melletted maradunk, hogy évekig ne legyen vele gondod.

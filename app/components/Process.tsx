@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import AnimatedHeading from "./AnimatedHeading";
 
 const STEPS = [
   {
@@ -40,9 +41,9 @@ export default function Process() {
     >
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
-          <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Így történik a készülékcsere
-          </h2>
+          <AnimatedHeading className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Így történik a készülékcsere
+            </AnimatedHeading>
           <p className="mt-4 text-lg leading-relaxed text-ink-soft">
             Három lépés, és kész az új gázkészülék.
           </p>
@@ -53,7 +54,7 @@ export default function Process() {
             <div key={s.n} className="relative">
               {/* connector line */}
               {i < STEPS.length - 1 && (
-                <span className="absolute left-[4.5rem] top-8 hidden h-px w-[calc(100%-3rem)] bg-sky-200 md:block" />
+                <span className="draw-x absolute left-[4.5rem] top-8 hidden h-px w-[calc(100%-3rem)] bg-sky-200 md:block" />
               )}
               <div className="relative flex flex-col">
                 <div className="flex items-center gap-4">

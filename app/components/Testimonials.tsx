@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import AnimatedHeading from "./AnimatedHeading";
 import {
   REVIEWS,
   REVIEW_AVERAGE,
@@ -124,9 +125,9 @@ export default function Testimonials() {
           <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
             Ügyfélvélemények
           </span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Ötven év alatt sok bizalom gyűlik össze
-          </h2>
+          <AnimatedHeading className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Ötven év alatt sok bizalom gyűlik össze
+            </AnimatedHeading>
           <p className="mt-4 text-lg leading-relaxed text-ink-soft">
             Van, aki huszonöt éve hív minket vissza, van, aki tizenhét év
             múlva keresett meg újra. Ez az ötven év nem egy szám a falon:

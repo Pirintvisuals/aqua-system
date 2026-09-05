@@ -29,6 +29,8 @@ export default function KapcsolatPage() {
   return (
     <main className="flex-1">
       <PageHero
+        tone="dark"
+        actions
         eyebrow="Kapcsolat"
         title="Beszéljünk a gázkészülék cseréről"
         intro="A leggyorsabb út az árhoz az online árajánló asszisztensünk – pár kérdés, és máris kapsz egy tájékoztató árat. Ha inkább írnál vagy telefonálnál, minden elérhetőségünk lent van."
