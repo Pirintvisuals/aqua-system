@@ -3,12 +3,15 @@ import Reveal from "./Reveal";
 type Reason = {
   title: string;
   body: string;
+  /** Rovid kategoria-cimke, ugyanaz a minta, mint az "Arulkodo jelek"-nel. */
+  tag: string;
   icon: React.ReactNode;
 };
 
 const REASONS: Reason[] = [
   {
     title: "Gyors kivitelezés",
+    tag: "Idő",
     body: "Nem húzzuk hetekig: felmérünk, megtervezünk és egy nap alatt beszereljük az új készüléket, minimális fennakadással.",
     icon: (
       <path d="M13 2 3 14h7l-1 8 10-12h-7z" />
@@ -16,6 +19,7 @@ const REASONS: Reason[] = [
   },
   {
     title: "Engedélyes, tapasztalt szakemberek",
+    tag: "Biztonság",
     body: "Csak hivatalos, szakképesített gázszerelők dolgoznak nálunk. Mindent a szabványoknak megfelelően, dokumentáltan végzünk.",
     icon: (
       <>
@@ -26,6 +30,7 @@ const REASONS: Reason[] = [
   },
   {
     title: "Átlátható, fix árak",
+    tag: "Pénz",
     body: "Nincs utólagos ráfizetés vagy rejtett költség. Az ár tartalmazza a szerelést, beüzemelést és az ügyintézést is.",
     icon: (
       <>
@@ -36,6 +41,7 @@ const REASONS: Reason[] = [
   },
   {
     title: "Garancia a munkára és készülékre",
+    tag: "Garancia",
     body: "A munka után is elérhetőek vagyunk. Minden kivitelezésre és az új gázkészülékre is hivatalos garanciát adunk.",
     icon: (
       <>
@@ -47,6 +53,7 @@ const REASONS: Reason[] = [
   },
   {
     title: "Modern, energiatakarékos megoldások",
+    tag: "Rezsi",
     body: "Korszerű gázkészülékeket ajánlunk, amelyek kevesebbet fogyasztanak és stabilabb teljesítményt adnak – alacsonyabb rezsi, biztonságosabb működés.",
     icon: (
       <path d="M9 21h6M10 21c0-3-4-4-4-9a6 6 0 1 1 12 0c0 5-4 6-4 9" />
@@ -54,6 +61,7 @@ const REASONS: Reason[] = [
   },
   {
     title: "Teljes felszereléssel érkezünk",
+    tag: "Idő",
     body: "Minden szükséges szerszám, anyag és műszer nálunk van, így nincs felesleges kör és nincs csúszás – még aznap üzemel az új készülék.",
     icon: (
       <>
@@ -63,33 +71,51 @@ const REASONS: Reason[] = [
   },
 ];
 
+/* A cimkek szinei: az "Arulkodo jelek" szekcio mintajara. */
+const TAG_STYLE: Record<string, string> = {
+  "Idő": "bg-sky text-brand",
+  Biztonság: "bg-rose-50 text-rose-700",
+  Pénz: "bg-copper-soft text-copper",
+  Garancia: "bg-emerald-50 text-emerald-700",
+  Rezsi: "bg-copper-soft text-copper",
+};
+
 export default function WhyUs() {
   return (
     <section id="miert-mi" className="scroll-mt-24 bg-sky/30 py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
-          <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Miért minket válassz?
+          <span className="text-sm font-semibold uppercase tracking-[0.14em] text-copper">
+            Miért minket
+          </span>
+          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            Hat dolog, amiért visszahívnak minket
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-            Ha gázkészülékről van szó, a biztonság és a gyorsaság a legfontosabb.
-            Azért dolgozunk, hogy a csere gördülékenyen, átláthatóan és egyetlen
-            nap alatt megtörténjen – felesleges stressz nélkül.
+            Kettő közülük biztonsági kérdés, a többi inkább arról szól, hogy
+            ne érjen meglepetés. Ötven év alatt nagyjából ez a hat dolog az,
+            amit a végén mindenki szóvá tesz.
           </p>
         </div>
 
-        <Reveal stagger className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal stagger className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-sky-200 bg-sky-200 md:grid-cols-2 lg:grid-cols-3">
           {REASONS.map((r) => (
-            <div
-              key={r.title}
-              className="group rounded-2xl border border-sky-200 bg-white p-7 shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)] transition-all duration-200 hover:-translate-y-1 hover:border-brand-light/50 hover:shadow-[0_30px_55px_-30px_rgba(15,42,94,0.5)]"
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky text-brand transition-colors group-hover:bg-brand group-hover:text-white">
-                <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  {r.icon}
-                </svg>
-              </span>
-              <h3 className="mt-5 font-display text-lg font-bold text-ink">
+            <div key={r.title} className="group bg-white p-7">
+              <div className="flex items-center justify-between gap-3">
+                <span
+                  className={`inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide ${
+                    TAG_STYLE[r.tag] ?? "bg-sky text-brand"
+                  }`}
+                >
+                  {r.tag}
+                </span>
+                <span className="text-brand transition-transform duration-200 group-hover:-translate-y-0.5">
+                  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    {r.icon}
+                  </svg>
+                </span>
+              </div>
+              <h3 className="mt-4 font-display text-lg font-bold text-ink">
                 {r.title}
               </h3>
               <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">

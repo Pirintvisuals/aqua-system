@@ -5,7 +5,7 @@ import PageHero from "../components/PageHero";
 import CtaBand from "../components/CtaBand";
 import Reveal from "../components/Reveal";
 import { SERVICES, WORK_PHOTOS } from "../lib/services";
-import { REVIEWS } from "../lib/reviews";
+import { LOCATIONS } from "../lib/locations";
 import { BUSINESS } from "../lib/site";
 import gepeszetCsovezetek from "../assets/munkak/gepeszet-csovezetek.jpg";
 
@@ -45,11 +45,6 @@ const GALLERY = [
     caption: p.alt.split(":")[0].split(",")[0],
   })),
 ];
-
-/* Azok a települések, ahonnan valódi ügyfélvéleményünk is van. */
-const REVIEWED = new Set(
-  REVIEWS.map((r) => r.place.replace(/,.*$/, "").trim()),
-);
 
 export default function MunkainkPage() {
   return (
@@ -118,29 +113,35 @@ export default function MunkainkPage() {
               Budapest és az agglomeráció
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-sky-200">
-              A csillaggal jelölt településekről valódi, aláírt
-              ügyfélvéleményünk is van. Ha a te településed nincs a listán,
-              kérdezz rá: jó eséllyel megoldjuk.
+              A csillaggal jelölt településekről valódi, aláírt ügyfélvéleményünk
+              is van, és külön oldaluk van a helyi visszajelzésekkel. Ha a te
+              településed nincs a listán, kérdezz rá: jó eséllyel megoldjuk.
             </p>
           </div>
 
           <ul className="mt-10 flex flex-wrap gap-3">
             {BUSINESS.areaServed.map((place) => {
-              const hasReview = REVIEWED.has(place);
+              const loc = LOCATIONS.find((l) => l.name === place);
+              if (loc) {
+                return (
+                  <li key={place}>
+                    <Link
+                      href={`/kazancsere/${loc.slug}`}
+                      className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-cta transition-transform duration-200 hover:-translate-y-0.5"
+                    >
+                      <svg className="h-3.5 w-3.5 text-amber-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.8 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z" />
+                      </svg>
+                      {place}
+                    </Link>
+                  </li>
+                );
+              }
               return (
                 <li
                   key={place}
-                  className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold ${
-                    hasReview
-                      ? "bg-white text-cta"
-                      : "bg-white/10 text-white ring-1 ring-white/20"
-                  }`}
+                  className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20"
                 >
-                  {hasReview && (
-                    <svg className="h-3.5 w-3.5 text-amber-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.8 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z" />
-                    </svg>
-                  )}
                   {place}
                 </li>
               );

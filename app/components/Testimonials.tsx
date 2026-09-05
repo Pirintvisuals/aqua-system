@@ -100,52 +100,45 @@ export default function Testimonials() {
       className="scroll-mt-24 border-b border-sky-200 bg-sky/30 py-20 lg:py-28"
     >
       <div className="mx-auto max-w-7xl px-6">
-        {/* Fejléc: az ötven év a főszereplő. */}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.25fr_1fr] lg:items-end">
-          <div className="max-w-2xl">
-            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
-              Ügyfélvélemények
-            </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Ötven év alatt sok bizalom gyűlik össze
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-              Van, aki huszonöt éve hív minket vissza, van, aki tizenhét év
-              múlva keresett meg újra. Ez az ötven év nem egy szám a falon:
-              ugyanaz a család, ugyanaz a mérce, generációk óta.
-            </p>
-          </div>
+        {/* Fejlec: az otven ev a foszereplo. Doboz nelkul, hogy ne
+            versenyezzen a kiemelt idezettel. */}
+        <div className="max-w-3xl">
+          <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
+            Ügyfélvélemények
+          </span>
+          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            Ötven év alatt sok bizalom gyűlik össze
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-ink-soft">
+            Van, aki huszonöt éve hív minket vissza, van, aki tizenhét év
+            múlva keresett meg újra. Ez az ötven év nem egy szám a falon:
+            ugyanaz a család, ugyanaz a mérce, generációk óta.
+          </p>
 
-          <div className="rounded-2xl border border-sky-200 bg-white p-6 shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)]">
-            <div className="flex items-baseline gap-2">
-              <span className="font-display text-6xl font-extrabold leading-none text-cta tabular-nums">
-                50
-              </span>
-              <span className="font-display text-2xl font-bold text-brand">
-                éve
-              </span>
-            </div>
-            <p className="mt-2 text-sm leading-snug text-ink-soft">
-              a szakmában, családi vállalkozásként
-            </p>
-            <dl className="mt-5 grid grid-cols-2 gap-3 border-t border-sky-200 pt-5">
-              <div>
-                <dt className="font-display text-xl font-bold text-ink">500+</dt>
-                <dd className="text-xs leading-snug text-ink-soft">
-                  sikeres készülékcsere
-                </dd>
-              </div>
-              <div>
-                <dt className="flex items-center gap-1.5 font-display text-xl font-bold text-ink">
+          <dl className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <div className="flex items-center gap-2">
+              <dt className="sr-only">Átlagos értékelés</dt>
+              <dd className="flex items-center gap-2">
+                <span className="font-display text-2xl font-extrabold text-cta tabular-nums">
                   {REVIEW_AVERAGE.toLocaleString("hu-HU")}
-                  <Stars rating={Math.round(REVIEW_AVERAGE)} />
-                </dt>
-                <dd className="text-xs leading-snug text-ink-soft">
+                </span>
+                <Stars rating={Math.round(REVIEW_AVERAGE)} />
+                <span className="text-sm text-ink-soft">
                   {REVIEW_COUNT} valós vélemény
-                </dd>
-              </div>
-            </dl>
-          </div>
+                </span>
+              </dd>
+            </div>
+            <span className="hidden h-5 w-px bg-sky-200 sm:block" aria-hidden="true" />
+            <div className="flex items-baseline gap-2">
+              <dt className="font-display text-2xl font-extrabold text-cta">50</dt>
+              <dd className="text-sm text-ink-soft">éve a szakmában</dd>
+            </div>
+            <span className="hidden h-5 w-px bg-sky-200 sm:block" aria-hidden="true" />
+            <div className="flex items-baseline gap-2">
+              <dt className="font-display text-2xl font-extrabold text-cta">500+</dt>
+              <dd className="text-sm text-ink-soft">sikeres csere</dd>
+            </div>
+          </dl>
         </div>
 
         <Reveal className="mt-12">
@@ -156,29 +149,22 @@ export default function Testimonials() {
             aria-label={`Mind a ${REVIEW_COUNT} vélemény megjelenítése`}
           />
 
-          {/* Egy nagy, kiemelt idézet: a leghosszabb ügyfélkapcsolat. */}
-          <figure className="rounded-3xl border border-sky-200 bg-white p-8 shadow-[0_30px_70px_-40px_rgba(15,42,94,0.5)] sm:p-10">
-            <svg
-              className="h-8 w-8 text-sky-200"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M7.5 5A5.5 5.5 0 0 0 2 10.5V19h8.5v-8.5H6.5A1 1 0 0 1 7.5 9zm11 0A5.5 5.5 0 0 0 13 10.5V19h8.5v-8.5H17.5A1 1 0 0 1 18.5 9z" />
-            </svg>
-            <blockquote className="mt-4 space-y-3 text-lg leading-relaxed text-ink sm:text-xl">
-              {featured.body.map((p) => (
-                <p key={p}>{p}</p>
+          {/* Kiemelt idezet: nincs keret, nincs arnyek. A tipografia
+              viszi, igy nem egy ujabb kartya lesz belole. */}
+          <figure className="max-w-3xl border-l-4 border-copper pl-6 sm:pl-8">
+            <blockquote className="space-y-3 font-display text-xl font-medium leading-snug text-ink sm:text-2xl">
+              {featured.body.map((para) => (
+                <p key={para}>{para}</p>
               ))}
             </blockquote>
-            <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-sky-200 pt-6">
+            <div className="mt-6 flex flex-wrap items-center gap-4">
               <Byline review={featured} />
-              <Stars rating={featured.rating} size="md" />
+              <Stars rating={featured.rating} />
             </div>
           </figure>
 
           {/* Három rövid vélemény, egyforma ritmusban. */}
-          <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
             {preview.map((r, i) => (
               <ReviewCard key={`${r.name}-${r.place}-${i}`} review={r} />
             ))}

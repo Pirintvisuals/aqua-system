@@ -143,6 +143,17 @@ export default async function ServicePage({
                 {PHONE_DISPLAY}
               </a>
             </div>
+
+            <p className="mt-4 text-sm text-ink-soft">
+              Inkább leírnád?{" "}
+              <Link
+                href="/kapcsolat#kapcsolat"
+                className="font-semibold text-brand underline-offset-2 hover:underline"
+              >
+                Küldj üzenetet az űrlapon
+              </Link>
+              , fotót is csatolhatsz hozzá.
+            </p>
           </div>
 
           <div>

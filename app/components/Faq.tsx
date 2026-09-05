@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "./Reveal";
 import { CHATBOT_URL } from "../lib/links";
 import { FAQS } from "../lib/faqs";
@@ -38,6 +39,16 @@ export default function Faq() {
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </a>
+          <p className="mt-4 text-sm text-ink-soft">
+            Vagy{" "}
+            <Link
+              href="/kapcsolat#kapcsolat"
+              className="font-semibold text-brand underline-offset-2 hover:underline"
+            >
+              írd meg üzenetben
+            </Link>
+            , és egy munkanapon belül válaszolunk.
+          </p>
         </div>
 
         <Reveal
