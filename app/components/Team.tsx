@@ -37,11 +37,22 @@ export default function Team() {
           </p>
         </div>
 
-        <Reveal stagger step={60} className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
-          {TEAM.map((m) => (
+        {/* Heten vannak, a sor viszont negyes: az utolso sor igy balra
+            lograt. A racs ezert duplazott oszlopszamu (4/6/8), minden
+            kartya ket oszlopot fog, es a torott sor elso eleme egy fel
+            kartyanyival beljebb indul. Igy az utolso sor kozepre kerul,
+            a felsok pedig a helyukon maradnak. */}
+        <Reveal
+          stagger
+          step={60}
+          className="mt-12 grid grid-cols-4 gap-6 sm:grid-cols-6 lg:grid-cols-8"
+        >
+          {TEAM.map((m, i) => (
             <figure
               key={m.name}
-              className="group overflow-hidden rounded-2xl border border-sky-200 bg-white shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)]"
+              className={`group col-span-2 overflow-hidden rounded-2xl border border-sky-200 bg-white shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)] ${
+                i === 4 ? "lg:col-start-2" : ""
+              } ${i === 6 ? "col-start-2 sm:col-start-3 lg:col-start-auto" : ""}`}
             >
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
