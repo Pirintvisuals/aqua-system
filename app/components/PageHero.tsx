@@ -2,6 +2,7 @@ import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import Wave, { type WaveVariant } from "./Wave";
+import WaterBackdrop from "./WaterBackdrop";
 
 /* ------------------------------------------------------------------ *
  *  Aloldalak fejléce - egységes címsáv a /rolunk, /kapcsolat stb.
@@ -121,12 +122,12 @@ export default function PageHero({
   if (!image) {
     return (
       <section
-        className={`relative overflow-hidden bg-sky/40 ${wave ? "" : "border-b border-sky-200"}`}
+        className={`relative isolate overflow-hidden bg-sky/40 ${wave ? "" : "border-b border-sky-200"}`}
       >
         {wave ? (
           <BackWaves />
         ) : (
-          <div className="pointer-events-none absolute inset-0 bg-dotgrid" aria-hidden="true" />
+          <WaterBackdrop variant="b" strength="deep" />
         )}
         <div
           className={`relative mx-auto max-w-7xl px-6 py-16 lg:py-20 ${wave ? "pb-24 lg:pb-36" : ""}`}
@@ -141,12 +142,12 @@ export default function PageHero({
   /* Fotóval: kétoszlopos fejléc. */
   return (
     <section
-      className={`relative overflow-hidden bg-sky/40 ${wave ? "" : "border-b border-sky-200"}`}
+      className={`relative isolate overflow-hidden bg-sky/40 ${wave ? "" : "border-b border-sky-200"}`}
     >
       {wave ? (
         <BackWaves />
       ) : (
-        <div className="pointer-events-none absolute inset-0 bg-blueprint" aria-hidden="true" />
+        <WaterBackdrop variant="a" strength="deep" />
       )}
       <div
         className={`relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-6 py-14 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:py-20 ${

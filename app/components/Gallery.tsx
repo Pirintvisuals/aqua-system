@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "./Reveal";
+import WaterBackdrop from "./WaterBackdrop";
 import { SERVICES, WORK_PHOTOS } from "../lib/services";
 
 /* ------------------------------------------------------------------ *
@@ -31,8 +32,8 @@ const TILES = [
 export default function Gallery() {
   return (
     <section id="galeria" className="relative isolate overflow-hidden scroll-mt-36 py-20 lg:py-28">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-dotgrid opacity-50" aria-hidden="true" />
-      <div className="pointer-events-none absolute -left-24 -top-16 -z-10 h-80 w-80 rounded-full bg-brand-light/10 blur-3xl" aria-hidden="true" />
+      <WaterBackdrop variant="c" />
+      <div className="pointer-events-none absolute -left-24 -top-16 -z-10 h-80 w-80 rounded-full bg-brand-light/25 blur-3xl" aria-hidden="true" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">

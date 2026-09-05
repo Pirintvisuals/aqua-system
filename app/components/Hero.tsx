@@ -131,11 +131,13 @@ export default function Hero() {
   return (
     <>
       <section className="relative isolate overflow-hidden bg-white">
-        {/* layered background: dot grid, glow, branded wave */}
+        {/* Retegelt hatter: lagy kek foltok es a markajelzo hullam. A
+            pontracs innen is kikerult: azt a texturat mindenhol a viz
+            valtja. */}
         <div className="pointer-events-none absolute inset-0 -z-20">
-          <div className="absolute inset-0 bg-dotgrid opacity-70" />
-          <div className="absolute -left-24 -top-24 h-[440px] w-[440px] rounded-full bg-sky/70 blur-3xl animate-drift" />
-          <div className="absolute right-1/3 top-24 h-[320px] w-[320px] rounded-full bg-cyan/10 blur-3xl animate-drift [animation-delay:-8s]" />
+          <div className="absolute -left-24 -top-24 h-[440px] w-[440px] rounded-full bg-sky/80 blur-3xl animate-drift" />
+          <div className="absolute right-1/3 top-24 h-[320px] w-[320px] rounded-full bg-cyan/25 blur-3xl animate-drift [animation-delay:-8s]" />
+          <div className="absolute -right-20 top-1/2 h-[360px] w-[360px] rounded-full bg-brand-light/15 blur-3xl animate-drift [animation-delay:-14s]" />
         </div>
         <WaveBackdrop />
 

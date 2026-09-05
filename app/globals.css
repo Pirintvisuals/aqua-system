@@ -39,18 +39,6 @@ h3,
   font-family: var(--font-display);
 }
 
-/* Subtle dot grid - 21st.dev-style texture behind the hero copy.
-   Faded via mask so it never competes with the content. */
-.bg-dotgrid {
-  background-image: radial-gradient(
-    rgba(43, 95, 208, 0.14) 1px,
-    transparent 1.4px
-  );
-  background-size: 22px 22px;
-  -webkit-mask-image: radial-gradient(60% 60% at 20% 20%, #000 0%, transparent 75%);
-  mask-image: radial-gradient(60% 60% at 20% 20%, #000 0%, transparent 75%);
-}
-
 /* Scroll-reveal, JS nelkul.
    A tartalom alapbol LATHATO; az animacio csak ott fut, ahol a bongeszo
    tamogatja a gorgetesvezerelt animaciot. Igy tamogatas hianyaban (vagy

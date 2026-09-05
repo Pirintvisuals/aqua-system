@@ -11,6 +11,7 @@ import Team from "./components/Team";
 import Gallery from "./components/Gallery";
 import Faq from "./components/Faq";
 import Contact from "./components/Contact";
+import WaveBand from "./components/WaveBand";
 
 export default function Home() {
   return (
@@ -32,17 +33,25 @@ export default function Home() {
        *  Uj szekcio csak akkor kerul be, ha van helye ebben a sorban.
        * ------------------------------------------------------------------ */}
       <Hero />
+      <WaveBand from="bg-white" to="text-sky/30" variant="swell" />
       <Testimonials />
+      <WaveBand from="bg-sky/30" to="text-white" variant="crest" flip />
       <Services />
       <ServicesShowcase />
       <BoilerCalculator />
+      <WaveBand from="bg-white" to="text-sky/30" variant="ripple" />
       <Process />
+      <WaveBand from="bg-sky/30" to="text-white" variant="drift" />
       <Gallery />
+      <WaveBand from="bg-white" to="text-sky/30" variant="crest" />
       <WhyUs />
+      <WaveBand from="bg-sky/30" to="text-white" variant="swell" flip />
       <TrustBanner />
       <About />
+      <WaveBand from="bg-white" to="text-sky/30" variant="drift" flip />
       <Team />
       <Faq />
+      <WaveBand from="bg-sky/30" to="text-white" variant="ripple" flip />
       <Contact />
     </main>
   );

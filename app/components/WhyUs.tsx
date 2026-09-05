@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import WaterBackdrop from "./WaterBackdrop";
 
 /* ------------------------------------------------------------------ *
  *  Kilenc ok, HAROM csoportba rendezve.
@@ -157,7 +158,11 @@ const GROUPS: Group[] = [
 
 export default function WhyUs() {
   return (
-    <section id="miert-mi" className="scroll-mt-36 bg-sky/30 py-20 lg:py-28">
+    <section
+      id="miert-mi"
+      className="relative isolate overflow-hidden scroll-mt-36 bg-sky/30 py-20 lg:py-28"
+    >
+      <WaterBackdrop variant="c" strength="deep" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">

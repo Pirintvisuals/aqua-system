@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import WaterBackdrop from "./WaterBackdrop";
 
 const STEPS = [
   {
@@ -34,7 +35,11 @@ const STEPS = [
 
 export default function Process() {
   return (
-    <section id="folyamat" className="scroll-mt-36 bg-sky/30 py-20 lg:py-28">
+    <section
+      id="folyamat"
+      className="relative isolate overflow-hidden scroll-mt-36 bg-sky/30 py-20 lg:py-28"
+    >
+      <WaterBackdrop variant="b" strength="deep" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
+import WaterBackdrop from "./WaterBackdrop";
 import { CHATBOT_URL } from "../lib/links";
 import type { Service } from "../lib/services";
 
@@ -60,7 +61,6 @@ function BadgeIcon({ name }: { name: Service["badge"]["icon"] }) {
 function HeatPumpIllustration() {
   return (
     <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-sky via-white to-sky/60 p-8">
-      <div className="pointer-events-none absolute inset-0 bg-dotgrid opacity-60" aria-hidden="true" />
       <svg
         viewBox="0 0 320 260"
         className="relative w-full max-w-sm"
@@ -122,8 +122,9 @@ export default function ServiceSection({
   return (
     <section
       id={service.slug}
-      className="scroll-mt-44 border-t border-sky-200 py-20 first:border-t-0 lg:py-28"
+      className="relative isolate overflow-hidden scroll-mt-44 border-t border-sky-200 py-20 first:border-t-0 lg:py-28"
     >
+      <WaterBackdrop variant={flipped ? "b" : "c"} />
       <Reveal className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
         {/* SZÖVEG */}
         <div className={flipped ? "lg:order-2" : undefined}>

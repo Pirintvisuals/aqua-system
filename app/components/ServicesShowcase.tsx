@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "./Reveal";
+import WaterBackdrop from "./WaterBackdrop";
 import { SERVICES } from "../lib/services";
 
 /* ------------------------------------------------------------------ *
@@ -14,8 +15,8 @@ import { SERVICES } from "../lib/services";
 export default function ServicesShowcase() {
   return (
     <section id="kinalat" className="relative isolate overflow-hidden scroll-mt-36 py-20 lg:py-28">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-dotgrid opacity-50" aria-hidden="true" />
-      <div className="pointer-events-none absolute -left-40 top-1/4 -z-10 h-[28rem] w-[28rem] rounded-full bg-cyan/10 blur-3xl" aria-hidden="true" />
+      <WaterBackdrop variant="b" />
+      <div className="pointer-events-none absolute -left-40 top-1/4 -z-10 h-[28rem] w-[28rem] rounded-full bg-cyan/30 blur-3xl" aria-hidden="true" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
@@ -64,7 +65,7 @@ export default function ServicesShowcase() {
                   /* Hőszivattyú - még nincs saját fotónk, ezért jelzés
                      értékű rajz áll itt kazánfotó helyett. */
                   <div className="relative flex h-full w-full items-center justify-center">
-                    <div className="pointer-events-none absolute inset-0 bg-dotgrid opacity-60" aria-hidden="true" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky via-white to-sky/60" aria-hidden="true" />
                     <svg className="relative h-16 w-16 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <rect x="2" y="6" width="13" height="12" rx="2" />
                       <circle cx="8.5" cy="12" r="3.5" />

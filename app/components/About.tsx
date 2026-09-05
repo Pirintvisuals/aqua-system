@@ -1,6 +1,7 @@
 import Image from "next/image";
 import aboutImg from "../assets/munkak/vezerlopanel.jpg";
 import Reveal from "./Reveal";
+import WaterBackdrop from "./WaterBackdrop";
 
 const HIGHLIGHTS = [
   { value: "50", suffix: " év", label: "Tapasztalat az épületgépészetben" },
@@ -11,8 +12,8 @@ const HIGHLIGHTS = [
 export default function About() {
   return (
     <section id="rolunk" className="relative isolate overflow-hidden scroll-mt-36 py-20 lg:py-28">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-blueprint opacity-60" aria-hidden="true" />
-      <div className="pointer-events-none absolute -right-28 bottom-0 -z-10 h-80 w-80 rounded-full bg-brand-light/10 blur-3xl" aria-hidden="true" />
+      <WaterBackdrop variant="b" />
+      <div className="pointer-events-none absolute -right-28 bottom-0 -z-10 h-80 w-80 rounded-full bg-brand-light/25 blur-3xl" aria-hidden="true" />
       <Reveal className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
         {/* company photo */}
         <div className="relative order-last lg:order-first">

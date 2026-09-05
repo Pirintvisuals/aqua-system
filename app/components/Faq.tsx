@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
+import WaterBackdrop from "./WaterBackdrop";
 import { CHATBOT_URL } from "../lib/links";
 import { FAQS } from "../lib/faqs";
 
@@ -14,9 +15,9 @@ import { FAQS } from "../lib/faqs";
 
 export default function Faq() {
   return (
-    <section id="gyik" className="relative overflow-hidden scroll-mt-36 bg-sky/30 py-20 lg:py-28">
-      <div className="pointer-events-none absolute inset-0 bg-blueprint opacity-70" aria-hidden="true" />
-      <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-brand-light/10 blur-3xl" aria-hidden="true" />
+    <section id="gyik" className="relative isolate overflow-hidden scroll-mt-36 bg-sky/30 py-20 lg:py-28">
+      <WaterBackdrop variant="c" strength="deep" />
+      <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-brand-light/20 blur-3xl" aria-hidden="true" />
       <Reveal className="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[1fr_1.4fr] lg:gap-16 lg:items-start">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
