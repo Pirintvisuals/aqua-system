@@ -308,7 +308,7 @@ export default async function ServicePage({
       {/* GYAKORI KÉRDÉSEK. Natív <details>, nulla JavaScript. */}
       {service.faq && service.faq.length > 0 && (
         <section className="relative overflow-hidden bg-sky/40 py-20 lg:py-28">
-          <Wave position="top" className="text-paper" size="md" />
+          <Wave position="top" className="text-paper" size="md" variant="ripple" />
           <div className="relative mx-auto max-w-4xl px-6">
             <div className="max-w-2xl">
               <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">

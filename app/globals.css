@@ -375,3 +375,65 @@ h3,
     }
   }
 }
+
+/* ---------- Cimsor: szavankent beuszo animacio ----------
+   Csak ott fut, ahol a bongeszo tudja a gorgetesvezerelt animaciot, es
+   ott sem keslelteteszel, hanem szavankent eltolt gorgetesi tartomannyal
+   (view timeline mellett az animation-delay nem ervenyesul).
+   Ahol nincs tamogatas, a szoveg egyszeruen ott van. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    @keyframes word-rise {
+      from {
+        opacity: 0;
+        transform: translateY(0.55em);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .headline-anim > span {
+      display: inline-block;
+      animation: word-rise linear both;
+      animation-timeline: view();
+      animation-range: entry calc(0% + var(--i) * 5%) entry
+        calc(38% + var(--i) * 5%);
+    }
+
+    /* A cimsor alatti hullamvonal magat rajzolja meg. */
+    @keyframes draw-wave {
+      from {
+        stroke-dashoffset: 320;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .wave-rule path {
+      stroke-dasharray: 320;
+      animation: draw-wave linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 75%;
+    }
+
+    /* Az idovonal gerince a gorgetessel nő le. */
+    @keyframes spine-grow {
+      from {
+        transform: scaleY(0);
+      }
+      to {
+        transform: scaleY(1);
+      }
+    }
+
+    .timeline-spine {
+      transform-origin: top;
+      animation: spine-grow linear both;
+      animation-timeline: view();
+      animation-range: cover 2% cover 62%;
+    }
+  }
+}

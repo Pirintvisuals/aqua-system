@@ -24,8 +24,8 @@ export default function Footer() {
             <Image
               src={logo}
               alt="Aqua System Épületgépészet"
-              sizes="220px"
-              className="h-24 w-auto sm:h-28"
+              sizes="150px"
+              className="h-16 w-auto sm:h-20"
             />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">
               Egynapos, teljes körű gázkészülék csere – gyorsan, biztonságosan és

@@ -143,6 +143,7 @@ export default function RolunkPage() {
       <PageHero
         texture="wave"
         waveTo="text-paper"
+        waveVariant="drift"
         eyebrow="Rólunk"
         image={gepeszetVitodens}
         imageAlt="Aqua System által épített gépészeti rendszer szivattyúkkal és osztó-gyűjtővel"
@@ -200,7 +201,7 @@ export default function RolunkPage() {
             </figure>
           </div>
         </Reveal>
-        <Wave className="text-sky/40" size="md" />
+        <Wave className="text-sky/40" size="md" variant="swell" />
       </section>
 
       {/* Számok */}
@@ -228,7 +229,7 @@ export default function RolunkPage() {
           ritmust, nem a szöveg.
           ------------------------------------------------------------------ */}
       <section className="relative overflow-hidden bg-paper py-20 lg:py-28">
-        <Wave position="top" className="text-sky/40" size="md" flip />
+        <Wave position="top" className="text-sky/40" size="md" variant="ripple" flip />
         <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-cyan/10 blur-3xl" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-6xl px-6">
@@ -236,11 +237,42 @@ export default function RolunkPage() {
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
               Az utunk
             </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Fél évszázad, három generáció
+            <h2 className="headline-anim mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl lg:text-5xl">
+              {"Fél évszázad, három generáció".split(" ").map((word, i) => (
+                <span key={word} style={{ "--i": i } as React.CSSProperties}>
+                  {word}
+                  {" "}
+                </span>
+              ))}
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-              Nem egy cég története, hanem egy családé. Görgess végig rajta.
+
+            {/* Rajzolodo hullamvonal a cimsor alatt. */}
+            <svg
+              className="wave-rule mt-4 h-4 w-56 text-brand"
+              viewBox="0 0 320 20"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M2 14 C 34 2 66 2 98 12 C 130 22 162 22 194 12 C 226 2 258 2 290 10 C 300 12 310 14 318 14"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+            </svg>
+
+            <p className="headline-anim mt-5 text-lg leading-relaxed text-ink-soft">
+              {"Nem egy cég története, hanem egy családé. Görgess végig rajta."
+                .split(" ")
+                .map((word, i) => (
+                  <span
+                    key={`${word}-${i}`}
+                    style={{ "--i": i * 0.35 } as React.CSSProperties}
+                  >
+                    {word}
+                    {" "}
+                  </span>
+                ))}
             </p>
           </div>
 
@@ -248,7 +280,7 @@ export default function RolunkPage() {
             {/* A gerinc: egy folyamatos vonal, ami összeköti a korszakokat. */}
             <span
               aria-hidden="true"
-              className="absolute left-[15px] top-2 h-[calc(100%-3rem)] w-px bg-gradient-to-b from-brand/50 via-sky-200 to-transparent lg:left-1/2"
+              className="timeline-spine absolute left-[15px] top-2 h-[calc(100%-3rem)] w-px bg-gradient-to-b from-brand/50 via-sky-200 to-transparent lg:left-1/2"
             />
 
             {ERAS.map((era, i) => {
@@ -357,7 +389,7 @@ export default function RolunkPage() {
             ))}
           </Reveal>
         </div>
-        <Wave className="text-sky/40" size="md" flip />
+        <Wave className="text-sky/40" size="lg" variant="crest" flip />
       </section>
 
       {/* Értékek */}
@@ -394,7 +426,7 @@ export default function RolunkPage() {
       {/* NAGY FERENC. A velemenyek tobbsegeben ot emlitik nevvel, ezert
           kap sajat szekciot: arc es nev all a ceg mogott. */}
       <section className="relative overflow-hidden bg-cta edge-glow py-20 pt-28 lg:py-28 lg:pt-36">
-        <Wave position="top" className="text-sky/40" size="md" />
+        <Wave position="top" className="text-sky/40" size="md" variant="drift" />
         <div className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-cyan/15 blur-3xl" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2" aria-hidden="true">
           <svg

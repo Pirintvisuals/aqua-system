@@ -1,7 +1,7 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import Wave from "./Wave";
+import Wave, { type WaveVariant } from "./Wave";
 
 /* ------------------------------------------------------------------ *
  *  Aloldalak fejléce - egységes címsáv a /rolunk, /kapcsolat stb.
@@ -55,6 +55,8 @@ type Props = {
   texture?: "grid" | "wave";
   /** A fejléc alatti szekció alapszíne, a záró hullámhoz. */
   waveTo?: string;
+  /** A záró hullám rajzolata. */
+  waveVariant?: WaveVariant;
 };
 
 export default function PageHero({
@@ -67,6 +69,7 @@ export default function PageHero({
   badge,
   texture = "grid",
   waveTo = "text-paper",
+  waveVariant = "crest",
 }: Props) {
   const wave = texture === "wave";
   const crumbs = breadcrumb && breadcrumb.length > 0 && (
@@ -130,7 +133,7 @@ export default function PageHero({
         >
           {copy}
         </div>
-        {wave && <Wave className={waveTo} size="lg" />}
+        {wave && <Wave className={waveTo} size="lg" variant={waveVariant} />}
       </section>
     );
   }
@@ -178,7 +181,7 @@ export default function PageHero({
           )}
         </div>
       </div>
-      {wave && <Wave className={waveTo} size="lg" />}
+      {wave && <Wave className={waveTo} size="lg" variant={waveVariant} />}
     </section>
   );
 }

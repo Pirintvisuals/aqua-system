@@ -23,8 +23,8 @@ function Logo() {
         src={logo}
         alt="Aqua System Épületgépészet"
         priority
-        sizes="(max-width: 640px) 170px, 250px"
-        className="h-20 w-auto sm:h-24 lg:h-28"
+        sizes="(max-width: 640px) 130px, 170px"
+        className="h-16 w-auto sm:h-[72px] lg:h-20"
       />
     </Link>
   );
@@ -64,7 +64,7 @@ export default function Navbar() {
           : "border-b border-transparent bg-white/0"
       }`}
     >
-      <nav className="mx-auto flex h-24 max-w-7xl items-center justify-between gap-4 px-6 sm:h-28 lg:h-32">
+      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-6 sm:h-24">
         <Logo />
 
         {/* desktop links */}
