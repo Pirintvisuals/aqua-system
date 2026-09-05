@@ -116,7 +116,7 @@ export default function Testimonials() {
   return (
     <section
       id="velemenyek"
-      className="relative isolate scroll-mt-36 overflow-hidden bg-water py-20 lg:py-28"
+      className="relative isolate scroll-mt-36 overflow-hidden bg-water-down py-20 lg:py-28"
     >
       <div className="mx-auto max-w-7xl px-6">
         {/* Fejlec: az otven ev a foszereplo. */}

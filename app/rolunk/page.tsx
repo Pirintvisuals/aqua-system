@@ -304,77 +304,63 @@ export default function RolunkPage() {
             {/* A gerinc: egy folyamatos vonal, ami összeköti a korszakokat. */}
             <span
               aria-hidden="true"
-              className="timeline-spine absolute left-[15px] top-2 h-[calc(100%-3rem)] w-px bg-gradient-to-b from-brand/50 via-sky-200 to-transparent lg:left-1/2"
+              className="timeline-spine absolute left-[15px] top-2 h-[calc(100%-3rem)] w-px bg-gradient-to-b from-brand/50 via-sky-200 to-transparent sm:left-[23px]"
             />
 
-            {ERAS.map((era, i) => {
-              const right = i % 2 === 1;
+            {ERAS.map((era) => {
               return (
-                <li key={era.year} className="relative pb-16 last:pb-0 lg:pb-24">
+                <li key={era.year} className="relative pb-12 last:pb-0 lg:pb-16">
                   {/* Jelölő a gerincen. */}
                   <span
                     aria-hidden="true"
-                    className="absolute left-0 top-1.5 flex h-8 w-8 items-center justify-center rounded-full bg-white lg:left-1/2 lg:-translate-x-1/2"
+                    className="absolute left-0 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white sm:left-2"
                   >
                     <span className="era-dot h-3 w-3 rounded-full bg-brand ring-4 ring-brand/15" />
                   </span>
 
-                  <div
-                    className={`era-block pl-14 lg:w-1/2 lg:pl-0 ${
-                      right
-                        ? "era-block-right lg:ml-auto lg:pl-16"
-                        : "lg:pr-16 lg:text-right"
-                    }`}
-                  >
-                    <div className="era-year font-display text-5xl font-extrabold leading-none tracking-tight text-brand sm:text-6xl lg:text-7xl">
-                      {era.year}
-                    </div>
-                    <div className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-ink-soft">
-                      {era.kicker}
+                  <div className="era-block pl-14 sm:pl-20">
+                    <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                      <span className="era-year font-display text-5xl font-extrabold leading-none tracking-tight text-brand sm:text-6xl">
+                        {era.year}
+                      </span>
+                      <span className="text-sm font-semibold uppercase tracking-[0.14em] text-ink-soft">
+                        {era.kicker}
+                      </span>
                     </div>
                     <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-ink">
                       {era.title}
                     </h3>
-                    <p className="mt-3 text-[17px] leading-relaxed text-ink-soft">
+                    <p className="mt-3 max-w-3xl text-[17px] leading-relaxed text-ink-soft">
                       {era.body}
                     </p>
 
-                    {/* Ket szam a korszakrol. Ez toltI meg a sort akkor
-                        is, ahol nincs fotonk. */}
-                    <dl
-                      className={`mt-6 flex flex-wrap gap-x-10 gap-y-4 ${
-                        right ? "" : "lg:justify-end"
-                      }`}
-                    >
-                      {era.facts.map((f) => (
-                        <div key={f.label}>
-                          <dt className="font-display text-2xl font-extrabold tabular-nums text-brand">
-                            {f.value}
-                          </dt>
-                          <dd className="mt-0.5 max-w-[13rem] text-sm leading-snug text-ink-soft">
-                            {f.label}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
+                    {/* A szamok es a szakmai hatter egy sorban: igy a
+                        korszak melle nem kell fotot varni ahhoz, hogy
+                        legyen mit nezni. */}
+                    <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.3fr] lg:gap-10">
+                      <dl className="flex gap-x-8 gap-y-4">
+                        {era.facts.map((f) => (
+                          <div key={f.label}>
+                            <dt className="font-display text-2xl font-extrabold tabular-nums text-brand">
+                              {f.value}
+                            </dt>
+                            <dd className="mt-0.5 text-sm leading-snug text-ink-soft">
+                              {f.label}
+                            </dd>
+                          </div>
+                        ))}
+                      </dl>
 
-                    {/* Mi tortent kozben a szakmaban. Iparagi hatter, nem
-                        a ceg allitasa: ettol lesz a korszaknak sulya. */}
-                    <p
-                      className={`mt-6 border-brand/30 pl-4 text-[15px] leading-relaxed text-ink-soft ${
-                        right ? "border-l-2" : "border-l-2 lg:border-l-0 lg:border-r-2 lg:pl-0 lg:pr-4"
-                      }`}
-                    >
-                      <span className="block text-xs font-bold uppercase tracking-[0.14em] text-brand">
-                        Ekkor a szakmában
-                      </span>
-                      <span className="mt-1 block">{era.era}</span>
-                    </p>
+                      <p className="border-l-2 border-brand/30 pl-4 text-[15px] leading-relaxed text-ink-soft">
+                        <span className="block text-xs font-bold uppercase tracking-[0.14em] text-brand">
+                          Ekkor a szakmában
+                        </span>
+                        <span className="mt-1 block">{era.era}</span>
+                      </p>
+                    </div>
 
                     {era.image && (
-                      <div
-                        className={`relative mt-6 aspect-[16/10] overflow-hidden rounded-2xl border border-sky-200 shadow-[0_30px_60px_-35px_rgba(15,42,94,0.5)]`}
-                      >
+                      <div className="relative mt-6 aspect-[16/7] max-w-3xl overflow-hidden rounded-2xl border border-sky-200 shadow-[0_30px_60px_-35px_rgba(15,42,94,0.5)]">
                         <Image
                           src={era.image.src}
                           alt={era.image.alt}
@@ -386,13 +372,7 @@ export default function RolunkPage() {
                     )}
 
                     {era.quote && (
-                      <figure
-                        className={`mt-6 border-brand bg-white/70 p-5 ${
-                          right
-                            ? "rounded-r-2xl border-l-4"
-                            : "rounded-l-2xl border-r-4 lg:border-l-0"
-                        }`}
-                      >
+                      <figure className="mt-6 max-w-3xl rounded-r-2xl border-l-4 border-brand bg-white/70 p-5">
                         <blockquote className="font-display text-lg font-semibold leading-snug text-ink">
                           „{era.quote.text}”
                         </blockquote>
@@ -408,8 +388,8 @@ export default function RolunkPage() {
           </ol>
 
           {/* Zaras: az idovonal vege ne csak elfogyjon. */}
-          <div className="mt-4 pl-14 lg:mt-8 lg:pl-0">
-            <div className="rounded-2xl border border-brand/25 bg-brand/5 p-7 sm:p-9 lg:mx-auto lg:max-w-3xl lg:text-center">
+          <div className="mt-4 pl-14 sm:pl-20">
+            <div className="max-w-3xl rounded-2xl border border-brand/25 bg-brand/5 p-7 sm:p-9">
               <p className="font-display text-xl font-bold leading-snug text-ink sm:text-2xl">
                 Ötven év alatt a készülékek teljesen kicserélődtek. Egy dolog
                 nem változott: ugyanaz a család áll a munka mögött.

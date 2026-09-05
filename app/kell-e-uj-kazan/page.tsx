@@ -540,7 +540,7 @@ export default function KellEUjKazanPage() {
       {/* ================================================================
           04. KIVEL CSINÁLTASD. Pozicionálás, kilenc ok, kérdések.
           ================================================================ */}
-      <section className="relative bg-water pt-16 lg:pt-20">
+      <section className="relative bg-water-down pt-16 lg:pt-20">
         <Chapter
           id="kivel"
           step={4}
@@ -550,7 +550,7 @@ export default function KellEUjKazanPage() {
       </section>
 
       <section className="py-12 lg:py-16">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-7xl px-6">
           {/* Pozicionalas: egy dolgot csinalunk, azt viszont a legmagasabb
               szinten. A "javitast is vallalunk" uzenet szandekosan nincs
               benne, mert nem vallalunk javitast. */}
@@ -607,7 +607,7 @@ export default function KellEUjKazanPage() {
           asszisztensre iranyit. Az oldal sok informaciot ad, es a
           leggyakoribb kovetkezo lepes egy konkret kerdes. */}
       <section className="pb-20 lg:pb-28">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-col items-start gap-6 rounded-2xl border border-brand/25 bg-brand/5 p-7 sm:flex-row sm:items-center sm:p-8">
             <span className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-brand text-white">
               <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

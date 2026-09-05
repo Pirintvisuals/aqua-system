@@ -67,25 +67,39 @@ export default function SzolgaltatasokPage() {
 
       {/* BEVEZETŐ. Egy bekezdes arrol, hogyan all ossze ez a negy dolog,
           es hol a hatarunk: cseret vallalunk, javitast nem. */}
-      <section className="relative bg-water pt-16 pb-4 lg:pt-20">
-        <div className="mx-auto max-w-3xl px-6">
-          <p className="text-lg leading-relaxed text-ink-soft">
-            A fő profilunk a kazáncsere, és ötven éve ezt csináljuk: a régi
-            készülék le, az új kondenzációs fel, egyetlen munkanap alatt.
-            Mögötte viszont ott van a teljes épületgépészeti háttér, ezért
-            tudunk egy komplett házat is végigvinni, és ezért nem akadunk el
-            azon, ha a kéményt bélelni kell vagy a gázvezetéket át kell
-            alakítani.
-          </p>
-          <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-            Egy dolgot nem csinálunk:{" "}
-            <strong className="font-semibold text-ink">
-              idegen készülék javítását
-            </strong>
-            . Aki mindent vállal, az semmiben nem lesz igazán jó. Karbantartási
-            szerződést az általunk beépített rendszerekre kötünk, mert azoknak
-            ismerjük a teljes előéletét.
-          </p>
+      <section className="relative bg-water pt-16 pb-6 lg:pt-20">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 lg:grid-cols-2 lg:gap-12">
+          {/* Amit vallalunk / amit nem. Ket kartya, mert ket allitas, es
+              igy nem ket cimke nelkuli bekezdes lebeg a sav kozepen. */}
+          <div className="rounded-2xl border border-sky-200 bg-white p-7 shadow-[0_20px_45px_-32px_rgba(15,42,94,0.45)]">
+            <span className="inline-flex rounded-full bg-sky px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand">
+              Amit vállalunk
+            </span>
+            <h2 className="mt-4 font-display text-xl font-bold text-ink">
+              Kazáncsere, teljes gépészeti háttérrel
+            </h2>
+            <p className="mt-2 leading-relaxed text-ink-soft">
+              A fő profilunk a kazáncsere, és ötven éve ezt csináljuk: a régi
+              készülék le, az új kondenzációs fel, egyetlen munkanap alatt.
+              Mögötte ott van a teljes épületgépészeti tudás, ezért nem akadunk
+              el azon, ha a kéményt bélelni kell vagy a gázvezetéket át kell
+              alakítani.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-sky-200 bg-white p-7 shadow-[0_20px_45px_-32px_rgba(15,42,94,0.45)]">
+            <span className="inline-flex rounded-full bg-rose-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-rose-700">
+              Amit nem
+            </span>
+            <h2 className="mt-4 font-display text-xl font-bold text-ink">
+              Idegen készülék javítását nem
+            </h2>
+            <p className="mt-2 leading-relaxed text-ink-soft">
+              Aki mindent vállal, az semmiben nem lesz igazán jó. Karbantartási
+              szerződést az általunk beépített rendszerekre kötünk, mert azoknak
+              ismerjük a teljes előéletét.
+            </p>
+          </div>
         </div>
       </section>
 
