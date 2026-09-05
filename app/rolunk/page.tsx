@@ -4,9 +4,12 @@ import PageHero from "../components/PageHero";
 import Team from "../components/Team";
 import CtaBand from "../components/CtaBand";
 import Reveal from "../components/Reveal";
+import Wave from "../components/Wave";
 import nagyFerenc from "../assets/team/nagy-ferenc.png";
 import gepeszetCsovezetek from "../assets/munkak/gepeszet-csovezetek.jpg";
 import gepeszetVitodens from "../assets/munkak/gepeszet-vitodens.jpg";
+import gepeszetKazanhaz from "../assets/munkak/gepeszet-kazanhaz.jpg";
+import kazancsereErgas from "../assets/munkak/kazancsere-ergas.jpg";
 
 export const metadata: Metadata = {
   title: "Rólunk – ötven év épületgépészeti tapasztalat",
@@ -64,21 +67,73 @@ const STATS = [
   { value: "1 nap", label: "alatt kész a legtöbb csere" },
 ];
 
-const MILESTONES = [
+/* ------------------------------------------------------------------ *
+ *  Az ötven év, korszakokra bontva. Görgetés közben bomlik ki.
+ *
+ *  A szövegek szándékosan nem találnak ki konkrét dátumokat: amit itt
+ *  állítunk, az vagy a cég saját, régóta vállalt története, vagy valós
+ *  ügyfélvéleményből jön (lásd `app/lib/reviews.ts`). Ha a család küld
+ *  pontos évszámokat és régi fotókat, azok ide kerülnek.
+ * ------------------------------------------------------------------ */
+type Era = {
+  year: string;
+  kicker: string;
+  title: string;
+  body: string;
+  quote?: { text: string; source: string };
+  image?: { src: typeof gepeszetKazanhaz; alt: string };
+};
+
+const ERAS: Era[] = [
   {
-    year: "1970-es évek",
+    year: "1970",
+    kicker: "Az első generáció",
     title: "Elindul a családi műhely",
-    body: "A szakma az első generációval kezdődik – víz-, gáz- és fűtésszerelés a környék otthonaiban.",
+    body: "Víz, gáz, fűtés a környék otthonaiban. Egy szerszámosláda, egy név, és annyi munka, amennyit egy ember tisztességgel elvégez. A szakma itt kezdődik, és innentől nincs kihagyott évtized.",
   },
   {
-    year: "1990–2000-es évek",
-    title: "Apáról fiúra száll a tudás",
-    body: "A vállalkozás megerősödik, a szaktudás generációról generációra öröklődik, egyre több nagyobb gázépítési munkával.",
+    year: "1990",
+    kicker: "A második generáció",
+    title: "Apáról fiúra száll a szakma",
+    body: "A fiú a helyszínen tanulja meg, nem tanfolyamon. Ekkor jönnek az első nagyobb gázépítési és teljes gépészeti munkák: már nem csak javítunk egy csövet, hanem egész rendszereket építünk.",
+    image: {
+      src: gepeszetCsovezetek,
+      alt: "Rézcsövezés egy Aqua System által épített kazánházban",
+    },
+  },
+  {
+    year: "2000",
+    kicker: "Ügyfelek, nem megrendelések",
+    title: "Akik egyszer hívtak, azóta is visszahívnak",
+    body: "Ez az az évtized, amikor kiderül, mit ér a munka. Nem az első megrendelésen múlik, hanem azon, hogy tizenöt év múlva kit hívnak, ha megint gond van.",
+    quote: {
+      text: "25 éve veszem igénybe a szolgáltatásukat.",
+      source: "M. György, Érd",
+    },
+  },
+  {
+    year: "2015",
+    kicker: "Technológiaváltás",
+    title: "Megérkezik a kondenzációs kor",
+    body: "Az uniós ErP-irányelv után a nyílt égésterű és turbós készülékek kifutnak. A csere innentől nem javítgatás helyett választható lehetőség, hanem a szakma fő feladata, és mi emellé állunk teljes mellszélességgel.",
+    image: {
+      src: kazancsereErgas,
+      alt: "Korszerű kondenzációs gázkazán a csere után",
+    },
   },
   {
     year: "Ma",
-    title: "Gyors, biztonságos gázkészülék csere",
-    body: "Mára a fő profilunk a fix áras, egynapos gázkészülék csere – a teljes épületgépészeti háttérrel a hátunk mögött.",
+    kicker: "Az ötvenedik év",
+    title: "Egy nap alatt, 500 csere tapasztalatával",
+    body: "Egyetlen dolgot csinálunk, kazáncserét, és azt a legmagasabb szinten. Ugyanaz a család, ugyanaz a mérce, csak mostanra több száz kazánház van mögötte.",
+    quote: {
+      text: "17 év különbséggel hívtak minket vissza. Ez önmagában is sokat elmond.",
+      source: "CS.K. Ildikó véleménye nyomán, Érd",
+    },
+    image: {
+      src: gepeszetKazanhaz,
+      alt: "Mai Aqua System kazánház átadás után",
+    },
   },
 ];
 
@@ -86,6 +141,8 @@ export default function RolunkPage() {
   return (
     <main className="flex-1">
       <PageHero
+        texture="wave"
+        waveTo="text-paper"
         eyebrow="Rólunk"
         image={gepeszetVitodens}
         imageAlt="Aqua System által épített gépészeti rendszer szivattyúkkal és osztó-gyűjtővel"
@@ -99,7 +156,7 @@ export default function RolunkPage() {
       />
 
       {/* Történet */}
-      <section className="py-20 lg:py-28">
+      <section className="relative bg-paper py-20 lg:py-28">
         <Reveal className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
           <div className="order-last lg:order-first">
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-sky-200 shadow-[0_40px_80px_-30px_rgba(15,42,94,0.45)]">
@@ -143,10 +200,11 @@ export default function RolunkPage() {
             </figure>
           </div>
         </Reveal>
+        <Wave className="text-sky/40" size="md" />
       </section>
 
       {/* Számok */}
-      <section className="border-y border-sky-200 bg-sky/30 py-16">
+      <section className="relative bg-sky/40 py-16 pb-24 lg:pb-28">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal stagger className="grid grid-cols-2 gap-6 lg:grid-cols-4">
             {STATS.map((s) => (
@@ -163,9 +221,17 @@ export default function RolunkPage() {
         </div>
       </section>
 
-      {/* Idővonal */}
-      <section className="py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-6">
+      {/* ------------------------------------------------------------------ *
+          AZ ÖTVEN ÉV. Görgetés közben bomlik ki: egy folyamatos gerinc
+          fut le az oldalon, mint egy csővezeték, és minden korszak
+          felváltva jobbra-balra ül ki mellé. A nagy évszám viszi a
+          ritmust, nem a szöveg.
+          ------------------------------------------------------------------ */}
+      <section className="relative overflow-hidden bg-paper py-20 lg:py-28">
+        <Wave position="top" className="text-sky/40" size="md" flip />
+        <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-cyan/10 blur-3xl" aria-hidden="true" />
+
+        <div className="relative mx-auto max-w-6xl px-6">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
               Az utunk
@@ -173,34 +239,88 @@ export default function RolunkPage() {
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
               Fél évszázad, három generáció
             </h2>
+            <p className="mt-4 text-lg leading-relaxed text-ink-soft">
+              Nem egy cég története, hanem egy családé. Görgess végig rajta.
+            </p>
           </div>
 
-          <Reveal stagger className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {MILESTONES.map((m, i) => (
-              <div
-                key={m.year}
-                className="relative rounded-2xl border border-sky-200 bg-white p-7 shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)]"
-              >
-                <span className="inline-flex items-center gap-2 rounded-full bg-sky px-3 py-1 text-xs font-semibold text-brand">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="mt-4 font-display text-sm font-bold uppercase tracking-wide text-brand">
-                  {m.year}
-                </div>
-                <h3 className="mt-1 font-display text-lg font-bold text-ink">
-                  {m.title}
-                </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
-                  {m.body}
-                </p>
-              </div>
-            ))}
-          </Reveal>
+          <ol className="relative mt-16 lg:mt-20">
+            {/* A gerinc: egy folyamatos vonal, ami összeköti a korszakokat. */}
+            <span
+              aria-hidden="true"
+              className="absolute left-[15px] top-2 h-[calc(100%-3rem)] w-px bg-gradient-to-b from-brand/50 via-sky-200 to-transparent lg:left-1/2"
+            />
+
+            {ERAS.map((era, i) => {
+              const right = i % 2 === 1;
+              return (
+                <li key={era.year} className="relative pb-16 last:pb-0 lg:pb-24">
+                  {/* Jelölő a gerincen. */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-0 top-1.5 flex h-8 w-8 items-center justify-center rounded-full bg-paper lg:left-1/2 lg:-translate-x-1/2"
+                  >
+                    <span className="h-3 w-3 rounded-full bg-brand ring-4 ring-brand/15" />
+                  </span>
+
+                  <Reveal
+                    className={`pl-14 lg:w-1/2 lg:pl-0 ${
+                      right ? "lg:ml-auto lg:pl-16" : "lg:pr-16 lg:text-right"
+                    }`}
+                  >
+                    <div className="font-display text-5xl font-extrabold leading-none tracking-tight text-brand sm:text-6xl lg:text-7xl">
+                      {era.year}
+                    </div>
+                    <div className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-ink-soft">
+                      {era.kicker}
+                    </div>
+                    <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-ink">
+                      {era.title}
+                    </h3>
+                    <p className="mt-3 text-[17px] leading-relaxed text-ink-soft">
+                      {era.body}
+                    </p>
+
+                    {era.image && (
+                      <div
+                        className={`relative mt-6 aspect-[16/10] overflow-hidden rounded-2xl border border-sky-200 shadow-[0_30px_60px_-35px_rgba(15,42,94,0.5)]`}
+                      >
+                        <Image
+                          src={era.image.src}
+                          alt={era.image.alt}
+                          placeholder="blur"
+                          sizes="(max-width: 1024px) 90vw, 45vw"
+                          className="h-full w-full object-cover object-center"
+                        />
+                      </div>
+                    )}
+
+                    {era.quote && (
+                      <figure
+                        className={`mt-6 border-brand bg-white/70 p-5 ${
+                          right
+                            ? "rounded-r-2xl border-l-4"
+                            : "rounded-l-2xl border-r-4 lg:border-l-0"
+                        }`}
+                      >
+                        <blockquote className="font-display text-lg font-semibold leading-snug text-ink">
+                          „{era.quote.text}”
+                        </blockquote>
+                        <figcaption className="mt-2 text-sm text-ink-soft">
+                          {era.quote.source}
+                        </figcaption>
+                      </figure>
+                    )}
+                  </Reveal>
+                </li>
+              );
+            })}
+          </ol>
         </div>
       </section>
 
       {/* Amivel foglalkozunk */}
-      <section className="border-t border-sky-200 py-20 lg:py-28">
+      <section className="relative bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -237,10 +357,11 @@ export default function RolunkPage() {
             ))}
           </Reveal>
         </div>
+        <Wave className="text-sky/40" size="md" flip />
       </section>
 
       {/* Értékek */}
-      <section className="border-t border-sky-200 bg-sky/30 py-20 lg:py-28">
+      <section className="relative bg-sky/40 py-20 pb-28 lg:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -272,9 +393,28 @@ export default function RolunkPage() {
       {/* Csapat */}
       {/* NAGY FERENC. A velemenyek tobbsegeben ot emlitik nevvel, ezert
           kap sajat szekciot: arc es nev all a ceg mogott. */}
-      <section className="relative overflow-hidden bg-cta edge-glow py-20 lg:py-28">
-        <div className="pointer-events-none absolute inset-0 bg-blueprint-dark" aria-hidden="true" />
+      <section className="relative overflow-hidden bg-cta edge-glow py-20 pt-28 lg:py-28 lg:pt-36">
+        <Wave position="top" className="text-sky/40" size="md" />
         <div className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-cyan/15 blur-3xl" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2" aria-hidden="true">
+          <svg
+            viewBox="0 0 1440 300"
+            preserveAspectRatio="xMidYMax slice"
+            fill="none"
+            className="h-full w-full"
+          >
+            <path
+              d="M0 150 C 300 90 520 210 780 160 C 1040 110 1240 80 1440 120 L1440 300 L0 300 Z"
+              fill="#7fc4e8"
+              opacity="0.07"
+            />
+            <path
+              d="M0 210 C 280 160 560 260 820 216 C 1080 172 1260 150 1440 186 L1440 300 L0 300 Z"
+              fill="#7fc4e8"
+              opacity="0.05"
+            />
+          </svg>
+        </div>
         <Reveal className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div className="relative mx-auto w-full max-w-sm">
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/20 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)]">

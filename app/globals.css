@@ -16,6 +16,10 @@
   --color-cyan: #7fc4e8; /* logo wave cyan */
   --color-cta: #0f2a5e; /* deep navy - the single action accent */
   --color-cta-700: #0a1f47; /* navy hover */
+
+  /* Papir alapszin. A tiszta feher lapos volt: ezen a nagyon halvany,
+     meleg alapon a feher kartyak tenylegesen kiemelkednek. */
+  --color-paper: #f8f7f3;
 }
 
 :root {
