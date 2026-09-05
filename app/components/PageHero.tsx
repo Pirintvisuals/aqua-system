@@ -134,7 +134,7 @@ export default function PageHero({
         >
           {copy}
         </div>
-        {wave && <Wave className={waveTo} size="lg" variant={waveVariant} />}
+        {wave && <Wave className={waveTo} size="lg" variant={waveVariant} layers="single" />}
       </section>
     );
   }
@@ -182,7 +182,7 @@ export default function PageHero({
           )}
         </div>
       </div>
-      {wave && <Wave className={waveTo} size="lg" variant={waveVariant} />}
+      {wave && <Wave className={waveTo} size="lg" variant={waveVariant} layers="single" />}
     </section>
   );
 }

@@ -201,7 +201,7 @@ export default function RolunkPage() {
             </figure>
           </div>
         </Reveal>
-        <Wave className="text-sky/40" size="md" variant="swell" />
+        <Wave className="text-sky/40" size="md" variant="swell" layers="single" />
       </section>
 
       {/* Számok */}
@@ -229,7 +229,7 @@ export default function RolunkPage() {
           ritmust, nem a szöveg.
           ------------------------------------------------------------------ */}
       <section className="relative overflow-hidden bg-paper py-20 lg:py-28">
-        <Wave position="top" className="text-sky/40" size="md" variant="ripple" flip />
+        <Wave position="top" className="text-sky/40" size="md" variant="ripple" flip layers="single" />
         <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-cyan/10 blur-3xl" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-6xl px-6">
@@ -389,7 +389,7 @@ export default function RolunkPage() {
             ))}
           </Reveal>
         </div>
-        <Wave className="text-sky/40" size="lg" variant="crest" flip />
+        <Wave className="text-sky/40" size="lg" variant="crest" flip layers="single" />
       </section>
 
       {/* Értékek */}
@@ -426,7 +426,7 @@ export default function RolunkPage() {
       {/* NAGY FERENC. A velemenyek tobbsegeben ot emlitik nevvel, ezert
           kap sajat szekciot: arc es nev all a ceg mogott. */}
       <section className="relative overflow-hidden bg-cta edge-glow py-20 pt-28 lg:py-28 lg:pt-36">
-        <Wave position="top" className="text-sky/40" size="md" variant="drift" />
+        <Wave position="top" className="text-sky/40" size="md" variant="drift" layers="single" />
         <div className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-cyan/15 blur-3xl" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2" aria-hidden="true">
           <svg

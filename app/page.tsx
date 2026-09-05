@@ -45,10 +45,8 @@ export default function Home() {
       <Gallery />
       <WaveBand from="bg-white" to="text-sky/30" variant="crest" />
       <WhyUs />
-      <WaveBand from="bg-sky/30" to="text-white" variant="swell" flip />
       <TrustBanner />
       <About />
-      <WaveBand from="bg-white" to="text-sky/30" variant="drift" flip />
       <Team />
       <Faq />
       <WaveBand from="bg-sky/30" to="text-white" variant="ripple" flip />

@@ -37,6 +37,12 @@ type Props = {
   flip?: boolean;
   /** Melyik rajzolat. Lásd a WAVES tömböt. */
   variant?: WaveVariant;
+  /**
+   * `stack`: három réteg, dekoratív hullámzás (pl. fejléc alján).
+   * `single`: egyetlen tiszta él. Két szekció KÖZÖTT mindig ez kell,
+   * mert ott a hullám színt vált, és a halvány rétegek csak csíkoznak.
+   */
+  layers?: "stack" | "single";
 };
 
 const SIZE = {
@@ -80,8 +86,10 @@ export default function Wave({
   size = "md",
   flip = false,
   variant = "swell",
+  layers = "stack",
 }: Props) {
   const [back, mid, front] = WAVES[variant];
+  const single = layers === "single";
   return (
     <div
       aria-hidden="true"
@@ -95,8 +103,12 @@ export default function Wave({
         fill="none"
         className={`block w-full ${SIZE[size]} ${flip ? "-scale-x-100" : ""}`}
       >
-        <path d={back} fill="currentColor" opacity="0.32" />
-        <path d={mid} fill="currentColor" opacity="0.58" />
+        {!single && (
+          <>
+            <path d={back} fill="currentColor" opacity="0.32" />
+            <path d={mid} fill="currentColor" opacity="0.58" />
+          </>
+        )}
         <path d={front} fill="currentColor" />
       </svg>
     </div>

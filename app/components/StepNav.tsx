@@ -37,9 +37,13 @@ export default function StepNav({ steps }: { steps: Step[] }) {
         return;
       }
 
+      // getBoundingClientRect, NEM offsetTop: a fejezetcimek pozicionalt
+      // szekcion belul allnak, ott az offsetTop a szuloghoz kepest ertendo,
+      // es minden fejezet ~0-t adna vissza.
       let current = sections[0].id;
       for (const el of sections) {
-        if (el.offsetTop <= line) current = el.id;
+        const top = el.getBoundingClientRect().top + window.scrollY;
+        if (top <= line) current = el.id;
       }
       setActive(current);
     };

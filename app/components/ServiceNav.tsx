@@ -48,7 +48,8 @@ export default function ServiceNav() {
 
       let current = sections[0].id;
       for (const el of sections) {
-        if (el.offsetTop <= line) current = el.id;
+        const top = el.getBoundingClientRect().top + window.scrollY;
+        if (top <= line) current = el.id;
       }
       setActive(current);
     };

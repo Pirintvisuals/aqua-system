@@ -439,7 +439,7 @@ export default function KellEUjKazanPage() {
           03. MI KERÜL A HELYÉRE. Méretezés és készüléktípus.
           ================================================================ */}
       <section className="relative overflow-hidden bg-cta edge-glow pt-16 lg:pt-20">
-        <Wave position="top" className="text-white" size="md" variant="drift" />
+        <Wave position="top" className="text-white" size="md" variant="drift" layers="single" />
         <div className="relative pt-6">
           <Chapter
             id="megoldas"

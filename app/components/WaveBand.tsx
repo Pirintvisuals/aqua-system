@@ -25,6 +25,7 @@ type Props = {
   from: string;
   /** A következő szekció alapszíne, szövegszínként a hullámhoz. */
   to: string;
+  /** Alapból `sm`: a szekciók sajat paddingja mellett ennel tobb ures ter lesz. */
   size?: "sm" | "md" | "lg";
   variant?: WaveVariant;
   flip?: boolean;
@@ -33,13 +34,19 @@ type Props = {
 export default function WaveBand({
   from,
   to,
-  size = "md",
+  size = "sm",
   variant = "swell",
   flip = false,
 }: Props) {
   return (
     <div className={`relative ${from} ${SIZE[size]}`} aria-hidden="true">
-      <Wave className={to} size={size} variant={variant} flip={flip} />
+      <Wave
+        className={to}
+        size={size}
+        variant={variant}
+        flip={flip}
+        layers="single"
+      />
     </div>
   );
 }
