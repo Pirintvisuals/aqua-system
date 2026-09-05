@@ -141,9 +141,6 @@ export default function RolunkPage() {
   return (
     <main className="flex-1">
       <PageHero
-        texture="wave"
-        waveTo="text-paper"
-        waveVariant="drift"
         eyebrow="Rólunk"
         image={gepeszetVitodens}
         imageAlt="Aqua System által épített gépészeti rendszer szivattyúkkal és osztó-gyűjtővel"
@@ -157,7 +154,7 @@ export default function RolunkPage() {
       />
 
       {/* Történet */}
-      <section className="relative bg-paper py-20 lg:py-28">
+      <section className="relative py-20 lg:py-28">
         <Reveal className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
           <div className="order-last lg:order-first">
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-sky-200 shadow-[0_40px_80px_-30px_rgba(15,42,94,0.45)]">
@@ -201,11 +198,10 @@ export default function RolunkPage() {
             </figure>
           </div>
         </Reveal>
-        <Wave className="text-sky/40" size="md" variant="swell" layers="single" />
       </section>
 
       {/* Számok */}
-      <section className="relative bg-sky/40 py-16 pb-24 lg:pb-28">
+      <section className="relative bg-water py-16 pb-16 lg:pb-20">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal stagger className="grid grid-cols-2 gap-6 lg:grid-cols-4">
             {STATS.map((s) => (
@@ -228,8 +224,7 @@ export default function RolunkPage() {
           felváltva jobbra-balra ül ki mellé. A nagy évszám viszi a
           ritmust, nem a szöveg.
           ------------------------------------------------------------------ */}
-      <section className="relative overflow-hidden bg-paper py-20 lg:py-28">
-        <Wave position="top" className="text-sky/40" size="md" variant="ripple" flip layers="single" />
+      <section className="relative overflow-hidden bg-water py-20 lg:py-28">
         <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-cyan/10 blur-3xl" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-6xl px-6">
@@ -290,7 +285,7 @@ export default function RolunkPage() {
                   {/* Jelölő a gerincen. */}
                   <span
                     aria-hidden="true"
-                    className="absolute left-0 top-1.5 flex h-8 w-8 items-center justify-center rounded-full bg-paper lg:left-1/2 lg:-translate-x-1/2"
+                    className="absolute left-0 top-1.5 flex h-8 w-8 items-center justify-center rounded-full bg-white lg:left-1/2 lg:-translate-x-1/2"
                   >
                     <span className="h-3 w-3 rounded-full bg-brand ring-4 ring-brand/15" />
                   </span>
@@ -389,11 +384,10 @@ export default function RolunkPage() {
             ))}
           </Reveal>
         </div>
-        <Wave className="text-sky/40" size="lg" variant="crest" flip layers="single" />
       </section>
 
       {/* Értékek */}
-      <section className="relative bg-sky/40 py-20 pb-28 lg:py-28">
+      <section className="relative bg-water py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -426,7 +420,7 @@ export default function RolunkPage() {
       {/* NAGY FERENC. A velemenyek tobbsegeben ot emlitik nevvel, ezert
           kap sajat szekciot: arc es nev all a ceg mogott. */}
       <section className="relative overflow-hidden bg-cta edge-glow py-20 pt-28 lg:py-28 lg:pt-36">
-        <Wave position="top" className="text-sky/40" size="md" variant="drift" layers="single" />
+        <Wave position="top" className="text-white" size="md" variant="drift" layers="single" />
         <div className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-cyan/15 blur-3xl" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2" aria-hidden="true">
           <svg

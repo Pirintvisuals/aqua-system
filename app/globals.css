@@ -16,10 +16,6 @@
   --color-cyan: #7fc4e8; /* logo wave cyan */
   --color-cta: #0f2a5e; /* deep navy - the single action accent */
   --color-cta-700: #0a1f47; /* navy hover */
-
-  /* Papir alapszin. A tiszta feher lapos volt: ezen a nagyon halvany,
-     meleg alapon a feher kartyak tenylegesen kiemelkednek. */
-  --color-paper: #f8f7f3;
 }
 
 :root {
@@ -37,6 +33,25 @@ h2,
 h3,
 .font-display {
   font-family: var(--font-display);
+}
+
+/* ---------- Vilagoskek szekcio ----------
+   EZ AZ EGYETLEN hatter-textura a vilagos szekciokon.
+
+   A mosas KET VEGEN feherbe fut, nem csak az egyiken. Ezert barmelyik
+   ket szekcio kerul egymas melle, a hataron feher talalkozik feherrel:
+   nincs vonal, nincs ugras, es nem kell koze semmilyen elvalaszto sav.
+   (Korabban szekciononkent kulon SVG hatter volt, kozottuk hullamsav.
+   Harom rendszer egymason, es a savok kozott feher csikok maradtak.) */
+.bg-water {
+  background-image: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    rgba(234, 243, 255, 0.55) 22%,
+    rgba(214, 230, 255, 0.55) 50%,
+    rgba(234, 243, 255, 0.55) 78%,
+    #ffffff 100%
+  );
 }
 
 /* Scroll-reveal, JS nelkul.

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import boilerPhoto from "../assets/munkak/gepeszet-kazanhaz.jpg";
 import Reveal from "./Reveal";
-import WaterBackdrop from "./WaterBackdrop";
 import { CHATBOT_URL } from "../lib/links";
 
 const INCLUDED = [
@@ -16,8 +15,6 @@ const INCLUDED = [
 export default function Services() {
   return (
     <section id="szolgaltatas" className="relative isolate overflow-hidden scroll-mt-36 py-20 lg:py-28">
-      <WaterBackdrop variant="a" />
-      <div className="pointer-events-none absolute -right-32 -top-24 -z-10 h-96 w-96 rounded-full bg-brand-light/25 blur-3xl" aria-hidden="true" />
       <Reveal className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
         {/* text */}
         <div>

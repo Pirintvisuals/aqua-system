@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "./Reveal";
-import WaterBackdrop from "./WaterBackdrop";
 import { SERVICES } from "../lib/services";
 
 /* ------------------------------------------------------------------ *
@@ -15,8 +14,6 @@ import { SERVICES } from "../lib/services";
 export default function ServicesShowcase() {
   return (
     <section id="kinalat" className="relative isolate overflow-hidden scroll-mt-36 py-20 lg:py-28">
-      <WaterBackdrop variant="b" />
-      <div className="pointer-events-none absolute -left-40 top-1/4 -z-10 h-[28rem] w-[28rem] rounded-full bg-cyan/30 blur-3xl" aria-hidden="true" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">

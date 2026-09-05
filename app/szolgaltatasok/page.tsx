@@ -67,7 +67,7 @@ export default function SzolgaltatasokPage() {
 
       {/* BEVEZETŐ. Egy bekezdes arrol, hogyan all ossze ez a negy dolog,
           es hol a hatarunk: cseret vallalunk, javitast nem. */}
-      <section className="relative bg-paper pt-16 pb-4 lg:pt-20">
+      <section className="relative bg-water pt-16 pb-4 lg:pt-20">
         <div className="mx-auto max-w-3xl px-6">
           <p className="text-lg leading-relaxed text-ink-soft">
             A fő profilunk a kazáncsere, és ötven éve ezt csináljuk: a régi
@@ -90,7 +90,7 @@ export default function SzolgaltatasokPage() {
       </section>
 
       {/* NÉGY BELÉPŐ. Váltakozó, széles sorok, nem egyforma kártyák. */}
-      <section className="bg-paper pb-20 pt-10 lg:pb-28">
+      <section className="pb-20 pt-10 lg:pb-28">
         <div className="mx-auto max-w-7xl space-y-6 px-6">
           {SERVICES.map((s, i) => (
             <Reveal key={s.slug}>

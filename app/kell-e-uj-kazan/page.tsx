@@ -203,7 +203,7 @@ export default function KellEUjKazanPage() {
       {/* ================================================================
           01. HOL TART A KAZÁNOD. Diagnózis: kor, jelek, verdikt.
           ================================================================ */}
-      <section className="bg-paper pt-16 lg:pt-20">
+      <section className="bg-water pt-16 lg:pt-20">
         <Chapter
           id="allapot"
           step={1}
@@ -216,7 +216,7 @@ export default function KellEUjKazanPage() {
       <BoilerCalculator />
 
       {/* ÁRULKODÓ JELEK. Sürgősség szerint jelölve. */}
-      <section className="bg-paper py-14 lg:py-16">
+      <section className="py-14 lg:py-16">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -252,7 +252,7 @@ export default function KellEUjKazanPage() {
       </section>
 
       {/* MIKOR JÖTT EL A CSERE IDEJE. Táblázat, nem kártya: más ritmus. */}
-      <section className="bg-paper py-14 lg:py-16">
+      <section className="py-14 lg:py-16">
         <div className="mx-auto max-w-5xl px-6">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -540,7 +540,7 @@ export default function KellEUjKazanPage() {
       {/* ================================================================
           04. KIVEL CSINÁLTASD. Pozicionálás, kilenc ok, kérdések.
           ================================================================ */}
-      <section className="relative bg-paper pt-16 lg:pt-20">
+      <section className="relative bg-water pt-16 lg:pt-20">
         <Chapter
           id="kivel"
           step={4}
@@ -549,7 +549,7 @@ export default function KellEUjKazanPage() {
         />
       </section>
 
-      <section className="bg-paper py-12 lg:py-16">
+      <section className="py-12 lg:py-16">
         <div className="mx-auto max-w-5xl px-6">
           {/* Pozicionalas: egy dolgot csinalunk, azt viszont a legmagasabb
               szinten. A "javitast is vallalunk" uzenet szandekosan nincs

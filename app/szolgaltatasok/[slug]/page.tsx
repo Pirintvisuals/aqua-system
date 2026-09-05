@@ -232,7 +232,7 @@ export default async function ServicePage({
       </section>
 
       {/* ÍGY ZAJLIK. Számozott, függőleges vonalra fűzött lépések. */}
-      <section className="border-y border-sky-200 bg-sky/30 py-20 lg:py-28">
+      <section className="bg-water py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -267,7 +267,7 @@ export default async function ServicePage({
           aki csak arat keres, nyugodtan atgorgethesse.
           ------------------------------------------------------------------ */}
       {service.deep && service.deep.length > 0 && (
-        <section className="relative bg-paper py-20 lg:py-28">
+        <section className="relative py-20 lg:py-28">
           <div className="mx-auto max-w-5xl px-6">
             <div className="max-w-2xl">
               <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -307,8 +307,8 @@ export default async function ServicePage({
 
       {/* GYAKORI KÉRDÉSEK. Natív <details>, nulla JavaScript. */}
       {service.faq && service.faq.length > 0 && (
-        <section className="relative overflow-hidden bg-sky/40 py-20 lg:py-28">
-          <Wave position="top" className="text-paper" size="md" variant="ripple" layers="single" />
+        <section className="relative overflow-hidden bg-water py-20 lg:py-28">
+          <Wave position="top" className="text-white" size="md" variant="ripple" layers="single" />
           <div className="relative mx-auto max-w-4xl px-6">
             <div className="max-w-2xl">
               <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">

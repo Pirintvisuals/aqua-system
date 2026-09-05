@@ -127,7 +127,7 @@ export default async function LocationPage({
       </section>
 
       {/* MIT VÁLLALUNK ITT */}
-      <section className="border-y border-sky-200 bg-sky/30 py-20 lg:py-28">
+      <section className="bg-water py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-2xl">
             <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">

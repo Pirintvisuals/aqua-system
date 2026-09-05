@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Reveal from "./Reveal";
-import WaterBackdrop from "./WaterBackdrop";
 import { CHATBOT_URL } from "../lib/links";
 
 /* ------------------------------------------------------------------ *
@@ -70,7 +69,6 @@ export default function BoilerCalculator() {
       id="kalkulator"
       className="relative isolate overflow-hidden scroll-mt-36 py-20 lg:py-28"
     >
-      <WaterBackdrop variant="b" />
       <div className="mx-auto max-w-5xl px-6">
         <Reveal className="relative overflow-hidden rounded-[2rem] border border-sky-200 bg-gradient-to-br from-white to-sky/50 p-8 shadow-[0_40px_90px_-40px_rgba(15,42,94,0.5)] sm:p-12">
           {/* soft glow */}

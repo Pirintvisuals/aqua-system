@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Reveal from "./Reveal";
-import WaterBackdrop from "./WaterBackdrop";
 import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 import { BUSINESS } from "../lib/site";
 
@@ -52,8 +51,6 @@ export default function Contact() {
 
   return (
     <section id="kapcsolat" className="relative isolate overflow-hidden scroll-mt-36 py-20 lg:py-28">
-      <WaterBackdrop variant="a" />
-      <div className="pointer-events-none absolute -right-36 top-1/3 -z-10 h-[26rem] w-[26rem] rounded-full bg-brand-light/25 blur-3xl" aria-hidden="true" />
       <Reveal className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-2 lg:gap-16">
         {/* info */}
         <div>

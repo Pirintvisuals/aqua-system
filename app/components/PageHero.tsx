@@ -1,8 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import Wave, { type WaveVariant } from "./Wave";
-import WaterBackdrop from "./WaterBackdrop";
 
 /* ------------------------------------------------------------------ *
  *  Aloldalak fejléce - egységes címsáv a /rolunk, /kapcsolat stb.
@@ -11,32 +9,6 @@ import WaterBackdrop from "./WaterBackdrop";
  * ------------------------------------------------------------------ */
 
 type Crumb = { label: string; href: string };
-
-/* Halvany hullamretegek a fejlec hatterebe. Nem eles rajz, csak
-   annyi mozgas, hogy a sav ne legyen egyszinu folt. */
-function BackWaves() {
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      <svg
-        viewBox="0 0 1440 420"
-        preserveAspectRatio="xMidYMax slice"
-        fill="none"
-        className="absolute inset-0 h-full w-full"
-      >
-        <path
-          d="M0 250 C 300 170 520 320 780 262 C 1040 204 1220 150 1440 208 L1440 420 L0 420 Z"
-          fill="#7fc4e8"
-          opacity="0.22"
-        />
-        <path
-          d="M0 320 C 280 262 560 380 820 330 C 1080 280 1260 246 1440 292 L1440 420 L0 420 Z"
-          fill="#2b5fd0"
-          opacity="0.10"
-        />
-      </svg>
-    </div>
-  );
-}
 
 type Props = {
   eyebrow: string;
@@ -49,15 +21,6 @@ type Props = {
   imageAlt?: string;
   /** Kis kártya a fotó sarkában. */
   badge?: { value: string; label: string };
-  /**
-   * Háttértextúra. A `grid` a régi műszaki rács, a `wave` a logó
-   * hullámmotívuma. Új oldalakon a `wave` a preferált.
-   */
-  texture?: "grid" | "wave";
-  /** A fejléc alatti szekció alapszíne, a záró hullámhoz. */
-  waveTo?: string;
-  /** A záró hullám rajzolata. */
-  waveVariant?: WaveVariant;
 };
 
 export default function PageHero({
@@ -68,11 +31,7 @@ export default function PageHero({
   image,
   imageAlt,
   badge,
-  texture = "grid",
-  waveTo = "text-paper",
-  waveVariant = "crest",
 }: Props) {
-  const wave = texture === "wave";
   const crumbs = breadcrumb && breadcrumb.length > 0 && (
     <nav aria-label="Morzsamenü" className="mb-5">
       <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-soft">
@@ -122,19 +81,11 @@ export default function PageHero({
   if (!image) {
     return (
       <section
-        className={`relative isolate overflow-hidden bg-sky/40 ${wave ? "" : "border-b border-sky-200"}`}
+        className="relative isolate overflow-hidden bg-water"
       >
-        {wave ? (
-          <BackWaves />
-        ) : (
-          <WaterBackdrop variant="b" strength="deep" />
-        )}
-        <div
-          className={`relative mx-auto max-w-7xl px-6 py-16 lg:py-20 ${wave ? "pb-24 lg:pb-36" : ""}`}
-        >
+        <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-20">
           {copy}
         </div>
-        {wave && <Wave className={waveTo} size="lg" variant={waveVariant} layers="single" />}
       </section>
     );
   }
@@ -142,18 +93,9 @@ export default function PageHero({
   /* Fotóval: kétoszlopos fejléc. */
   return (
     <section
-      className={`relative isolate overflow-hidden bg-sky/40 ${wave ? "" : "border-b border-sky-200"}`}
+      className="relative isolate overflow-hidden bg-water"
     >
-      {wave ? (
-        <BackWaves />
-      ) : (
-        <WaterBackdrop variant="a" strength="deep" />
-      )}
-      <div
-        className={`relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-6 py-14 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:py-20 ${
-          wave ? "pb-24 lg:pb-36" : ""
-        }`}
-      >
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-6 py-14 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:py-20">
         <div>{copy}</div>
         <div className="relative">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/60 shadow-[0_40px_80px_-30px_rgba(15,42,94,0.5)]">
@@ -182,7 +124,6 @@ export default function PageHero({
           )}
         </div>
       </div>
-      {wave && <Wave className={waveTo} size="lg" variant={waveVariant} layers="single" />}
     </section>
   );
 }

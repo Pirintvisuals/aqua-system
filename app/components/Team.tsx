@@ -1,6 +1,5 @@
 import Image, { type StaticImageData } from "next/image";
 import Reveal from "./Reveal";
-import WaterBackdrop from "./WaterBackdrop";
 import szaboBela from "../assets/team/szabo-bela.png";
 import berghammerBalazs from "../assets/team/berghammer-balazs.png";
 import nagyAndrea from "../assets/team/nagy-andrea.png";
@@ -25,9 +24,8 @@ export default function Team() {
   return (
     <section
       id="csapat"
-      className="relative isolate overflow-hidden scroll-mt-36 bg-sky/30 py-20 lg:py-28"
+      className="relative isolate overflow-hidden scroll-mt-36 bg-water py-20 lg:py-28"
     >
-      <WaterBackdrop variant="a" strength="deep" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
-import WaterBackdrop from "./WaterBackdrop";
 import { CHATBOT_URL } from "../lib/links";
 import type { Service } from "../lib/services";
 
@@ -122,9 +121,10 @@ export default function ServiceSection({
   return (
     <section
       id={service.slug}
-      className="relative isolate overflow-hidden scroll-mt-44 border-t border-sky-200 py-20 first:border-t-0 lg:py-28"
+      className={`relative isolate overflow-hidden scroll-mt-44 py-20 lg:py-28 ${
+        flipped ? "bg-water" : ""
+      }`}
     >
-      <WaterBackdrop variant={flipped ? "b" : "c"} />
       <Reveal className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
         {/* SZÖVEG */}
         <div className={flipped ? "lg:order-2" : undefined}>

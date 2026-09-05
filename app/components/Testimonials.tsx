@@ -1,5 +1,4 @@
 import Reveal from "./Reveal";
-import WaterBackdrop from "./WaterBackdrop";
 import {
   REVIEWS,
   REVIEW_AVERAGE,
@@ -117,17 +116,8 @@ export default function Testimonials() {
   return (
     <section
       id="velemenyek"
-      className="relative isolate scroll-mt-36 overflow-hidden bg-sky/30 py-20 lg:py-28"
+      className="relative isolate scroll-mt-36 overflow-hidden bg-water py-20 lg:py-28"
     >
-      {/* Kek dekoracio: ket lagy folt es egy halvany tervrajz-racs, hogy
-          a feher kartyak mogott legyen mit nezni. Tisztan dekorativ. */}
-      <WaterBackdrop variant="a" strength="deep" />
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div className="animate-drift absolute -left-28 top-8 h-80 w-80 rounded-full bg-brand-light/15 blur-3xl" />
-        <div className="animate-float-slow absolute -right-24 bottom-4 h-96 w-96 rounded-full bg-cyan/25 blur-3xl" />
-        <div className="absolute left-1/2 top-1/3 h-64 w-64 -translate-x-1/2 rounded-full bg-sky-200/40 blur-3xl" />
-      </div>
-
       <div className="mx-auto max-w-7xl px-6">
         {/* Fejlec: az otven ev a foszereplo. */}
         <div className="max-w-3xl">
