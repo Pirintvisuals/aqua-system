@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Reveal from "./Reveal";
-import { CHATBOT_URL } from "../lib/links";
+import { CHATBOT_URL, CTA_PRIMARY } from "../lib/links";
 
 /* ------------------------------------------------------------------ *
  *  MEGTAKARÍTÁS KALKULÁTOR.
@@ -236,7 +236,7 @@ export default function SavingsCalculator() {
                   href={CHATBOT_URL}
                   className="group mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-cta px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-cta/20 transition-all duration-200 hover:bg-cta-700 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta"
                 >
-                  Mennyibe kerül a csere?
+                  {CTA_PRIMARY}
                   <svg
                     className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1"
                     viewBox="0 0 24 24"

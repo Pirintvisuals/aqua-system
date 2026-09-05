@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
-import { CHATBOT_URL } from "../lib/links";
+import { CHATBOT_URL, CTA_PRIMARY } from "../lib/links";
 import { FAQS } from "../lib/faqs";
 
 /* ------------------------------------------------------------------ *
@@ -14,10 +14,10 @@ import { FAQS } from "../lib/faqs";
 
 export default function Faq() {
   return (
-    <section id="gyik" className="relative isolate overflow-hidden scroll-mt-36 bg-water py-16 lg:py-24">
+    <section id="gyik" className="relative isolate overflow-hidden scroll-mt-36 py-16 lg:py-24">
       <Reveal className="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[1fr_1.4fr] lg:gap-16 lg:items-start">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+          <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
             Gyakran ismételt kérdések
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-soft">
@@ -28,7 +28,7 @@ export default function Faq() {
             href={CHATBOT_URL}
             className="group mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-cta px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-cta/20 transition-all duration-200 hover:bg-cta-700 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta"
           >
-            Azonnali árajánlat
+            {CTA_PRIMARY}
             <svg className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>

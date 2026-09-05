@@ -4,7 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
-import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
+import {
+  CHATBOT_URL,
+  CTA_PRIMARY,
+  CTA_PRIMARY_SHORT,
+  PHONE_DISPLAY,
+  PHONE_HREF,
+} from "../lib/links";
 
 // A hash-linkek "/#…" alakban a főoldal szekcióira mutatnak, így bármelyik
 // aloldalról is működnek (nem csak a főoldalon).
@@ -98,7 +104,7 @@ export default function Navbar() {
             href={CHATBOT_URL}
             className="hidden cursor-pointer items-center justify-center rounded-xl bg-cta px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-cta-700 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta sm:inline-flex"
           >
-            Azonnali árajánlat
+            {CTA_PRIMARY_SHORT}
           </a>
 
           {/* mobile hamburger */}
@@ -144,7 +150,7 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className="inline-flex items-center justify-center rounded-xl bg-cta px-5 py-3 text-base font-semibold text-white shadow-sm"
               >
-                Azonnali árajánlat
+                {CTA_PRIMARY}
               </a>
             </li>
           </ul>

@@ -30,14 +30,14 @@ const TILES = [
 
 export default function Gallery() {
   return (
-    <section id="galeria" className="relative isolate overflow-hidden scroll-mt-36 bg-water py-16 lg:py-24">
+    <section id="galeria" className="relative isolate overflow-hidden scroll-mt-36 py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
               Korábbi munkáink
             </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            <h2 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
               Saját fotók, saját kazánházak
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">

@@ -8,7 +8,7 @@ import Reveal from "../../components/Reveal";
 import Wave from "../../components/Wave";
 import { SERVICES } from "../../lib/services";
 import { SITE_URL } from "../../lib/site";
-import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../../lib/links";
+import { CHATBOT_URL, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../../lib/links";
 
 /* ------------------------------------------------------------------ *
  *  Egy szolgáltatás önálló aloldala.
@@ -150,7 +150,7 @@ export default async function ServicePage({
                 href={CHATBOT_URL}
                 className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-cta px-7 py-4 text-base font-semibold text-white shadow-lg shadow-cta/20 transition-all duration-200 hover:bg-cta-700 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta"
               >
-                Árajánlat erre a munkára
+                {CTA_PRIMARY}
                 <svg className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>

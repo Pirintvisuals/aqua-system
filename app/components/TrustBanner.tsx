@@ -1,11 +1,11 @@
 import Image from "next/image";
 import ctaBg from "../assets/munkak/gepeszet-vitodens.jpg";
 import Reveal from "./Reveal";
-import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
+import { CHATBOT_URL, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 
 export default function TrustBanner() {
   return (
-    <section className="relative isolate overflow-hidden bg-water py-16 lg:py-24">
+    <section className="relative isolate overflow-hidden py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6">
         <Reveal className="relative overflow-hidden rounded-[2rem] bg-cta px-8 py-14 text-white sm:px-14 lg:px-16">
           {/* background photo + navy wash for contrast */}
@@ -66,7 +66,7 @@ export default function TrustBanner() {
                 href={CHATBOT_URL}
                 className="group inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl bg-white px-7 py-4 text-base font-semibold text-cta shadow-lg transition-all duration-200 hover:bg-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
-                Azonnali árajánlat
+                {CTA_PRIMARY}
                 <svg className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>

@@ -10,7 +10,7 @@ const HIGHLIGHTS = [
 
 export default function About() {
   return (
-    <section id="rolunk" className="relative isolate overflow-hidden scroll-mt-36 py-16 lg:py-24">
+    <section id="rolunk" className="relative isolate overflow-hidden scroll-mt-36 bg-water py-16 lg:py-24">
       <Reveal className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
         {/* company photo */}
         <div className="relative order-last lg:order-first">
@@ -34,7 +34,7 @@ export default function About() {
           <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
             Rólunk
           </span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+          <h2 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
             Az Aqua System Service Kft.-ről
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-soft">
