@@ -80,6 +80,10 @@ type Era = {
   kicker: string;
   title: string;
   body: string;
+  /** Mi volt akkor a szakmában. Iparági tény, nem a cég állítása. */
+  era: string;
+  /** Két rövid tény a korszakról, nagy számmal. */
+  facts: { value: string; label: string }[];
   quote?: { text: string; source: string };
   image?: { src: typeof gepeszetKazanhaz; alt: string };
 };
@@ -89,13 +93,23 @@ const ERAS: Era[] = [
     year: "1970",
     kicker: "Az első generáció",
     title: "Elindul a családi műhely",
-    body: "Víz, gáz, fűtés a környék otthonaiban. Egy szerszámosláda, egy név, és annyi munka, amennyit egy ember tisztességgel elvégez. A szakma itt kezdődik, és innentől nincs kihagyott évtized.",
+    body: "Víz, gáz, fűtés a környék otthonaiban. Egy szerszámosláda, egy név, és annyi munka, amennyit egy ember tisztességgel elvégez. Nincs marketing, nincs cégtábla: a következő munkát az hozza, hogy az előzőt jól csinálta meg valaki.",
+    era: "Ekkor a lakások túlnyomó részében nyílt égésterű, kéménybe kötött készülék dolgozik. Pontosan az a típus, amit ma cserélünk le.",
+    facts: [
+      { value: "75-80%", label: "egy akkori kazán hatásfoka" },
+      { value: "1", label: "generáció, egy szerelő" },
+    ],
   },
   {
     year: "1990",
     kicker: "A második generáció",
     title: "Apáról fiúra száll a szakma",
-    body: "A fiú a helyszínen tanulja meg, nem tanfolyamon. Ekkor jönnek az első nagyobb gázépítési és teljes gépészeti munkák: már nem csak javítunk egy csövet, hanem egész rendszereket építünk.",
+    body: "A fiú a helyszínen tanulja meg, nem tanfolyamon. Ez az a tudás, amit nem lehet leírni: melyik falban merre megy a vezeték, mit bír el egy régi rendszer, és mikor kell nemet mondani egy megoldásra. Ekkor jönnek az első nagyobb gázépítési és teljes gépészeti munkák.",
+    era: "A szakmában megjelennek a zárt égésterű, turbós készülékek. A lakótérből kikerül az égés, a hatásfok viszont még alig mozdul.",
+    facts: [
+      { value: "3 szakág", label: "víz, gáz és fűtés egy kézben" },
+      { value: "86-89%", label: "amit egy turbós készülék tud" },
+    ],
     image: {
       src: gepeszetCsovezetek,
       alt: "Rézcsövezés egy Aqua System által épített kazánházban",
@@ -105,7 +119,12 @@ const ERAS: Era[] = [
     year: "2000",
     kicker: "Ügyfelek, nem megrendelések",
     title: "Akik egyszer hívtak, azóta is visszahívnak",
-    body: "Ez az az évtized, amikor kiderül, mit ér a munka. Nem az első megrendelésen múlik, hanem azon, hogy tizenöt év múlva kit hívnak, ha megint gond van.",
+    body: "Ez az az évtized, amikor kiderül, mit ér a munka. Nem az első megrendelésen múlik, hanem azon, hogy tizenöt év múlva kit hívnak, ha megint gond van. A visszatérő ügyfél a szakmában az egyetlen hiteles minősítés, és ekkorra ebből lett elég.",
+    era: "Közben megjelennek az első kondenzációs készülékek. Aki ekkor épített rendszert, annak ma jár le a második kazánja.",
+    facts: [
+      { value: "25 év", label: "a leghosszabb ügyfélkapcsolatunk" },
+      { value: "17 év", label: "múlva hívott vissza egy ügyfél" },
+    ],
     quote: {
       text: "25 éve veszem igénybe a szolgáltatásukat.",
       source: "M. György, Érd",
@@ -115,7 +134,12 @@ const ERAS: Era[] = [
     year: "2015",
     kicker: "Technológiaváltás",
     title: "Megérkezik a kondenzációs kor",
-    body: "Az uniós ErP-irányelv után a nyílt égésterű és turbós készülékek kifutnak. A csere innentől nem javítgatás helyett választható lehetőség, hanem a szakma fő feladata, és mi emellé állunk teljes mellszélességgel.",
+    body: "Az uniós ErP-irányelv után a nyílt égésterű és turbós készülékek kifutnak a piacról. A csere innentől nem javítgatás helyett választható lehetőség, hanem a szakma fő feladata. Ekkor döntjük el, hogy emellé állunk teljes mellszélességgel, és nem szórjuk szét magunkat tíz másik munkatípusra.",
+    era: "Egy kondenzációs kazán már 92-94 százalékon dolgozik, viszont bélelt kéményt és kondenzvíz-elvezetést kíván. A csere ettől lesz szakmunka, nem készülékakasztás.",
+    facts: [
+      { value: "92-94%", label: "a mai kondenzációs hatásfok" },
+      { value: "2015", label: "az ErP-irányelv éve" },
+    ],
     image: {
       src: kazancsereErgas,
       alt: "Korszerű kondenzációs gázkazán a csere után",
@@ -125,7 +149,12 @@ const ERAS: Era[] = [
     year: "Ma",
     kicker: "Az ötvenedik év",
     title: "Egy nap alatt, 500 csere tapasztalatával",
-    body: "Egyetlen dolgot csinálunk, kazáncserét, és azt a legmagasabb szinten. Ugyanaz a család, ugyanaz a mérce, csak mostanra több száz kazánház van mögötte.",
+    body: "Egyetlen dolgot csinálunk, kazáncserét, és azt a legmagasabb szinten. Ugyanaz a család, ugyanaz a mérce, csak mostanra több száz kazánház van mögötte. A régi ügyfelek gyerekei hívnak, és pontosan ugyanazt kapják, amit annak idején a szüleik.",
+    era: "Egy komplett csere ma egyetlen munkanap: reggel bontás, estére meleg. Ez nem sietség, hanem ötven év alatt beforgatott rutin.",
+    facts: [
+      { value: "500+", label: "elvégzett készülékcsere" },
+      { value: "1 nap", label: "alatt kész a legtöbb csere" },
+    ],
     quote: {
       text: "17 év különbséggel hívtak minket vissza. Ez önmagában is sokat elmond.",
       source: "CS.K. Ildikó véleménye nyomán, Érd",
@@ -287,15 +316,17 @@ export default function RolunkPage() {
                     aria-hidden="true"
                     className="absolute left-0 top-1.5 flex h-8 w-8 items-center justify-center rounded-full bg-white lg:left-1/2 lg:-translate-x-1/2"
                   >
-                    <span className="h-3 w-3 rounded-full bg-brand ring-4 ring-brand/15" />
+                    <span className="era-dot h-3 w-3 rounded-full bg-brand ring-4 ring-brand/15" />
                   </span>
 
-                  <Reveal
-                    className={`pl-14 lg:w-1/2 lg:pl-0 ${
-                      right ? "lg:ml-auto lg:pl-16" : "lg:pr-16 lg:text-right"
+                  <div
+                    className={`era-block pl-14 lg:w-1/2 lg:pl-0 ${
+                      right
+                        ? "era-block-right lg:ml-auto lg:pl-16"
+                        : "lg:pr-16 lg:text-right"
                     }`}
                   >
-                    <div className="font-display text-5xl font-extrabold leading-none tracking-tight text-brand sm:text-6xl lg:text-7xl">
+                    <div className="era-year font-display text-5xl font-extrabold leading-none tracking-tight text-brand sm:text-6xl lg:text-7xl">
                       {era.year}
                     </div>
                     <div className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-ink-soft">
@@ -306,6 +337,38 @@ export default function RolunkPage() {
                     </h3>
                     <p className="mt-3 text-[17px] leading-relaxed text-ink-soft">
                       {era.body}
+                    </p>
+
+                    {/* Ket szam a korszakrol. Ez toltI meg a sort akkor
+                        is, ahol nincs fotonk. */}
+                    <dl
+                      className={`mt-6 flex flex-wrap gap-x-10 gap-y-4 ${
+                        right ? "" : "lg:justify-end"
+                      }`}
+                    >
+                      {era.facts.map((f) => (
+                        <div key={f.label}>
+                          <dt className="font-display text-2xl font-extrabold tabular-nums text-brand">
+                            {f.value}
+                          </dt>
+                          <dd className="mt-0.5 max-w-[13rem] text-sm leading-snug text-ink-soft">
+                            {f.label}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+
+                    {/* Mi tortent kozben a szakmaban. Iparagi hatter, nem
+                        a ceg allitasa: ettol lesz a korszaknak sulya. */}
+                    <p
+                      className={`mt-6 border-brand/30 pl-4 text-[15px] leading-relaxed text-ink-soft ${
+                        right ? "border-l-2" : "border-l-2 lg:border-l-0 lg:border-r-2 lg:pl-0 lg:pr-4"
+                      }`}
+                    >
+                      <span className="block text-xs font-bold uppercase tracking-[0.14em] text-brand">
+                        Ekkor a szakmában
+                      </span>
+                      <span className="mt-1 block">{era.era}</span>
                     </p>
 
                     {era.image && (
@@ -338,11 +401,28 @@ export default function RolunkPage() {
                         </figcaption>
                       </figure>
                     )}
-                  </Reveal>
+                  </div>
                 </li>
               );
             })}
           </ol>
+
+          {/* Zaras: az idovonal vege ne csak elfogyjon. */}
+          <div className="mt-4 pl-14 lg:mt-8 lg:pl-0">
+            <div className="rounded-2xl border border-brand/25 bg-brand/5 p-7 sm:p-9 lg:mx-auto lg:max-w-3xl lg:text-center">
+              <p className="font-display text-xl font-bold leading-snug text-ink sm:text-2xl">
+                Ötven év alatt a készülékek teljesen kicserélődtek. Egy dolog
+                nem változott: ugyanaz a család áll a munka mögött.
+              </p>
+              <p className="mt-4 leading-relaxed text-ink-soft">
+                A nyílt égésterű kazánt felváltotta a kondenzációs, a
+                szerelőlapból hőigény-számítás lett, a kéményből bélelt
+                égéstermék-elvezetés. A mérce viszont ugyanaz, mint az első
+                napon: úgy adjuk át a munkát, ahogy a sajátunkban is
+                szeretnénk látni.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

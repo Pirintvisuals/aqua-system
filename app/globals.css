@@ -440,3 +440,83 @@ h3,
     }
   }
 }
+
+/* ---------- Idovonal: korszakok beuszasa ----------
+   Minden korszak a sajat oldalarol csuszik be, es a gerincen ulo pont
+   akkor "gyullad ki", amikor a korszak a kepernyore er. Gorgetesvezerelt,
+   tehat a mozgas pontosan koveti az olvasast.
+
+   Csak @supports mogott fut: ahol a bongeszo nem tudja, ott minden a
+   vegallapotban all, tehat semmi nem tunik el. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    @keyframes era-in-left {
+      from {
+        opacity: 0;
+        transform: translate3d(-28px, 18px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes era-in-right {
+      from {
+        opacity: 0;
+        transform: translate3d(28px, 18px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes era-dot {
+      from {
+        transform: scale(0.4);
+        opacity: 0.3;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .era-block {
+      animation: era-in-left linear both;
+      animation-timeline: view();
+      animation-range: entry 8% entry 58%;
+    }
+
+    .era-block-right {
+      animation-name: era-in-right;
+    }
+
+    .era-dot {
+      animation: era-dot linear both;
+      animation-timeline: view();
+      animation-range: entry 12% entry 50%;
+    }
+
+    /* A nagy evszam egy hajszallal kesobb er a helyere, mint a szoveg. */
+    @keyframes era-year {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 14px, 0);
+        letter-spacing: 0.04em;
+      }
+      to {
+        opacity: 1;
+        transform: none;
+        letter-spacing: -0.02em;
+      }
+    }
+
+    .era-year {
+      animation: era-year linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 62%;
+    }
+  }
+}
