@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "../components/PageHero";
 import BoilerCalculator from "../components/BoilerCalculator";
+import WhyUs from "../components/WhyUs";
 import CtaBand from "../components/CtaBand";
 import Reveal from "../components/Reveal";
+import { CHATBOT_URL } from "../lib/links";
 import vezerlopanel from "../assets/munkak/vezerlopanel.jpg";
 
 /* ------------------------------------------------------------------ *
@@ -388,6 +390,46 @@ export default function KellEUjKazanPage() {
           </p>
         </div>
       </section>
+
+      {/* MARADT KERDESED. Nem ujabb kartya: egy kiemelt sav, ami az
+          asszisztensre iranyit. Az oldal sok informaciot ad, es a
+          leggyakoribb kovetkezo lepes egy konkret kerdes. */}
+      <section className="pb-20 lg:pb-28">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="flex flex-col items-start gap-6 rounded-2xl border border-brand/25 bg-brand/5 p-7 sm:flex-row sm:items-center sm:p-8">
+            <span className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-brand text-white">
+              <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+            </span>
+            <div className="flex-1">
+              <h2 className="font-display text-xl font-bold text-ink">
+                Maradt kérdésed? Kérdezd meg az asszisztenst
+              </h2>
+              <p className="mt-2 leading-relaxed text-ink-soft">
+                Ha a te helyzeted nem fér bele a fenti kategóriákba, írd le
+                pár szóban. Az online árajánló asszisztensünk a nap
+                bármely szakában válaszol, és pár kérdés után tájékoztató
+                árat is ad. Nem kell megvárnod a munkaidőt.
+              </p>
+            </div>
+            <a
+              href={CHATBOT_URL}
+              className="group inline-flex flex-none cursor-pointer items-center justify-center gap-2 rounded-xl bg-cta px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-cta/20 transition-all duration-200 hover:bg-cta-700 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta"
+            >
+              Kérdezek
+              <svg className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Miert minket - ugyanaz a szekcio, mint a fooldalon. Aki idaig
+          eljutott, mar tudja, hogy kell uj kazan; innentol az a kerdes,
+          hogy kivel csinaltassa. */}
+      <WhyUs />
 
       <CtaBand
         title="Nem vagy biztos benne, mi a helyzet?"
