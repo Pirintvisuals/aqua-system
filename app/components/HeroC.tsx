@@ -102,7 +102,7 @@ function FloatCard({
 
 export default function HeroC() {
   return (
-    <section className="relative isolate overflow-hidden">
+    <section className="relative isolate overflow-clip">
       {/* full sky gradient background */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-white via-sky/60 to-sky" />
       <div className="pointer-events-none absolute inset-0 -z-10">

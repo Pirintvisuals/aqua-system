@@ -37,7 +37,7 @@ export default function Process() {
   return (
     <section
       id="folyamat"
-      className="relative isolate overflow-hidden scroll-mt-36 py-16 lg:py-24"
+      className="relative isolate overflow-clip scroll-mt-36 py-16 lg:py-24"
     >
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">

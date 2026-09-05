@@ -14,7 +14,7 @@ import { SERVICES } from "../lib/services";
 
 export default function ServicesShowcase() {
   return (
-    <section id="kinalat" className="relative isolate overflow-hidden scroll-mt-36 bg-water py-16 lg:py-24">
+    <section id="kinalat" className="relative isolate overflow-clip scroll-mt-36 bg-water py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">

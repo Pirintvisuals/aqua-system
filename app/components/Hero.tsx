@@ -130,7 +130,7 @@ function Stat({ target, suffix, label }: (typeof STATS)[number]) {
 export default function Hero() {
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-white">
+      <section className="relative isolate overflow-clip bg-white">
         {/* Retegelt hatter: lagy kek foltok es a markajelzo hullam. A
             pontracs innen is kikerult: azt a texturat mindenhol a viz
             valtja. */}

@@ -176,7 +176,7 @@ export default function SzolgaltatasokPage() {
       </section>
 
       {/* ZÁRÓ SZÖVEG. Terulet es keretek, kereseshez is hasznos. */}
-      <section className="relative overflow-hidden bg-white py-20 lg:py-24">
+      <section className="relative overflow-clip bg-white py-20 lg:py-24">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">

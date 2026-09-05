@@ -329,7 +329,7 @@ export default function KellEUjKazanPage() {
       </section>
 
       {/* KAZANTIPUSOK. Hatasfok-savok, nem ujabb szovegdobozok. */}
-      <section className="relative overflow-hidden bg-white py-14 lg:py-16">
+      <section className="relative overflow-clip bg-white py-14 lg:py-16">
         <div className="pointer-events-none absolute inset-0 bg-blueprint opacity-60" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-32 top-10 h-80 w-80 rounded-full bg-sky/70 blur-3xl" />
         <div className="relative mx-auto max-w-5xl px-6">
@@ -437,7 +437,7 @@ export default function KellEUjKazanPage() {
       {/* ================================================================
           03. MI KERÜL A HELYÉRE. Méretezés és készüléktípus.
           ================================================================ */}
-      <section className="relative overflow-hidden bg-cta edge-glow pt-16 lg:pt-20">
+      <section className="relative overflow-clip bg-cta edge-glow pt-16 lg:pt-20">
         <Wave position="top" className="text-white" size="md" variant="drift" layers="single" />
         <div className="relative pt-6">
           <Chapter
@@ -451,7 +451,7 @@ export default function KellEUjKazanPage() {
       </section>
 
       {/* MEKKORA ES MILYEN. Sotet sav, ket oszlop. */}
-      <section className="relative overflow-hidden bg-cta edge-glow py-14 lg:py-16">
+      <section className="relative overflow-clip bg-cta edge-glow py-14 lg:py-16">
         <div className="pointer-events-none absolute inset-0 bg-blueprint-dark" aria-hidden="true" />
         <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-cyan/15 blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-6">

@@ -166,7 +166,7 @@ export default function PageHero({
   if (!image) {
     return (
       <section
-        className={`relative isolate overflow-hidden ${
+        className={`relative isolate overflow-clip ${
           dark ? "bg-cta edge-glow" : "bg-water"
         }`}
       >
@@ -201,7 +201,7 @@ export default function PageHero({
   /* Fotóval: kétoszlopos fejléc. */
   return (
     <section
-      className="relative isolate overflow-hidden bg-water"
+      className="relative isolate overflow-clip bg-water"
     >
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-6 py-14 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:py-20">
         <div>{copy}</div>

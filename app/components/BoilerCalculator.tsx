@@ -67,7 +67,7 @@ export default function BoilerCalculator() {
   return (
     <section
       id="kalkulator"
-      className="relative isolate overflow-hidden scroll-mt-36 py-16 lg:py-24"
+      className="relative isolate overflow-clip scroll-mt-36 py-16 lg:py-24"
     >
       <div className="mx-auto max-w-5xl px-6">
         <Reveal className="relative overflow-hidden rounded-[2rem] border border-sky-200 bg-gradient-to-br from-white to-sky/50 p-8 shadow-[0_40px_90px_-40px_rgba(15,42,94,0.5)] sm:p-12">

@@ -107,7 +107,7 @@ export default async function ServicePage({
       />
 
       {/* SÖTÉT TÉNY-SÁV. A világos szekciók közé kontrasztot tesz. */}
-      <section className="relative overflow-hidden bg-cta edge-glow">
+      <section className="relative overflow-clip bg-cta edge-glow">
         <div className="pointer-events-none absolute inset-0 bg-blueprint-dark" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-24 -top-28 h-72 w-72 rounded-full bg-cyan/15 blur-3xl" />
         <dl className="relative mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-12 sm:grid-cols-3">
@@ -307,7 +307,7 @@ export default async function ServicePage({
 
       {/* GYAKORI KÉRDÉSEK. Natív <details>, nulla JavaScript. */}
       {service.faq && service.faq.length > 0 && (
-        <section className="relative overflow-hidden bg-water py-16 lg:py-24">
+        <section className="relative overflow-clip bg-water py-16 lg:py-24">
           <Wave position="top" className="text-white" size="md" variant="ripple" layers="single" />
           <div className="relative mx-auto max-w-4xl px-6">
             <div className="max-w-2xl">

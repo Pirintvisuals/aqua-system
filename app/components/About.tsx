@@ -10,7 +10,7 @@ const HIGHLIGHTS = [
 
 export default function About() {
   return (
-    <section id="rolunk" className="relative isolate overflow-hidden scroll-mt-36 bg-water py-16 lg:py-24">
+    <section id="rolunk" className="relative isolate overflow-clip scroll-mt-36 bg-water py-16 lg:py-24">
       <Reveal className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
         {/* company photo */}
         <div className="relative order-last lg:order-first">

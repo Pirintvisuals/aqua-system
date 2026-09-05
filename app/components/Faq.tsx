@@ -14,7 +14,7 @@ import { FAQS } from "../lib/faqs";
 
 export default function Faq() {
   return (
-    <section id="gyik" className="relative isolate overflow-hidden scroll-mt-36 py-16 lg:py-24">
+    <section id="gyik" className="relative isolate overflow-clip scroll-mt-36 py-16 lg:py-24">
       <Reveal className="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[1fr_1.4fr] lg:gap-16 lg:items-start">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">

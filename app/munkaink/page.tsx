@@ -101,7 +101,7 @@ export default function MunkainkPage() {
       </section>
 
       {/* HOL DOLGOZUNK. Sötét sáv, a településlista kiemelve. */}
-      <section className="relative overflow-hidden bg-cta edge-glow py-16 lg:py-24">
+      <section className="relative overflow-clip bg-cta edge-glow py-16 lg:py-24">
         <div className="pointer-events-none absolute inset-0 bg-blueprint-dark" aria-hidden="true" />
         <div className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-brand-light/20 blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-6">

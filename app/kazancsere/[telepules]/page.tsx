@@ -92,7 +92,7 @@ export default async function LocationPage({
       />
 
       {/* HELYI VÉLEMÉNYEK: ez az oldal egyedi tartalma. */}
-      <section className="relative isolate overflow-hidden py-16 lg:py-24">
+      <section className="relative isolate overflow-clip py-16 lg:py-24">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-blueprint opacity-60" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-32 top-10 -z-10 h-80 w-80 rounded-full bg-brand-light/10 blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-4xl px-6">

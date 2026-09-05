@@ -150,7 +150,7 @@ export default function RolunkPage() {
           felváltva jobbra-balra ül ki mellé. A nagy évszám viszi a
           ritmust, nem a szöveg.
           ------------------------------------------------------------------ */}
-      <section className="relative overflow-hidden bg-water py-16 lg:py-24">
+      <section className="relative overflow-clip bg-water py-16 lg:py-24">
         <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-cyan/10 blur-3xl" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-6xl px-6">
@@ -316,7 +316,7 @@ export default function RolunkPage() {
       {/* Csapat */}
       {/* NAGY FERENC. A velemenyek tobbsegeben ot emlitik nevvel, ezert
           kap sajat szekciot: arc es nev all a ceg mogott. */}
-      <section className="relative overflow-hidden bg-cta edge-glow py-20 pt-28 lg:py-28 lg:pt-36">
+      <section className="relative overflow-clip bg-cta edge-glow py-20 pt-28 lg:py-28 lg:pt-36">
         <Wave position="top" className="text-white" size="md" variant="drift" layers="single" />
         <div className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-cyan/15 blur-3xl" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2" aria-hidden="true">

@@ -5,7 +5,7 @@ import { CHATBOT_URL, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../lib/link
 
 export default function TrustBanner() {
   return (
-    <section className="relative isolate overflow-hidden py-16 lg:py-24">
+    <section className="relative isolate overflow-clip py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6">
         <Reveal className="relative overflow-hidden rounded-[2rem] bg-cta px-8 py-14 text-white sm:px-14 lg:px-16">
           {/* background photo + navy wash for contrast */}

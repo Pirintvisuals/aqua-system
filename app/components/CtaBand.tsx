@@ -23,7 +23,7 @@ export default function CtaBand({
   body = "Pár kérdés az online árajánló asszisztensünkben, és máris kapsz egy tájékoztató árat. Ha inkább beszélnél valakivel, hívj minket, vagy írj üzenetet.",
 }: Props) {
   return (
-    <section className="relative overflow-hidden bg-cta edge-glow">
+    <section className="relative overflow-clip bg-cta edge-glow">
       <div
         className="pointer-events-none absolute inset-0 bg-blueprint-dark"
         aria-hidden="true"
