@@ -34,41 +34,41 @@ export const metadata: Metadata = {
 
 const SIGNS = [
   {
-    title: "Egyre gyakrabban kell szerelőt hívni",
-    body: "Ha két fűtési szezonban is hívtál szerelőt, a következő hiba már nem meglepetés lesz, hanem menetrend. Ilyenkor a javítások ára gyorsan összeadódik.",
+    title: "Két szezonban is hívtál szerelőt",
+    body: "A következő hiba már nem meglepetés lesz, hanem menetrend.",
     urgency: "Gyanús",
   },
   {
     title: "Nő a gázszámla, pedig nem fűtesz többet",
-    body: "A régi, nyílt égésterű készülékek hatásfoka jóval alacsonyabb. Ha a fogyasztás kúszik felfelé változatlan szokások mellett, a készülék viszi a pénzt.",
+    body: "Változatlan szokások mellett a készülék viszi a pénzt.",
     urgency: "Gyanús",
   },
   {
     title: "Zajos, kattog, búg",
-    body: "Az új zajok általában vízkövesedést, szivattyúhibát vagy levegős rendszert jeleznek. Önmagában még javítható, de ritkán jön egyedül.",
+    body: "Vízkő, szivattyúhiba vagy levegő a rendszerben. Ritkán jön egyedül.",
     urgency: "Nézzük meg",
   },
   {
     title: "Hibakódot ír ki, vagy le-leáll",
-    body: "Az ismétlődő leállás nem szeszély. Van, amit egy beszabályozás megold, van, ami a hőcserélő végét jelenti. Ezt meg kell nézni.",
+    body: "Az ismétlődő leállás néha beszabályozás, néha a hőcserélő vége.",
     urgency: "Nézzük meg",
   },
   {
     title: "Sárga a láng, korom van a készüléken",
-    body: "A sárga, lobogó láng tökéletlen égést jelez, és szén-monoxiddal jár együtt. Ez nem várhat a következő szezonig.",
+    body: "Tökéletlen égés, szén-monoxiddal. Ez nem várhat a szezon végéig.",
     urgency: "Azonnal",
   },
   {
     title: "Nyílt égésterű készülék a lakótérben",
-    body: "A régi, kéménybe kötött nyílt égésterű kazánok a levegőt a helyiségből veszik el. Mai szemmel ez a legkockázatosabb elrendezés.",
+    body: "A lakás levegőjét égeti el. Mai szemmel ez a legkockázatosabb.",
     urgency: "Azonnal",
   },
 ];
 
 const URGENCY_STYLE: Record<string, string> = {
   Gyanús: "bg-sky text-brand",
-  "Nézzük meg": "bg-sky text-brand",
-  Azonnal: "bg-rose-50 text-rose-700",
+  "Nézzük meg": "bg-amber-50 text-amber-700",
+  Azonnal: "bg-rose-100 text-rose-700",
 };
 
 /* Kazantipusok hatasfok szerint. A szamok szakmai forrasokbol valok
@@ -76,32 +76,70 @@ const URGENCY_STYLE: Record<string, string> = {
 const TYPES = [
   {
     name: "Nyílt égésterű, kéménybe kötve",
-    era: "Jellemzően 2000 előtti készülék",
+    era: "2000 előtti készülékek",
+    verdict: "Elavult és kockázatos",
     efficiency: 78,
     range: "75-80%",
-    flue: "160-170 °C égéstermék",
-    note: "Az égéshez a lakótér levegőjét használja, ezért szén-monoxid szempontjából ez a legkockázatosabb elrendezés. Új készülékként ma már gyakorlatilag nem telepíthető.",
+    headline: "Minden ötödik elfűtött köbméter kimegy a kéményen.",
+    points: [
+      "A lakás levegőjét égeti el: szén-monoxid szempontjából ez a legrosszabb elrendezés.",
+      "160-170 fokos égéstermék távozik, vagyis a hő, amiért fizettél.",
+      "Új készülékként ma már nem telepíthető.",
+    ],
     tone: "bad",
   },
   {
     name: "Zárt égésterű, hagyományos",
-    era: "Turbós, parapetes készülékek",
+    era: "Turbós és parapetes készülékek",
+    verdict: "Biztonságos, de lemaradt",
     efficiency: 88,
     range: "86-89%",
-    flue: "Zárt rendszerű égéstermék-elvezetés",
-    note: "A levegőt kívülről veszi, az égésterméket kívülre vezeti, tehát a lakótértől el van választva. Hatásfokban viszont már elmarad a kondenzációstól.",
+    headline: "Biztonságban rendben van, hatásfokban egy egész osztállyal marad el.",
+    points: [
+      "A levegőt kívülről veszi, tehát a lakótértől el van választva.",
+      "A vízgőz hőjét nem tudja visszanyerni: az itt is kimegy a kéményen.",
+      "Fokozatokkal jár, ezért sokat kapcsolgat, és ez koptatja.",
+    ],
     tone: "ok",
   },
   {
     name: "Kondenzációs",
-    era: "Ma ez a csúcs, és nálunk csak ez",
+    era: "Ma ez a csúcs",
+    verdict: "Ezt építjük be",
     efficiency: 94,
     range: "92-94%",
-    flue: "Kb. 60 °C égéstermék",
-    note: "Az égéstermék vízgőzének rejtett hőjét is visszanyeri, ezért hűl le 60 fok környékére az, ami régen 160 fokon ment ki a kéménybe. Fokozatmentesen modulál, tehát nem ki-be kapcsolgat, hanem annyit fűt, amennyi kell: ettől lesz halk, egyenletes és tartós. Alacsony előremenő hőmérsékleten, például padlófűtéssel hozza a maximális hatásfokot.",
+    headline: "Azt a hőt is visszaveszi, ami eddig a kéménybe ment. 160 fok helyett 60.",
+    points: [
+      "Fokozatmentesen modulál: annyit fűt, amennyi kell, ezért halk és egyenletes.",
+      "Padlófűtéssel, alacsony előremenővel hozza a legjobb hatásfokot.",
+      "Nálunk csak prémium, márkaszervizes készülék kerül be, gyári garanciával.",
+    ],
     tone: "best",
   },
 ];
+
+/* A karyak szinei tonus szerint. A regi tipusok szandekosan tompak es
+   pirosak: az olvasonak ranezesre latnia kell, melyik a rossz vege. */
+const TYPE_STYLE: Record<string, { card: string; chip: string; num: string; bar: string }> = {
+  bad: {
+    card: "border-rose-200 bg-rose-50/50",
+    chip: "bg-rose-100 text-rose-700",
+    num: "text-rose-700",
+    bar: "bg-rose-400",
+  },
+  ok: {
+    card: "border-sky-200 bg-white",
+    chip: "bg-amber-50 text-amber-700",
+    num: "text-ink-soft",
+    bar: "bg-ink-soft/45",
+  },
+  best: {
+    card: "border-brand/35 bg-brand/5 ring-1 ring-brand/15 shadow-[0_30px_60px_-40px_rgba(15,42,94,0.55)]",
+    chip: "bg-brand text-white",
+    num: "text-brand",
+    bar: "bg-brand",
+  },
+};
 
 const COMPARE = [
   {
@@ -137,7 +175,7 @@ export default function KellEUjKazanPage() {
       <PageHero
         eyebrow="Döntéstámogató"
         title="Kell-e új kazán?"
-        intro="Nem minden hiba jelent cserét, és nem minden működő kazán van rendben. Itt összeszedtük, mire érdemes figyelni, és mikor jött el tényleg a csere ideje. Mi kizárólag kazáncserét vállalunk, ötven éve azt csináljuk, mást nem."
+        intro="Nem minden hiba jelent cserét, és nem minden működő kazán van rendben. Görgess végig: két perc alatt látod, hol tart a készüléked. Mi kizárólag kazáncserét vállalunk, ötven éve azt csináljuk."
         image={vezerlopanel}
         imageAlt="Gázkazán vezérlőpanelje ellenőrzés közben"
         badge={{ value: "10-15 év", label: "egy kazán átlagos élettartama" }}
@@ -161,8 +199,8 @@ export default function KellEUjKazanPage() {
               Hat jel, amit nem érdemes elnézni
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-              Az alsó kettő biztonsági kérdés, azokkal ne várj a szezon
-              végéig. A többi inkább pénzkérdés, ott van idő gondolkodni.
+              A pirossal jelöltek biztonsági kérdések, azokkal ne várj. A többi
+              pénzkérdés, ott van idő gondolkodni.
             </p>
           </div>
 
@@ -196,116 +234,143 @@ export default function KellEUjKazanPage() {
               Kazántípusok
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              A kondenzációs kazán ma a csúcs, és nálunk csak ez kerül a falra
+              A régi kazán a kéményt fűti. A kondenzációs a házat.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-              A kondenzációs technika nem egy kicsit jobb kazán a régiek
-              sorában, hanem másik liga. A hagyományos készülék a hő jó részét
-              egyszerűen kifűti a kéménybe: 160 fokos égéstermékkel távozik az
-              a hő, amiért fizettél. A kondenzációs ezt visszaveszi, még az
-              égéstermék vízgőzéből is, ezért hűl le 60 fok környékére, ami
-              régen 160 fokon ment el.
-            </p>
-            <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-              A legrégebbi és a mai készülék között nagyjából tizenöt
-              százaléknyi hatásfok van. Ez minden elfűtött köbméternél,
-              minden hónapban, tizenöt éven át számít.
+              Ugyanaz a gáz, két nagyon különböző eredmény. Nézd meg a
+              hatásfokot, a többi részlet ehhez képest mellékes.
             </p>
           </div>
 
-          <div className="mt-12 space-y-4">
-            {TYPES.map((t) => (
-              <div
-                key={t.name}
-                className={`rounded-2xl border p-6 sm:p-7 ${
-                  t.tone === "best"
-                    ? "border-sky-200 bg-sky"
-                    : "border-sky-200 bg-white"
-                }`}
-              >
-                <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                  <div>
-                    <h3 className="font-display text-lg font-bold text-ink">
-                      {t.name}
-                    </h3>
-                    <p className="mt-0.5 text-sm text-ink-soft">{t.era}</p>
-                  </div>
-                  <div className="text-right">
-                    <span
-                      className={`font-display text-3xl font-extrabold tabular-nums ${
-                        t.tone === "best" ? "text-brand" : "text-ink"
-                      }`}
-                    >
-                      {t.range}
-                    </span>
-                    <span className="block text-xs text-ink-soft">hatásfok</span>
-                  </div>
-                </div>
-
-                <div
-                  className="mt-4 h-2.5 w-full overflow-hidden rounded-full bg-sky-200"
-                  role="img"
-                  aria-label={`Hatásfok körülbelül ${t.efficiency} százalék`}
-                >
-                  <div
-                    className={`h-full rounded-full ${
-                      t.tone === "best"
-                        ? "bg-brand"
-                        : t.tone === "ok"
-                          ? "bg-brand"
-                          : "bg-ink-soft/50"
-                    }`}
-                    style={{ width: `${t.efficiency}%` }}
-                  />
-                </div>
-
-                <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
-                  <span className="font-semibold text-ink">{t.flue}.</span>{" "}
-                  {t.note}
-                </p>
+          {/* Harom szam, amit egy pillantassal fel lehet fogni. */}
+          <dl className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-sky-200 bg-sky-200 sm:grid-cols-3">
+            {[
+              { v: "160 °C", l: "ennyivel megy ki a hő egy régi kazán kéményén" },
+              { v: "60 °C", l: "ennyi marad ebből egy kondenzációsnál" },
+              { v: "15%", l: "hatásfok-különbség a legrégebbi és a mai készülék közt" },
+            ].map((x) => (
+              <div key={x.v} className="bg-white p-6">
+                <dt className="font-display text-3xl font-extrabold tabular-nums text-brand">
+                  {x.v}
+                </dt>
+                <dd className="mt-1 text-sm leading-snug text-ink-soft">{x.l}</dd>
               </div>
             ))}
+          </dl>
+
+          <div className="mt-6 space-y-4">
+            {TYPES.map((t) => {
+              const st = TYPE_STYLE[t.tone];
+              return (
+                <div key={t.name} className={`rounded-2xl border p-6 sm:p-7 ${st.card}`}>
+                  <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-2">
+                    <div>
+                      <span
+                        className={`inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide ${st.chip}`}
+                      >
+                        {t.verdict}
+                      </span>
+                      <h3 className="mt-3 font-display text-lg font-bold text-ink">
+                        {t.name}
+                      </h3>
+                      <p className="mt-0.5 text-sm text-ink-soft">{t.era}</p>
+                    </div>
+                    <div className="text-right">
+                      <span
+                        className={`font-display text-3xl font-extrabold tabular-nums ${st.num}`}
+                      >
+                        {t.range}
+                      </span>
+                      <span className="block text-xs text-ink-soft">hatásfok</span>
+                    </div>
+                  </div>
+
+                  <div
+                    className="mt-4 h-2.5 w-full overflow-hidden rounded-full bg-sky-200"
+                    role="img"
+                    aria-label={`Hatásfok körülbelül ${t.efficiency} százalék`}
+                  >
+                    <div
+                      className={`h-full rounded-full ${st.bar}`}
+                      style={{ width: `${t.efficiency}%` }}
+                    />
+                  </div>
+
+                  <p className="mt-4 font-display text-base font-bold text-ink">
+                    {t.headline}
+                  </p>
+                  <ul className="mt-3 space-y-1.5">
+                    {t.points.map((point) => (
+                      <li
+                        key={point}
+                        className="flex gap-2.5 text-[15px] leading-snug text-ink-soft"
+                      >
+                        <span
+                          className={`mt-2 h-1.5 w-1.5 flex-none rounded-full ${st.bar}`}
+                          aria-hidden="true"
+                        />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
 
           <p className="mt-6 text-sm leading-relaxed text-ink-soft">
-            A 2015-ös uniós ErP-irányelv óta új nyílt égésterű és turbós
-            készüléket gyakorlatilag nem hoznak forgalomba, ezért cserénél
-            szinte mindig kondenzációs kazán kerül a helyére. Ez nem
-            marketingdöntés, hanem ez maradt.
+            A 2015-ös uniós ErP-irányelv óta nyílt égésterű és turbós készüléket
+            gyakorlatilag nem hoznak forgalomba. Cserénél kondenzációs kazán
+            kerül a helyére, ez nem marketingdöntés.
           </p>
 
           {/* Pozicionalas: egy dolgot csinalunk, azt viszont a legmagasabb
               szinten. A "javitast is vallalunk" uzenet szandekosan nincs
               benne, mert nem vallalunk javitast. */}
           <div className="mt-12 rounded-2xl border border-brand/25 bg-brand/5 p-7 sm:p-9">
-            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
-              Ahogy mi dolgozunk
-            </span>
-            <h3 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-ink">
-              Egy dolgot csinálunk, azt viszont prémium szinten
+            <h3 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
+              Csak kazáncsere. Csak prémium.
             </h3>
-            <p className="mt-4 leading-relaxed text-ink-soft">
-              Kazáncserét vállalunk, és kizárólag azt. Javítást, hibakeresést,
-              alkatrészcserét idegen készüléken nem. Ötven év alatt megtanultuk,
-              hogy az a csapat lesz igazán jó valamiben, amelyik nem csinál
-              mást: nálunk minden reggel ugyanaz a feladat indul, ugyanazzal a
-              beforgatott rutinnal. Ezért megy egy komplett csere egy nap alatt
-              úgy, hogy estére meleg van.
+            <p className="mt-3 text-lg leading-relaxed text-ink-soft">
+              Ötven éve ugyanaz az egy feladat indul minden reggel. Ezért megy
+              egy komplett csere egy nap alatt.
             </p>
-            <p className="mt-4 leading-relaxed text-ink-soft">
-              Ebbe a rutinba nem fér bele a kompromisszum. Csak prémium
-              kategóriás, modulációs kondenzációs készüléket építünk be,
-              márkaszervizes háttérrel és gyári garanciával, a hozzá való
-              minőségi szerelvényekkel. Nem a legolcsóbb szettel, amiből három
-              év múlva nincs alkatrész: a kazán tizenöt évig marad a falon, és
-              ezen a távon a spórolás mindig drágább.
-            </p>
-            <p className="mt-4 leading-relaxed text-ink-soft">
-              Ezért mondjuk meg őszintén akkor is, ha szerintünk a te
-              készülékednek van még hátra pár éve. Nem beszélünk rá senkit a
-              cserére. Amikor viszont eljön az ideje, azt a munkát úgy adjuk át,
-              hogy a kazánház rendezett, a dokumentáció megvan, és évek múlva is
-              szervizelhető marad a rendszer.
+
+            <ul className="mt-7 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
+              {[
+                ["Kizárólag kazáncsere", "Javítást, hibakeresést nem vállalunk."],
+                ["Prémium készülék", "Modulációs kondenzációs, gyári garanciával."],
+                ["Márkaszervizes háttér", "Öt év múlva is lesz hozzá alkatrész."],
+                ["Egy nap, estére meleg", "Rendezett kazánház, kész dokumentáció."],
+              ].map(([head, sub]) => (
+                <li key={head} className="flex gap-3">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-none text-brand"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  <span>
+                    <span className="block font-semibold text-ink">{head}</span>
+                    <span className="block text-[15px] leading-snug text-ink-soft">
+                      {sub}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-7 border-t border-brand/15 pt-5 text-[15px] leading-relaxed text-ink-soft">
+              <span className="font-semibold text-ink">
+                Cserét nem beszélünk rá senkire.
+              </span>{" "}
+              Ha a készülékednek van még hátra pár éve, azt fogjuk mondani.
             </p>
           </div>
         </div>
@@ -330,41 +395,69 @@ export default function KellEUjKazanPage() {
               <h3 className="font-display text-xl font-bold text-white">
                 Mekkora teljesítmény kell?
               </h3>
-              <p className="mt-3 leading-relaxed text-sky-200">
-                Nem a régi kazán kW-ját másoljuk le. A hőigényt a ház
-                alapterülete és szigeteltsége adja: korszerű szigetelésnél
-                nagyjából 30-50 W négyzetméterenként. Egy közepesen szigetelt,
-                100 négyzetméteres háznál ez jellemzően 14-18 kW.
+              <p className="mt-3 font-semibold text-white">
+                A régi kazán kW-ját nem másoljuk le.
               </p>
-              <p className="mt-3 leading-relaxed text-sky-200">
-                A túlméretezett kazán nem jobb, hanem rosszabb: ha a legkisebb
-                teljesítménye is túl nagy, folyamatosan ki-be kapcsol. Ezért a
-                modulációs tartomány legalább annyira számít, mint a maximum.
-              </p>
+              <ul className="mt-4 space-y-2.5 text-sky-200">
+                <li className="flex gap-2.5">
+                  <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-cyan" aria-hidden="true" />
+                  <span>
+                    A hőigényt a ház adja:{" "}
+                    <strong className="font-semibold text-white">
+                      30-50 W négyzetméterenként
+                    </strong>{" "}
+                    korszerű szigetelésnél.
+                  </span>
+                </li>
+                <li className="flex gap-2.5">
+                  <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-cyan" aria-hidden="true" />
+                  <span>
+                    Egy közepesen szigetelt, 100 négyzetméteres ház jellemzően{" "}
+                    <strong className="font-semibold text-white">14-18 kW</strong>.
+                  </span>
+                </li>
+                <li className="flex gap-2.5">
+                  <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-cyan" aria-hidden="true" />
+                  <span>
+                    A túlméretezett kazán rosszabb: folyamatosan ki-be kapcsol.
+                  </span>
+                </li>
+              </ul>
             </div>
 
             <div className="rounded-2xl bg-white/5 p-7 ring-1 ring-white/15">
               <h3 className="font-display text-xl font-bold text-white">
                 Kombi vagy tárolós?
               </h3>
-              <p className="mt-3 leading-relaxed text-sky-200">
-                A kombi kazán menet közben állítja elő a melegvizet, ezért a
-                melegvíz gyakran nagyobb pillanatnyi teljesítményt kíván, mint
-                maga a fűtés. Így lesz 20-30 kW-os készülék egy jóval kisebb
-                hőigényű házban.
+              <p className="mt-3 font-semibold text-white">
+                A melegvíz dönti el, nem a fűtés.
               </p>
-              <p className="mt-3 leading-relaxed text-sky-200">
-                Tárolós megoldásnál a melegvíz külön tartályban áll, a kazánt
-                elég a fűtési hőigényre méretezni. Több hely kell hozzá, cserébe
-                egyszerre több csapolási helyen is kitart.
-              </p>
+              <ul className="mt-4 space-y-2.5 text-sky-200">
+                <li className="flex gap-2.5">
+                  <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-cyan" aria-hidden="true" />
+                  <span>
+                    <strong className="font-semibold text-white">Kombi:</strong>{" "}
+                    menet közben melegít, ezért nagyobb készülék kell.
+                  </span>
+                </li>
+                <li className="flex gap-2.5">
+                  <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-cyan" aria-hidden="true" />
+                  <span>
+                    <strong className="font-semibold text-white">Tárolós:</strong>{" "}
+                    külön tartály, kisebb kazán, több csapolás egyszerre.
+                  </span>
+                </li>
+                <li className="flex gap-2.5">
+                  <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-cyan" aria-hidden="true" />
+                  <span>Tárolóshoz több hely kell, cserébe kitart.</span>
+                </li>
+              </ul>
             </div>
           </div>
 
           <p className="mt-8 max-w-3xl text-sm leading-relaxed text-sky-200/80">
-            Ezek tájékoztató nagyságrendek. A tényleges méretezés helyszíni
-            felmérés és hőigény-számítás alapján készül, mert a nyílászárók, a
-            fűtött terület és a leadók típusa is beleszól.
+            Ezek tájékoztató nagyságrendek. A pontos méretezés helyszíni
+            felmérés és hőigény-számítás alapján készül.
           </p>
         </div>
       </section>
@@ -380,9 +473,8 @@ export default function KellEUjKazanPage() {
               Melyik oldalon áll a te kazánod?
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-              Ha a jobb oszlopban ismersz magadra két-három sorban is, a
-              toldozgatás jellemzően csak halasztja a döntést, és közben viszi
-              a pénzt.
+              Két-három találat a jobb oszlopban, és a toldozgatás már csak
+              halasztja a döntést.
             </p>
           </div>
 
@@ -452,10 +544,8 @@ export default function KellEUjKazanPage() {
                 Maradt kérdésed? Kérdezd meg az asszisztenst
               </h2>
               <p className="mt-2 leading-relaxed text-ink-soft">
-                Ha a te helyzeted nem fér bele a fenti kategóriákba, írd le
-                pár szóban. Az online árajánló asszisztensünk a nap
-                bármely szakában válaszol, és pár kérdés után tájékoztató
-                árat is ad. Nem kell megvárnod a munkaidőt.
+                Írd le pár szóban. Az asszisztensünk éjjel-nappal válaszol, és
+                pár kérdés után tájékoztató árat is ad.
               </p>
             </div>
             <a
