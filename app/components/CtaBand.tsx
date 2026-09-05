@@ -38,10 +38,6 @@ export default function CtaBand({
       />
 
       <Reveal className="relative mx-auto max-w-3xl px-6 py-20 text-center lg:py-24">
-        <span
-          aria-hidden="true"
-          className="mx-auto mb-6 block h-1.5 w-14 rounded-full bg-copper"
-        />
         <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
           {title}
         </h2>

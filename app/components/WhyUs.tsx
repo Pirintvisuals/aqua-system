@@ -75,9 +75,9 @@ const REASONS: Reason[] = [
 const TAG_STYLE: Record<string, string> = {
   "Idő": "bg-sky text-brand",
   Biztonság: "bg-rose-50 text-rose-700",
-  Pénz: "bg-copper-soft text-copper",
+  Pénz: "bg-sky text-brand",
   Garancia: "bg-emerald-50 text-emerald-700",
-  Rezsi: "bg-copper-soft text-copper",
+  Rezsi: "bg-sky text-brand",
 };
 
 export default function WhyUs() {
@@ -85,7 +85,7 @@ export default function WhyUs() {
     <section id="miert-mi" className="scroll-mt-24 bg-sky/30 py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
-          <span className="text-sm font-semibold uppercase tracking-[0.14em] text-copper">
+          <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
             Miért minket
           </span>
           <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">

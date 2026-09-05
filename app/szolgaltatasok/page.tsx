@@ -89,7 +89,7 @@ export default function SzolgaltatasokPage() {
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-sky via-white to-copper-soft">
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-sky via-white to-sky">
                       <div className="pointer-events-none absolute inset-0 bg-blueprint" aria-hidden="true" />
                       <svg className="relative h-20 w-20 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <rect x="2" y="6" width="13" height="12" rx="2" />
@@ -103,7 +103,7 @@ export default function SzolgaltatasokPage() {
 
                 {/* Szöveg */}
                 <div className="flex flex-col justify-center p-8 sm:p-10">
-                  <span className="font-display text-sm font-bold text-copper tabular-nums">
+                  <span className="font-display text-sm font-bold text-brand tabular-nums">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h2 className="mt-2 font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">

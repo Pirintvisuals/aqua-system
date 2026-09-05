@@ -110,7 +110,7 @@ export default function PageHero({
           </div>
           {badge && (
             <div className="absolute -bottom-5 left-6 rounded-2xl border border-sky-200 bg-white/95 px-5 py-3 shadow-[0_18px_40px_-18px_rgba(15,42,94,0.45)] backdrop-blur">
-              <span className="font-display text-lg font-bold text-copper">
+              <span className="font-display text-lg font-bold text-brand">
                 {badge.value}
               </span>
               <span className="mt-0.5 block text-xs font-medium text-ink-soft">

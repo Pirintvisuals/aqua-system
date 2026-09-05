@@ -143,13 +143,6 @@ export default function Hero() {
           {/* LEFT - copy */}
           <div className="fade-up">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/70 px-4 py-1.5 text-sm font-semibold text-brand backdrop-blur">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-light opacity-70" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
-                </span>
-                Egynapos gázkészülék csere
-              </span>
               <span className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft">
                 <svg className="h-4 w-4 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M20 6 9 17l-5-5" />
@@ -158,12 +151,7 @@ export default function Hero() {
               </span>
             </div>
 
-            <span
-              aria-hidden="true"
-              className="mt-8 block h-1.5 w-14 rounded-full bg-copper"
-            />
-
-            <h1 className="mt-5 font-display text-[2rem] font-extrabold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="mt-6 font-display text-[2rem] font-extrabold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
               <span className="text-brand">Gázkészülék csere</span>{" "}
               1 nap alatt, gyorsan és biztonságosan
             </h1>

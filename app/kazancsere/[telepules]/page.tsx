@@ -96,10 +96,6 @@ export default async function LocationPage({
         <div className="pointer-events-none absolute inset-0 -z-10 bg-blueprint opacity-60" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-32 top-10 -z-10 h-80 w-80 rounded-full bg-brand-light/10 blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-4xl px-6">
-          <span
-            aria-hidden="true"
-            className="mb-5 block h-1.5 w-14 rounded-full bg-copper"
-          />
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Mit írtak a {loc.name.toLowerCase()}i ügyfeleink?
           </h2>

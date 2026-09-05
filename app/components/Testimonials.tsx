@@ -9,31 +9,28 @@ import {
 /* ------------------------------------------------------------------ *
  *  Ügyfélvélemények - VALÓS visszajelzések (lásd `app/lib/reviews.ts`).
  *
- *  A nyitókép szándékosan NYUGODT: egy nagy kiemelt idézet, alatta
- *  három rövid kártya. Korábban hat, nagyon eltérő hosszúságú kártya
- *  állt itt egy masonry rácsban, és zsúfoltnak hatott. A hosszabb
- *  véleményeket a "mind a 12" mögé tettük.
+ *  A szekció egy magától mozgó körhinta: két sáv, ellentétes irányban,
+ *  végtelenítve. Korábban egy kiemelt idézet + három kártya + egy
+ *  "mutasd mind" kapcsoló állt itt; a körhintában mind a 12 vélemény
+ *  folyamatosan látszik, kattintás nélkül.
  *
- *  A rövid nézetbe a három LEGRÖVIDEBB vélemény kerül, hogy a három
- *  kártya nagyjából egyforma magas legyen. Ez számolt, nem kézzel
- *  válogatott: ha új vélemény jön, magától rendeződik.
+ *  Továbbra is szerver komponens: a mozgás tiszta CSS (duplázott sáv +
+ *  `translate3d(-50%)`), így nulla JavaScript kerül a kliensre, és a
+ *  keresők mind a 12 véleményt megkapják a HTML-ben.
  *
- *  Az egész szekció szerver komponens. A "mutasd mind" tisztán CSS
- *  (rejtett checkbox + label), így nulla JavaScriptet visz a kliensre,
- *  a keresők pedig mind a 12 véleményt látják a HTML-ben.
+ *  Egérrel fölé állva (és billentyűzet-fókusznál) megáll, csökkentett
+ *  mozgás mellett pedig nem indul el, helyette kézzel görgethető.
  * ------------------------------------------------------------------ */
 
-const PREVIEW_COUNT = 3;
-
-const featured = REVIEWS.find((r) => r.featured) ?? REVIEWS[0];
-const rest = REVIEWS.filter((r) => r !== featured);
+/* A két sáv nagyjából egyforma hosszú legyen: hosszúság szerint
+   rendezve, felváltva osztjuk szét őket. Ez számolt, nem kézzel
+   válogatott - új vélemény esetén magától rendeződik. */
 const textLength = (r: Review) => r.body.join(" ").length;
-const shortest = [...rest].sort((a, b) => textLength(a) - textLength(b));
-const preview = shortest.slice(0, PREVIEW_COUNT);
-const hidden = rest.filter((r) => !preview.includes(r));
+const ordered = [...REVIEWS].sort((a, b) => textLength(b) - textLength(a));
+const rowTop = ordered.filter((_, i) => i % 2 === 0);
+const rowBottom = ordered.filter((_, i) => i % 2 === 1);
 
-function Stars({ rating, size = "sm" }: { rating: number; size?: "sm" | "md" }) {
-  const box = size === "md" ? "h-5 w-5" : "h-4 w-4";
+function Stars({ rating }: { rating: number }) {
   return (
     <span
       className="flex items-center gap-0.5"
@@ -43,7 +40,7 @@ function Stars({ rating, size = "sm" }: { rating: number; size?: "sm" | "md" }) 
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
-          className={`${box} ${i < rating ? "text-amber-400" : "text-sky-200"}`}
+          className={`h-4 w-4 ${i < rating ? "text-amber-400" : "text-sky-200"}`}
           viewBox="0 0 24 24"
           fill="currentColor"
           aria-hidden="true"
@@ -55,41 +52,63 @@ function Stars({ rating, size = "sm" }: { rating: number; size?: "sm" | "md" }) 
   );
 }
 
-function Byline({ review }: { review: Review }) {
+function ReviewCard({ review }: { review: Review }) {
   return (
-    <figcaption className="flex items-center gap-3">
-      <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-sky font-display text-sm font-bold text-brand">
-        {review.name.charAt(0)}
-      </span>
-      <span>
-        <span className="block text-sm font-semibold text-ink">
-          {review.name}
+    <figure className="mr-6 flex w-[300px] flex-none flex-col rounded-2xl border border-sky-200 bg-white p-6 shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)] sm:w-[360px]">
+      <figcaption className="flex items-center gap-3">
+        <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-sky font-display text-sm font-bold text-brand">
+          {review.name.charAt(0)}
         </span>
-        <span className="block text-xs text-ink-soft">
-          {review.place} · {review.year}
+        <span>
+          <span className="block text-sm font-semibold text-ink">
+            {review.name}
+          </span>
+          <span className="block text-xs text-ink-soft">
+            {review.place} · {review.year}
+          </span>
         </span>
-      </span>
-    </figcaption>
-  );
-}
-
-function ReviewCard({ review, extra }: { review: Review; extra?: boolean }) {
-  return (
-    <figure
-      className={`${
-        extra ? "mb-6 break-inside-avoid " : ""
-      }rounded-2xl border border-sky-200 bg-white p-6 shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)]`}
-    >
-      <Byline review={review} />
+      </figcaption>
       <div className="mt-4">
         <Stars rating={review.rating} />
       </div>
-      <blockquote className="mt-3 space-y-2.5 text-[15px] leading-relaxed text-ink">
-        {review.body.map((p) => (
-          <p key={p}>{p}</p>
-        ))}
+      {/* A hosszabb véleményeket a kártyán levágjuk, hogy a sáv ritmusa
+          egyenletes maradjon - a teljes szöveg benne marad a HTML-ben. */}
+      <blockquote className="review-clamp mt-3 text-[15px] leading-relaxed text-ink">
+        {review.body.join(" ")}
       </blockquote>
     </figure>
+  );
+}
+
+/* Egy sáv: ugyanaz a kártyasor kétszer egymás után. A második példány
+   csak a folytonos hurokhoz kell, ezért a képernyőolvasó elől rejtjük. */
+function MarqueeRow({
+  reviews,
+  reverse = false,
+  duration,
+}: {
+  reviews: Review[];
+  reverse?: boolean;
+  duration: string;
+}) {
+  const group = (clone: boolean) => (
+    <div className="flex" aria-hidden={clone || undefined}>
+      {reviews.map((r, i) => (
+        <ReviewCard key={`${clone ? "b" : "a"}-${r.name}-${r.place}-${i}`} review={r} />
+      ))}
+    </div>
+  );
+
+  return (
+    <div className="marquee-row py-3">
+      <div
+        className={`marquee${reverse ? " marquee-reverse" : ""}`}
+        style={{ animationDuration: duration }}
+      >
+        {group(false)}
+        {group(true)}
+      </div>
+    </div>
   );
 }
 
@@ -97,11 +116,19 @@ export default function Testimonials() {
   return (
     <section
       id="velemenyek"
-      className="scroll-mt-24 border-b border-sky-200 bg-sky/30 py-20 lg:py-28"
+      className="relative isolate scroll-mt-24 overflow-hidden border-b border-sky-200 bg-sky/30 py-20 lg:py-28"
     >
+      {/* Kek dekoracio: ket lagy folt es egy halvany tervrajz-racs, hogy
+          a feher kartyak mogott legyen mit nezni. Tisztan dekorativ. */}
+      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+        <div className="bg-blueprint absolute inset-0 opacity-50 [mask-image:radial-gradient(80%_60%_at_50%_0%,#000,transparent)]" />
+        <div className="animate-drift absolute -left-28 top-8 h-80 w-80 rounded-full bg-brand-light/15 blur-3xl" />
+        <div className="animate-float-slow absolute -right-24 bottom-4 h-96 w-96 rounded-full bg-cyan/25 blur-3xl" />
+        <div className="absolute left-1/2 top-1/3 h-64 w-64 -translate-x-1/2 rounded-full bg-sky-200/40 blur-3xl" />
+      </div>
+
       <div className="mx-auto max-w-7xl px-6">
-        {/* Fejlec: az otven ev a foszereplo. Doboz nelkul, hogy ne
-            versenyezzen a kiemelt idezettel. */}
+        {/* Fejlec: az otven ev a foszereplo. */}
         <div className="max-w-3xl">
           <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
             Ügyfélvélemények
@@ -140,65 +167,13 @@ export default function Testimonials() {
             </div>
           </dl>
         </div>
-
-        <Reveal className="mt-12">
-          <input
-            type="checkbox"
-            id="reviews-toggle"
-            className="sr-only"
-            aria-label={`Mind a ${REVIEW_COUNT} vélemény megjelenítése`}
-          />
-
-          {/* Kiemelt idezet: nincs keret, nincs arnyek. A tipografia
-              viszi, igy nem egy ujabb kartya lesz belole. */}
-          <figure className="max-w-3xl border-l-4 border-copper pl-6 sm:pl-8">
-            <blockquote className="space-y-3 font-display text-xl font-medium leading-snug text-ink sm:text-2xl">
-              {featured.body.map((para) => (
-                <p key={para}>{para}</p>
-              ))}
-            </blockquote>
-            <div className="mt-6 flex flex-wrap items-center gap-4">
-              <Byline review={featured} />
-              <Stars rating={featured.rating} />
-            </div>
-          </figure>
-
-          {/* Három rövid vélemény, egyforma ritmusban. */}
-          <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {preview.map((r, i) => (
-              <ReviewCard key={`${r.name}-${r.place}-${i}`} review={r} />
-            ))}
-          </div>
-
-          {/* A többi vélemény: alapból rejtve, CSS-ből nyílik. */}
-          <div className="reviews-extra mt-6 columns-1 gap-6 md:columns-2 lg:columns-3">
-            {hidden.map((r, i) => (
-              <ReviewCard key={`${r.name}-${r.place}-${i}`} review={r} extra />
-            ))}
-          </div>
-
-          <div className="reviews-more mt-8 flex justify-center">
-            <label
-              htmlFor="reviews-toggle"
-              className="group inline-flex cursor-pointer items-center gap-2 rounded-xl border border-sky-200 bg-white px-6 py-3.5 text-base font-semibold text-ink transition-colors duration-200 hover:border-brand-light/60 hover:text-brand"
-            >
-              Mind a {REVIEW_COUNT} vélemény
-              <svg
-                className="h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </label>
-          </div>
-        </Reveal>
       </div>
+
+      {/* A korhinta teljes szelessegben fut, a szelein kifakul. */}
+      <Reveal className="marquee-mask mt-12">
+        <MarqueeRow reviews={rowTop} duration="72s" />
+        <MarqueeRow reviews={rowBottom} duration="88s" reverse />
+      </Reveal>
     </section>
   );
 }

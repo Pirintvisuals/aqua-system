@@ -16,13 +16,6 @@
   --color-cyan: #7fc4e8; /* logo wave cyan */
   --color-cta: #0f2a5e; /* deep navy - the single action accent */
   --color-cta-700: #0a1f47; /* navy hover */
-
-  /* Rez accent. A rezcso a szakma sajat anyaga, es meleg ellenpontot ad
-     a sok kek mellett. Szandekosan visszafogottan hasznaljuk: szamok,
-     kiemelesek, ikonok - nem nagy feluletek. */
-  --color-copper: #b4632f;
-  --color-copper-soft: #fbf1e9;
-  --color-copper-line: #e8cdb8;
 }
 
 :root {
@@ -218,28 +211,96 @@ h3,
   }
 }
 
-/* ---------- Velemenyek: "mutasd mind" tisztan CSS-bol ----------
-   A rejtett checkbox allapota nyitja a tovabbi velemenyeket, igy a
-   szekcio szerver komponens maradhat es nulla JS kerul a kliensre.
-   Mind a 12 velemeny benne van a HTML-ben a keresok kedveert. */
-.reviews-extra {
-  display: none;
+/* ---------- Velemenyek: magatol mozgo korhinta ----------
+   Ket sav, ellentetes iranyban. Minden savban ugyanaz a kartyasor
+   ketszer szerepel, igy a -50%-os eltolas utan a hurok eszrevetlen.
+   A kartyak jobb margoval allnak (nem `gap`-pel), kulonben a ket
+   masolat kozotti hezag miatt elcsuszna a hurok.
+   Tisztan CSS: a szekcio szerver komponens maradhat. */
+.marquee-row {
+  overflow: hidden;
 }
-#reviews-toggle:checked ~ .reviews-extra {
-  display: block;
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-left linear infinite;
 }
-#reviews-toggle:checked ~ .reviews-more {
-  display: none;
+
+.marquee-reverse {
+  animation-name: marquee-right;
 }
-#reviews-toggle:focus-visible ~ .reviews-more label {
-  outline: 2px solid var(--color-brand);
-  outline-offset: 2px;
+
+/* Egerrel folotte, illetve billentyuzet-fokusz eseten megall, hogy
+   el lehessen olvasni egy velemenyt. */
+.marquee-row:hover .marquee,
+.marquee-row:focus-within .marquee {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* A savok szele kifakul, hogy ne legyen kemeny vagas. */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+}
+
+/* Hosszabb velemeny levagasa a kartyan - a teljes szoveg a HTML-ben marad. */
+.review-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  line-clamp: 8;
+  overflow: hidden;
+}
+
+/* Csokkentett mozgas mellett nem mozog: kezzel gorgetheto sav lesz,
+   es a masolat eltunik, hogy ne latszodjon ketszer minden velemeny. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none !important;
+  }
+  .marquee-row {
+    overflow-x: auto;
+  }
+  .marquee > [aria-hidden="true"] {
+    display: none;
+  }
 }
 
 
 /* ---------- Szekcio-texturak ----------
    A sok feher/vilagoskek kartya osszefolyt. Ezek adnak ritmust: sotet
-   savok, rezes savok es egy finom muszaki racs. */
+   savok es egy finom muszaki racs. */
 
 /* Muszaki racs - halvany kek vonalhalo, mint egy tervrajz. */
 .bg-blueprint {
@@ -255,11 +316,6 @@ h3,
     linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 44px 44px;
-}
-
-/* Rezes szekcio-hatter. */
-.bg-copper-wash {
-  background-color: var(--color-copper-soft);
 }
 
 /* Finom felso fenycsik sotet savok tetejen. */

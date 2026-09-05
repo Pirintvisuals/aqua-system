@@ -18,9 +18,9 @@ import vezerlopanel from "../assets/munkak/vezerlopanel.jpg";
  * ------------------------------------------------------------------ */
 
 export const metadata: Metadata = {
-  title: "Kell-e új kazán? Jelek, életkor, javítás vagy csere",
+  title: "Kell-e új kazán? Árulkodó jelek, életkor, csere",
   description:
-    "Mikor éri meg javítani, és mikor cserélni a gázkazánt? Árulkodó jelek, életkor szerinti útmutató és egy kalkulátor, ami megmondja, hol tart a készüléked.",
+    "Mikor jött el a gázkazán cseréjének ideje? Árulkodó jelek, életkor szerinti útmutató és egy kalkulátor, ami megmondja, hol tart a készüléked. Ötven éve kizárólag kazáncserével foglalkozunk.",
   alternates: { canonical: "/kell-e-uj-kazan" },
   openGraph: {
     type: "website",
@@ -28,13 +28,13 @@ export const metadata: Metadata = {
     url: "/kell-e-uj-kazan",
     title: "Kell-e új kazán? – Aqua System Service Kft.",
     description:
-      "Árulkodó jelek, életkor szerinti útmutató és kalkulátor: javítás vagy csere?",
+      "Árulkodó jelek, életkor szerinti útmutató és kalkulátor: mikor jött el a csere ideje?",
   },
 };
 
 const SIGNS = [
   {
-    title: "Egyre több a javítás",
+    title: "Egyre gyakrabban kell szerelőt hívni",
     body: "Ha két fűtési szezonban is hívtál szerelőt, a következő hiba már nem meglepetés lesz, hanem menetrend. Ilyenkor a javítások ára gyorsan összeadódik.",
     urgency: "Gyanús",
   },
@@ -67,7 +67,7 @@ const SIGNS = [
 
 const URGENCY_STYLE: Record<string, string> = {
   Gyanús: "bg-sky text-brand",
-  "Nézzük meg": "bg-copper-soft text-copper",
+  "Nézzük meg": "bg-sky text-brand",
   Azonnal: "bg-rose-50 text-rose-700",
 };
 
@@ -94,11 +94,11 @@ const TYPES = [
   },
   {
     name: "Kondenzációs",
-    era: "Ma ez az alapeset",
+    era: "Ma ez a csúcs, és nálunk csak ez",
     efficiency: 94,
     range: "92-94%",
     flue: "Kb. 60 °C égéstermék",
-    note: "Az égéstermék vízgőzének hőjét is visszanyeri, ezért hűl le 60 fok környékére. Alacsony előremenő hőmérsékleten, például padlófűtéssel dolgozik a legjobban.",
+    note: "Az égéstermék vízgőzének rejtett hőjét is visszanyeri, ezért hűl le 60 fok környékére az, ami régen 160 fokon ment ki a kéménybe. Fokozatmentesen modulál, tehát nem ki-be kapcsolgat, hanem annyit fűt, amennyi kell: ettől lesz halk, egyenletes és tartós. Alacsony előremenő hőmérsékleten, például padlófűtéssel hozza a maximális hatásfokot.",
     tone: "best",
   },
 ];
@@ -137,7 +137,7 @@ export default function KellEUjKazanPage() {
       <PageHero
         eyebrow="Döntéstámogató"
         title="Kell-e új kazán?"
-        intro="Nem minden hiba jelent cserét, és nem minden működő kazán van rendben. Itt összeszedtük, mire érdemes figyelni, és mikor éri meg még javítani."
+        intro="Nem minden hiba jelent cserét, és nem minden működő kazán van rendben. Itt összeszedtük, mire érdemes figyelni, és mikor jött el tényleg a csere ideje. Mi kizárólag kazáncserét vállalunk, ötven éve azt csináljuk, mást nem."
         image={vezerlopanel}
         imageAlt="Gázkazán vezérlőpanelje ellenőrzés közben"
         badge={{ value: "10-15 év", label: "egy kazán átlagos élettartama" }}
@@ -154,7 +154,7 @@ export default function KellEUjKazanPage() {
       <section className="border-y border-sky-200 bg-sky/30 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-2xl">
-            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-copper">
+            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
               Árulkodó jelek
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
@@ -196,12 +196,20 @@ export default function KellEUjKazanPage() {
               Kazántípusok
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Mi az a kondenzációs, és miért ez maradt?
+              A kondenzációs kazán ma a csúcs, és nálunk csak ez kerül a falra
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-              A különbség nem apró: a legrégebbi és a mai készülék között
-              nagyjából tizenöt százaléknyi hatásfok van. Ez minden elfűtött
-              köbméternél számít.
+              A kondenzációs technika nem egy kicsit jobb kazán a régiek
+              sorában, hanem másik liga. A hagyományos készülék a hő jó részét
+              egyszerűen kifűti a kéménybe: 160 fokos égéstermékkel távozik az
+              a hő, amiért fizettél. A kondenzációs ezt visszaveszi, még az
+              égéstermék vízgőzéből is, ezért hűl le 60 fok környékére, ami
+              régen 160 fokon ment el.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-ink-soft">
+              A legrégebbi és a mai készülék között nagyjából tizenöt
+              százaléknyi hatásfok van. Ez minden elfűtött köbméternél,
+              minden hónapban, tizenöt éven át számít.
             </p>
           </div>
 
@@ -211,7 +219,7 @@ export default function KellEUjKazanPage() {
                 key={t.name}
                 className={`rounded-2xl border p-6 sm:p-7 ${
                   t.tone === "best"
-                    ? "border-copper-line bg-copper-soft"
+                    ? "border-sky-200 bg-sky"
                     : "border-sky-200 bg-white"
                 }`}
               >
@@ -225,7 +233,7 @@ export default function KellEUjKazanPage() {
                   <div className="text-right">
                     <span
                       className={`font-display text-3xl font-extrabold tabular-nums ${
-                        t.tone === "best" ? "text-copper" : "text-ink"
+                        t.tone === "best" ? "text-brand" : "text-ink"
                       }`}
                     >
                       {t.range}
@@ -242,7 +250,7 @@ export default function KellEUjKazanPage() {
                   <div
                     className={`h-full rounded-full ${
                       t.tone === "best"
-                        ? "bg-copper"
+                        ? "bg-brand"
                         : t.tone === "ok"
                           ? "bg-brand"
                           : "bg-ink-soft/50"
@@ -265,6 +273,41 @@ export default function KellEUjKazanPage() {
             szinte mindig kondenzációs kazán kerül a helyére. Ez nem
             marketingdöntés, hanem ez maradt.
           </p>
+
+          {/* Pozicionalas: egy dolgot csinalunk, azt viszont a legmagasabb
+              szinten. A "javitast is vallalunk" uzenet szandekosan nincs
+              benne, mert nem vallalunk javitast. */}
+          <div className="mt-12 rounded-2xl border border-brand/25 bg-brand/5 p-7 sm:p-9">
+            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
+              Ahogy mi dolgozunk
+            </span>
+            <h3 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-ink">
+              Egy dolgot csinálunk, azt viszont prémium szinten
+            </h3>
+            <p className="mt-4 leading-relaxed text-ink-soft">
+              Kazáncserét vállalunk, és kizárólag azt. Javítást, hibakeresést,
+              alkatrészcserét idegen készüléken nem. Ötven év alatt megtanultuk,
+              hogy az a csapat lesz igazán jó valamiben, amelyik nem csinál
+              mást: nálunk minden reggel ugyanaz a feladat indul, ugyanazzal a
+              beforgatott rutinnal. Ezért megy egy komplett csere egy nap alatt
+              úgy, hogy estére meleg van.
+            </p>
+            <p className="mt-4 leading-relaxed text-ink-soft">
+              Ebbe a rutinba nem fér bele a kompromisszum. Csak prémium
+              kategóriás, modulációs kondenzációs készüléket építünk be,
+              márkaszervizes háttérrel és gyári garanciával, a hozzá való
+              minőségi szerelvényekkel. Nem a legolcsóbb szettel, amiből három
+              év múlva nincs alkatrész: a kazán tizenöt évig marad a falon, és
+              ezen a távon a spórolás mindig drágább.
+            </p>
+            <p className="mt-4 leading-relaxed text-ink-soft">
+              Ezért mondjuk meg őszintén akkor is, ha szerintünk a te
+              készülékednek van még hátra pár éve. Nem beszélünk rá senkit a
+              cserére. Amikor viszont eljön az ideje, azt a munkát úgy adjuk át,
+              hogy a kazánház rendezett, a dokumentáció megvan, és évek múlva is
+              szervizelhető marad a rendszer.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -326,19 +369,20 @@ export default function KellEUjKazanPage() {
         </div>
       </section>
 
-      {/* JAVÍTÁS VAGY CSERE. Táblázat, nem kártya: más ritmus. */}
+      {/* MIKOR JÖTT EL A CSERE IDEJE. Táblázat, nem kártya: más ritmus. */}
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-5xl px-6">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
-              Javítás vagy csere
+              Mikor jött el a csere ideje
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
               Melyik oldalon áll a te kazánod?
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">
               Ha a jobb oszlopban ismersz magadra két-három sorban is, a
-              javítgatás jellemzően csak halasztja a döntést.
+              toldozgatás jellemzően csak halasztja a döntést, és közben viszi
+              a pénzt.
             </p>
           </div>
 
@@ -348,10 +392,10 @@ export default function KellEUjKazanPage() {
                 <tr className="bg-cta text-white">
                   <th scope="col" className="px-5 py-4 text-sm font-semibold" />
                   <th scope="col" className="px-5 py-4 text-sm font-semibold">
-                    Inkább javítás
+                    Ez még ráér
                   </th>
                   <th scope="col" className="px-5 py-4 text-sm font-semibold">
-                    Inkább csere
+                    Itt a csere ideje
                   </th>
                 </tr>
               </thead>
@@ -367,7 +411,7 @@ export default function KellEUjKazanPage() {
                     <td className="px-5 py-4 text-[15px] text-ink-soft">
                       {row.repair}
                     </td>
-                    <td className="bg-copper-soft/60 px-5 py-4 text-[15px] font-medium text-ink">
+                    <td className="bg-sky/60 px-5 py-4 text-[15px] font-medium text-ink">
                       {row.replace}
                     </td>
                   </tr>
@@ -377,16 +421,17 @@ export default function KellEUjKazanPage() {
           </div>
 
           <p className="mt-6 text-sm leading-relaxed text-ink-soft">
-            Ez tájékoztató útmutató. A pontos képet mindig egy helyszíni
-            felmérés adja, és ha a javítás éri meg jobban, azt fogjuk mondani.
-            Erről szól az{" "}
+            Ez tájékoztató útmutató, a pontos képet mindig a helyszíni felmérés
+            adja. Ha a bal oldalon állsz, azt is megmondjuk, és nyugodtan
+            várhatsz még. Javítást nem vállalunk: mi a cserében vagyunk otthon.
+            Amit nálunk építettek be, azt viszont az{" "}
             <Link
               href="/szolgaltatasok/atalanydijas-karbantartas"
               className="font-semibold text-brand underline-offset-2 hover:underline"
             >
-              átalánydíjas karbantartás
+              átalánydíjas karbantartással
             </Link>{" "}
-            is: a cél, hogy a készülék minél tovább bírja.
+            tartjuk formában, hogy a gyári garancia is megmaradjon.
           </p>
         </div>
       </section>

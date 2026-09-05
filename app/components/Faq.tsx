@@ -19,10 +19,6 @@ export default function Faq() {
       <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-brand-light/10 blur-3xl" aria-hidden="true" />
       <Reveal className="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[1fr_1.4fr] lg:gap-16 lg:items-start">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <span
-            aria-hidden="true"
-            className="mb-5 block h-1.5 w-14 rounded-full bg-brand"
-          />
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Gyakran ismételt kérdések
           </h2>

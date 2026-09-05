@@ -107,7 +107,7 @@ export default async function ServicePage({
       <section className="py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-copper">
+            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
               Kinek való
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
@@ -116,7 +116,7 @@ export default async function ServicePage({
             <ul className="mt-8 space-y-4">
               {service.who.map((w) => (
                 <li key={w} className="flex items-start gap-3">
-                  <span className="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-copper-soft text-copper">
+                  <span className="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-sky text-brand">
                     <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M20 6 9 17l-5-5" />
                     </svg>
@@ -188,7 +188,7 @@ export default async function ServicePage({
             </Reveal>
 
             {service.note && (
-              <aside className="mt-8 rounded-2xl border border-copper-line bg-copper-soft p-6">
+              <aside className="mt-8 rounded-2xl border border-sky-200 bg-sky p-6">
                 <h3 className="font-display text-base font-bold text-ink">
                   {service.note.title}
                 </h3>
@@ -201,7 +201,7 @@ export default async function ServicePage({
                     href={service.note.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-copper underline-offset-2 hover:underline"
+                    className="font-semibold text-brand underline-offset-2 hover:underline"
                   >
                     {service.note.sourceLabel}
                   </a>
