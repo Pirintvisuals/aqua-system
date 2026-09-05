@@ -35,35 +35,23 @@ h3,
   font-family: var(--font-display);
 }
 
-/* Sotet sav UTAN allo vilagos szekcio: felul mar kek, lefele fut ki
-   feherbe. Igy a navy sav alatt nincs ures feher csik, a kovetkezo
-   hatar pedig ugyanugy feher-feher marad. */
-.bg-water-down {
-  background-image: linear-gradient(
-    180deg,
-    rgba(214, 230, 255, 0.6) 0%,
-    rgba(234, 243, 255, 0.5) 38%,
-    #ffffff 100%
-  );
+/* ---------- Vilagoskek szekcio ----------
+   EZ AZ EGYETLEN hatter-tonus a vilagos szekciokon: vagy feher a
+   szekcio, vagy ez.
+
+   Korabban ket vegen feherbe futo gradiens volt, hogy ne legyen varrat a
+   szekciok kozott. Csakhogy igy minden szines szekcio teteje es alja
+   feher lett, a py-20/py-28 paddinggal egyutt pedig nagy ures savok
+   keletkeztek: a szin csak a kozepen latszott. Tomor tonussal a hatar
+   tiszta szinvaltas, es nincs holt terulet. */
+.bg-water {
+  background-color: #f1f6fe;
 }
 
-/* ---------- Vilagoskek szekcio ----------
-   EZ AZ EGYETLEN hatter-textura a vilagos szekciokon.
-
-   A mosas KET VEGEN feherbe fut, nem csak az egyiken. Ezert barmelyik
-   ket szekcio kerul egymas melle, a hataron feher talalkozik feherrel:
-   nincs vonal, nincs ugras, es nem kell koze semmilyen elvalaszto sav.
-   (Korabban szekciononkent kulon SVG hatter volt, kozottuk hullamsav.
-   Harom rendszer egymason, es a savok kozott feher csikok maradtak.) */
-.bg-water {
-  background-image: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    rgba(234, 243, 255, 0.55) 22%,
-    rgba(214, 230, 255, 0.55) 50%,
-    rgba(234, 243, 255, 0.55) 78%,
-    #ffffff 100%
-  );
+/* Ugyanaz a tonus. Kulon nev azert maradt, mert a sotet savok utan
+   allo szekcioknal a hivasi helyen igy latszik a szandek. */
+.bg-water-down {
+  background-color: #f1f6fe;
 }
 
 /* Scroll-reveal, JS nelkul.

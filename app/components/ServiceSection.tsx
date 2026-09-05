@@ -121,7 +121,7 @@ export default function ServiceSection({
   return (
     <section
       id={service.slug}
-      className={`relative isolate overflow-hidden scroll-mt-44 py-20 lg:py-28 ${
+      className={`relative isolate overflow-hidden scroll-mt-44 py-16 lg:py-24 ${
         flipped ? "bg-water" : ""
       }`}
     >

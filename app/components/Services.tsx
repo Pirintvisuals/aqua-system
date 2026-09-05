@@ -14,7 +14,7 @@ const INCLUDED = [
 
 export default function Services() {
   return (
-    <section id="szolgaltatas" className="relative isolate overflow-hidden scroll-mt-36 py-20 lg:py-28">
+    <section id="szolgaltatas" className="relative isolate overflow-hidden scroll-mt-36 py-16 lg:py-24">
       <Reveal className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
         {/* text */}
         <div>

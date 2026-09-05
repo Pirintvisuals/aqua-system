@@ -26,46 +26,8 @@ export const metadata: Metadata = {
   },
 };
 
-const EXPERTISE = [
-  {
-    title: "Gázkészülék csere",
-    body: "Régi kazánok és vízmelegítők cseréje korszerű, energiatakarékos készülékre – jellemzően egyetlen munkanap alatt, fix áron.",
-  },
-  {
-    title: "Teljes körű gázépítés",
-    body: "Új gázhálózat kiépítése, meglévő rendszer bővítése és átalakítása – a tervezéstől a kivitelezésen át a szabványos dokumentációig és ügyintézésig.",
-  },
-  {
-    title: "Víz- és fűtésszerelés",
-    body: "Vízvezeték-hálózatok, fűtésrendszerek és radiátorok szerelése, korszerűsítése – egy megbízható csapattól, aki a teljes rendszert átlátja.",
-  },
-];
 
-const VALUES = [
-  {
-    title: "Biztonság mindenekelőtt",
-    body: "Gázzal dolgozunk, ahol nincs helye a kompromisszumnak. Minden munkánk a hatályos szabványok szerint, dokumentáltan készül.",
-  },
-  {
-    title: "Kiszámítható, fix ár",
-    body: "Előre tudod, mennyibe kerül. Nincs utólagos meglepetés, nincs rejtett tétel – amit megbeszélünk, az az ár.",
-  },
-  {
-    title: "Gyors, tiszta munka",
-    body: "A legtöbb gázkészülék cserét egy nap alatt elvégezzük, magunk után rendet rakva. A régi készüléket is elszállítjuk.",
-  },
-  {
-    title: "Családi hozzáállás",
-    body: "Nem alvállalkozók váltják egymást nálad. Ugyanaz a csapat kezdi és fejezi be a munkát, névvel és felelősséggel.",
-  },
-];
 
-const STATS = [
-  { value: "50", label: "év tapasztalat az épületgépészetben" },
-  { value: "500+", label: "sikeresen lecserélt gázkészülék" },
-  { value: "100%", label: "garancia minden beépített készülékre" },
-  { value: "1 nap", label: "alatt kész a legtöbb csere" },
-];
 
 /* ------------------------------------------------------------------ *
  *  Az ötven év, korszakokra bontva. Görgetés közben bomlik ki.
@@ -182,78 +144,13 @@ export default function RolunkPage() {
         ]}
       />
 
-      {/* Történet */}
-      <section className="relative py-20 lg:py-28">
-        <Reveal className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
-          <div className="order-last lg:order-first">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-sky-200 shadow-[0_40px_80px_-30px_rgba(15,42,94,0.45)]">
-              <Image
-                src={gepeszetCsovezetek}
-                alt="Aqua System által épített kazánház rézcsövezéssel"
-                placeholder="blur"
-                sizes="(max-width: 1024px) 90vw, 45vw"
-                className="h-full w-full object-cover object-center"
-              />
-            </div>
-          </div>
-          <div>
-            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
-              A történetünk
-            </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Egy családi műhelyből mára megbízható csapat
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-              A vállalkozás még az 1970-es években indult, és azóta apáról fiúra
-              öröklődik a szakma. Az évtizedek alatt több ezer otthonban és
-              épületben dolgoztunk – vízvezetéket építettünk, fűtést
-              korszerűsítettünk és gázkészülékeket cseréltünk.
-            </p>
-            <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-              Ez a tapasztalat ma abban mutatkozik meg, hogy pontosan tudjuk, mi
-              számít egy biztonságos, hosszú távon is jól működő rendszernél. Nem
-              kapkodunk, nem trükközünk – szabályosan, átláthatóan és tiszta
-              munkával dolgozunk.
-            </p>
-
-            <figure className="mt-8 rounded-2xl border-l-4 border-brand bg-sky/40 p-6">
-              <blockquote className="font-display text-lg font-semibold leading-relaxed text-ink">
-                „Ugyanazzal a hozzáállással megyünk minden otthonba, mintha a
-                sajátunk lenne – ezt tanultuk a szüleinktől, és ezt adjuk tovább.”
-              </blockquote>
-              <figcaption className="mt-3 text-sm text-ink-soft">
-                <span className="font-semibold text-ink">Nagy Ferenc</span>, tulajdonos, Aqua System Service Kft.
-              </figcaption>
-            </figure>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* Számok */}
-      <section className="relative bg-water py-16 pb-16 lg:pb-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal stagger className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-            {STATS.map((s) => (
-              <div key={s.label} className="text-center">
-                <div className="font-display text-4xl font-extrabold text-brand sm:text-5xl">
-                  {s.value}
-                </div>
-                <div className="mt-2 text-sm leading-snug text-ink-soft">
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
       {/* ------------------------------------------------------------------ *
           AZ ÖTVEN ÉV. Görgetés közben bomlik ki: egy folyamatos gerinc
           fut le az oldalon, mint egy csővezeték, és minden korszak
           felváltva jobbra-balra ül ki mellé. A nagy évszám viszi a
           ritmust, nem a szöveg.
           ------------------------------------------------------------------ */}
-      <section className="relative overflow-hidden bg-water py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-water py-16 lg:py-24">
         <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-cyan/10 blur-3xl" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-6xl px-6">
@@ -398,81 +295,21 @@ export default function RolunkPage() {
                 A nyílt égésterű kazánt felváltotta a kondenzációs, a
                 szerelőlapból hőigény-számítás lett, a kéményből bélelt
                 égéstermék-elvezetés. A mérce viszont ugyanaz, mint az első
-                napon: úgy adjuk át a munkát, ahogy a sajátunkban is
-                szeretnénk látni.
+                napon.
               </p>
+              <figure className="mt-6 border-t border-brand/20 pt-6">
+                <blockquote className="font-display text-lg font-semibold leading-relaxed text-ink">
+                  „Ugyanazzal a hozzáállással megyünk minden otthonba, mintha a
+                  sajátunk lenne. Ezt tanultuk a szüleinktől, és ezt adjuk
+                  tovább.”
+                </blockquote>
+                <figcaption className="mt-3 text-sm text-ink-soft">
+                  <span className="font-semibold text-ink">Nagy Ferenc</span>,
+                  tulajdonos
+                </figcaption>
+              </figure>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Amivel foglalkozunk */}
-      <section className="relative bg-white py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="max-w-2xl">
-            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
-              Amivel foglalkozunk
-            </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Víz, gáz, fűtés – egy kézből
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-              A gázkészülék csere a fő profilunk, de mögötte ott van a teljes
-              épületgépészeti szaktudás. Így akkor is jó helyen jársz, ha nagyobb
-              gázépítési vagy fűtéskorszerűsítési munkára van szükséged.
-            </p>
-          </div>
-
-          <Reveal stagger className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {EXPERTISE.map((e) => (
-              <article
-                key={e.title}
-                className="flex flex-col rounded-2xl border border-sky-200 bg-white p-7 shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)]"
-              >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky text-brand">
-                  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  </svg>
-                </span>
-                <h3 className="mt-5 font-display text-lg font-bold text-ink">
-                  {e.title}
-                </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
-                  {e.body}
-                </p>
-              </article>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Értékek */}
-      <section className="relative bg-water py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="max-w-2xl">
-            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
-              Az értékeink
-            </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Amiért nyugodtan ránk bízhatod
-            </h2>
-          </div>
-
-          <Reveal stagger className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {VALUES.map((v) => (
-              <div
-                key={v.title}
-                className="rounded-2xl border border-sky-200 bg-white p-6 shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)]"
-              >
-                <h3 className="font-display text-base font-bold text-ink">
-                  {v.title}
-                </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
-                  {v.body}
-                </p>
-              </div>
-            ))}
-          </Reveal>
         </div>
       </section>
 

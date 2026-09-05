@@ -50,7 +50,7 @@ export default function Contact() {
     "mt-1.5 w-full rounded-xl border border-sky-200 bg-white px-4 py-3 text-ink placeholder:text-ink-soft/60 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20";
 
   return (
-    <section id="kapcsolat" className="relative isolate overflow-hidden scroll-mt-36 py-20 lg:py-28">
+    <section id="kapcsolat" className="relative isolate overflow-hidden scroll-mt-36 py-16 lg:py-24">
       <Reveal className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-2 lg:gap-16">
         {/* info */}
         <div>

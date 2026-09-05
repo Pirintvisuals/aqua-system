@@ -123,7 +123,7 @@ export default async function ServicePage({
       </section>
 
       {/* KINEK VALÓ + MIT TARTALMAZ. Ragadós bal oldal asztali nézetben. */}
-      <section className="py-20 lg:py-28">
+      <section className="py-16 lg:py-24">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -232,7 +232,7 @@ export default async function ServicePage({
       </section>
 
       {/* ÍGY ZAJLIK. Számozott, függőleges vonalra fűzött lépések. */}
-      <section className="bg-water py-20 lg:py-28">
+      <section className="bg-water py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -267,7 +267,7 @@ export default async function ServicePage({
           aki csak arat keres, nyugodtan atgorgethesse.
           ------------------------------------------------------------------ */}
       {service.deep && service.deep.length > 0 && (
-        <section className="relative py-20 lg:py-28">
+        <section className="relative py-16 lg:py-24">
           <div className="mx-auto max-w-5xl px-6">
             <div className="max-w-2xl">
               <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -307,7 +307,7 @@ export default async function ServicePage({
 
       {/* GYAKORI KÉRDÉSEK. Natív <details>, nulla JavaScript. */}
       {service.faq && service.faq.length > 0 && (
-        <section className="relative overflow-hidden bg-water py-20 lg:py-28">
+        <section className="relative overflow-hidden bg-water py-16 lg:py-24">
           <Wave position="top" className="text-white" size="md" variant="ripple" layers="single" />
           <div className="relative mx-auto max-w-4xl px-6">
             <div className="max-w-2xl">
@@ -347,7 +347,7 @@ export default async function ServicePage({
       )}
 
       {/* TOVÁBBI SZOLGÁLTATÁSOK */}
-      <section className="py-20 lg:py-28">
+      <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
             Ezt is csináljuk

@@ -3,7 +3,6 @@ import Link from "next/link";
 import PageHero from "../components/PageHero";
 import BoilerCalculator from "../components/BoilerCalculator";
 import SavingsCalculator from "../components/SavingsCalculator";
-import WhyUs from "../components/WhyUs";
 import CtaBand from "../components/CtaBand";
 import Reveal from "../components/Reveal";
 import Chapter from "../components/Chapter";
@@ -597,7 +596,14 @@ export default function KellEUjKazanPage() {
               <span className="font-semibold text-ink">
                 Cserét nem beszélünk rá senkire.
               </span>{" "}
-              Ha a készülékednek van még hátra pár éve, azt fogjuk mondani.
+              Ha a készülékednek van még hátra pár éve, azt fogjuk mondani.{" "}
+              <Link
+                href="/#miert-mi"
+                className="font-semibold text-brand underline-offset-2 hover:underline"
+              >
+                Kilenc konkrét dolog, amiért visszahívnak minket
+              </Link>
+              .
             </p>
           </div>
         </div>
@@ -636,10 +642,6 @@ export default function KellEUjKazanPage() {
         </div>
       </section>
 
-      {/* Miert minket - ugyanaz a szekcio, mint a fooldalon. Aki idaig
-          eljutott, mar tudja, hogy kell uj kazan; innentol az a kerdes,
-          hogy kivel csinaltassa. */}
-      <WhyUs />
 
       <CtaBand
         title="Nem vagy biztos benne, mi a helyzet?"

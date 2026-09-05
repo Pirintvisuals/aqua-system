@@ -159,7 +159,7 @@ export default function WhyUs() {
   return (
     <section
       id="miert-mi"
-      className="relative isolate overflow-hidden scroll-mt-36 bg-water py-20 lg:py-28"
+      className="relative isolate overflow-hidden scroll-mt-36 py-16 lg:py-24"
     >
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">

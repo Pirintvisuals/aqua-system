@@ -42,7 +42,7 @@ export default function KapcsolatPage() {
       <Contact />
 
       {/* Kiszolgált terület + nyitvatartás */}
-      <section className="bg-water py-20 lg:py-28">
+      <section className="bg-water py-16 lg:py-24">
         <Reveal className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-2 lg:gap-16">
           <div>
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
