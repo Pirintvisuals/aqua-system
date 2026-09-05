@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "../components/PageHero";
 import Contact from "../components/Contact";
 import Reveal from "../components/Reveal";
-import { BUSINESS } from "../lib/site";
+import AreaChecker from "../components/AreaChecker";
 
 export const metadata: Metadata = {
   title: "Kapcsolat – kérj azonnali árajánlatot",
@@ -53,19 +53,12 @@ export default function KapcsolatPage() {
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">
               Budapesten és az agglomerációban vállalunk gázkészülék cserét,
-              gázépítést és fűtésszerelést. Ha nem vagy biztos benne, hogy a
-              településed belefér, kérdezz rá bátran – jó eséllyel megoldjuk.
+              gázépítést és fűtésszerelést. Nézd meg egy másodperc alatt,
+              hogy a te településed belefér-e.
             </p>
-            <ul className="mt-6 flex flex-wrap gap-2.5">
-              {BUSINESS.areaServed.map((place) => (
-                <li
-                  key={place}
-                  className="rounded-full border border-sky-200 bg-white px-4 py-1.5 text-sm font-medium text-ink"
-                >
-                  {place}
-                </li>
-              ))}
-            </ul>
+            <div className="mt-8">
+              <AreaChecker />
+            </div>
           </div>
 
           <div>

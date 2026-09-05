@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "../components/PageHero";
 import BoilerCalculator from "../components/BoilerCalculator";
+import SavingsCalculator from "../components/SavingsCalculator";
 import WhyUs from "../components/WhyUs";
 import CtaBand from "../components/CtaBand";
 import Reveal from "../components/Reveal";
@@ -375,6 +376,10 @@ export default function KellEUjKazanPage() {
           </div>
         </div>
       </section>
+
+      {/* MEGTAKARÍTÁS. A hatásfok-különbség forintban: ez az a pont,
+          ahol a fenti százalékok végre jelentenek is valamit. */}
+      <SavingsCalculator />
 
       {/* MEKKORA ES MILYEN. Sotet sav, ket oszlop. */}
       <section className="relative overflow-hidden bg-cta edge-glow py-20 lg:py-28">
