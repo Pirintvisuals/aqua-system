@@ -6,6 +6,9 @@ import SavingsCalculator from "../components/SavingsCalculator";
 import WhyUs from "../components/WhyUs";
 import CtaBand from "../components/CtaBand";
 import Reveal from "../components/Reveal";
+import Chapter from "../components/Chapter";
+import StepNav, { type Step } from "../components/StepNav";
+import Wave from "../components/Wave";
 import { CHATBOT_URL } from "../lib/links";
 import vezerlopanel from "../assets/munkak/vezerlopanel.jpg";
 
@@ -170,13 +173,21 @@ const COMPARE = [
   },
 ];
 
+/* A negy fejezet, ebben a sorrendben. A StepNav es a Chapter is
+   ebbol dolgozik, hogy ne csusszon szet a szamozas. */
+const STEPS: Step[] = [
+  { id: "allapot", label: "Hol tart a kazánod" },
+  { id: "koltseg", label: "Mennyibe kerül, ha marad" },
+  { id: "megoldas", label: "Mi kerül a helyére" },
+  { id: "kivel", label: "Kivel csináltasd" },
+];
+
 export default function KellEUjKazanPage() {
   return (
-    <main className="flex-1">
-      <PageHero
+    <main className="flex-1">      <PageHero
         eyebrow="Döntéstámogató"
         title="Kell-e új kazán?"
-        intro="Nem minden hiba jelent cserét, és nem minden működő kazán van rendben. Görgess végig: két perc alatt látod, hol tart a készüléked. Mi kizárólag kazáncserét vállalunk, ötven éve azt csináljuk."
+        intro="Négy kérdésre válaszol ez az oldal, ebben a sorrendben: hol tart a készüléked, mennyibe kerül, ha marad, mi kerülhet a helyére, és kivel csináltasd. Görgess végig, két perc az egész."
         image={vezerlopanel}
         imageAlt="Gázkazán vezérlőpanelje ellenőrzés közben"
         badge={{ value: "10-15 év", label: "egy kazán átlagos élettartama" }}
@@ -186,19 +197,34 @@ export default function KellEUjKazanPage() {
         ]}
       />
 
+      {/* Fejezet-navigacio: latszik, hany reszbol all az oldal. */}
+      <StepNav steps={STEPS} />
+
+      {/* ================================================================
+          01. HOL TART A KAZÁNOD. Diagnózis: kor, jelek, verdikt.
+          ================================================================ */}
+      <section className="bg-paper pt-16 lg:pt-20">
+        <Chapter
+          id="allapot"
+          step={1}
+          title="Hol tart a kazánod?"
+          intro="Kezdd itt. A kor önmagában még nem ítélet, de a korral együtt jelentkező jelek már azok. A fejezet végére tudni fogod, melyik oldalon állsz."
+        />
+      </section>
+
       {/* A KALKULÁTOR: az oldal fő eszköze, rögtön elöl. */}
       <BoilerCalculator />
 
       {/* ÁRULKODÓ JELEK. Sürgősség szerint jelölve. */}
-      <section className="border-y border-sky-200 bg-sky/30 py-20 lg:py-28">
+      <section className="bg-paper py-14 lg:py-16">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
               Árulkodó jelek
             </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-ink">
               Hat jel, amit nem érdemes elnézni
-            </h2>
+            </h3>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">
               A pirossal jelöltek biztonsági kérdések, azokkal ne várj. A többi
               pénzkérdés, ott van idő gondolkodni.
@@ -225,8 +251,86 @@ export default function KellEUjKazanPage() {
         </div>
       </section>
 
+      {/* MIKOR JÖTT EL A CSERE IDEJE. Táblázat, nem kártya: más ritmus. */}
+      <section className="bg-paper py-14 lg:py-16">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="max-w-2xl">
+            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
+              Mikor jött el a csere ideje
+            </span>
+            <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-ink">
+              Melyik oldalon áll a te kazánod?
+            </h3>
+            <p className="mt-4 text-lg leading-relaxed text-ink-soft">
+              Két-három találat a jobb oszlopban, és a toldozgatás már csak
+              halasztja a döntést.
+            </p>
+          </div>
+
+          <div className="mt-12 overflow-x-auto">
+            <table className="w-full min-w-[36rem] border-collapse overflow-hidden rounded-2xl border border-sky-200 text-left">
+              <thead>
+                <tr className="bg-cta text-white">
+                  <th scope="col" className="px-5 py-4 text-sm font-semibold" />
+                  <th scope="col" className="px-5 py-4 text-sm font-semibold">
+                    Ez még ráér
+                  </th>
+                  <th scope="col" className="px-5 py-4 text-sm font-semibold">
+                    Itt a csere ideje
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sky-200 bg-white">
+                {COMPARE.map((row) => (
+                  <tr key={row.q}>
+                    <th
+                      scope="row"
+                      className="px-5 py-4 text-sm font-semibold text-ink"
+                    >
+                      {row.q}
+                    </th>
+                    <td className="px-5 py-4 text-[15px] text-ink-soft">
+                      {row.repair}
+                    </td>
+                    <td className="bg-sky/60 px-5 py-4 text-[15px] font-medium text-ink">
+                      {row.replace}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mt-6 text-sm leading-relaxed text-ink-soft">
+            Ez tájékoztató útmutató, a pontos képet mindig a helyszíni felmérés
+            adja. Ha a bal oldalon állsz, azt is megmondjuk, és nyugodtan
+            várhatsz még. Javítást nem vállalunk: mi a cserében vagyunk otthon.
+            Amit nálunk építettek be, azt viszont az{" "}
+            <Link
+              href="/szolgaltatasok/atalanydijas-karbantartas"
+              className="font-semibold text-brand underline-offset-2 hover:underline"
+            >
+              átalánydíjas karbantartással
+            </Link>{" "}
+            tartjuk formában, hogy a gyári garancia is megmaradjon.
+          </p>
+        </div>
+      </section>
+
+      {/* ================================================================
+          02. MENNYIBE KERÜL, HA MARAD. A hatásfok, majd forintban.
+          ================================================================ */}
+      <section className="relative bg-white pt-16 lg:pt-20">
+        <Chapter
+          id="koltseg"
+          step={2}
+          title="Mennyibe kerül, ha marad?"
+          intro="A régi kazán nem akkor kerül pénzbe, amikor elromlik, hanem minden egyes nap. Előbb a hatásfok, aztán ugyanez forintban."
+        />
+      </section>
+
       {/* KAZANTIPUSOK. Hatasfok-savok, nem ujabb szovegdobozok. */}
-      <section className="relative overflow-hidden py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-white py-14 lg:py-16">
         <div className="pointer-events-none absolute inset-0 bg-blueprint opacity-60" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-32 top-10 h-80 w-80 rounded-full bg-sky/70 blur-3xl" />
         <div className="relative mx-auto max-w-5xl px-6">
@@ -234,9 +338,9 @@ export default function KellEUjKazanPage() {
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
               Kazántípusok
             </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-ink">
               A régi kazán a kéményt fűti. A kondenzációs a házat.
-            </h2>
+            </h3>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">
               Ugyanaz a gáz, két nagyon különböző eredmény. Nézd meg a
               hatásfokot, a többi részlet ehhez képest mellékes.
@@ -324,56 +428,6 @@ export default function KellEUjKazanPage() {
             gyakorlatilag nem hoznak forgalomba. Cserénél kondenzációs kazán
             kerül a helyére, ez nem marketingdöntés.
           </p>
-
-          {/* Pozicionalas: egy dolgot csinalunk, azt viszont a legmagasabb
-              szinten. A "javitast is vallalunk" uzenet szandekosan nincs
-              benne, mert nem vallalunk javitast. */}
-          <div className="mt-12 rounded-2xl border border-brand/25 bg-brand/5 p-7 sm:p-9">
-            <h3 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
-              Csak kazáncsere. Csak prémium.
-            </h3>
-            <p className="mt-3 text-lg leading-relaxed text-ink-soft">
-              Ötven éve ugyanaz az egy feladat indul minden reggel. Ezért megy
-              egy komplett csere egy nap alatt.
-            </p>
-
-            <ul className="mt-7 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
-              {[
-                ["Kizárólag kazáncsere", "Javítást, hibakeresést nem vállalunk."],
-                ["Prémium készülék", "Modulációs kondenzációs, gyári garanciával."],
-                ["Márkaszervizes háttér", "Öt év múlva is lesz hozzá alkatrész."],
-                ["Egy nap, estére meleg", "Rendezett kazánház, kész dokumentáció."],
-              ].map(([head, sub]) => (
-                <li key={head} className="flex gap-3">
-                  <svg
-                    className="mt-0.5 h-5 w-5 flex-none text-brand"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
-                  <span>
-                    <span className="block font-semibold text-ink">{head}</span>
-                    <span className="block text-[15px] leading-snug text-ink-soft">
-                      {sub}
-                    </span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <p className="mt-7 border-t border-brand/15 pt-5 text-[15px] leading-relaxed text-ink-soft">
-              <span className="font-semibold text-ink">
-                Cserét nem beszélünk rá senkire.
-              </span>{" "}
-              Ha a készülékednek van még hátra pár éve, azt fogjuk mondani.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -381,8 +435,24 @@ export default function KellEUjKazanPage() {
           ahol a fenti százalékok végre jelentenek is valamit. */}
       <SavingsCalculator />
 
+      {/* ================================================================
+          03. MI KERÜL A HELYÉRE. Méretezés és készüléktípus.
+          ================================================================ */}
+      <section className="relative overflow-hidden bg-cta edge-glow pt-16 lg:pt-20">
+        <Wave position="top" className="text-white" size="md" variant="drift" />
+        <div className="relative pt-6">
+          <Chapter
+            id="megoldas"
+            step={3}
+            title="Mi kerül a helyére?"
+            intro="Ha a csere mellett döntesz, itt dől el, mit érdemes beépíteni. Ezt a két kérdést a felmérésen tisztázzuk, de jó, ha előre tudod, miről lesz szó."
+            tone="dark"
+          />
+        </div>
+      </section>
+
       {/* MEKKORA ES MILYEN. Sotet sav, ket oszlop. */}
-      <section className="relative overflow-hidden bg-cta edge-glow py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-cta edge-glow py-14 lg:py-16">
         <div className="pointer-events-none absolute inset-0 bg-blueprint-dark" aria-hidden="true" />
         <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-cyan/15 blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-6">
@@ -390,9 +460,9 @@ export default function KellEUjKazanPage() {
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-cyan">
               Amit a felmérésen eldöntünk
             </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
               Mekkora, és kombi vagy tárolós?
-            </h2>
+            </h3>
           </div>
 
           <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -467,69 +537,69 @@ export default function KellEUjKazanPage() {
         </div>
       </section>
 
-      {/* MIKOR JÖTT EL A CSERE IDEJE. Táblázat, nem kártya: más ritmus. */}
-      <section className="py-20 lg:py-28">
+      {/* ================================================================
+          04. KIVEL CSINÁLTASD. Pozicionálás, kilenc ok, kérdések.
+          ================================================================ */}
+      <section className="relative bg-paper pt-16 lg:pt-20">
+        <Chapter
+          id="kivel"
+          step={4}
+          title="Kivel csináltasd?"
+          intro="Egy kazán tizenöt évig marad a falon. Ezen a távon az számít, ki tette fel, és hogy megtalálod-e öt év múlva is."
+        />
+      </section>
+
+      <section className="bg-paper py-12 lg:py-16">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="max-w-2xl">
-            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
-              Mikor jött el a csere ideje
-            </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Melyik oldalon áll a te kazánod?
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-              Két-három találat a jobb oszlopban, és a toldozgatás már csak
-              halasztja a döntést.
+          {/* Pozicionalas: egy dolgot csinalunk, azt viszont a legmagasabb
+              szinten. A "javitast is vallalunk" uzenet szandekosan nincs
+              benne, mert nem vallalunk javitast. */}
+          <div className="rounded-2xl border border-brand/25 bg-brand/5 p-7 sm:p-9">
+            <h3 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
+              Csak kazáncsere. Csak prémium.
+            </h3>
+            <p className="mt-3 text-lg leading-relaxed text-ink-soft">
+              Ötven éve ugyanaz az egy feladat indul minden reggel. Ezért megy
+              egy komplett csere egy nap alatt.
+            </p>
+
+            <ul className="mt-7 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
+              {[
+                ["Kizárólag kazáncsere", "Javítást, hibakeresést nem vállalunk."],
+                ["Prémium készülék", "Modulációs kondenzációs, gyári garanciával."],
+                ["Márkaszervizes háttér", "Öt év múlva is lesz hozzá alkatrész."],
+                ["Egy nap, estére meleg", "Rendezett kazánház, kész dokumentáció."],
+              ].map(([head, sub]) => (
+                <li key={head} className="flex gap-3">
+                  <svg
+                    className="mt-0.5 h-5 w-5 flex-none text-brand"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  <span>
+                    <span className="block font-semibold text-ink">{head}</span>
+                    <span className="block text-[15px] leading-snug text-ink-soft">
+                      {sub}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-7 border-t border-brand/15 pt-5 text-[15px] leading-relaxed text-ink-soft">
+              <span className="font-semibold text-ink">
+                Cserét nem beszélünk rá senkire.
+              </span>{" "}
+              Ha a készülékednek van még hátra pár éve, azt fogjuk mondani.
             </p>
           </div>
-
-          <div className="mt-12 overflow-x-auto">
-            <table className="w-full min-w-[36rem] border-collapse overflow-hidden rounded-2xl border border-sky-200 text-left">
-              <thead>
-                <tr className="bg-cta text-white">
-                  <th scope="col" className="px-5 py-4 text-sm font-semibold" />
-                  <th scope="col" className="px-5 py-4 text-sm font-semibold">
-                    Ez még ráér
-                  </th>
-                  <th scope="col" className="px-5 py-4 text-sm font-semibold">
-                    Itt a csere ideje
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-sky-200 bg-white">
-                {COMPARE.map((row) => (
-                  <tr key={row.q}>
-                    <th
-                      scope="row"
-                      className="px-5 py-4 text-sm font-semibold text-ink"
-                    >
-                      {row.q}
-                    </th>
-                    <td className="px-5 py-4 text-[15px] text-ink-soft">
-                      {row.repair}
-                    </td>
-                    <td className="bg-sky/60 px-5 py-4 text-[15px] font-medium text-ink">
-                      {row.replace}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <p className="mt-6 text-sm leading-relaxed text-ink-soft">
-            Ez tájékoztató útmutató, a pontos képet mindig a helyszíni felmérés
-            adja. Ha a bal oldalon állsz, azt is megmondjuk, és nyugodtan
-            várhatsz még. Javítást nem vállalunk: mi a cserében vagyunk otthon.
-            Amit nálunk építettek be, azt viszont az{" "}
-            <Link
-              href="/szolgaltatasok/atalanydijas-karbantartas"
-              className="font-semibold text-brand underline-offset-2 hover:underline"
-            >
-              átalánydíjas karbantartással
-            </Link>{" "}
-            tartjuk formában, hogy a gyári garancia is megmaradjon.
-          </p>
         </div>
       </section>
 

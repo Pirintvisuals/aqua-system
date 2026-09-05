@@ -15,19 +15,33 @@ import Contact from "./components/Contact";
 export default function Home() {
   return (
     <main className="flex-1">
+      {/* ------------------------------------------------------------------ *
+       *  A sorrend nem esetleges, egy dontesi utat kovet:
+       *
+       *    1. Mit csinalnak?        Hero
+       *    2. Megbizhatok?          Testimonials
+       *    3. Mit vallalnak pontosan? Services + ServicesShowcase
+       *    4. Engem erint ez?       BoilerCalculator
+       *    5. Hogyan zajlik?        Process
+       *    6. Tenyleg tudjak?       Gallery (sajat munkafotok)
+       *    7. Miert ok?             WhyUs + TrustBanner
+       *    8. Kik ok?               About + Team
+       *    9. Maradt kerdes?        Faq
+       *   10. Hogyan indulok el?    Contact
+       *
+       *  Uj szekcio csak akkor kerul be, ha van helye ebben a sorban.
+       * ------------------------------------------------------------------ */}
       <Hero />
-      {/* A vélemények szándékosan rögtön a hero után: a bizalom dönt
-          először, csak utána érdekli a látogatót, mit is csinálunk. */}
       <Testimonials />
       <Services />
       <ServicesShowcase />
-      <WhyUs />
       <BoilerCalculator />
       <Process />
+      <Gallery />
+      <WhyUs />
       <TrustBanner />
       <About />
       <Team />
-      <Gallery />
       <Faq />
       <Contact />
     </main>

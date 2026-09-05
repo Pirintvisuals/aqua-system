@@ -75,7 +75,7 @@ export default function BoilerCalculator() {
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
               Kazán kalkulátor
             </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            <h2 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
               Mennyi idős a gázkészüléked?
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-soft">

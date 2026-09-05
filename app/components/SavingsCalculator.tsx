@@ -77,7 +77,7 @@ export default function SavingsCalculator() {
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
               Megtakarítás kalkulátor
             </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            <h2 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
               Mennyit fűtesz ki a kéményen?
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-soft">
