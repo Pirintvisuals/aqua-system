@@ -18,8 +18,12 @@ const STATS = [
   { target: 1, suffix: " nap", label: "Alatt kész" },
 ];
 
-/* Count-up that respects reduced motion. */
-function useCountUp(target: number, duration = 1200) {
+/* Count-up that respects reduced motion.
+
+   A lassulas szandekosan eros: a szamok gyorsan indulnak, majd az utolso
+   egysegeknel szinte megallnak. Ezert kvintikus kifutas (1-(1-p)^5) es
+   hosszabb ido, nem a szokasos kobos gorbe. */
+function useCountUp(target: number, duration = 2200) {
   const [value, setValue] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
@@ -38,7 +42,7 @@ function useCountUp(target: number, duration = 1200) {
           const start = performance.now();
           const tick = (now: number) => {
             const p = Math.min((now - start) / duration, 1);
-            setValue(Math.round((1 - Math.pow(1 - p, 3)) * target));
+            setValue(Math.round((1 - Math.pow(1 - p, 5)) * target));
             if (p < 1) requestAnimationFrame(tick);
           };
           requestAnimationFrame(tick);
@@ -82,21 +86,6 @@ function WaveBackdrop() {
         fill="url(#wave2)"
       />
     </svg>
-  );
-}
-
-/* Lagy kiemeles a cimsor kulcsszava mogott.
-   Korabban egy hullamos SVG alahuzas allt itt, de a tordelt cimsorban
-   belelogott a kovetkezo sorba. A hatterbe tett sav sosem utkozik. */
-function Highlight({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="relative inline-block">
-      <span
-        aria-hidden="true"
-        className="absolute inset-x-[-0.12em] bottom-[0.06em] top-[0.52em] -z-10 rounded-[0.15em] bg-copper/15"
-      />
-      {children}
-    </span>
   );
 }
 
@@ -169,10 +158,13 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="mt-6 font-display text-[2rem] font-extrabold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
-              <Highlight>
-                <span className="text-brand">Gázkészülék csere</span>
-              </Highlight>{" "}
+            <span
+              aria-hidden="true"
+              className="mt-8 block h-1.5 w-14 rounded-full bg-copper"
+            />
+
+            <h1 className="mt-5 font-display text-[2rem] font-extrabold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
+              <span className="text-brand">Gázkészülék csere</span>{" "}
               1 nap alatt, gyorsan és biztonságosan
             </h1>
 

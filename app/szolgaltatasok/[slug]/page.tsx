@@ -106,7 +106,7 @@ export default async function ServicePage({
       {/* KINEK VALÓ + MIT TARTALMAZ. Ragadós bal oldal asztali nézetben. */}
       <section className="py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <div className="lg:sticky-aside lg:self-start">
+          <div className="lg:sticky lg:top-28 lg:self-start">
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-copper">
               Kinek való
             </span>

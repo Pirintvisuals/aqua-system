@@ -13,9 +13,15 @@ import { FAQS } from "../lib/faqs";
 
 export default function Faq() {
   return (
-    <section id="gyik" className="scroll-mt-24 bg-sky/30 py-20 lg:py-28">
-      <Reveal className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
-        <div>
+    <section id="gyik" className="relative overflow-hidden scroll-mt-24 bg-sky/30 py-20 lg:py-28">
+      <div className="pointer-events-none absolute inset-0 bg-blueprint opacity-70" aria-hidden="true" />
+      <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-brand-light/10 blur-3xl" aria-hidden="true" />
+      <Reveal className="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[1fr_1.4fr] lg:gap-16 lg:items-start">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <span
+            aria-hidden="true"
+            className="mb-5 block h-1.5 w-14 rounded-full bg-brand"
+          />
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Gyakran ismételt kérdések
           </h2>
@@ -42,7 +48,7 @@ export default function Faq() {
             <details
               key={f.q}
               open={i === 0}
-              className="group px-6 [&_summary::-webkit-details-marker]:hidden"
+              className="faq-item group border-l-2 border-transparent px-6 transition-colors duration-300 open:border-brand open:bg-white/60"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left font-display text-base font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
                 {f.q}

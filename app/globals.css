@@ -262,12 +262,6 @@ h3,
   background-color: var(--color-copper-soft);
 }
 
-/* Ragados szekciocim asztali nezetben. */
-.sticky-aside {
-  position: sticky;
-  top: 7rem;
-}
-
 /* Finom felso fenycsik sotet savok tetejen. */
 .edge-glow::before {
   content: "";
@@ -281,4 +275,43 @@ h3,
     rgba(127, 196, 232, 0.55),
     transparent
   );
+}
+
+
+/* ---------- GYIK nyitasi animacio ----------
+   A <details> natívan nem animal. Ket retegben oldjuk meg:
+   1) a valasz tartalma mindig beusztatva jelenik meg (minden bongeszo),
+   2) ahol a bongeszo mar tudja, ott a magassag is atmenettel valtozik. */
+@keyframes faq-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq-item[open] > summary ~ * {
+    animation: faq-reveal 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Magassag-atmenet ott, ahol tamogatott (Chrome 131+). */
+  @supports (interpolate-size: allow-keywords) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+    .faq-item::details-content {
+      block-size: 0;
+      overflow: hidden;
+      transition:
+        block-size 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+        content-visibility 0.32s allow-discrete;
+    }
+    .faq-item[open]::details-content {
+      block-size: auto;
+    }
+  }
 }
