@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import PageHero from "../../components/PageHero";
 import CtaBand from "../../components/CtaBand";
 import Reveal from "../../components/Reveal";
+import Wave from "../../components/Wave";
 import { SERVICES } from "../../lib/services";
 import { SITE_URL } from "../../lib/site";
 import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../../lib/links";
@@ -66,12 +67,30 @@ export default async function ServicePage({
     areaServed: "Budapest és agglomerációja",
   };
 
+  /* A gyakori kerdesek strukturalt adatkent is kimennek, hogy a
+     kereso a valaszokat kozvetlenul is megmutathassa. */
+  const faqLd = service.faq && {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: service.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <main className="flex-1">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
 
       <PageHero
         eyebrow="Szolgáltatás"
@@ -241,6 +260,91 @@ export default async function ServicePage({
           </Reveal>
         </div>
       </section>
+
+      {/* ------------------------------------------------------------------ *
+          AMIT ÉRDEMES TUDNI. Ez az a szakmai resz, amit a felmeresen
+          szoktunk elmondani. Hosszabb szoveg, de sajat szekcioban, hogy
+          aki csak arat keres, nyugodtan atgorgethesse.
+          ------------------------------------------------------------------ */}
+      {service.deep && service.deep.length > 0 && (
+        <section className="relative bg-paper py-20 lg:py-28">
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="max-w-2xl">
+              <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
+                Amit érdemes tudni
+              </span>
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+                A részletek, amik a végén számítanak
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-ink-soft">
+                Ezt szoktuk elmondani a felmérésen. Itt előre elolvashatod.
+              </p>
+            </div>
+
+            <Reveal stagger className="mt-12 space-y-10">
+              {service.deep.map((block) => (
+                <article
+                  key={block.title}
+                  className="rounded-2xl border border-sky-200 bg-white p-7 shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)] sm:p-9"
+                >
+                  <h3 className="font-display text-xl font-bold tracking-tight text-ink sm:text-2xl">
+                    {block.title}
+                  </h3>
+                  {block.body.map((para) => (
+                    <p
+                      key={para}
+                      className="mt-4 text-[17px] leading-relaxed text-ink-soft"
+                    >
+                      {para}
+                    </p>
+                  ))}
+                </article>
+              ))}
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      {/* GYAKORI KÉRDÉSEK. Natív <details>, nulla JavaScript. */}
+      {service.faq && service.faq.length > 0 && (
+        <section className="relative overflow-hidden bg-sky/40 py-20 lg:py-28">
+          <Wave position="top" className="text-paper" size="md" />
+          <div className="relative mx-auto max-w-4xl px-6">
+            <div className="max-w-2xl">
+              <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
+                Gyakori kérdések
+              </span>
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+                Amit ezzel kapcsolatban a legtöbbször kérdeznek
+              </h2>
+            </div>
+
+            <div className="mt-10 divide-y divide-sky-200 overflow-hidden rounded-2xl border border-sky-200 bg-white">
+              {service.faq.map((f) => (
+                <details key={f.q} className="faq-item group px-6 py-5">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg font-bold text-ink marker:content-none">
+                    {f.q}
+                    <svg
+                      className="h-5 w-5 flex-none text-brand transition-transform duration-200 group-open:rotate-45"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.4"
+                      strokeLinecap="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                  </summary>
+                  <p className="mt-3 text-[17px] leading-relaxed text-ink-soft">
+                    {f.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* TOVÁBBI SZOLGÁLTATÁSOK */}
       <section className="py-20 lg:py-28">

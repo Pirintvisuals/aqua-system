@@ -48,6 +48,14 @@ export type Service = {
   who: string[];
   /** Így zajlik: lépések az aloldalon. */
   steps: { title: string; body: string }[];
+  /**
+   * Hosszabb, szakmai blokkok az aloldal aljára. Ez az a tudás, amit a
+   * felmérésen szoktunk elmondani: itt van leírva, hogy előre lehessen
+   * olvasni. Kereséssel is ezeket a kérdéseket írják be.
+   */
+  deep?: { title: string; body: string[] }[];
+  /** Gyakori kérdések erre a szolgáltatásra. */
+  faq?: { q: string; a: string }[];
   /** A forrásfotó tájolása - ehhez igazul a képkeret, hogy ne vágjuk szét. */
   orientation: "portrait" | "landscape";
   photo: StaticImageData | null;
@@ -105,6 +113,44 @@ export const SERVICES: Service[] = [
         body: "Beüzemeljük, beszabályozzuk, megmutatjuk a kezelését. Az engedélyeztetést és a dokumentációt is mi intézzük.",
       },
     ],
+    deep: [
+      {
+        title: "A kazáncsere nem csak a kazán cseréje",
+        body: [
+          "A régi készülék helyére nem lehet egyszerűen felakasztani egy újat. A kondenzációs kazán égésterméke jóval hidegebb, és savas kondenzvizet ad, amit a régi, kéménybe kötött rendszer nem visel el: ilyenkor a kéményt bélelni kell, jellemzően műanyag vagy nemesacél béléssel. Ez a csere egyik legnagyobb rejtett tétele, ezért mi már a felmérésen megnézzük.",
+          "Kell hozzá kondenzvíz-elvezetés is a csatorna felé, és ellenőrizni kell, hogy a meglévő gázvezeték átmérője elbírja-e az új készüléket. Ha a rendszerben évtizedes iszap van, azt is kezelni kell, különben az új hőcserélő fogja beszedni. Ezért szerepel a munkában rendszermosás és szűrő is, ahol indokolt.",
+        ],
+      },
+      {
+        title: "Ettől fér bele egy napba",
+        body: [
+          "Az egynapos csere nem sietségből jön, hanem előkészítésből. A felméréskor eldől a készülék típusa, a kémény sorsa és minden szerelvény, amire szükség lesz, és ezek a csere napján már az autóban vannak. A munkára nem egy ember érkezik, hanem a csapat, előre kiosztott feladatokkal.",
+          "Ezért nincs olyan, hogy a fél munka után derül ki valami, és ott áll a ház fűtés nélkül a hétvégén. A cél mindig ugyanaz: reggel bontunk, estére meleg van.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Mennyi ideig marad fűtés nélkül a ház?",
+        a: "Jellemzően egy munkanapig, reggeltől estig. A régi készülék leszerelése és az új beüzemelése ugyanazon a napon megtörténik, tehát nem kell éjszakára hideg házban maradni.",
+      },
+      {
+        q: "Kell-e engedély a kazáncseréhez?",
+        a: "A készülékcseréhez tervdokumentáció és a gázszolgáltató felé történő ügyintézés is tartozik, és gázkészüléket csak regisztrált gázszerelő cserélhet. Ezt a részt teljes egészében mi visszük végig, neked nem kell hivatalt járnod.",
+      },
+      {
+        q: "Mi lesz a régi készülékkel?",
+        a: "Leszereljük és elszállítjuk, ez benne van az árban. Nem marad nálad egy bontott kazán, amivel kezdened kell valamit.",
+      },
+      {
+        q: "Használható marad a régi kémény?",
+        a: "Kondenzációs kazánnál általában nem, mert az égéstermék hidegebb és savas kondenzvizet ad. Ilyenkor bélelés kell, amit szintén mi csinálunk meg. A felmérésen ez az egyik első dolog, amit megnézünk.",
+      },
+      {
+        q: "Mit kell előkészítenem a csere napjára?",
+        a: "Gyakorlatilag semmit, csak a szabad hozzáférést a kazánhoz és a kéményhez. A takarítás és a rendrakás a munka része.",
+      },
+    ],
     orientation: "portrait",
     photo: kazancsereTarolo,
     alt: "Frissen beszerelt Viessmann kondenzációs kazán rézcsövezéssel és melegvíz-tárolóval",
@@ -157,6 +203,40 @@ export const SERVICES: Service[] = [
       {
         title: "Nyomáspróba és átadás",
         body: "Nyomáspróba, beüzemelés, beszabályozás, majd átadás dokumentációval és a rendszer bemutatásával.",
+      },
+    ],
+    deep: [
+      {
+        title: "A nyomvonal a legfontosabb döntés",
+        body: [
+          "Egy gépészeti rendszer nagy része a falban és az aljzatban tűnik el, és onnan tíz év múlva már nem lehet olcsón előszedni. Ezért a nyomvonalakat előre végiggondoljuk és dokumentáljuk: hol fut a cső, hol van elzáró, melyik kör hova tartozik.",
+          "Ugyanezért kerülnek hozzáférhető helyre az elzárók, és ezért címkézzük az osztó-gyűjtő köreit. Ez a néhány óra többletmunka az, ami miatt egy későbbi szerelő nem a falat fogja bontani, hanem elzár egy csapot.",
+        ],
+      },
+      {
+        title: "Padlófűtés és radiátor egy rendszerben",
+        body: [
+          "A padlófűtés alacsony, jellemzően 35-40 fokos előremenő vízzel dolgozik, a radiátor viszont ennél melegebbet kér. A kettő egy rendszerben csak akkor működik jól, ha külön kör és keverőszelep szolgálja ki őket, és a köröket a végén tényleg beszabályozzák.",
+          "Ez azért nem részletkérdés, mert a kondenzációs kazán éppen az alacsony előremenő hőmérsékleten hozza a legjobb hatásfokot. Egy jól méretezett padlófűtéssel a készülék abban a tartományban dolgozik, ahol a legtöbbet adja vissza a gázból.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Mikor érdemes bevonni a gépészt?",
+        a: "Minél előbb, ideális esetben még a tervek véglegesítése előtt. A legdrágább hibák ott keletkeznek, ahol a gépészet csak kész falakhoz érkezik meg.",
+      },
+      {
+        q: "Lehet padlófűtést építeni régi házba?",
+        a: "Sok esetben igen, de nem mindegy, milyen a szigetelés és mennyi az aljzatra rendelkezésre álló magasság. Ezt felmérés és hőigény-számítás után tudjuk megmondani, találgatni nem szoktunk.",
+      },
+      {
+        q: "Ki intézi az engedélyeket és a gázos ügyintézést?",
+        a: "Mi. A gázvezeték kiépítéséhez tervdokumentáció és szolgáltatói ügyintézés tartozik, ez a munka része.",
+      },
+      {
+        q: "Mit jelent a nyomáspróba?",
+        a: "A kész, de még nem takart rendszert nyomás alá helyezzük, és figyeljük, tartja-e. Ez az a lépés, ami után nyugodtan lehet betonozni és burkolni.",
       },
     ],
     orientation: "landscape",
@@ -223,6 +303,40 @@ export const SERVICES: Service[] = [
         body: "Szerződéses partnereinket hiba esetén előre vesszük. A fűtési szezon közepén ez nem apróság.",
       },
     ],
+    deep: [
+      {
+        title: "Mi történik egy karbantartáson",
+        body: [
+          "A karbantartás nem egy pillantás a készülékre. Megtisztítjuk az égőt és a hőcserélőt, ellenőrizzük az égéstermék összetételét, a gáznyomást és a biztonsági elemek működését, átnézzük a tágulási tartály előnyomását és a fűtővíz állapotát.",
+          "Ezek azok a dolgok, amik lassan romlanak, és ezért nem tűnnek fel: a rendszernyomás lassan elszivárog, a tágulási tartály lelappad, a hőcserélőn vízkő rakódik. Ha évente egyszer valaki ránéz, ezekből nem lesz szezon közepi leállás.",
+        ],
+      },
+      {
+        title: "Ez nem ugyanaz, mint a kéményseprő",
+        body: [
+          "A kéményellenőrzés az égéstermék-elvezetőre vonatkozik, és külön szolgáltatás. A gázkészülék karbantartása ettől független, és a tulajdonos felelőssége marad akkor is, ha a kéményseprő éppen járt a háznál.",
+          "A gyártók kiterjesztett garanciája is ehhez a karbantartáshoz kötődik, nem a kéményellenőrzéshez. Egy kihagyott év akár egy tízéves garanciát is elvihet.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Kötelező az éves karbantartás?",
+        a: "A gyártói garancia feltételeként igen: a kiterjesztett garancia szakszerviz által végzett, évenkénti ellenőrzéshez kötött. Ezen túl a saját érdeked is, mert a szezon közepi meghibásodások jelentős része megelőzhető.",
+      },
+      {
+        q: "Mi történik, ha kihagyok egy évet?",
+        a: "A készülék ettől még működhet, de a gyári kiterjesztett garancia elveszhet, és pont akkor derül ki, amikor egy drága alkatrész megy tönkre.",
+      },
+      {
+        q: "Mennyi ideig tart egy karbantartás?",
+        a: "Jellemzően egy-két óra készülékenként, a rendszer állapotától függően. A végén jegyzőkönyvet kapsz róla.",
+      },
+      {
+        q: "Idegen készüléket is karbantartotok?",
+        a: "A karbantartási szerződéseinket elsősorban az általunk beépített rendszerekre kötjük, mert azok teljes előéletét ismerjük. Javítást, hibakeresést önálló szolgáltatásként nem vállalunk: a profilunk a kazáncsere.",
+      },
+    ],
     orientation: "portrait",
     photo: karbantartas,
     alt: "Gázkazán elvégzett műszaki felülvizsgálatot igazoló matricával, 2026-os érvényességgel",
@@ -275,6 +389,40 @@ export const SERVICES: Service[] = [
       {
         title: "Beszabályozás és betanítás",
         body: "Beállítjuk a fűtésgörbét és a szabályozást, majd megmutatjuk a használatát. Az első szezonban is elérhetők vagyunk kérdésekkel.",
+      },
+    ],
+    deep: [
+      {
+        title: "Mikor éri meg, és mikor nem",
+        body: [
+          "A hőszivattyú annál gazdaságosabb, minél alacsonyabb hőmérsékletű vízzel elég fűteni a házat. Padlófűtéssel vagy nagy felületű radiátorokkal ez adott, egy régi, 70-80 fokos előremenőre méretezett radiátoros rendszernél viszont a gép folyamatosan a rossz tartományban dolgozna.",
+          "Ezért kezdjük mindig hőigény-számítással, és ezért mondjuk meg őszintén, ha a jelenlegi leadókkal nem érné meg. Egy rosszul illesztett hőszivattyú nem olcsóbb fűtés, csak drágább villanyszámla.",
+        ],
+      },
+      {
+        title: "Hibrid üzem a meglévő kazánnal",
+        body: [
+          "Nem muszáj mindent egyszerre lecserélni. Hibrid üzemben a hőszivattyú viszi az alapterhelést az év nagy részében, és csak a leghidegebb napokon kapcsol be mellé a gázkazán.",
+          "Így a meglévő rendszer megmarad tartaléknak, a beruházás pedig lépcsőzetesen megy végbe. Azt a pontot, ahol a váltás történik, a beszabályozásnál mi állítjuk be.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Elég lesz a meglévő radiátor?",
+        a: "Attól függ, mekkora felületűek és milyen a ház szigetelése. A hőigény-számítás után meg tudjuk mondani, hogy elég-e, kell-e néhány leadót cserélni, vagy ebben a formában nem érné meg.",
+      },
+      {
+        q: "Mennyire hangos a kültéri egység?",
+        a: "A mai készülékek halkak, de nem néma gépek. A telepítés helyét ezért is beszéljük meg előre, figyelve a hálószobákra és a szomszéd telekhatárára.",
+      },
+      {
+        q: "Működik télen, fagyban is?",
+        a: "Igen, a levegő-víz hőszivattyúk mínuszban is fűtenek, csak romlik a hatékonyságuk. Éppen ezért ajánlunk sok helyre hibrid üzemet, ahol a leghidegebb napokat a kazán viszi.",
+      },
+      {
+        q: "Kell hozzá külön villamos bekötés?",
+        a: "A gép teljesítményétől függően igen, és a szolgáltató felé bejelentési kötelezettség is tartozhat hozzá. Ezt a felmérésen tisztázzuk, mielőtt bármit megrendelnél.",
       },
     ],
     orientation: "landscape",

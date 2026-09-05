@@ -65,8 +65,32 @@ export default function SzolgaltatasokPage() {
         ]}
       />
 
+      {/* BEVEZETŐ. Egy bekezdes arrol, hogyan all ossze ez a negy dolog,
+          es hol a hatarunk: cseret vallalunk, javitast nem. */}
+      <section className="relative bg-paper pt-16 pb-4 lg:pt-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <p className="text-lg leading-relaxed text-ink-soft">
+            A fő profilunk a kazáncsere, és ötven éve ezt csináljuk: a régi
+            készülék le, az új kondenzációs fel, egyetlen munkanap alatt.
+            Mögötte viszont ott van a teljes épületgépészeti háttér, ezért
+            tudunk egy komplett házat is végigvinni, és ezért nem akadunk el
+            azon, ha a kéményt bélelni kell vagy a gázvezetéket át kell
+            alakítani.
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-ink-soft">
+            Egy dolgot nem csinálunk:{" "}
+            <strong className="font-semibold text-ink">
+              idegen készülék javítását
+            </strong>
+            . Aki mindent vállal, az semmiben nem lesz igazán jó. Karbantartási
+            szerződést az általunk beépített rendszerekre kötünk, mert azoknak
+            ismerjük a teljes előéletét.
+          </p>
+        </div>
+      </section>
+
       {/* NÉGY BELÉPŐ. Váltakozó, széles sorok, nem egyforma kártyák. */}
-      <section className="py-20 lg:py-28">
+      <section className="bg-paper pb-20 pt-10 lg:pb-28">
         <div className="mx-auto max-w-7xl space-y-6 px-6">
           {SERVICES.map((s, i) => (
             <Reveal key={s.slug}>
@@ -134,6 +158,44 @@ export default function SzolgaltatasokPage() {
               </Link>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* ZÁRÓ SZÖVEG. Terulet es keretek, kereseshez is hasznos. */}
+      <section className="relative overflow-hidden bg-white py-20 lg:py-24">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
+              Hol dolgozunk
+            </h2>
+            <p className="mt-4 text-[17px] leading-relaxed text-ink-soft">
+              Budapesten és az agglomerációban vállalunk munkát: Érd, Budaörs,
+              Törökbálint, Diósd, Százhalombatta, Biatorbágy és a környező
+              települések. A visszatérő ügyfeleink jó része is innen van, sokan
+              tizenöt-huszonöt éve.
+            </p>
+            <p className="mt-4 text-[17px] leading-relaxed text-ink-soft">
+              Családi házakkal, sorházakkal és társasházi lakásokkal egyaránt
+              dolgozunk. Nagyobb, több készülékes társasházi feladatra külön
+              ütemtervet készítünk.
+            </p>
+          </div>
+          <div>
+            <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
+              Hogyan indul egy munka
+            </h2>
+            <p className="mt-4 text-[17px] leading-relaxed text-ink-soft">
+              Minden munka helyszíni felméréssel kezdődik. Megnézzük a meglévő
+              rendszert, a kéményt és a gázvezetéket, és ezután adunk fix árat,
+              írásban. Nem sávos becslést, nem telefonos tippet.
+            </p>
+            <p className="mt-4 text-[17px] leading-relaxed text-ink-soft">
+              Ha csak egy nagyságrendre vagy kíváncsi, az online árajánló
+              asszisztensünk pár kérdés után ad egy tájékoztató árat, a nap
+              bármely szakában. A pontos ajánlat ettől függetlenül mindig a
+              felmérés után születik.
+            </p>
+          </div>
         </div>
       </section>
 

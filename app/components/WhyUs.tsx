@@ -5,22 +5,27 @@ type Reason = {
   body: string;
   /** Rovid kategoria-cimke, ugyanaz a minta, mint az "Arulkodo jelek"-nel. */
   tag: string;
+  /** Egy konkret, ellenorizheto reszlet. Ez valasztja el a kartyat a
+      szokasos "megbizhatoak vagyunk" szovegtol. */
+  proof: string;
   icon: React.ReactNode;
 };
 
 const REASONS: Reason[] = [
   {
-    title: "Gyors kivitelezés",
+    title: "Egy nap alatt kész",
     tag: "Idő",
-    body: "Nem húzzuk hetekig: felmérünk, megtervezünk és egy nap alatt beszereljük az új készüléket, minimális fennakadással.",
+    body: "Reggel bontunk, estére meleg van. A felmérés és a fix ár után kap időpontot a munka, és azon a napon a csere végig is megy.",
+    proof: "Egyetlen fűtés nélküli este, nem egy hetes építkezés.",
     icon: (
       <path d="M13 2 3 14h7l-1 8 10-12h-7z" />
     ),
   },
   {
-    title: "Engedélyes, tapasztalt szakemberek",
+    title: "Regisztrált gázszerelők",
     tag: "Biztonság",
-    body: "Csak hivatalos, szakképesített gázszerelők dolgoznak nálunk. Mindent a szabványoknak megfelelően, dokumentáltan végzünk.",
+    body: "Gázkészüléket Magyarországon csak regisztrált gázszerelő cserélhet, és a munkáról dokumentációnak kell készülnie. Nálunk ez alapfeltétel, nem extra.",
+    proof: "Szabálytalan szerelésnél a biztosító is elutasíthatja a kárt.",
     icon: (
       <>
         <path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z" />
@@ -29,9 +34,10 @@ const REASONS: Reason[] = [
     ),
   },
   {
-    title: "Átlátható, fix árak",
+    title: "Fix ár, felmérés után",
     tag: "Pénz",
-    body: "Nincs utólagos ráfizetés vagy rejtett költség. Az ár tartalmazza a szerelést, beüzemelést és az ügyintézést is.",
+    body: "Az ajánlat a helyszín ismeretében készül, ezért nem kell utólag módosítani. Benne van a szerelés, a beüzemelés és az ügyintézés is.",
+    proof: "Amit a felmérésen megbeszélünk, az lesz a számlán.",
     icon: (
       <>
         <path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 3 12V5a2 2 0 0 1 2-2h7a2 2 0 0 1 1.4.6l7.2 7.2a2 2 0 0 1 0 2.6z" />
@@ -40,9 +46,10 @@ const REASONS: Reason[] = [
     ),
   },
   {
-    title: "Garancia a munkára és készülékre",
+    title: "Garancia, ami meg is marad",
     tag: "Garancia",
-    body: "A munka után is elérhetőek vagyunk. Minden kivitelezésre és az új gázkészülékre is hivatalos garanciát adunk.",
+    body: "A kivitelezésre és a beépített készülékre is garanciát adunk. A gyártók kiterjesztett garanciája viszont csak akkor él, ha a készüléket évente felülvizsgálják, ezért erre külön felhívjuk a figyelmet.",
+    proof: "A gyári garancia feltétele az éves, szakszerviz által végzett karbantartás.",
     icon: (
       <>
         <path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z" />
@@ -52,9 +59,10 @@ const REASONS: Reason[] = [
     ),
   },
   {
-    title: "Modern, energiatakarékos megoldások",
+    title: "Csak prémium kondenzációs készülék",
     tag: "Rezsi",
-    body: "Korszerű gázkészülékeket ajánlunk, amelyek kevesebbet fogyasztanak és stabilabb teljesítményt adnak – alacsonyabb rezsi, biztonságosabb működés.",
+    body: "A régi, nyílt égésterű kazánok 75-80 százalék körül dolgoznak, a mai kondenzációs készülékek 92-94 százalékon. Ugyanannyi gázból érezhetően több hő marad a házban.",
+    proof: "Nagyjából 15 százaléknyi hatásfok-különbség, minden fűtési szezonban.",
     icon: (
       <path d="M9 21h6M10 21c0-3-4-4-4-9a6 6 0 1 1 12 0c0 5-4 6-4 9" />
     ),
@@ -62,10 +70,48 @@ const REASONS: Reason[] = [
   {
     title: "Teljes felszereléssel érkezünk",
     tag: "Idő",
-    body: "Minden szükséges szerszám, anyag és műszer nálunk van, így nincs felesleges kör és nincs csúszás – még aznap üzemel az új készülék.",
+    body: "Minden szükséges szerszám, anyag és műszer velünk van, ezért nincs félbehagyott munka és nincs második nap. A szerelvényeket is mi hozzuk, nem a boltból kell utánamenni.",
+    proof: "Nincs olyan, hogy visszajövünk jövő héten a hiányzó idomért.",
     icon: (
       <>
         <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a2 2 0 0 0 2.8 2.8l6-6a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-2.1z" />
+      </>
+    ),
+  },
+  {
+    title: "Kéménybélelés és engedélyek egy kézből",
+    tag: "Ügyintézés",
+    body: "A kondenzációs kazán égésterméke savas kondenzvizet ad, amit a régi kémény nem visel el: bélelés kell hozzá. Ezt, és a szolgáltatói ügyintézést is mi visszük végig.",
+    proof: "Kéménybélelés, tervdokumentáció, beüzemelés, papírok. Neked nem kell szaladgálnod.",
+    icon: (
+      <>
+        <path d="M4 21V8l6-4 6 4v13" />
+        <path d="M9 21v-6h4v6" />
+        <path d="M19 21V10l-3-2" />
+      </>
+    ),
+  },
+  {
+    title: "Nem méretezünk túl",
+    tag: "Szakértelem",
+    body: "A régi kazán kW-ját nem másoljuk le. A hőigényt a ház adja, korszerű szigetelésnél nagyjából 30-50 W négyzetméterenként, és legalább ennyire számít a készülék modulációs tartománya is.",
+    proof: "A túlméretezett kazán folyamatosan ki-be kapcsol, ez viszi a gázt és koptatja a készüléket.",
+    icon: (
+      <>
+        <path d="M3 12h4l3 8 4-16 3 8h4" />
+      </>
+    ),
+  },
+  {
+    title: "A régi készüléket elvisszük",
+    tag: "Kényelem",
+    body: "A bontás, a régi kazán elszállítása és a takarítás is a munka része. Az utolsó lépés nálunk az, hogy a kazánház rendezettebb legyen, mint ahogy találtuk.",
+    proof: "Nem marad a garázsban egy leszerelt kazán, amivel kezdened kell valamit.",
+    icon: (
+      <>
+        <path d="M3 6h18" />
+        <path d="M8 6V4h8v2" />
+        <path d="M6 6l1 14h10l1-14" />
       </>
     ),
   },
@@ -78,6 +124,9 @@ const TAG_STYLE: Record<string, string> = {
   Pénz: "bg-sky text-brand",
   Garancia: "bg-emerald-50 text-emerald-700",
   Rezsi: "bg-sky text-brand",
+  Ügyintézés: "bg-amber-50 text-amber-700",
+  Szakértelem: "bg-sky text-brand",
+  Kényelem: "bg-emerald-50 text-emerald-700",
 };
 
 export default function WhyUs() {
@@ -89,18 +138,19 @@ export default function WhyUs() {
             Miért minket
           </span>
           <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Hat dolog, amiért visszahívnak minket
+            Kilenc dolog, amiért visszahívnak minket
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-            Kettő közülük biztonsági kérdés, a többi inkább arról szól, hogy
-            ne érjen meglepetés. Ötven év alatt nagyjából ez a hat dolog az,
-            amit a végén mindenki szóvá tesz.
+            Van köztük biztonsági kérdés, van, ami a pénzről szól, és van,
+            ami egyszerűen arról, hogy ne neked kelljen intézned. Ötven év
+            alatt nagyjából ez a kilenc dolog az, amit a végén mindenki
+            szóvá tesz.
           </p>
         </div>
 
         <Reveal stagger className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-sky-200 bg-sky-200 md:grid-cols-2 lg:grid-cols-3">
           {REASONS.map((r) => (
-            <div key={r.title} className="group bg-white p-7">
+            <div key={r.title} className="group flex flex-col bg-white p-7">
               <div className="flex items-center justify-between gap-3">
                 <span
                   className={`inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide ${
@@ -118,8 +168,23 @@ export default function WhyUs() {
               <h3 className="mt-4 font-display text-lg font-bold text-ink">
                 {r.title}
               </h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              <p className="mt-2 flex-1 text-[15px] leading-relaxed text-ink-soft">
                 {r.body}
+              </p>
+              <p className="mt-4 flex gap-2 border-t border-sky-200 pt-4 text-[13px] font-medium leading-snug text-ink">
+                <svg
+                  className="mt-0.5 h-4 w-4 flex-none text-brand"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                {r.proof}
               </p>
             </div>
           ))}
