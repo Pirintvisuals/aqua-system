@@ -122,7 +122,7 @@ export default function ServiceSection({
   return (
     <section
       id={service.slug}
-      className="scroll-mt-36 border-t border-sky-200 py-20 first:border-t-0 lg:py-28"
+      className="scroll-mt-44 border-t border-sky-200 py-20 first:border-t-0 lg:py-28"
     >
       <Reveal className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
         {/* SZÖVEG */}

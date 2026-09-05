@@ -22,7 +22,7 @@ const TEAM: Member[] = [
 
 export default function Team() {
   return (
-    <section id="csapat" className="scroll-mt-24 bg-sky/30 py-20 lg:py-28">
+    <section id="csapat" className="scroll-mt-36 bg-sky/30 py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">

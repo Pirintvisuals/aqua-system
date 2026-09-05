@@ -82,7 +82,7 @@ const TAG_STYLE: Record<string, string> = {
 
 export default function WhyUs() {
   return (
-    <section id="miert-mi" className="scroll-mt-24 bg-sky/30 py-20 lg:py-28">
+    <section id="miert-mi" className="scroll-mt-36 bg-sky/30 py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">

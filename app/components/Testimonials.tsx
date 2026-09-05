@@ -116,7 +116,7 @@ export default function Testimonials() {
   return (
     <section
       id="velemenyek"
-      className="relative isolate scroll-mt-24 overflow-hidden border-b border-sky-200 bg-sky/30 py-20 lg:py-28"
+      className="relative isolate scroll-mt-36 overflow-hidden border-b border-sky-200 bg-sky/30 py-20 lg:py-28"
     >
       {/* Kek dekoracio: ket lagy folt es egy halvany tervrajz-racs, hogy
           a feher kartyak mogott legyen mit nezni. Tisztan dekorativ. */}

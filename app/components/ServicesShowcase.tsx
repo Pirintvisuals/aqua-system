@@ -13,7 +13,7 @@ import { SERVICES } from "../lib/services";
 
 export default function ServicesShowcase() {
   return (
-    <section id="kinalat" className="relative isolate overflow-hidden scroll-mt-24 py-20 lg:py-28">
+    <section id="kinalat" className="relative isolate overflow-hidden scroll-mt-36 py-20 lg:py-28">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-dotgrid opacity-50" aria-hidden="true" />
       <div className="pointer-events-none absolute -left-40 top-1/4 -z-10 h-[28rem] w-[28rem] rounded-full bg-cyan/10 blur-3xl" aria-hidden="true" />
       <div className="mx-auto max-w-7xl px-6">
