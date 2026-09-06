@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Reveal from "./Reveal";
+import Wave from "./Wave";
 import AnimatedHeading from "./AnimatedHeading";
 import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 import { BUSINESS } from "../lib/site";
@@ -244,6 +245,7 @@ export default function Contact() {
           </div>
         </form>
       </Reveal>
+      <Wave className="text-white" size="sm" variant="drift" layers="single" />
     </section>
   );
 }

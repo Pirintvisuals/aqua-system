@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
+import Wave from "./Wave";
 import { CHATBOT_URL, CTA_NOTE, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 
 /* ------------------------------------------------------------------ *
@@ -78,6 +79,7 @@ export default function CtaBand({
           és egy munkanapon belül válaszolunk.
         </p>
       </Reveal>
+      <Wave className="text-white" size="sm" variant="ripple" layers="single" />
     </section>
   );
 }

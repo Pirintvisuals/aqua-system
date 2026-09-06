@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Wave from "./Wave";
 import { useEffect, useRef, useState } from "react";
 import heroBoiler from "../assets/munkak/kazancsere-ergas.jpg";
 import { CHATBOT_URL, CTA_NOTE, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
@@ -245,8 +246,9 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* stats band - dark contrast strip, grounds the hero */}
-      <div className="relative overflow-hidden bg-cta">
+      {/* stats band - dark contrast strip, grounds the hero. A sav aljan
+          hullam visz at a kovetkezo, vilagoskek szekcioba. */}
+      <div className="relative overflow-clip bg-cta">
         <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-cyan/15 blur-3xl" />
         <div className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-brand-light/20 blur-3xl" />
         <dl className="relative mx-auto grid max-w-7xl grid-cols-2 gap-y-10 gap-x-8 px-6 py-12 sm:grid-cols-4">
@@ -254,6 +256,7 @@ export default function Hero() {
             <Stat key={s.label} {...s} />
           ))}
         </dl>
+        <Wave className="text-water" size="md" variant="swell" layers="single" />
       </div>
     </>
   );

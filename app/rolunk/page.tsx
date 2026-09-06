@@ -389,6 +389,7 @@ export default function RolunkPage() {
             </figure>
           </div>
         </Reveal>
+        <Wave className="text-white" size="md" variant="crest" flip layers="single" />
       </section>
 
       <Team />

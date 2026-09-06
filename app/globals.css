@@ -48,6 +48,12 @@ h3,
   background-color: #f1f6fe;
 }
 
+/* Ugyanaz a tonus szovegszinkent: a Wave `currentColor`-bol tolt ki, igy
+   tud a hullam a kovetkezo, tonusos szekcio szinevel rajzolni. */
+.text-water {
+  color: #f1f6fe;
+}
+
 /* Ugyanaz a tonus. Kulon nev azert maradt, mert a sotet savok utan
    allo szekcioknal a hivasi helyen igy latszik a szandek. */
 .bg-water-down {
