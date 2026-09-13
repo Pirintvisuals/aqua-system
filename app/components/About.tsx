@@ -1,5 +1,7 @@
 import Image from "next/image";
 import aboutImg from "../assets/munkak/vezerlopanel.jpg";
+import archiveWelding from "../assets/munkak/tortenet-hegesztes.jpg";
+import archiveTeam from "../assets/munkak/tortenet-csapat.jpg";
 import Reveal from "./Reveal";
 
 const HIGHLIGHTS = [
@@ -63,6 +65,33 @@ export default function About() {
               </div>
             ))}
           </dl>
+
+          {/* archive photos: where it all started */}
+          <div className="mt-8">
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">
+              Így indultunk – archív fotók az 1970-es évekből
+            </span>
+            <div className="mt-3 grid grid-cols-2 gap-4">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-sky-200 shadow-[0_18px_40px_-18px_rgba(15,42,94,0.35)]">
+                <Image
+                  src={archiveWelding}
+                  alt="Hegesztési munka az 1970-es években, a vállalkozás kezdetén"
+                  placeholder="blur"
+                  sizes="(max-width: 1024px) 45vw, 22vw"
+                  className="h-full w-full object-cover object-center grayscale"
+                />
+              </div>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-sky-200 shadow-[0_18px_40px_-18px_rgba(15,42,94,0.35)]">
+                <Image
+                  src={archiveTeam}
+                  alt="A csapat régi fotón, a vállalkozás kezdeti éveiből"
+                  placeholder="blur"
+                  sizes="(max-width: 1024px) 45vw, 22vw"
+                  className="h-full w-full object-cover object-center grayscale"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </Reveal>
     </section>
