@@ -1,0 +1,65 @@
+# Build es feltoltes a tarhelyre.
+#
+# Minden master-re erkezo commit elinditja: a te push-od es az ugyfel
+# mentese a szerkesztoben (a Keystatic Cloud is commitot keszit). Kezzel is
+# inditható: Actions fül -> "Deploy" -> Run workflow.
+#
+# Amig az FTP adatok nincsenek megadva (Settings -> Secrets and variables ->
+# Actions), csak buildel, nem tolt fel semmit. Igy addig is latszik, ha
+# valami eltori a buildet.
+
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+# Egyszerre egy feltoltes fusson; ha kozben jon uj mentes, sorba all.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: FTP beállítások ellenőrzése
+        id: ftp
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: |
+          if [ -n "$FTP_SERVER" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Nincs FTP_SERVER secret, ezért csak build fut, feltöltés nem."
+          fi
+
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Feltöltés FTP-n
+        if: steps.ftp.outputs.ready == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # A legtöbb tárhely tud titkosított FTPS-t. Ha nem, a repo
+          # Variables között legyen FTP_PROTOCOL = ftp.
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          local-dir: ./out/
+          # A tárhely webgyökere, perjellel a végén.
+          server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
