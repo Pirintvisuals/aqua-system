@@ -10,6 +10,8 @@ import gepeszetCsovezetek from "../assets/munkak/gepeszet-csovezetek.jpg";
 import gepeszetVitodens from "../assets/munkak/gepeszet-vitodens.jpg";
 import gepeszetKazanhaz from "../assets/munkak/gepeszet-kazanhaz.jpg";
 import kazancsereErgas from "../assets/munkak/kazancsere-ergas.jpg";
+import tortenetHegesztes from "../assets/munkak/tortenet-hegesztes.jpg";
+import tortenetCsapat from "../assets/munkak/tortenet-csapat.jpg";
 
 export const metadata: Metadata = {
   title: "Rólunk – ötven év épületgépészeti tapasztalat",
@@ -48,6 +50,8 @@ type Era = {
   facts: { value: string; label: string }[];
   quote?: { text: string; source: string };
   image?: { src: typeof gepeszetKazanhaz; alt: string };
+  /** Régi családi fotók egy adott korszakhoz, ha van ilyen. */
+  archivePhotos?: { src: typeof gepeszetKazanhaz; alt: string }[];
 };
 
 const ERAS: Era[] = [
@@ -60,6 +64,16 @@ const ERAS: Era[] = [
     facts: [
       { value: "75-80%", label: "egy akkori kazán hatásfoka" },
       { value: "1", label: "generáció, egy szerelő" },
+    ],
+    archivePhotos: [
+      {
+        src: tortenetHegesztes,
+        alt: "Hegesztés az Aqua System Service Kft. indulásakor, az 1970-es években",
+      },
+      {
+        src: tortenetCsapat,
+        alt: "A csapat egy régi fotón, a vállalkozás kezdeti éveiből",
+      },
     ],
   },
   {
@@ -265,6 +279,25 @@ export default function RolunkPage() {
                           sizes="(max-width: 1024px) 90vw, 45vw"
                           className="h-full w-full object-cover object-center"
                         />
+                      </div>
+                    )}
+
+                    {era.archivePhotos && (
+                      <div className="mt-6 grid max-w-3xl grid-cols-2 gap-4">
+                        {era.archivePhotos.map((photo) => (
+                          <div
+                            key={photo.alt}
+                            className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-sky-200 shadow-[0_18px_40px_-18px_rgba(15,42,94,0.35)]"
+                          >
+                            <Image
+                              src={photo.src}
+                              alt={photo.alt}
+                              placeholder="blur"
+                              sizes="(max-width: 1024px) 45vw, 22vw"
+                              className="h-full w-full object-cover object-center grayscale"
+                            />
+                          </div>
+                        ))}
                       </div>
                     )}
 
