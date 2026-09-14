@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import Reveal from "./Reveal";
 
 export type TeamContent = {

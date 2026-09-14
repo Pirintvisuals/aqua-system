@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import Wave from "./Wave";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { CHATBOT_URL, CTA_NOTE, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import ctaBg from "../assets/munkak/gepeszet-vitodens.jpg";
 import Reveal from "./Reveal";
 import { CHATBOT_URL, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";

@@ -5,6 +5,8 @@ import { SITE_NAME } from "./lib/site";
 export const alt = `${SITE_NAME} – Egynapos gázkészülék csere`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+// Statikus export: a kep build kozben keszul el.
+export const dynamic = "force-static";
 
 export default function OpengraphImage() {
   return new ImageResponse(

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import boilerPhoto from "../assets/munkak/gepeszet-kazanhaz.jpg";
 import Reveal from "./Reveal";
 import AnimatedHeading from "./AnimatedHeading";

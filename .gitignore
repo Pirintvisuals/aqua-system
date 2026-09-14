@@ -49,3 +49,7 @@ szerzodes-*.md
 
 # A nyers fotók gyökérben lévő másolatai (az éles példány: app/assets/munkak/)
 kép*.jpg
+
+# statikus export: optimalizalt kepek (a build generalja)
+**/nextImageExportOptimizer/
+**/next-image-export-optimizer-hashes.json

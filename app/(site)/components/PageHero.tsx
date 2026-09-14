@@ -1,4 +1,5 @@
-import Image, { type StaticImageData } from "next/image";
+import Image from "next-image-export-optimizer";
+import type { StaticImageData } from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import Wave from "./Wave";

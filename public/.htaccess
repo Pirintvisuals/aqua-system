@@ -1,0 +1,31 @@
+# Aqua System – statikus weboldal megosztott (Apache / LiteSpeed) tárhelyen.
+# A build a teljes oldalt sima HTML fájlokként teszi az out/ mappába; ez a
+# fájl onnan kerül fel a tárhely gyökerébe (public_html).
+#
+# Szándékosan csak olyan beállítás van itt, ami a legtöbb tárhelyen engedélyezett:
+# egy nem engedélyezett sor 500-as hibát adna az egész oldalra.
+
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Tartalomszerkesztő: a /keystatic/... címek mind ugyanazt az oldalt töltik
+  # be, a szerkesztő maga dönti el, melyik képernyőt mutatja.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^keystatic/ /keystatic/index.html [L]
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # A /_next/static fájlnevei tartalom szerint változnak, sokáig tárolhatók.
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  # A képek a szerkesztőből cserélődhetnek, ezért rövidebb ideig.
+  ExpiresByType image/webp "access plus 7 days"
+  ExpiresByType image/jpeg "access plus 7 days"
+  ExpiresByType image/png "access plus 7 days"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>

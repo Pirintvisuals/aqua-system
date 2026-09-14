@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import Link from "next/link";
 import logo from "../assets/logo.png";
 import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import aboutImg from "../assets/munkak/vezerlopanel.jpg";
 import Reveal from "./Reveal";
 

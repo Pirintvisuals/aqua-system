@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import Link from "next/link";
 import PageHero from "../components/PageHero";
 import CtaBand from "../components/CtaBand";

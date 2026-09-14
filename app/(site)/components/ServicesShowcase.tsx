@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import Link from "next/link";
 import Reveal from "./Reveal";
 import AnimatedHeading from "./AnimatedHeading";
