@@ -1,0 +1,26 @@
+eyebrowStrong: 50+ év
+eyebrowText: tapasztalat
+titleHighlight: Gázkészülék csere
+title: 1 nap alatt, gyorsan és biztonságosan
+trustPoints:
+  - Engedélyes szakemberek
+  - Fix, kiszámítható ár
+  - Teljes garancia
+photo: /images/fooldal/photo.jpg
+photoAlt: Frissen beüzemelt kondenzációs kazán és melegvíz-tároló egy elkészült cserénél
+guaranteeValue: 100
+guaranteeText: garancia minden készülékre
+chipText: 1 nap alatt kész
+stats:
+  - value: 500
+    suffix: +
+    label: Sikeres csere
+  - value: 50
+    suffix: év
+    label: Tapasztalat
+  - value: 100
+    suffix: '%'
+    label: Garancia
+  - value: 1
+    suffix: nap
+    label: Alatt kész

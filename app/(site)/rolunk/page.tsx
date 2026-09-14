@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import PageHero from "../components/PageHero";
 import Team from "../components/Team";
+import { reader } from "../lib/content";
 import CtaBand from "../components/CtaBand";
 import Reveal from "../components/Reveal";
 import Wave from "../components/Wave";
@@ -142,7 +143,9 @@ const ERAS: Era[] = [
   },
 ];
 
-export default function RolunkPage() {
+export default async function RolunkPage() {
+  const team = await reader.singletons.team.readOrThrow();
+
   return (
     <main className="flex-1">
       <PageHero
@@ -425,7 +428,7 @@ export default function RolunkPage() {
         <Wave className="text-white" size="md" variant="crest" flip layers="single" />
       </section>
 
-      <Team />
+      <Team {...team} />
 
       <CtaBand />
     </main>

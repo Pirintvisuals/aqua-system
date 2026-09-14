@@ -2,22 +2,25 @@
 
 import Image from "next/image";
 import Wave from "./Wave";
-import { useEffect, useRef, useState } from "react";
-import heroBoiler from "../assets/munkak/kazancsere-ergas.jpg";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { CHATBOT_URL, CTA_NOTE, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 
-const TRUST = [
-  "Engedélyes szakemberek",
-  "Fix, kiszámítható ár",
-  "Teljes garancia",
-];
-
-const STATS = [
-  { target: 500, suffix: "+", label: "Sikeres csere" },
-  { target: 50, suffix: " év", label: "Tapasztalat" },
-  { target: 100, suffix: "%", label: "Garancia" },
-  { target: 1, suffix: " nap", label: "Alatt kész" },
-];
+/* A szovegek es a foto a szerkesztobol jonnek (content/fooldal/hero),
+   a page.tsx olvassa be es adja at. */
+export type HeroContent = {
+  eyebrowStrong: string;
+  eyebrowText: string;
+  titleHighlight: string;
+  title: string;
+  intro: ReactNode;
+  trustPoints: readonly string[];
+  photo: string;
+  photoAlt: string;
+  guaranteeValue: number;
+  guaranteeText: string;
+  chipText: string;
+  stats: readonly { value: number; suffix: string; label: string }[];
+};
 
 /* Count-up that respects reduced motion.
 
@@ -91,8 +94,8 @@ function WaveBackdrop() {
 }
 
 /* Floating glass guarantee card that overlaps the photo edge. */
-function GuaranteeCard() {
-  const { value, ref } = useCountUp(100);
+function GuaranteeCard({ target, text }: { target: number; text: string }) {
+  const { value, ref } = useCountUp(target);
   return (
     <div className="rounded-2xl border border-sky-200 bg-white/90 px-5 py-4 shadow-[0_22px_50px_-20px_rgba(15,42,94,0.45)] backdrop-blur">
       <div className="flex items-center gap-3">
@@ -106,29 +109,43 @@ function GuaranteeCard() {
           <div className="font-display text-2xl font-bold text-cta">
             <span ref={ref}>{value}</span>%
           </div>
-          <div className="text-xs font-medium text-ink-soft">
-            garancia minden készülékre
-          </div>
+          <div className="text-xs font-medium text-ink-soft">{text}</div>
         </div>
       </div>
     </div>
   );
 }
 
-function Stat({ target, suffix, label }: (typeof STATS)[number]) {
+function Stat({ value: target, suffix, label }: HeroContent["stats"][number]) {
   const { value, ref } = useCountUp(target);
+  /* A szerkesztoben "év"-et irnak, nem " év"-et: betuvel kezdodo utotag
+     ele mi tesszuk a szokozt, jel (+, %) ele nem. */
+  const spacedSuffix = /^\p{L}/u.test(suffix) ? ` ${suffix}` : suffix;
   return (
     <div className="text-center sm:text-left">
       <div className="font-display text-4xl font-bold text-white sm:text-5xl">
         <span ref={ref}>{value}</span>
-        <span className="text-cyan">{suffix}</span>
+        <span className="text-cyan">{spacedSuffix}</span>
       </div>
       <div className="mt-1 text-sm font-medium text-white/70">{label}</div>
     </div>
   );
 }
 
-export default function Hero() {
+export default function Hero({
+  eyebrowStrong,
+  eyebrowText,
+  titleHighlight,
+  title,
+  intro,
+  trustPoints,
+  photo,
+  photoAlt,
+  guaranteeValue,
+  guaranteeText,
+  chipText,
+  stats,
+}: HeroContent) {
   return (
     <>
       <section className="relative isolate overflow-clip bg-white">
@@ -150,26 +167,18 @@ export default function Hero() {
                 <svg className="h-4 w-4 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M20 6 9 17l-5-5" />
                 </svg>
-                <span className="font-semibold text-ink">50+ év</span> tapasztalat
+                <span className="font-semibold text-ink">{eyebrowStrong}</span> {eyebrowText}
               </span>
             </div>
 
             <h1 className="mt-6 font-display text-[2rem] font-extrabold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
-              <span className="text-brand">Gázkészülék csere</span>{" "}
-              1 nap alatt, gyorsan és biztonságosan
+              <span className="text-brand">{titleHighlight}</span>{" "}
+              {title}
             </h1>
 
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft">
-              Elavult, zajos vagy sokat fogyasztó gázkészülék? Ne várj a
-              hibára: új, megbízható berendezést cserélünk{" "}
-              <strong className="font-semibold text-ink">1 nap alatt</strong>,
-              kiszámítható áron. Az{" "}
-              <strong className="font-semibold text-ink">
-                online árajánló asszisztensünk
-              </strong>{" "}
-              pár kérdés után azonnal ad egy tájékoztató árat. Hívás nélkül,
-              a nap 24 órájában.
-            </p>
+            <div className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft [&>p+p]:mt-4">
+              {intro}
+            </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
@@ -196,8 +205,8 @@ export default function Hero() {
 
             {/* trust row */}
             <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
-              {TRUST.map((t) => (
-                <li key={t} className="inline-flex items-center gap-2 text-sm font-medium text-ink">
+              {trustPoints.map((t, i) => (
+                <li key={`${t}-${i}`} className="inline-flex items-center gap-2 text-sm font-medium text-ink">
                   <svg className="h-5 w-5 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
@@ -212,11 +221,15 @@ export default function Hero() {
         </div>
 
         {/* PHOTO - in-flow card on mobile, full-bleed panel on desktop */}
-        <div className="relative mx-auto -mt-2 aspect-[4/5] w-[min(90%,26rem)] overflow-hidden rounded-3xl border border-sky-200 shadow-[0_40px_80px_-30px_rgba(15,42,94,0.5)] lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:mt-0 lg:aspect-auto lg:w-[47vw] lg:rounded-l-[2.5rem] lg:rounded-r-none lg:border-0">
+        <div className="relative mx-auto -mt-2 aspect-[4/5] w-[min(90%,26rem)] overflow-hidden rounded-3xl border border-sky-200 bg-sky shadow-[0_40px_80px_-30px_rgba(15,42,94,0.5)] lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:mt-0 lg:aspect-auto lg:w-[47vw] lg:rounded-l-[2.5rem] lg:rounded-r-none lg:border-0">
+          {/* A foto a szerkesztobol jon, a meretet nem ismerjuk elore. A
+              width/height csak a srcset-hez kell; a tenyleges meretet a
+              h-full w-full object-cover adja, ugyanugy, mint korabban. */}
           <Image
-            src={heroBoiler}
-            alt="Frissen beüzemelt kondenzációs kazán és melegvíz-tároló egy elkészült cserénél"
-            placeholder="blur"
+            src={photo}
+            alt={photoAlt}
+            width={1200}
+            height={1500}
             priority
             sizes="(max-width: 1024px) 90vw, 47vw"
             className="hero-parallax h-full w-full object-cover object-center"
@@ -228,10 +241,10 @@ export default function Hero() {
 
           {/* floating guarantee card - overlaps the photo/white seam */}
           <div className="absolute -left-3 bottom-6 animate-float-slow lg:left-8 lg:bottom-14">
-            <GuaranteeCard />
+            <GuaranteeCard target={guaranteeValue} text={guaranteeText} />
           </div>
 
-          {/* small "1 nap" chip */}
+          {/* small chip */}
           <div className="absolute right-4 top-4 animate-float-slow [animation-delay:-3s] lg:right-10 lg:top-12">
             <div className="flex items-center gap-2 rounded-full bg-white/90 px-3.5 py-2 shadow-[0_18px_40px_-18px_rgba(15,42,94,0.45)] backdrop-blur">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky text-brand">
@@ -240,7 +253,7 @@ export default function Hero() {
                   <path d="M12 7v5l3 2" />
                 </svg>
               </span>
-              <span className="text-sm font-semibold text-ink">1 nap alatt kész</span>
+              <span className="text-sm font-semibold text-ink">{chipText}</span>
             </div>
           </div>
         </div>
@@ -252,8 +265,8 @@ export default function Hero() {
         <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-cyan/15 blur-3xl" />
         <div className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-brand-light/20 blur-3xl" />
         <dl className="relative mx-auto grid max-w-7xl grid-cols-2 gap-y-10 gap-x-8 px-6 py-12 sm:grid-cols-4">
-          {STATS.map((s) => (
-            <Stat key={s.label} {...s} />
+          {stats.map((s, i) => (
+            <Stat key={`${s.label}-${i}`} {...s} />
           ))}
         </dl>
         <Wave className="text-water" size="md" variant="swell" layers="single" />

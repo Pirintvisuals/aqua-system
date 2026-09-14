@@ -1,0 +1,26 @@
+title: Ismerd meg a csapatunkat
+intro: >-
+  Ők azok, akik nap mint nap azon dolgoznak, hogy biztonságosan, gyorsan és
+  átláthatóan cseréljük le a régi gázkészülékeket.
+members:
+  - name: Nagy Ferenc
+    role: Tulajdonos / Cégvezetés
+    photo: /images/csapat/members/0/photo.png
+  - name: Nagy Andrea
+    role: Tulajdonos / Adminisztráció
+    photo: /images/csapat/members/1/photo.png
+  - name: Szabó Béla
+    role: Műszaki vezető
+    photo: /images/csapat/members/2/photo.png
+  - name: Molnár László
+    role: Műszaki előkészítő
+    photo: /images/csapat/members/3/photo.png
+  - name: Berghammer Balázs
+    role: Szerelő
+    photo: /images/csapat/members/4/photo.png
+  - name: Ozsváth Bálint
+    role: Szerelő
+    photo: /images/csapat/members/5/photo.png
+  - name: Rebbenszki Gábor
+    role: Szerelő
+    photo: /images/csapat/members/6/photo.png

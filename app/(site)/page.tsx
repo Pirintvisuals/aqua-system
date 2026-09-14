@@ -1,4 +1,5 @@
 import Hero from "./components/Hero";
+import RichText from "./components/RichText";
 import Services from "./components/Services";
 import ServicesShowcase from "./components/ServicesShowcase";
 import WhyUs from "./components/WhyUs";
@@ -10,8 +11,13 @@ import Gallery from "./components/Gallery";
 import Faq from "./components/Faq";
 import Contact from "./components/Contact";
 import PriceBand from "./components/PriceBand";
+import { reader } from "./lib/content";
 
-export default function Home() {
+export default async function Home() {
+  const hero = await reader.singletons.homeHero.readOrThrow({
+    resolveLinkedFiles: true,
+  });
+
   return (
     <main className="flex-1">
       {/* ------------------------------------------------------------------ *
@@ -42,7 +48,7 @@ export default function Home() {
        *  fordítani, kulonben ket azonos szekcio er ossze, es abbol lesz a
        *  nagy ures feher sav.
        * ------------------------------------------------------------------ */}
-      <Hero />
+      <Hero {...hero} intro={<RichText node={hero.intro.node} />} />
       <Testimonials />
       <Services />
       <ServicesShowcase />
