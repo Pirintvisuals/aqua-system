@@ -570,3 +570,78 @@ h3,
     }
   }
 }
+
+/* ---------- Jogi szovegek (adatkezeles, aszf, impresszum) ----------
+   Ezek hosszu, szakaszolt szovegek: sima h2/h3/p/ul/li jon a page.tsx-
+   ekbol, ez a blokk adja rajuk a tipografiat, hogy ne kelljen minden
+   bekezdesen Tailwind-osztalyokat ismetelni. */
+.legal-article h2 {
+  margin-top: 2.5rem;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.legal-article > h2:first-child {
+  margin-top: 0;
+}
+
+.legal-article h3 {
+  margin-top: 1.75rem;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.legal-article p {
+  margin-top: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+}
+
+.legal-article ul {
+  margin-top: 0.9rem;
+  padding-left: 1.25rem;
+  list-style-type: disc;
+  color: var(--color-ink-soft);
+}
+
+.legal-article li {
+  margin-top: 0.4rem;
+  line-height: 1.65;
+}
+
+.legal-article li::marker {
+  color: var(--color-brand);
+}
+
+.legal-article strong {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.legal-article a {
+  color: var(--color-brand);
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-sky-200);
+  text-underline-offset: 2px;
+}
+
+.legal-article a:hover {
+  text-decoration-color: var(--color-brand);
+}
+
+.legal-article > .legal-box {
+  margin-top: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--color-sky-200);
+  background-color: var(--color-sky);
+  padding: 1.25rem 1.5rem;
+}
+
+.legal-article > .legal-box p:first-child {
+  margin-top: 0;
+}

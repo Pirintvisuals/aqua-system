@@ -124,6 +124,18 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Aqua System Service Kft. Minden jog fenntartva.</p>
           <p>Egynapos gázkészülék csere · Budapest és agglomeráció</p>
         </div>
+
+        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs text-ink-soft">
+          <Link href="/adatkezelesi-tajekoztato" className="transition-colors hover:text-brand">
+            Adatkezelési tájékoztató
+          </Link>
+          <Link href="/aszf" className="transition-colors hover:text-brand">
+            ÁSZF
+          </Link>
+          <Link href="/impresszum" className="transition-colors hover:text-brand">
+            Impresszum
+          </Link>
+        </div>
       </div>
     </footer>
   );
