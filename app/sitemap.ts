@@ -63,6 +63,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: page("/aquashield-control-projekt"),
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+    {
       url: page("/adatkezelesi-tajekoztato"),
       lastModified,
       changeFrequency: "yearly",

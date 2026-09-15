@@ -54,9 +54,13 @@ export default function ImpresszumPage() {
 
             <h2>Tárhelyszolgáltató</h2>
             <p>
-              Vercel Inc.
+              Websupport Magyarország Kft.
               <br />
-              340 S Lemon Ave #4133, Walnut, CA 91789, USA
+              1119 Budapest, Fehérvári út 97-99.
+              <br />
+              Cégjegyzékszám: 01-09-381419
+              <br />
+              E-mail: <a href="mailto:support@websupport.hu">support@websupport.hu</a>
             </p>
 
             <h2>A weboldalon nyújtott tartalomért felelős</h2>

@@ -1,6 +1,7 @@
 import Image from "next-image-export-optimizer";
 import Link from "next/link";
 import logo from "../assets/logo.png";
+import szechenyiBanner from "../assets/palyazat/szechenyi-terv-plusz.jpg";
 import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
 import { BUSINESS } from "../lib/site";
 
@@ -120,6 +121,20 @@ export default function Footer() {
           </dl>
         </section>
 
+        {/* Pályázati infoblokk - minden oldalon látszik (a főoldalon is),
+            és a projekt aloldalára visz. */}
+        <Link
+          href="/aquashield-control-projekt"
+          className="mt-8 block w-full max-w-sm overflow-hidden rounded-xl border border-sky-200 bg-white transition-shadow hover:shadow-md"
+        >
+          <Image
+            src={szechenyiBanner}
+            alt="Széchenyi Terv Plusz – Az Európai Unió társfinanszírozásával. Tovább a projekt oldalára"
+            sizes="384px"
+            className="h-auto w-full"
+          />
+        </Link>
+
         <div className="mt-8 flex flex-col items-start justify-between gap-3 border-t border-sky-200 pt-6 text-sm text-ink-soft sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} Aqua System Service Kft. Minden jog fenntartva.</p>
           <p>Egynapos gázkészülék csere · Budapest és agglomeráció</p>
@@ -134,6 +149,9 @@ export default function Footer() {
           </Link>
           <Link href="/impresszum" className="transition-colors hover:text-brand">
             Impresszum
+          </Link>
+          <Link href="/aquashield-control-projekt" className="transition-colors hover:text-brand">
+            Uniós pályázat
           </Link>
         </div>
       </div>

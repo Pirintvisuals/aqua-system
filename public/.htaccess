@@ -11,6 +11,20 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # A régi (2012-es WordPress) oldal címei. Tizenkét éve indexeltek, és más
+  # oldalak is linkelnek rájuk: 301-gyel a legközelebbi új oldalra mennek,
+  # így a látogató nem 404-et kap, a Google pedig átviszi a rangsorukat.
+  # Az /aquashield-control-projekt/ nincs itt: az valódi oldal maradt.
+  RewriteRule ^csapatunk/?$ /rolunk/ [R=301,L]
+  RewriteRule ^referenciaink/?$ /munkaink/ [R=301,L]
+  RewriteRule ^(szakteruleteink|viz-gaz-futesszereles|napkollektor|csatornazasi-munkak|kozponti-porszivo-rendszer)/?$ /szolgaltatasok/ [R=301,L]
+  RewriteRule ^teljes-epuletgepeszet/?$ /szolgaltatasok/komplett-gepeszet/ [R=301,L]
+  RewriteRule ^viessmann-kazanok/?$ /szolgaltatasok/egynapos-kazancsere/ [R=301,L]
+  RewriteRule ^altalanos-szerzodesi-feltetelek/?$ /aszf/ [R=301,L]
+  RewriteRule ^(alternativ-eroforrasok|kornyezettudatossag|energia-megtakaritasi-tippek|finanszirozasi-lehetosegek)/?$ /kell-e-uj-kazan/ [R=301,L]
+  RewriteRule ^elerhetoseg/?$ /kapcsolat/ [R=301,L]
+  RewriteRule ^gyakori-kerdesek/?$ / [R=301,L]
+
   # Tartalomszerkesztő: a /keystatic/... címek mind ugyanazt az oldalt töltik
   # be, a szerkesztő maga dönti el, melyik képernyőt mutatja.
   RewriteCond %{REQUEST_FILENAME} !-f
