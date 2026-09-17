@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Lexend, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
@@ -73,6 +74,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Footer />
         <ChatWidget />
         <StickyCta />
+        {/* Website analytics (PostHog): page views, phone/email clicks, forms. Stores nothing in the browser. */}
+        <Script src="/site-analytics.js" data-site="aqua-system" strategy="afterInteractive" />
       </body>
     </html>
   );
