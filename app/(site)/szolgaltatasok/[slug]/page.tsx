@@ -13,8 +13,8 @@ import { CHATBOT_URL, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../../lib/l
 /* ------------------------------------------------------------------ *
  *  Egy szolgáltatás önálló aloldala.
  *
- *  Mind a négy oldal ebből az egy sablonból épül, de a tartalom
- *  szolgáltatásonként más (lásd `app/lib/services.ts`). Így nem négy
+ *  Mindegyik oldal ebből az egy sablonból épül, de a tartalom
+ *  szolgáltatásonként más (lásd `app/lib/services.ts`). Így nem sok
  *  külön fájlt kell karbantartani, viszont mindegyik valódi, önálló,
  *  indexelhető oldal marad.
  * ------------------------------------------------------------------ */
@@ -54,7 +54,9 @@ export default async function ServicePage({
   const service = SERVICES.find((s) => s.slug === slug);
   if (!service) notFound();
 
-  const others = SERVICES.filter((s) => s.slug !== service.slug);
+  /* Csak harom ajanlo kerul a lap aljara: tobb szolgaltatasnal a teljes
+     lista mar nem ajanlo, hanem egy masodik menu lenne. */
+  const others = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -260,6 +262,55 @@ export default async function ServicePage({
           </Reveal>
         </div>
       </section>
+
+      {/* ------------------------------------------------------------------ *
+          SAJAT FOTOK. Nem katalogusbol: ezek a munkak sajat kepei, ezert
+          all mindegyik alatt kepalairas. Ugyanezek a kepek szerepelnek a
+          /munkaink oldalon is, egyetlen forrasbol.
+          ------------------------------------------------------------------ */}
+      {service.gallery && service.gallery.length > 0 && (
+        <section className="py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="max-w-2xl">
+              <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
+                Saját fotók
+              </span>
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+                Így néz ki, amit csinálunk
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-ink-soft">
+                Ezek a képek a saját munkáinkról készültek, nem katalógusból
+                valók.
+              </p>
+            </div>
+
+            <Reveal
+              stagger
+              className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {service.gallery.map((g) => (
+                <figure
+                  key={g.caption}
+                  className="group overflow-hidden rounded-2xl border border-sky-200 bg-white"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={g.img}
+                      alt={g.alt}
+                      placeholder="blur"
+                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <figcaption className="px-5 py-4 text-[15px] font-semibold leading-snug text-ink">
+                    {g.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* ------------------------------------------------------------------ *
           AMIT ÉRDEMES TUDNI. Ez az a szakmai resz, amit a felmeresen

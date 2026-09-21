@@ -5,7 +5,7 @@ import AnimatedHeading from "./AnimatedHeading";
 import { SERVICES } from "../lib/services";
 
 /* ------------------------------------------------------------------ *
- *  Szolgáltatásaink - a négy fő szolgáltatás kártyán, saját
+ *  Szolgáltatásaink - a fő szolgáltatások kártyán, saját
  *  munkafotókkal. A szöveg forrása az `app/lib/services.ts`, ugyanaz,
  *  amiből a /szolgaltatasok aloldal is dolgozik.
  *
@@ -43,7 +43,7 @@ export default function ServicesShowcase() {
 
         <Reveal
           stagger
-          className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {SERVICES.map((s, i) => (
             <article

@@ -6,7 +6,7 @@ import { SERVICES } from "../lib/services";
 /* ------------------------------------------------------------------ *
  *  Ragadós szolgáltatás-navigáció.
  *
- *  A négy szekciót figyeli, és kiemeli azt, amelyik épp a képernyőn
+ *  A szekciókat figyeli, és kiemeli azt, amelyik épp a képernyőn
  *  van. Egyben ugrómenü is. Mobilon vízszintesen görgethető pill-sáv,
  *  desktopon számozott sor - mindkettő a fejléc alá tapad.
  *

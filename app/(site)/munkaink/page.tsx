@@ -34,11 +34,16 @@ export const metadata: Metadata = {
 
 /* Minden saját fotó egy helyen, képaláírással. */
 const GALLERY = [
-  ...SERVICES.filter((s) => s.photo).map((s) => ({
-    img: s.photo!,
-    alt: s.alt,
-    caption: s.title,
-  })),
+  ...SERVICES.flatMap((s) => [
+    ...(s.photo ? [{ img: s.photo, alt: s.alt, caption: s.title }] : []),
+    /* A szolgaltatasok sajat galeriai: egy forrasbol jonnek az aloldallal,
+       tehat egy uj munkafoto itt is magatol megjelenik. */
+    ...(s.gallery ?? []).map((g) => ({
+      img: g.img,
+      alt: g.alt,
+      caption: g.caption,
+    })),
+  ]),
   ...WORK_PHOTOS.map((p) => ({
     img: p.img,
     alt: p.alt,

@@ -7,8 +7,37 @@ import gepeszetVitodens from "../assets/munkak/gepeszet-vitodens.jpg";
 import karbantartas from "../assets/munkak/karbantartas-felulvizsgalat.jpg";
 import vezerlopanel from "../assets/munkak/vezerlopanel.jpg";
 
+/* 2026 nyaran atadott mappak fotoi. A nevek a tartalmat irjak le, hogy
+   kesobb is lehessen tudni, melyik kep mit mutat. */
+import kazancsereRegi from "../assets/munkak/kazancsere-regi-keszulek.jpg";
+import kazancsereBeuzemeles from "../assets/munkak/kazancsere-beuzemeles.jpg";
+import kazancsereGaznyomas from "../assets/munkak/kazancsere-gaznyomas-meres.jpg";
+import kazancsereIszap from "../assets/munkak/kazancsere-iszaplevalaszto.jpg";
+import kazancsereTagulasi from "../assets/munkak/kazancsere-tagulasi-tartaly.jpg";
+import kazancsereValto from "../assets/munkak/kazancsere-hidraulikus-valto.jpg";
+import kazancsereAllo from "../assets/munkak/kazancsere-allo-kazan.jpg";
+import kazancsereKaszkad from "../assets/munkak/kazancsere-kaszkad.jpg";
+import kazancsereIpari from "../assets/munkak/kazancsere-ipari-kazanok.jpg";
+import gepeszetOszto from "../assets/munkak/gepeszet-padlofutes-oszto.jpg";
+import gepeszetPadloKorok from "../assets/munkak/gepeszet-padlofutes-korok.jpg";
+import gepeszetPadloTeritese from "../assets/munkak/gepeszet-padlofutes-teritese.jpg";
+import gepeszetMennyezet from "../assets/munkak/gepeszet-mennyezetfutes-hutes.jpg";
+import gepeszetSzivattyuk from "../assets/munkak/gepeszet-szivattyucsoportok.jpg";
+import gepeszetGazmero from "../assets/munkak/gepeszet-gazmero-szekreny.jpg";
+import gepeszetTerem from "../assets/munkak/gepeszet-gepeszeti-terem.jpg";
+import furdoGeberit from "../assets/munkak/furdoszoba-geberit-tartaly.jpg";
+import furdoFolyoka from "../assets/munkak/furdoszoba-folyoka-alapszereles.jpg";
+import furdoZuhanytalca from "../assets/munkak/furdoszoba-zuhanytalca.jpg";
+import furdoKeszKad from "../assets/munkak/furdoszoba-kesz-kad.jpg";
+import furdoKeszZuhany from "../assets/munkak/furdoszoba-kesz-zuhanykabin.jpg";
+import furdoKeszWc from "../assets/munkak/furdoszoba-kesz-wc-bide.jpg";
+import furdoKeszMosdo from "../assets/munkak/furdoszoba-kesz-mosdo.jpg";
+import napkollektorTeto from "../assets/munkak/napkollektor-tetokollektor.jpg";
+import napkollektorSzivattyu from "../assets/munkak/napkollektor-szivattyucsoport.jpg";
+import telephelyTabla from "../assets/munkak/telephely-viessmann-tabla.jpg";
+
 /* ------------------------------------------------------------------ *
- *  A négy szolgáltatás - EGY forrás a főoldali kártyáknak és a
+ *  A szolgáltatások - EGY forrás a főoldali kártyáknak és a
  *  /szolgaltatasok aloldalnak, hogy a cím és a szöveg ne csússzon szét.
  *
  *  A `photo` mindig valódi, saját munkafotó. A hőszivattyúnál egyelőre
@@ -56,6 +85,12 @@ export type Service = {
   deep?: { title: string; body: string[] }[];
   /** Gyakori kérdések erre a szolgáltatásra. */
   faq?: { q: string; a: string }[];
+  /**
+   * További saját fotók ugyanerről a munkáról. Az aloldal ebből rajzol
+   * galériát, és a /munkaink is ezeket szedi össze - tehát egy új kép
+   * felvétele ide mindkét helyen megjelenik.
+   */
+  gallery?: { img: StaticImageData; alt: string; caption: string }[];
   /** A forrásfotó tájolása - ehhez igazul a képkeret, hogy ne vágjuk szét. */
   orientation: "portrait" | "landscape";
   photo: StaticImageData | null;
@@ -151,6 +186,53 @@ export const SERVICES: Service[] = [
         a: "Gyakorlatilag semmit, csak a szabad hozzáférést a kazánhoz és a kéményhez. A takarítás és a rendrakás a munka része.",
       },
     ],
+    gallery: [
+      {
+        img: kazancsereRegi,
+        alt: "Régi, szekrénybe épített fali gázkazán a csere napján, leszerelés előtt",
+        caption: "A régi készülék, csere előtt",
+      },
+      {
+        img: kazancsereBeuzemeles,
+        alt: "Új Viessmann fali kondenzációs kazán beüzemelése füstgázelemzővel, alatta iszapleválasztó és szűrő",
+        caption: "Beüzemelés füstgázelemzővel",
+      },
+      {
+        img: kazancsereGaznyomas,
+        alt: "Testo 510 nyomásmérő 25,10 mbar gáznyomást mutat a kazán csatlakozásánál",
+        caption: "Gáznyomás mérése átadáskor",
+      },
+      {
+        img: kazancsereIszap,
+        alt: "Kazán alatti szerelvénysor: mágneses iszapleválasztó, automata légtelenítő és elzárók",
+        caption: "Iszapleválasztó és légtelenítő",
+      },
+      {
+        img: kazancsereTagulasi,
+        alt: "Viessmann fali kazán melegvíz-tárolóval és fali tágulási tartállyal egy szűk gépészeti sarokban",
+        caption: "Kazán, tároló, tágulási tartály",
+      },
+      {
+        img: kazancsereValto,
+        alt: "Fali kazán hidraulikus váltóval, melegvíz-tárolóval és rézcsöves bekötéssel",
+        caption: "Hidraulikus váltós bekötés",
+      },
+      {
+        img: kazancsereAllo,
+        alt: "Álló gázkazán új égővel és tágulási tartállyal egy szigetelt csövezésű kazánházban",
+        caption: "Álló kazán cseréje kazánházban",
+      },
+      {
+        img: kazancsereKaszkad,
+        alt: "Két Viessmann fali kondenzációs kazán kaszkádba kötve, sárga gázvezetékkel és osztóval",
+        caption: "Kaszkád: két kazán egy rendszerben",
+      },
+      {
+        img: kazancsereIpari,
+        alt: "Két nagy teljesítményű acél kazántest összeszerelés alatt a műhelyben, égőcsonkkal és pillangószelepekkel",
+        caption: "Nagy teljesítményű kazánok szerelése",
+      },
+    ],
     orientation: "portrait",
     photo: kazancsereTarolo,
     alt: "Frissen beszerelt Viessmann kondenzációs kazán rézcsövezéssel és melegvíz-tárolóval",
@@ -239,9 +321,266 @@ export const SERVICES: Service[] = [
         a: "A kész, de még nem takart rendszert nyomás alá helyezzük, és figyeljük, tartja-e. Ez az a lépés, ami után nyugodtan lehet betonozni és burkolni.",
       },
     ],
+    gallery: [
+      {
+        img: gepeszetOszto,
+        alt: "Padlófűtés osztó-gyűjtője körönként külön szelepekkel, a padlóba futó műanyag csövekkel",
+        caption: "Osztó-gyűjtő, körönként szabályozva",
+      },
+      {
+        img: gepeszetPadloKorok,
+        alt: "Padlófűtés csövei hőszigetelésre és hegesztett hálóra fektetve egy új építésű ház folyosóján",
+        caption: "Padlófűtés csövezése",
+      },
+      {
+        img: gepeszetPadloTeritese,
+        alt: "Sűrűn terített padlófűtés-körök téglafalú helyiségben, a falban víz- és lefolyóvezeték kiállásokkal",
+        caption: "Terítés aljzatbeton előtt",
+      },
+      {
+        img: gepeszetMennyezet,
+        alt: "Mennyezetfűtés-hűtés fémkazettái gipszkarton mennyezetbe építve, a csatlakozó csövekkel",
+        caption: "Mennyezeti fűtés-hűtés",
+      },
+      {
+        img: gepeszetSzivattyuk,
+        alt: "Két kevert fűtési kör szivattyúcsoportja rézcsövezéssel, felette szellőzés légcsatornái",
+        caption: "Kevert körök szivattyúcsoportjai",
+      },
+      {
+        img: gepeszetGazmero,
+        alt: "Telekhatárra állított gázmérő szekrény sárga védőcsőben futó gázvezetékkel",
+        caption: "Gázmérő a telekhatáron",
+      },
+      {
+        img: gepeszetTerem,
+        alt: "Nagyobb épület gépészeti tere: szigetelt acélcsövek, zárószelepek, iszapleválasztó és tágulási tartály",
+        caption: "Nagyobb épület gépészeti tere",
+      },
+    ],
     orientation: "landscape",
     photo: gepeszetCsovezetek,
     alt: "Elkészült kazánház családi házban: Viessmann kazán, puffertartály, Grundfos szivattyúk és rézcsövezés",
+  },
+  {
+    slug: "furdoszoba-vizesblokk",
+    title: "Fürdőszoba gépészet",
+    heading: "Fürdőszobák és vizesblokkok gépészete",
+    teaser:
+      "Falon belüli víz- és lefolyószerelés, falba épített tartály, zuhanyfolyóka – burkolás előtt lezárva.",
+    body: [
+      "A fürdőszoba abból lesz jó vagy rossz, ami később nem látszik: hol fut a víz- és a lefolyóvezeték, milyen lejtéssel megy a folyóka, elbírja-e a fal a falba épített tartályt. Ez mind a burkolás előtt dől el, és utána már csak bontással lehet hozzányúlni.",
+      "Ezért csináljuk végig a vizesblokk gépészetét az alapszereléstől a szaniterek bekötéséig: falba épített WC-tartály, zuhanytálca vagy folyóka, mosdó- és kádbekötés, a meleg- és hidegvíz nyomvonala, a lefolyók lejtése. A takart rendszert burkolás előtt nyomás alá helyezzük, és csak utána engedjük rá a burkolót.",
+    ],
+    includes: [
+      "Víz- és lefolyóvezeték alapszerelés",
+      "Falba épített WC-tartály, szerelőkeret",
+      "Zuhanytálca, zuhanyfolyóka, lejtések",
+      "Mosdó-, kád- és csaptelep bekötés",
+      "Nyomáspróba burkolás előtt",
+      "Szaniterek beépítése, beüzemelés",
+    ],
+    badge: { label: "Burkolás előtt lezárva", icon: "wrench" },
+    intro:
+      "Falon belüli víz- és lefolyószerelés, falba épített tartály, folyóka és szaniterbekötés. A takart rész nyomáspróbával zárul, mielőtt bárki burkolóanyagot venne a kezébe.",
+    facts: [
+      { value: "Nyomáspróba", label: "minden takart vezetéken" },
+      { value: "Dokumentált", label: "nyomvonalak, hogy később is meglegyenek" },
+      { value: "50 év", label: "épületgépészeti tapasztalat" },
+    ],
+    who: [
+      "Fürdőszoba-felújítás, ahol a régi vezetékek is mennek",
+      "Új építés, ahol most készül a vizesblokk",
+      "Kád helyére zuhany, folyókával, síkba süllyesztve",
+      "Falba épített WC-tartály, felfüggesztett szaniterek",
+    ],
+    steps: [
+      {
+        title: "Felmérés és kiosztás",
+        body: "Megbeszéljük, mi hova kerül: mosdó, WC, zuhany, kád, mosógép. Ebből lesz a nyomvonal, és itt derül ki, mit bír a meglévő lefolyóállás.",
+      },
+      {
+        title: "Bontás, alapszerelés",
+        body: "Kibontjuk a régi vezetékeket, kiépítjük a hideg- és melegvíz nyomvonalát, a lefolyókat a megfelelő lejtéssel, és beállítjuk a szerelőkeretet.",
+      },
+      {
+        title: "Nyomáspróba",
+        body: "A kész, de még takaratlan rendszert nyomás alá helyezzük, és figyeljük, tartja-e. Csak ezután jöhet a burkoló.",
+      },
+      {
+        title: "Szaniterek bekötése",
+        body: "A kész burkolatba beépítjük és bekötjük a szanitereket és a csaptelepeket, majd végigpróbáljuk az egészet: folyás, lefolyás, melegvíz.",
+      },
+    ],
+    deep: [
+      {
+        title: "A lejtés és a folyóka nem esztétikai kérdés",
+        body: [
+          "Egy síkba süllyesztett zuhanyfolyókánál a burkolat lejtése, a folyóka magassága és a lefolyócső esése egyetlen összefüggő geometria. Ha ez a három nincs összehangolva még az alapszerelésnél, a kész fürdőben fog megállni a víz – és onnan már csak a burkolat bontásával lehet javítani.",
+          "Ezért rögzítjük a folyóka szintjét pontosan a tervezett burkolatvastagsághoz, és ezért egyeztetünk a burkolóval még azelőtt, hogy bármit betakarnánk. Ugyanez igaz a falba épített tartály szerelőkeretére: a kifolyó és a nyomógomb helye a burkolat síkjához méretezett.",
+        ],
+      },
+      {
+        title: "Amit a burkolat alatt hagyunk, az tíz évre ott marad",
+        body: [
+          "A fürdőszoba gépészetének nagy része a falban és az aljzatban tűnik el. Ezért a nyomvonalakat lefotózzuk és dokumentáljuk, mielőtt betakarnánk: tíz év múlva egy fúrás előtt ez a néhány kép ér a legtöbbet.",
+          "És ezért nem hagyunk ki nyomáspróbát soha, akkor sem, ha sürget a határidő. Egy szivárgó kötés a burkolat alatt nem a mi költségünk lesz, hanem a kész fürdőszobáé.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Burkolást és bútorozást is vállaltok?",
+        a: "A gépészeti részt visszük: a falon belüli víz- és lefolyószerelést, a szerelőkeretet, a folyókát és a szaniterek bekötését. A burkolásról és a bútorozásról a felmérésen beszéljünk, mert az a munka ütemezésétől is függ.",
+      },
+      {
+        q: "Meddig tart, amíg nem lehet használni a fürdőt?",
+        a: "Az alapszerelés maga néhány nap, de a teljes átfutást a burkolás és a kötési idők adják hozzá. A felmérés után tudunk konkrét ütemtervet mondani, nem becslést.",
+      },
+      {
+        q: "Lehet a kád helyére zuhanyt tenni?",
+        a: "A legtöbbször igen, de a lefolyóállás és a padlószerkezet magassága szab határt, főleg síkba süllyesztett folyókánál. Ezt a felmérésen mérjük meg, mielőtt bármit ígérnénk.",
+      },
+      {
+        q: "Mi történik, ha a bontás után derül ki valami?",
+        a: "Régi háznál ez előfordul: korrodált vezeték, rossz lejtésű lefolyóállás. Ilyenkor szólunk, megmutatjuk, és megbeszéljük az árat, mielőtt tovább dolgoznánk. Nem utólag kerül a számlára.",
+      },
+    ],
+    gallery: [
+      {
+        img: furdoGeberit,
+        alt: "Geberit falba épített WC-tartály szerelőkerettel, csatlakoztatott víz- és lefolyóvezetékkel, burkolás előtt",
+        caption: "Falba épített tartály, burkolás előtt",
+      },
+      {
+        img: furdoFolyoka,
+        alt: "Zuhanyfolyóka beállítva az aljzatban, körülötte védőcsőben futó hideg- és melegvíz vezeték",
+        caption: "Zuhanyfolyóka és vezetékek az aljzatban",
+      },
+      {
+        img: furdoZuhanytalca,
+        alt: "Beépített zuhanytálca a burkolt falak között, a falban elhelyezett falsík alatti csaptelepekkel",
+        caption: "Zuhanytálca beépítve",
+      },
+      {
+        img: furdoKeszZuhany,
+        alt: "Elkészült fürdőszoba zuhanykabinnal, falba épített WC-tartállyal és beépített mosógéppel",
+        caption: "Az elkészült fürdőszoba",
+      },
+      {
+        img: furdoKeszWc,
+        alt: "Felfüggesztett WC és bidé bekötve, felettük falsík alatti nyomólappal",
+        caption: "Felfüggesztett WC és bidé",
+      },
+      {
+        img: furdoKeszKad,
+        alt: "Beépített kád falsík alatti csaptelepekkel egy elkészült fürdőszobában",
+        caption: "Kád falsík alatti csaptelepekkel",
+      },
+      {
+        img: furdoKeszMosdo,
+        alt: "Bekötött mosdó alsószekrénnyel és kerek tükörrel egy elkészült vendégmosdóban",
+        caption: "Mosdó bekötve, készen",
+      },
+    ],
+    orientation: "landscape",
+    photo: furdoKeszKad,
+    alt: "Elkészült fürdőszoba beépített káddal és falsík alatti csaptelepekkel",
+  },
+  {
+    slug: "napkollektor-vezerles",
+    title: "Napkollektor és vezérlés",
+    heading: "Napkollektoros melegvíz és fűtésvezérlés",
+    teaser:
+      "Napkollektor a tetőre, szivattyúcsoport és szabályozás a kazánházba – egy rendszerbe hangolva.",
+    body: [
+      "A napkollektor önmagában csak egy lemez a tetőn. Attól lesz belőle működő rendszer, ami a kazánházban van: a szivattyúcsoport, a hőcserélős tároló és a szabályozás, ami eldönti, mikor melyik forrás fűtse a melegvizet. Ha ez a rész rosszul van hangolva, a kazán ráfűt a napra, és pont a megtakarítás vész el.",
+      "Ezt a részt csináljuk mi: a kollektor felhelyezését és bekötését, a fagyálló közeg töltését, a szivattyúcsoportot és az elzárókat, valamint a vezérlés beállítását úgy, hogy a kazán csak akkor lépjen be, amikor a nap már nem elég. Meglévő napkollektoros rendszer felülvizsgálatát és szabályozáscseréjét is vállaljuk.",
+    ],
+    includes: [
+      "Kollektor felhelyezése, tetőátvezetés",
+      "Szolár szivattyúcsoport, tágulási tartály",
+      "Hőcserélős melegvíz-tároló bekötése",
+      "Fagyálló közeg töltése, légtelenítés",
+      "Vezérlés beállítása kazánnal együtt",
+      "Meglévő rendszer felülvizsgálata",
+    ],
+    badge: { label: "Kollektor és kazán egy vezérlésen", icon: "leaf" },
+    intro:
+      "Kollektor a tetőn, szivattyúcsoport és szabályozás a kazánházban. Úgy hangolva, hogy a kazán csak akkor lépjen be, amikor a nap már nem elég.",
+    facts: [
+      { value: "Melegvíz", label: "a napsütéses hónapok nagy részében" },
+      { value: "Egy vezérlés", label: "kollektor, kazán és tároló együtt" },
+      { value: "Felülvizsgálat", label: "meglévő rendszerre is" },
+    ],
+    who: [
+      "Csökkentenéd a melegvíz gázköltségét",
+      "Van már kollektorod, de nem tudod, jól működik-e",
+      "A szolár szabályozás elromlott vagy elavult",
+      "Új rendszer épül, és a kollektor is benne van a tervben",
+    ],
+    steps: [
+      {
+        title: "Felmérés a tetőn és a kazánházban",
+        body: "Megnézzük a tető tájolását és állapotát, a kazánházban pedig azt, hova fér a tároló és a szivattyúcsoport. Ebből jön ki, hány kollektor fér el és mennyi az értelme.",
+      },
+      {
+        title: "Kollektor és tetőátvezetés",
+        body: "Felhelyezzük a kollektort a tartószerkezetre, és megcsináljuk a tetőátvezetést. A cél, hogy a tető ugyanúgy zárjon, ahogy előtte.",
+      },
+      {
+        title: "Szivattyúcsoport és tároló",
+        body: "Bekötjük a hőcserélős tárolót és a szolárkört: szivattyúcsoport, tágulási tartály, elzárók. Feltöltjük fagyálló közeggel és légtelenítünk.",
+      },
+      {
+        title: "Vezérlés beállítása",
+        body: "Beállítjuk a szabályozást, hogy a kazán csak akkor fűtsön rá, ha a kollektor már nem hozza a hőmérsékletet. Ezután megmutatjuk a kezelését.",
+      },
+    ],
+    deep: [
+      {
+        title: "A szabályozás dönti el, mennyit spórolsz",
+        body: [
+          "Egy szolárrendszer megtakarítása nem elsősorban a kollektor méretén múlik, hanem azon, mikor kapcsol be a kazán. Ha a vezérlés túl korán fűt rá a tárolóra, a nap által ingyen felmelegített víz helyett gázt égetsz – a kollektor meg ott van a tetőn feleslegesen.",
+          "Ezért kötjük a kollektort, a tárolót és a kazánt egy szabályozásra, és ezért a beüzemelés nem ér véget a bekapcsolással. A melegvizes határhőmérsékleteket a helyszínen állítjuk be, a tényleges fogyasztáshoz.",
+        ],
+      },
+      {
+        title: "A fagyálló közeg évekig dolgozik, de nem örökké",
+        body: [
+          "A szolárkörben nem víz kering, hanem fagyálló hőhordozó közeg. Ez nyáron rendszeresen forráspont közeli hőmérsékletet lát, és az évek alatt elöregszik: veszít a fagyállóságából és savasodni kezd, ami a hőcserélőt és a szivattyút eszi.",
+          "Egy régebbi rendszernél ezért az első dolog, amit megnézünk, a közeg állapota és a szolárkör nyomása – meg a tágulási tartály előnyomása. Sok esetben nem a kollektorral van baj, hanem ezekkel.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Elég a napkollektor a melegvízhez egész évben?",
+        a: "A napsütéses hónapokban a melegvíz nagy részét tudja adni, télen viszont kiegészítésre szorul. Ezért marad a rendszerben a kazán vagy a villanybojler, csak jóval kevesebbet dolgozik.",
+      },
+      {
+        q: "Napkollektor vagy napelem?",
+        a: "Nem ugyanaz: a napkollektor közvetlenül vizet melegít, a napelem áramot termel. Melegvízre a kollektor a közvetlenebb út, de a döntés a háztól és a meglévő rendszertől függ – a felmérésen ezt végigbeszéljük.",
+      },
+      {
+        q: "Meglévő kollektoros rendszert felülvizsgáltok?",
+        a: "Igen. A fagyálló közeg állapotát, a szolárkör nyomását, a tágulási tartályt és a vezérlés beállítását nézzük át. Elavult szabályozást cserélni is tudunk.",
+      },
+      {
+        q: "Rá lehet kötni a meglévő kazánomra?",
+        a: "Ha a melegvíz-tárolóban van szabad hőcserélő, vagy cserélhető a tároló, akkor igen. Ezt a felmérésen, a helyszínen döntjük el, mert a tároló típusán múlik.",
+      },
+    ],
+    gallery: [
+      {
+        img: napkollektorSzivattyu,
+        alt: "Szolár szivattyúcsoport rézcsövezéssel és vezérlődobozzal egy kazánház falán",
+        caption: "Szivattyúcsoport és vezérlés",
+      },
+    ],
+    orientation: "portrait",
+    photo: napkollektorTeto,
+    alt: "Két síkkollektor cserépfedésű családi ház tetején, a kémény mellett",
   },
   {
     slug: "atalanydijas-karbantartas",
@@ -448,5 +787,9 @@ export const WORK_PHOTOS = [
   {
     img: vezerlopanel,
     alt: "Kazán magyar nyelvű vezérlőpanelje beüzemelés közben, 42 fokos kazánhőmérséklettel",
+  },
+  {
+    img: telephelyTabla,
+    alt: "Az Aqua System Service Kft. Viessmann-emblémás oszloptáblája a telephely bejáratánál",
   },
 ];

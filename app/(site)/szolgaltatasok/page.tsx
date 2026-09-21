@@ -12,8 +12,8 @@ import gepeszetKazanhaz from "../assets/munkak/gepeszet-kazanhaz.jpg";
  *  Szolgáltatások gyűjtőoldala.
  *
  *  Mostantól index: minden szolgáltatásnak SAJÁT aloldala van, itt csak
- *  a felvezetés és a négy belépő áll. Így a részletes tartalom nem egy
- *  végtelen görgetésű oldalon torlódik, és mind a négy téma külön
+ *  a felvezetés és a belépők állnak. Így a részletes tartalom nem egy
+ *  végtelen görgetésű oldalon torlódik, és minden téma külön
  *  indexelhető, külön linkelhető.
  * ------------------------------------------------------------------ */
 
@@ -54,8 +54,8 @@ export default function SzolgaltatasokPage() {
 
       <PageHero
         eyebrow="Szolgáltatásaink"
-        title="Négy dolog, amiben otthon vagyunk"
-        intro="A kazáncserétől a teljes házgépészetig. Ugyanaz a csapat, ugyanaz a mérce, és minden munkánál egy felelős, akit fel tudsz hívni."
+        title="Amiben otthon vagyunk"
+        intro="A kazáncserétől a fürdőszoba gépészetén át a teljes házgépészetig. Ugyanaz a csapat, ugyanaz a mérce, és minden munkánál egy felelős, akit fel tudsz hívni."
         image={gepeszetKazanhaz}
         imageAlt="Elkészült kazánház fali kazánnal, melegvíz-tárolóval és puffertartállyal"
         badge={{ value: "50 éve", label: "a szakmában" }}
@@ -65,7 +65,7 @@ export default function SzolgaltatasokPage() {
         ]}
       />
 
-      {/* BEVEZETŐ. Egy bekezdes arrol, hogyan all ossze ez a negy dolog,
+      {/* BEVEZETŐ. Egy bekezdes arrol, hogyan all ossze mindez,
           es hol a hatarunk: cseret vallalunk, javitast nem. */}
       <section className="relative bg-water pt-16 pb-6 lg:pt-20">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 lg:grid-cols-2 lg:gap-12">
@@ -103,7 +103,7 @@ export default function SzolgaltatasokPage() {
         </div>
       </section>
 
-      {/* NÉGY BELÉPŐ. Váltakozó, széles sorok, nem egyforma kártyák. */}
+      {/* BELÉPŐK. Váltakozó, széles sorok, nem egyforma kártyák. */}
       <section className="pb-20 pt-10 lg:pb-28">
         <div className="mx-auto max-w-7xl space-y-6 px-6">
           {SERVICES.map((s, i) => (
