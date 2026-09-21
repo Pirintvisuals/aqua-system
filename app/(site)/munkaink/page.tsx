@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next-image-export-optimizer";
 import Link from "next/link";
 import PageHero from "../components/PageHero";
 import CtaBand from "../components/CtaBand";
-import Reveal from "../components/Reveal";
+import WorkGallery from "../components/WorkGallery";
+import type { WorkItem } from "../components/WorkGallery";
 import { SERVICES, WORK_PHOTOS } from "../lib/services";
 import { LOCATIONS } from "../lib/locations";
 import { BUSINESS } from "../lib/site";
@@ -32,22 +32,27 @@ export const metadata: Metadata = {
   },
 };
 
-/* Minden saját fotó egy helyen, képaláírással. */
-const GALLERY = [
+/* Minden sajat foto egy helyen, kepalairassal es azzal, melyik
+   szolgaltatashoz tartozik - ez utobbi adja a galeria szuroit. */
+const GALLERY: WorkItem[] = [
   ...SERVICES.flatMap((s) => [
-    ...(s.photo ? [{ img: s.photo, alt: s.alt, caption: s.title }] : []),
+    ...(s.photo
+      ? [{ img: s.photo, alt: s.alt, caption: s.title, group: s.title }]
+      : []),
     /* A szolgaltatasok sajat galeriai: egy forrasbol jonnek az aloldallal,
        tehat egy uj munkafoto itt is magatol megjelenik. */
     ...(s.gallery ?? []).map((g) => ({
       img: g.img,
       alt: g.alt,
       caption: g.caption,
+      group: s.title,
     })),
   ]),
   ...WORK_PHOTOS.map((p) => ({
     img: p.img,
     alt: p.alt,
     caption: p.alt.split(":")[0].split(",")[0],
+    group: "Kazánház, egyéb",
   })),
 ];
 
@@ -67,41 +72,20 @@ export default function MunkainkPage() {
         ]}
       />
 
-      {/* GALÉRIA */}
+      {/* GALÉRIA. A rács és a nagykép a WorkGallery-ben él, mert azok
+          bongeszo-oldali allapotok; a kepek listaja innen, a szerverrol
+          megy at kesz adatkent. */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-6">
-          <Reveal
-            stagger
-            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {GALLERY.map((g, i) => (
-              <figure
-                key={`${g.caption}-${i}`}
-                className={`group relative overflow-hidden rounded-2xl border border-sky-200 bg-white ${
-                  i === 0 ? "sm:col-span-2 sm:row-span-2" : ""
-                }`}
-              >
-                <div
-                  className={`relative ${i === 0 ? "aspect-[4/3] sm:h-full" : "aspect-[4/3]"}`}
-                >
-                  <Image
-                    src={g.img}
-                    alt={g.alt}
-                    placeholder="blur"
-                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 33vw"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent"
-                  aria-hidden="true"
-                />
-                <figcaption className="absolute bottom-0 left-0 p-5 text-base font-semibold text-white drop-shadow">
-                  {g.caption}
-                </figcaption>
-              </figure>
-            ))}
-          </Reveal>
+          <div className="mb-8 max-w-2xl">
+            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
+              Galéria
+            </span>
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Szűrd le arra, ami téged érdekel
+            </h2>
+          </div>
+          <WorkGallery items={GALLERY} />
         </div>
       </section>
 
