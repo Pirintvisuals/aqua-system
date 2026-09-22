@@ -60,8 +60,10 @@ export default function ServicesShowcase() {
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
-                  /* Hőszivattyú - még nincs saját fotónk, ezért jelzés
-                     értékű rajz áll itt kazánfotó helyett. */
+                  /* Tartalék: ha egy szolgáltatásnak még nincs saját
+                     munkafotója, jelzés értékű rajz áll a helyén.
+                     Stock- vagy más munkáról készült fotót ne tegyünk
+                     ide, mert az azt állítaná, hogy a mi munkánk. */
                   <div className="relative flex h-full w-full items-center justify-center">
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky via-white to-sky/60" aria-hidden="true" />
                     <svg className="relative h-16 w-16 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

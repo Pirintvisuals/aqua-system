@@ -40,11 +40,16 @@ import telephelyTabla from "../assets/munkak/telephely-viessmann-tabla.jpg";
  *  A szolgáltatások - EGY forrás a főoldali kártyáknak és a
  *  /szolgaltatasok aloldalnak, hogy a cím és a szöveg ne csússzon szét.
  *
- *  A `photo` mindig valódi, saját munkafotó. A hőszivattyúnál egyelőre
- *  NINCS saját fotó, ezért ott `photo: null` - a felület rajzolt
- *  illusztrációt mutat helyette. Ne tegyünk oda kazánfotót: a
- *  látogatónak félrevezető lenne. Amint van hőszivattyús fotó, elég
- *  ide beimportálni.
+ *  A `photo` es a `gallery` mindig valódi, saját munkafotó, és minden kép
+ *  EGY szolgáltatásnál szerepel. Így az aloldalak nem ugyanazt a néhány
+ *  képet ismétlik, a /munkaink szűrője pedig tényleg szűr.
+ *
+ *  A hőszivattyúnál nincs saját fotónk kültéri egységről, ezért ott a
+ *  hidraulika és az alacsony hőmérsékletű leadók képei állnak - ezt a
+ *  részt tényleg mi építjük. Kazánfotót NE tegyünk oda, és a
+ *  `galleryNote` mondja is ki, mi látszik a képeken. A `photo: null`
+ *  ág a típusban és a felületeken marad, hogy egy új szolgáltatás
+ *  indulhasson fotó nélkül is.
  * ------------------------------------------------------------------ */
 
 export type Service = {
@@ -91,6 +96,13 @@ export type Service = {
    * felvétele ide mindkét helyen megjelenik.
    */
   gallery?: { img: StaticImageData; alt: string; caption: string }[];
+  /**
+   * Egy mondat a galéria fölé, ha a képek magyarázatra szorulnak - például
+   * mert a munkának pont azt a részét mutatják, amit mi csinálunk, és nem
+   * a kész, teljes végeredményt. Inkább leírjuk, mint hogy a látogató
+   * mást gondoljon róla, mint ami.
+   */
+  galleryNote?: string;
   /** A forrásfotó tájolása - ehhez igazul a képkeret, hogy ne vágjuk szét. */
   orientation: "portrait" | "landscape";
   photo: StaticImageData | null;
@@ -185,6 +197,10 @@ export const SERVICES: Service[] = [
         q: "Mit kell előkészítenem a csere napjára?",
         a: "Gyakorlatilag semmit, csak a szabad hozzáférést a kazánhoz és a kéményhez. A takarítás és a rendrakás a munka része.",
       },
+      {
+        q: "Társasházi vagy ipari kazánházat is cseréltek?",
+        a: "Igen, és szeretjük is ezeket a munkákat: kaszkád, álló acélkazán, teljes kazánház-felújítás. Eddigi legnagyobb rendszerünk 2400 kW beépített teljesítmény volt. Ezt külön oldalon írtuk le, a társasházi és ipari kazánházaknál.",
+      },
     ],
     gallery: [
       {
@@ -213,24 +229,9 @@ export const SERVICES: Service[] = [
         caption: "Kazán, tároló, tágulási tartály",
       },
       {
-        img: kazancsereValto,
-        alt: "Fali kazán hidraulikus váltóval, melegvíz-tárolóval és rézcsöves bekötéssel",
-        caption: "Hidraulikus váltós bekötés",
-      },
-      {
-        img: kazancsereAllo,
-        alt: "Álló gázkazán új égővel és tágulási tartállyal egy szigetelt csövezésű kazánházban",
-        caption: "Álló kazán cseréje kazánházban",
-      },
-      {
-        img: kazancsereKaszkad,
-        alt: "Két Viessmann fali kondenzációs kazán kaszkádba kötve, sárga gázvezetékkel és osztóval",
-        caption: "Kaszkád: két kazán egy rendszerben",
-      },
-      {
-        img: kazancsereIpari,
-        alt: "Két nagy teljesítményű acél kazántest összeszerelés alatt a műhelyben, égőcsonkkal és pillangószelepekkel",
-        caption: "Nagy teljesítményű kazánok szerelése",
+        img: kazancsereErgas,
+        alt: "Beüzemelt Viessmann kondenzációs kazán 70 fokos előremenő hőmérséklettel, mellette melegvíz-tároló és tágulási tartály",
+        caption: "Kazán és tároló, átadás napján",
       },
     ],
     orientation: "portrait",
@@ -333,34 +334,145 @@ export const SERVICES: Service[] = [
         caption: "Padlófűtés csövezése",
       },
       {
-        img: gepeszetPadloTeritese,
-        alt: "Sűrűn terített padlófűtés-körök téglafalú helyiségben, a falban víz- és lefolyóvezeték kiállásokkal",
-        caption: "Terítés aljzatbeton előtt",
-      },
-      {
-        img: gepeszetMennyezet,
-        alt: "Mennyezetfűtés-hűtés fémkazettái gipszkarton mennyezetbe építve, a csatlakozó csövekkel",
-        caption: "Mennyezeti fűtés-hűtés",
-      },
-      {
-        img: gepeszetSzivattyuk,
-        alt: "Két kevert fűtési kör szivattyúcsoportja rézcsövezéssel, felette szellőzés légcsatornái",
-        caption: "Kevert körök szivattyúcsoportjai",
-      },
-      {
         img: gepeszetGazmero,
         alt: "Telekhatárra állított gázmérő szekrény sárga védőcsőben futó gázvezetékkel",
         caption: "Gázmérő a telekhatáron",
       },
       {
-        img: gepeszetTerem,
-        alt: "Nagyobb épület gépészeti tere: szigetelt acélcsövek, zárószelepek, iszapleválasztó és tágulási tartály",
-        caption: "Nagyobb épület gépészeti tere",
+        img: gepeszetKazanhaz,
+        alt: "Családi ház kazánháza: fali kazán, melegvíz-tároló és puffertartály bekötve",
+        caption: "Kazánház: kazán, puffer, tároló",
+      },
+      {
+        img: gepeszetVitodens,
+        alt: "Viessmann Vitodens 200 kazán szivattyúkkal és osztó-gyűjtővel egy gépészeti helyiségben",
+        caption: "Kazán, szivattyúk, osztó-gyűjtő",
       },
     ],
     orientation: "landscape",
     photo: gepeszetCsovezetek,
     alt: "Elkészült kazánház családi házban: Viessmann kazán, puffertartály, Grundfos szivattyúk és rézcsövezés",
+  },
+  {
+    slug: "tarsashazi-ipari-kazanhaz",
+    title: "Társasházi és ipari kazánház",
+    heading: "Társasházi és ipari kazánházak",
+    teaser:
+      "Kaszkád, álló acélkazán, teljes kazánház-felújítás – társasházban, iskolában, üzemben. Eddigi legnagyobbunk 2400 kW.",
+    body: [
+      "A nagy kazánházat nálunk ugyanaz a csapat csinálja, mint a családi házit – csak más léptékben. Kaszkádba kötött fali kondenzációs kazánok, álló acélkazán saját égővel, osztó-gyűjtő, szekunder körök, hidraulikus váltó, szivattyúcsoportok és a hozzájuk tartozó szabályozás. Eddigi legnagyobb munkánk 2400 kW beépített teljesítmény volt, de sok társasházat és iskolát is csináltunk.",
+      "Ezeknél a munkáknál nem a készülék a nehéz rész, hanem az ütemezés és a hidraulika. Egy társasház nem maradhat hetekig melegvíz nélkül, egy iskolában pedig a nyári szünet a teljes rendelkezésre álló idő. Ezért a nagy cseréket előre ütemezzük, a szerelvényeket a bontás előtt beszerezzük, és szakaszolva dolgozunk, ahol erre szükség van.",
+    ],
+    includes: [
+      "Felmérés, teljesítményszámítás, koncepció",
+      "Kaszkád vagy álló acélkazán telepítése",
+      "Osztó-gyűjtő, szekunder körök, hidraulikus váltó",
+      "Szivattyúcsoportok, szabályozás, időprogramok",
+      "Gázvezeték, égéstermék-elvezetés, engedélyeztetés",
+      "Ütemezett kivitelezés, szakaszos leállással",
+    ],
+    badge: { label: "2400 kW-ig épített rendszer", icon: "wrench" },
+    intro:
+      "Kaszkád, álló acélkazán, teljes kazánház-felújítás társasházban, iskolában és üzemben. Ugyanaz a csapat, mint a családi házaknál, csak nagyobb léptékben.",
+    facts: [
+      { value: "2400 kW", label: "az eddigi legnagyobb rendszerünk" },
+      { value: "Társasház, iskola", label: "a leggyakoribb megbízóink" },
+      { value: "50 év", label: "épületgépészeti tapasztalat" },
+    ],
+    who: [
+      "Társasházi kazánház elöregedett, és közgyűlés előtt álltok",
+      "Iskola, óvoda vagy önkormányzati épület kazánháza cserére érett",
+      "Üzemi, ipari hőellátás kell, saját égős acélkazánnal",
+      "Kaszkádot terveztek, de kell valaki, aki a hidraulikát is megcsinálja",
+    ],
+    steps: [
+      {
+        title: "Felmérés és teljesítmény",
+        body: "Megnézzük a meglévő kazánházat, a hőigényt és a leadókat. Ebből jön ki, hogy kaszkád vagy álló kazán a jó irány, és mekkora teljesítmény kell valójában – a régi gép mérete önmagában nem mérvadó.",
+      },
+      {
+        title: "Koncepció és ütemterv",
+        body: "Megtervezzük a hidraulikát, a szekunder köröket és a szabályozást, majd hozzá az ütemtervet: mikor, mennyi időre áll le a fűtés vagy a melegvíz. Ezt a döntés előtt tudni kell.",
+      },
+      {
+        title: "Bontás és szerelés",
+        body: "A szerelvények a bontás előtt megvannak. Bontjuk a régit, megépítjük az új kazánházat: kazán, osztó-gyűjtő, váltó, szivattyúcsoportok, csővezetékek, szigetelés.",
+      },
+      {
+        title: "Beüzemelés és átadás",
+        body: "Beüzemelés, égésbeállítás, körök beszabályozása, szabályozás és időprogramok. Átadás dokumentációval, és megmutatjuk a gondnoknak vagy az üzemeltetőnek, hogyan kezelje.",
+      },
+    ],
+    deep: [
+      {
+        title: "Kaszkád vagy egy nagy kazán",
+        body: [
+          "Nagy épületben ritkán jó megoldás egyetlen, a csúcsigényre méretezett kazán. A fűtési idény nagy részében a rendszer a névleges teljesítmény töredékét kéri, és egy nagy készülék ebben a tartományban rosszul modulál: sokat indul és leáll, ami a hatásfokot és az élettartamot is viszi.",
+          "Kaszkádnál több kisebb kondenzációs kazán dolgozik egy vezérlésen, és mindig csak annyi lép be, amennyi kell. Van, ahol viszont az álló acélkazán a jó válasz: nagy víztérfogat, saját égő, magasabb hőmérsékletű, régi radiátoros hálózat. A felmérésen ez az egyik első kérdés, amit eldöntünk.",
+        ],
+      },
+      {
+        title: "A leállás ideje is a munka része",
+        body: [
+          "Egy társasházban vagy iskolában nem az a kérdés, hogy megépíthető-e az új kazánház, hanem hogy mennyi ideig lesz hideg és mikor. Ezért a nagy munkáknál az ütemterv ugyanolyan fontos, mint a rajz: mi kerül be a bontás előtt, mit lehet előre megszerelni, és hol érdemes szakaszolni, hogy a melegvíz közben menjen.",
+          "Ezt a részt a döntés előtt beszéljük végig, nem a bontás után. A társasházi közgyűlésnek is ezzel a számmal kell tudnia szavazni.",
+        ],
+      },
+      {
+        title: "Ami a kazánon kívül van",
+        body: [
+          "Nagy rendszernél a kazánházi cső, a zárószelepek, az iszapleválasztó, a tágulási tartály és a szivattyúk állapota legalább annyit számít, mint a kazáné. Egy új kazán egy elöregedett, iszapos hálózaton nem fog jobban működni, csak drágábban romlik el.",
+          "Ezért a felmérésen a teljes gépészeti teret átnézzük, és megmondjuk, mit érdemes a cserével együtt megcsinálni – és mit nem kell. Az előbbi olcsóbb most, az utóbbin nem fogunk árat emelni.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Mekkora a legnagyobb rendszer, amit csináltatok?",
+        a: "2400 kW beépített teljesítmény. Ezen kívül sok társasházi és iskolai kazánházat építettünk át, a néhány száz kW-os tartományban.",
+      },
+      {
+        q: "Meddig marad a ház fűtés vagy melegvíz nélkül?",
+        a: "Ez a munka méretétől és attól függ, lehet-e szakaszolni. Épp ezért adunk ütemtervet a döntés előtt: a leállás hossza és időpontja ugyanúgy része az ajánlatnak, mint az ár.",
+      },
+      {
+        q: "Társasházi közgyűléshez adtok anyagot?",
+        a: "Igen. A felmérés után írásos ajánlatot és műszaki leírást adunk, amit a közös képviselő a közgyűlés elé tud vinni. Kérdéseket is szívesen megválaszolunk a döntés előtt.",
+      },
+      {
+        q: "Az égéstermék-elvezetést és az engedélyeket is intézitek?",
+        a: "Igen, a tervdokumentáció, a gázszolgáltatói ügyintézés és az égéstermék-elvezetés kialakítása is a munka része. Gázkészüléket ebben a méretben is csak regisztrált gázszerelő szerelhet.",
+      },
+      {
+        q: "Karbantartási szerződést is lehet rá kötni?",
+        a: "Igen, és nagy rendszernél kifejezetten érdemes. Több készüléknél külön ütemtervet készítünk, hogy ne egyszerre és ne a szezon közepén legyen esedékes minden.",
+      },
+    ],
+    gallery: [
+      {
+        img: kazancsereIpari,
+        alt: "Két nagy teljesítményű acél kazántest összeszerelés alatt a műhelyben, égőcsonkkal és pillangószelepekkel",
+        caption: "Nagy teljesítményű kazánok szerelése",
+      },
+      {
+        img: kazancsereAllo,
+        alt: "Álló gázkazán új égővel és tágulási tartállyal egy szigetelt csövezésű kazánházban",
+        caption: "Álló kazán cseréje kazánházban",
+      },
+      {
+        img: kazancsereKaszkad,
+        alt: "Két Viessmann fali kondenzációs kazán kaszkádba kötve, sárga gázvezetékkel és acél osztóval",
+        caption: "Kaszkád: két kazán egy rendszerben",
+      },
+      {
+        img: gepeszetTerem,
+        alt: "Nagyobb épület gépészeti tere: szigetelt acélcsövek, karimás zárószelepek, iszapleválasztó és tágulási tartály",
+        caption: "Nagyobb épület gépészeti tere",
+      },
+    ],
+    orientation: "portrait",
+    photo: kazancsereIpari,
+    alt: "Két nagy teljesítményű acél kazántest összeszerelés alatt a műhelyben",
   },
   {
     slug: "furdoszoba-vizesblokk",
@@ -371,12 +483,14 @@ export const SERVICES: Service[] = [
     body: [
       "A fürdőszoba abból lesz jó vagy rossz, ami később nem látszik: hol fut a víz- és a lefolyóvezeték, milyen lejtéssel megy a folyóka, elbírja-e a fal a falba épített tartályt. Ez mind a burkolás előtt dől el, és utána már csak bontással lehet hozzányúlni.",
       "Ezért csináljuk végig a vizesblokk gépészetét az alapszereléstől a szaniterek bekötéséig: falba épített WC-tartály, zuhanytálca vagy folyóka, mosdó- és kádbekötés, a meleg- és hidegvíz nyomvonala, a lefolyók lejtése. A takart rendszert burkolás előtt nyomás alá helyezzük, és csak utána engedjük rá a burkolót.",
+      "Burkolást nem vállalunk – arra a burkolóval egyeztetünk, mert a folyóka és a szerelőkeret magassága az ő rétegrendjéhez igazodik. Bútort annyiban szerelünk, amennyi a szaniterhez tartozik: ha például szekrényes a mosdó, azt a szekrényt is mi tesszük fel és kötjük be.",
     ],
     includes: [
       "Víz- és lefolyóvezeték alapszerelés",
       "Falba épített WC-tartály, szerelőkeret",
       "Zuhanytálca, zuhanyfolyóka, lejtések",
       "Mosdó-, kád- és csaptelep bekötés",
+      "Mosdószekrény felszerelése, bekötése",
       "Nyomáspróba burkolás előtt",
       "Szaniterek beépítése, beüzemelés",
     ],
@@ -421,6 +535,13 @@ export const SERVICES: Service[] = [
         ],
       },
       {
+        title: "Meddig tart a mi munkánk, és hol kezdődik a másé",
+        body: [
+          "A vizesblokkban a gépészet a miénk: a falon belüli hideg- és melegvíz, a lefolyók és a lejtésük, a falba épített tartály szerelőkerete, a zuhanyfolyóka vagy tálca, a nyomáspróba, végül a szaniterek és a csaptelepek bekötése. Ha a mosdó szekrényes, a szekrényt is mi szereljük fel és kötjük be – ez a szaniter része.",
+          "Burkolni nem mi fogunk. Viszont a burkolóval még az alapszerelésnél egyeztetünk, mert a folyóka szintje és a szerelőkeret síkja az ő rétegrendjéhez méretezett. Ez a néhány mondat az, ami miatt a kész fürdőben nem áll meg a víz, és nem a nyomólap ül két centivel bentebb a csempénél.",
+        ],
+      },
+      {
         title: "Amit a burkolat alatt hagyunk, az tíz évre ott marad",
         body: [
           "A fürdőszoba gépészetének nagy része a falban és az aljzatban tűnik el. Ezért a nyomvonalakat lefotózzuk és dokumentáljuk, mielőtt betakarnánk: tíz év múlva egy fúrás előtt ez a néhány kép ér a legtöbbet.",
@@ -431,7 +552,7 @@ export const SERVICES: Service[] = [
     faq: [
       {
         q: "Burkolást és bútorozást is vállaltok?",
-        a: "A gépészeti részt visszük: a falon belüli víz- és lefolyószerelést, a szerelőkeretet, a folyókát és a szaniterek bekötését. A burkolásról és a bútorozásról a felmérésen beszéljünk, mert az a munka ütemezésétől is függ.",
+        a: "Burkolást nem: arra a te burkolóddal egyeztetünk, mert a folyóka és a szerelőkeret magassága az ő rétegrendjéhez van méretezve. A gépészeti részt visszük végig – falon belüli víz- és lefolyószerelés, szerelőkeret, folyóka, szaniterek bekötése –, és a szaniterhez tartozó bútort, például a szekrényes mosdó szekrényét mi szereljük fel és kötjük be.",
       },
       {
         q: "Meddig tart, amíg nem lehet használni a fürdőt?",
@@ -480,9 +601,11 @@ export const SERVICES: Service[] = [
       {
         img: furdoKeszMosdo,
         alt: "Bekötött mosdó alsószekrénnyel és kerek tükörrel egy elkészült vendégmosdóban",
-        caption: "Mosdó bekötve, készen",
+        caption: "Mosdó és szekrénye felszerelve",
       },
     ],
+    galleryNote:
+      "Az első három képen az látszik, amit mi csinálunk: a takart víz- és lefolyószerelés, a szerelőkeret és a folyóka, burkolás előtt. A kész fürdőszobákon a burkolat és a bútor másé – a gépészet mögötte a miénk, a szaniterekkel és a szekrényes mosdó szekrényével együtt.",
     orientation: "landscape",
     photo: furdoKeszKad,
     alt: "Elkészült fürdőszoba beépített káddal és falsík alatti csaptelepekkel",
@@ -492,13 +615,15 @@ export const SERVICES: Service[] = [
     title: "Napkollektor és vezérlés",
     heading: "Napkollektoros melegvíz és fűtésvezérlés",
     teaser:
-      "Napkollektor a tetőre, szivattyúcsoport és szabályozás a kazánházba – egy rendszerbe hangolva.",
+      "Új kollektorok telepítése a tetőre – családi házra és nagy rendszerre is –, szivattyúcsoporttal és szabályozással egy rendszerbe hangolva.",
     body: [
-      "A napkollektor önmagában csak egy lemez a tetőn. Attól lesz belőle működő rendszer, ami a kazánházban van: a szivattyúcsoport, a hőcserélős tároló és a szabályozás, ami eldönti, mikor melyik forrás fűtse a melegvizet. Ha ez a rész rosszul van hangolva, a kazán ráfűt a napra, és pont a megtakarítás vész el.",
-      "Ezt a részt csináljuk mi: a kollektor felhelyezését és bekötését, a fagyálló közeg töltését, a szivattyúcsoportot és az elzárókat, valamint a vezérlés beállítását úgy, hogy a kazán csak akkor lépjen be, amikor a nap már nem elég. Meglévő napkollektoros rendszer felülvizsgálatát és szabályozáscseréjét is vállaljuk.",
+      "Új napkollektoros rendszereket ma is telepítünk, kis és nagy léptékben egyaránt: családi házra néhány kollektort, nagyobb épületre komplett kollektormezőt, a hozzá tartozó tárolókkal és szolárkörrel. A melegvíz a legtöbb épületben egész évben fogy, és pont ez az a fogyasztás, amit a nap a legegyszerűbben átvesz a gáztól.",
+      "A kollektor önmagában viszont csak egy lemez a tetőn. Attól lesz belőle működő rendszer, ami a kazánházban van: a szivattyúcsoport, a hőcserélős tároló és a szabályozás, ami eldönti, mikor melyik forrás fűtse a melegvizet. Ha ez a rész rosszul van hangolva, a kazán ráfűt a napra, és pont a megtakarítás vész el.",
+      "Ezért az egészet egy kézben visszük: a kollektor felhelyezését és tetőátvezetését, a fagyálló közeg töltését, a szivattyúcsoportot és az elzárókat, valamint a vezérlés beállítását úgy, hogy a kazán csak akkor lépjen be, amikor a nap már nem elég. Meglévő rendszer felülvizsgálatát és szabályozáscseréjét is vállaljuk.",
     ],
     includes: [
-      "Kollektor felhelyezése, tetőátvezetés",
+      "Új kollektorok telepítése, kollektormező",
+      "Tetőátvezetés, tartószerkezet",
       "Szolár szivattyúcsoport, tágulási tartály",
       "Hőcserélős melegvíz-tároló bekötése",
       "Fagyálló közeg töltése, légtelenítés",
@@ -507,14 +632,15 @@ export const SERVICES: Service[] = [
     ],
     badge: { label: "Kollektor és kazán egy vezérlésen", icon: "leaf" },
     intro:
-      "Kollektor a tetőn, szivattyúcsoport és szabályozás a kazánházban. Úgy hangolva, hogy a kazán csak akkor lépjen be, amikor a nap már nem elég.",
+      "Új kollektorok a tetőn, szivattyúcsoport és szabályozás a kazánházban – családi házra és nagy rendszerre is. Úgy hangolva, hogy a kazán csak akkor lépjen be, amikor a nap már nem elég.",
     facts: [
-      { value: "Melegvíz", label: "a napsütéses hónapok nagy részében" },
+      { value: "Új telepítés", label: "kis és nagy rendszerre is" },
       { value: "Egy vezérlés", label: "kollektor, kazán és tároló együtt" },
       { value: "Felülvizsgálat", label: "meglévő rendszerre is" },
     ],
     who: [
       "Csökkentenéd a melegvíz gázköltségét",
+      "Sok melegvíz fogy: társasház, iskola, panzió, üzem",
       "Van már kollektorod, de nem tudod, jól működik-e",
       "A szolár szabályozás elromlott vagy elavult",
       "Új rendszer épül, és a kollektor is benne van a tervben",
@@ -546,6 +672,13 @@ export const SERVICES: Service[] = [
         ],
       },
       {
+        title: "Nagy rendszernél a tároló a szűk keresztmetszet",
+        body: [
+          "Ahol sok melegvíz fogy – társasház, iskola, panzió, üzemi öltöző –, ott a kollektormező mérete önmagában keveset mond. A rendszer teljesítményét az szabja meg, hogy mennyi hőt tudunk eltárolni addig, amíg a fogyasztás meg nem érkezik: a kollektor délben termel, a zuhanyzás viszont reggel és este van.",
+          "Ezért a nagy rendszereknél a tárolókapacitás és a rétegződés a tervezés első kérdése, nem az utolsó. Ehhez jön a szolárkör hidraulikája: több kollektorsor egyenletes átáramlása, a légtelenítés és a nyári stagnálás kezelése. Ezeket a munkákat is vállaljuk, nem csak a családi házas méretet.",
+        ],
+      },
+      {
         title: "A fagyálló közeg évekig dolgozik, de nem örökké",
         body: [
           "A szolárkörben nem víz kering, hanem fagyálló hőhordozó közeg. Ez nyáron rendszeresen forráspont közeli hőmérsékletet lát, és az évek alatt elöregszik: veszít a fagyállóságából és savasodni kezd, ami a hőcserélőt és a szivattyút eszi.",
@@ -554,6 +687,10 @@ export const SERVICES: Service[] = [
       },
     ],
     faq: [
+      {
+        q: "Telepítetek még új napkollektoros rendszert?",
+        a: "Igen, ma is. Családi házra és nagyobb épületre egyaránt: néhány kollektortól a komplett kollektormezőig, a hozzá tartozó tárolókkal és szolárkörrel. A meglévő rendszerek szervize és szabályozáscseréje ezen felül van, nem helyette.",
+      },
       {
         q: "Elég a napkollektor a melegvízhez egész évben?",
         a: "A napsütéses hónapokban a melegvíz nagy részét tudja adni, télen viszont kiegészítésre szorul. Ezért marad a rendszerben a kazán vagy a villanybojler, csak jóval kevesebbet dolgozik.",
@@ -573,11 +710,18 @@ export const SERVICES: Service[] = [
     ],
     gallery: [
       {
+        img: napkollektorTeto,
+        alt: "Két síkkollektor cserépfedésű családi ház tetején, a kémény mellett, tartószerkezetre szerelve",
+        caption: "Síkkollektorok a tetőn",
+      },
+      {
         img: napkollektorSzivattyu,
-        alt: "Szolár szivattyúcsoport rézcsövezéssel és vezérlődobozzal egy kazánház falán",
+        alt: "Szolár szivattyúcsoport rézcsövezéssel, keverőszeleppel és vezérlődobozzal egy kazánház falán",
         caption: "Szivattyúcsoport és vezérlés",
       },
     ],
+    /* TODO: Milán nagy rendszerekről is küld képeket (2026 ősz) - azok ide
+       jönnek, és akkor a galéria is mutatja, nem csak a szöveg mondja. */
     orientation: "portrait",
     photo: napkollektorTeto,
     alt: "Két síkkollektor cserépfedésű családi ház tetején, a kémény mellett",
@@ -676,6 +820,23 @@ export const SERVICES: Service[] = [
         a: "A karbantartási szerződéseinket elsősorban az általunk beépített rendszerekre kötjük, mert azok teljes előéletét ismerjük. Javítást, hibakeresést önálló szolgáltatásként nem vállalunk: a profilunk a kazáncsere.",
       },
     ],
+    gallery: [
+      {
+        img: karbantartas,
+        alt: "Gázkazán elvégzett műszaki felülvizsgálatot igazoló matricával, 2026-os érvényességgel",
+        caption: "Felülvizsgálati matrica a készüléken",
+      },
+      {
+        img: vezerlopanel,
+        alt: "Kazán magyar nyelvű vezérlőpanelje karbantartás közben, 42 fokos kazánhőmérséklettel",
+        caption: "Szabályozás átnézése, beállítása",
+      },
+      {
+        img: telephelyTabla,
+        alt: "Az Aqua System Service Kft. Viessmann-emblémás oszloptáblája a telephely bejáratánál",
+        caption: "Viessmann szakszerviz, saját telephellyel",
+      },
+    ],
     orientation: "portrait",
     photo: karbantartas,
     alt: "Gázkazán elvégzett műszaki felülvizsgálatot igazoló matricával, 2026-os érvényességgel",
@@ -764,32 +925,32 @@ export const SERVICES: Service[] = [
         a: "A gép teljesítményétől függően igen, és a szolgáltató felé bejelentési kötelezettség is tartozhat hozzá. Ezt a felmérésen tisztázzuk, mielőtt bármit megrendelnél.",
       },
     ],
+    gallery: [
+      {
+        img: gepeszetMennyezet,
+        alt: "Mennyezetfűtés-hűtés fémkazettái gipszkarton mennyezetbe építve, a csatlakozó csövekkel",
+        caption: "Mennyezeti fűtés-hűtés, alacsony hőmérsékleten",
+      },
+      {
+        img: gepeszetPadloTeritese,
+        alt: "Sűrűn terített padlófűtés-körök téglafalú helyiségben, hőszigetelésre és hegesztett hálóra fektetve",
+        caption: "Padlófűtés terítése aljzatbeton előtt",
+      },
+      {
+        img: kazancsereValto,
+        alt: "Hidraulikus váltó szivattyúval, iszapleválasztóval, puffertartállyal és tágulási tartállyal egy gépészeti helyiségben",
+        caption: "Hidraulikus váltó, puffer, tágulási tartály",
+      },
+      {
+        img: gepeszetSzivattyuk,
+        alt: "Két kevert fűtési kör szivattyúcsoportja rézcsövezéssel, felette szellőzés légcsatornái",
+        caption: "Kevert körök, körönként szabályozva",
+      },
+    ],
+    galleryNote:
+      "Kültéri egységről nincs saját fotónk, ezért nem is teszünk ki ilyet. Ezek a képek azt mutatják, ami a hőszivattyú mellé kell, és amit mi építünk: alacsony hőmérsékletű leadók, hidraulikus váltó, puffertároló és kevert körök.",
     orientation: "landscape",
-    photo: null,
-    alt: "",
-  },
-];
-
-/* A galéria-sávhoz: a maradék munkafotók, amik nem kártyaképként szerepelnek. */
-export const WORK_PHOTOS = [
-  {
-    img: gepeszetKazanhaz,
-    alt: "Családi ház kazánháza: fali kazán, melegvíz-tároló és puffertartály bekötve",
-  },
-  {
-    img: gepeszetVitodens,
-    alt: "Viessmann Vitodens 200 kazán szivattyúkkal és osztó-gyűjtővel egy gépészeti helyiségben",
-  },
-  {
-    img: kazancsereErgas,
-    alt: "Beüzemelt kondenzációs kazán 70 fokos előremenő hőmérséklettel, mellette melegvíz-tároló",
-  },
-  {
-    img: vezerlopanel,
-    alt: "Kazán magyar nyelvű vezérlőpanelje beüzemelés közben, 42 fokos kazánhőmérséklettel",
-  },
-  {
-    img: telephelyTabla,
-    alt: "Az Aqua System Service Kft. Viessmann-emblémás oszloptáblája a telephely bejáratánál",
+    photo: gepeszetMennyezet,
+    alt: "Mennyezetfűtés-hűtés fémkazettái gipszkarton mennyezetbe építve – alacsony hőmérsékletű leadó",
   },
 ];

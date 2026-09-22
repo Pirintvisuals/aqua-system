@@ -4,7 +4,7 @@ import PageHero from "../components/PageHero";
 import CtaBand from "../components/CtaBand";
 import WorkGallery from "../components/WorkGallery";
 import type { WorkItem } from "../components/WorkGallery";
-import { SERVICES, WORK_PHOTOS } from "../lib/services";
+import { SERVICES } from "../lib/services";
 import { LOCATIONS } from "../lib/locations";
 import { BUSINESS } from "../lib/site";
 import gepeszetCsovezetek from "../assets/munkak/gepeszet-csovezetek.jpg";
@@ -33,28 +33,30 @@ export const metadata: Metadata = {
 };
 
 /* Minden sajat foto egy helyen, kepalairassal es azzal, melyik
-   szolgaltatashoz tartozik - ez utobbi adja a galeria szuroit. */
-const GALLERY: WorkItem[] = [
-  ...SERVICES.flatMap((s) => [
-    ...(s.photo
+   szolgaltatashoz tartozik - ez utobbi adja a galeria szuroit.
+   Egy forrasbol jon az aloldalakkal, tehat egy uj munkafoto a
+   `services.ts`-ben itt is magatol megjelenik.
+
+   A `photo` gyakran a sajat galeria egyik kepe is (az aloldal fejlecen
+   az all), ezert csak akkor tesszuk be kulon, ha a galeriaban nincs
+   benne - kulonben ugyanaz a kep ketszer allna egymas mellett. */
+const GALLERY: WorkItem[] = SERVICES.flatMap((s) => {
+  const gallery = s.gallery ?? [];
+  const heroInGallery =
+    s.photo !== null && gallery.some((g) => g.img.src === s.photo!.src);
+
+  return [
+    ...(s.photo && !heroInGallery
       ? [{ img: s.photo, alt: s.alt, caption: s.title, group: s.title }]
       : []),
-    /* A szolgaltatasok sajat galeriai: egy forrasbol jonnek az aloldallal,
-       tehat egy uj munkafoto itt is magatol megjelenik. */
-    ...(s.gallery ?? []).map((g) => ({
+    ...gallery.map((g) => ({
       img: g.img,
       alt: g.alt,
       caption: g.caption,
       group: s.title,
     })),
-  ]),
-  ...WORK_PHOTOS.map((p) => ({
-    img: p.img,
-    alt: p.alt,
-    caption: p.alt.split(":")[0].split(",")[0],
-    group: "Kazánház, egyéb",
-  })),
-];
+  ];
+});
 
 export default function MunkainkPage() {
   return (

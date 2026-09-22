@@ -282,6 +282,14 @@ export default async function ServicePage({
                 Ezek a képek a saját munkáinkról készültek, nem katalógusból
                 valók.
               </p>
+              {/* Ha a kepek magyarazatra szorulnak - peldaul mert a munkanak
+                  csak azt a reszet mutatjak, ami a mienk -, azt inkabb
+                  leirjuk, mint hogy a latogato mast gondoljon rola. */}
+              {service.galleryNote && (
+                <p className="mt-4 rounded-xl border border-sky-200 bg-sky px-5 py-4 text-[15px] leading-relaxed text-ink-soft">
+                  {service.galleryNote}
+                </p>
+              )}
             </div>
 
             <Reveal

@@ -1,7 +1,11 @@
 import Image from "next-image-export-optimizer";
 import Link from "next/link";
 import Reveal from "./Reveal";
-import { SERVICES, WORK_PHOTOS } from "../lib/services";
+import gepeszetKazanhaz from "../assets/munkak/gepeszet-kazanhaz.jpg";
+import gepeszetVitodens from "../assets/munkak/gepeszet-vitodens.jpg";
+import kazancsereErgas from "../assets/munkak/kazancsere-ergas.jpg";
+import gepeszetCsovezetek from "../assets/munkak/gepeszet-csovezetek.jpg";
+import vezerlopanel from "../assets/munkak/vezerlopanel.jpg";
 
 /* ------------------------------------------------------------------ *
  *  Korábbi munkáink - VALÓDI, saját fotók a kazánházainkból.
@@ -11,21 +15,43 @@ import { SERVICES, WORK_PHOTOS } from "../lib/services";
  *  ez egy bizalomra épülő szakmában nem vállalható, ezért kikerült.
  *  A képaláírás most azt mondja, ami tényleg a képen van.
  *
- *  A forrás az `app/lib/services.ts`, hogy a fotók egy helyen legyenek.
+ *  A főoldali válogatás szándékosan a saját képeit importálja: így egy
+ *  szolgáltatás galériájának átrendezése nem cseréli ki véletlenül azt,
+ *  ami a főoldalon van. A képek maguk ugyanazok a munkafotók.
  * ------------------------------------------------------------------ */
 
 /* A bento-rács: az első kép nagy, a többi köré rendeződik. */
 const TILES = [
-  { ...WORK_PHOTOS[0], caption: "Kazánház átadás előtt", span: "md:col-span-2 md:row-span-2" },
-  { ...WORK_PHOTOS[1], caption: "Osztó-gyűjtő, szivattyúk", span: "" },
-  { ...WORK_PHOTOS[2], caption: "Kazán és melegvíz-tároló", span: "" },
   {
-    img: SERVICES[1].photo!,
-    alt: SERVICES[1].alt,
+    img: gepeszetKazanhaz,
+    alt: "Családi ház kazánháza: fali kazán, melegvíz-tároló és puffertartály bekötve",
+    caption: "Kazánház átadás előtt",
+    span: "md:col-span-2 md:row-span-2",
+  },
+  {
+    img: gepeszetVitodens,
+    alt: "Viessmann Vitodens 200 kazán szivattyúkkal és osztó-gyűjtővel egy gépészeti helyiségben",
+    caption: "Osztó-gyűjtő, szivattyúk",
+    span: "",
+  },
+  {
+    img: kazancsereErgas,
+    alt: "Beüzemelt kondenzációs kazán 70 fokos előremenő hőmérséklettel, mellette melegvíz-tároló",
+    caption: "Kazán és melegvíz-tároló",
+    span: "",
+  },
+  {
+    img: gepeszetCsovezetek,
+    alt: "Elkészült kazánház családi házban: Viessmann kazán, puffertartály, Grundfos szivattyúk és rézcsövezés",
     caption: "Rézcsövezés, puffertartály",
     span: "",
   },
-  { ...WORK_PHOTOS[3], caption: "Beüzemelés, beszabályozás", span: "" },
+  {
+    img: vezerlopanel,
+    alt: "Kazán magyar nyelvű vezérlőpanelje beüzemelés közben, 42 fokos kazánhőmérséklettel",
+    caption: "Beüzemelés, beszabályozás",
+    span: "",
+  },
 ];
 
 export default function Gallery() {
