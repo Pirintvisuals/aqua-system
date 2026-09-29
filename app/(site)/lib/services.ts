@@ -36,6 +36,31 @@ import napkollektorTeto from "../assets/munkak/napkollektor-tetokollektor.jpg";
 import napkollektorSzivattyu from "../assets/munkak/napkollektor-szivattyucsoport.jpg";
 import telephelyTabla from "../assets/munkak/telephely-viessmann-tabla.jpg";
 
+/* 2026 szeptember végén átadott mappák (Kivitelezés, Nap kollektor,
+   hoszivatyu, kazancsere). Az IMG_0694 és az IMG_3362 már fent volt
+   (padlófűtés-osztó, iszapleválasztó), azok nem kerültek be újra. */
+import gepeszetPadloNagy from "../assets/munkak/gepeszet-padlofutes-nagy-terulet.jpg";
+import gepeszetPadloCsiga from "../assets/munkak/gepeszet-padlofutes-csigavonal.jpg";
+import gepeszetKetOszto from "../assets/munkak/gepeszet-ket-oszto-gyujto.jpg";
+import gepeszetHaromSzivattyu from "../assets/munkak/gepeszet-harom-szivattyucsoport.jpg";
+import gepeszetOsztoAljzat from "../assets/munkak/gepeszet-padlofutes-oszto-aljzaton.jpg";
+import gepeszetPadloFolyoso from "../assets/munkak/gepeszet-padlofutes-folyoso.jpg";
+import napkollektorMezo from "../assets/munkak/napkollektor-kollektormezo-uszoda.jpg";
+import napkollektorSzabalyozo from "../assets/munkak/napkollektor-szolar-szabalyozo.jpg";
+import napkollektorViessmann from "../assets/munkak/napkollektor-viessmann-szabalyozo.jpg";
+import hoszivattyuKulteri from "../assets/munkak/hoszivattyu-kulteri-egyseg.jpg";
+import hoszivattyuBelteri from "../assets/munkak/hoszivattyu-belteri-modul.jpg";
+import hoszivattyuGepeszet from "../assets/munkak/hoszivattyu-gepeszeti-helyiseg.jpg";
+import kazancsereValtoOszto from "../assets/munkak/kazancsere-valto-oszto.jpg";
+import kazancsereNemesacel from "../assets/munkak/kazancsere-nemesacel-tagulasi.jpg";
+import kazancsereTaroloValto from "../assets/munkak/kazancsere-tarolo-valto.jpg";
+import kazancsereRezcso from "../assets/munkak/kazancsere-rezcsovezes.jpg";
+import kazancsereUjPanel from "../assets/munkak/kazancsere-uj-vezerlopanel.jpg";
+import ipariSzereles from "../assets/munkak/kazancsere-ipari-kazanhaz-szereles.jpg";
+import alloKondenzacios from "../assets/munkak/kazancsere-allo-kondenzacios.jpg";
+import alloKondenzaciosGaz from "../assets/munkak/kazancsere-allo-kondenzacios-gaz.jpg";
+import alloKondenzaciosFustgaz from "../assets/munkak/kazancsere-allo-kondenzacios-fustgaz.jpg";
+
 /* ------------------------------------------------------------------ *
  *  A szolgáltatások - EGY forrás a főoldali kártyáknak és a
  *  /szolgaltatasok aloldalnak, hogy a cím és a szöveg ne csússzon szét.
@@ -44,10 +69,10 @@ import telephelyTabla from "../assets/munkak/telephely-viessmann-tabla.jpg";
  *  EGY szolgáltatásnál szerepel. Így az aloldalak nem ugyanazt a néhány
  *  képet ismétlik, a /munkaink szűrője pedig tényleg szűr.
  *
- *  A hőszivattyúnál nincs saját fotónk kültéri egységről, ezért ott a
+ *  A hőszivattyúnál 2026 szeptembere óta van saját fotónk: egy Mitsubishi
+ *  Ecodan telepítés kültéri egysége és beltéri modulja. Mellettük a
  *  hidraulika és az alacsony hőmérsékletű leadók képei állnak - ezt a
- *  részt tényleg mi építjük. Kazánfotót NE tegyünk oda, és a
- *  `galleryNote` mondja is ki, mi látszik a képeken. A `photo: null`
+ *  részt is mi építjük. Kazánfotót NE tegyünk oda. A `photo: null`
  *  ág a típusban és a felületeken marad, hogy egy új szolgáltatás
  *  indulhasson fotó nélkül is.
  * ------------------------------------------------------------------ */
@@ -233,6 +258,31 @@ export const SERVICES: Service[] = [
         alt: "Beüzemelt Viessmann kondenzációs kazán 70 fokos előremenő hőmérséklettel, mellette melegvíz-tároló és tágulási tartály",
         caption: "Kazán és tároló, átadás napján",
       },
+      {
+        img: kazancsereNemesacel,
+        alt: "Új Viessmann fali kondenzációs kazán, mellette nemesacél tágulási tartály nyomásmérővel és rézcsövezéssel",
+        caption: "Kazán nemesacél tágulási tartállyal",
+      },
+      {
+        img: kazancsereTaroloValto,
+        alt: "Viessmann fali kazán alatt álló melegvíz-tároló, mellette szigetelt hidraulikus váltó, rézcsövezés és szivattyú",
+        caption: "Tároló és hidraulikus váltó bekötve",
+      },
+      {
+        img: kazancsereRezcso,
+        alt: "Rézcsövezés közelről a kazán alatt: elzárók, légtelenítők és a szigetelt hidraulikus váltó csatlakozásai",
+        caption: "Rézcsövezés, elzárók, légtelenítők",
+      },
+      {
+        img: kazancsereValtoOszto,
+        alt: "Fali kazán alatti gépészet: piros tágulási tartály, hidraulikus váltó, szivattyúk és padlófűtés osztó-gyűjtő",
+        caption: "Kazán, váltó és padlófűtés-osztó",
+      },
+      {
+        img: kazancsereUjPanel,
+        alt: "Új generációs Viessmann fali kazán kezelőpanelje, alatta rézcsövezés, sárga gázcsatlakozás és szigetelt fűtési csövek",
+        caption: "Új Viessmann kazán bekötve",
+      },
     ],
     orientation: "portrait",
     photo: kazancsereTarolo,
@@ -347,6 +397,36 @@ export const SERVICES: Service[] = [
         img: gepeszetVitodens,
         alt: "Viessmann Vitodens 200 kazán szivattyúkkal és osztó-gyűjtővel egy gépészeti helyiségben",
         caption: "Kazán, szivattyúk, osztó-gyűjtő",
+      },
+      {
+        img: gepeszetPadloNagy,
+        alt: "Padlófűtés csövei nagy, nyitott alapterületen, hőszigetelésre és hegesztett hálóra fektetve egy új építésű házban",
+        caption: "Padlófűtés nagy alapterületen",
+      },
+      {
+        img: gepeszetPadloCsiga,
+        alt: "Csigavonalban fektetett padlófűtés-kör egy szoba közepén, hegesztett hálón, aljzatbeton előtt",
+        caption: "Csigavonalas fektetés, egyenletes hőért",
+      },
+      {
+        img: gepeszetPadloFolyoso,
+        alt: "Padlófűtés-körök egy keskeny helyiségben, a sarokban az osztó-gyűjtővel",
+        caption: "Körök az osztó-gyűjtő felé",
+      },
+      {
+        img: gepeszetOsztoAljzat,
+        alt: "Padlófűtés osztó-gyűjtője a fal mellett, a köröket vivő csövek szétágaznak a hálóra fektetett aljzaton",
+        caption: "Osztó-gyűjtő a nyers aljzaton",
+      },
+      {
+        img: gepeszetKetOszto,
+        alt: "Két osztó-gyűjtő egy gépészeti sarokban, színes jelölésű körökkel és piros szigetelésű gerincvezetékekkel",
+        caption: "Két osztó-gyűjtő, jelölt körökkel",
+      },
+      {
+        img: gepeszetHaromSzivattyu,
+        alt: "Három fűtési kör szivattyúcsoportja hőmérőkkel egy közös osztón, alatta rézcsövezés",
+        caption: "Három fűtési kör szivattyúcsoportja",
       },
     ],
     orientation: "landscape",
@@ -468,6 +548,26 @@ export const SERVICES: Service[] = [
         img: gepeszetTerem,
         alt: "Nagyobb épület gépészeti tere: szigetelt acélcsövek, karimás zárószelepek, iszapleválasztó és tágulási tartály",
         caption: "Nagyobb épület gépészeti tere",
+      },
+      {
+        img: ipariSzereles,
+        alt: "Két acél kazántest a kazánházban, fölöttük a csővezeték hegesztése zajlik, sárga gázvezeték és füstgázcsonkok",
+        caption: "Kazánház szerelés közben",
+      },
+      {
+        img: alloKondenzacios,
+        alt: "Viessmann álló kondenzációs kazán kazánházban, sárga gázvezetékkel, szigetelt csövekkel és tágulási tartállyal",
+        caption: "Álló kondenzációs kazán",
+      },
+      {
+        img: alloKondenzaciosGaz,
+        alt: "Álló Viessmann kazán oldalról, mellette a padlóig futó sárga gázvezeték elzáróval",
+        caption: "Gázbekötés az álló kazánhoz",
+      },
+      {
+        img: alloKondenzaciosFustgaz,
+        alt: "Álló kondenzációs kazán nemesacél égéstermék-elvezetése és a kazán alján csatlakozó szigetelt csővezeték",
+        caption: "Égéstermék-elvezetés nemesacélból",
       },
     ],
     orientation: "portrait",
@@ -719,9 +819,22 @@ export const SERVICES: Service[] = [
         alt: "Szolár szivattyúcsoport rézcsövezéssel, keverőszeleppel és vezérlődobozzal egy kazánház falán",
         caption: "Szivattyúcsoport és vezérlés",
       },
+      {
+        img: napkollektorMezo,
+        alt: "Kollektormező egy fedett uszoda tetején: hosszú sorban telepített síkkollektorok",
+        caption: "Nagy rendszer: kollektormező uszodára",
+      },
+      {
+        img: napkollektorSzabalyozo,
+        alt: "Stiebel Eltron SOM 7 Plus szolár szabályozó kijelzője a kollektor hőmérsékletével",
+        caption: "Szolár szabályozó a kazánházban",
+      },
+      {
+        img: napkollektorViessmann,
+        alt: "Viessmann szolár szabályozó kijelzője, amely a kollektor hőmérsékletét mutatja",
+        caption: "Kollektor-hőmérséklet a szabályozón",
+      },
     ],
-    /* TODO: Milán nagy rendszerekről is küld képeket (2026 ősz) - azok ide
-       jönnek, és akkor a galéria is mutatja, nem csak a szöveg mondja. */
     orientation: "portrait",
     photo: napkollektorTeto,
     alt: "Két síkkollektor cserépfedésű családi ház tetején, a kémény mellett",
@@ -927,6 +1040,21 @@ export const SERVICES: Service[] = [
     ],
     gallery: [
       {
+        img: hoszivattyuKulteri,
+        alt: "Mitsubishi Electric Zubadan levegő-víz hőszivattyú kültéri egysége betonlábakon, a ház fala mellett",
+        caption: "Kültéri egység betonlábakon",
+      },
+      {
+        img: hoszivattyuBelteri,
+        alt: "Mitsubishi Ecodan beltéri hidromodul rézcsövezéssel, alatta szűrő és piros tágulási tartály",
+        caption: "Beltéri modul bekötve",
+      },
+      {
+        img: hoszivattyuGepeszet,
+        alt: "Ecodan beltéri modul a gépészeti helyiségben, mellette elektromos elosztó és tároló",
+        caption: "Beltéri modul a gépészeti helyiségben",
+      },
+      {
         img: gepeszetMennyezet,
         alt: "Mennyezetfűtés-hűtés fémkazettái gipszkarton mennyezetbe építve, a csatlakozó csövekkel",
         caption: "Mennyezeti fűtés-hűtés, alacsony hőmérsékleten",
@@ -948,9 +1076,9 @@ export const SERVICES: Service[] = [
       },
     ],
     galleryNote:
-      "Kültéri egységről nincs saját fotónk, ezért nem is teszünk ki ilyet. Ezek a képek azt mutatják, ami a hőszivattyú mellé kell, és amit mi építünk: alacsony hőmérsékletű leadók, hidraulikus váltó, puffertároló és kevert körök.",
-    orientation: "landscape",
-    photo: gepeszetMennyezet,
-    alt: "Mennyezetfűtés-hűtés fémkazettái gipszkarton mennyezetbe építve – alacsony hőmérsékletű leadó",
+      "Az első három kép egy Mitsubishi Ecodan telepítésünk: kültéri egység és a beltéri modul. A többi azt mutatja, ami a hőszivattyú mellé kell, és amit szintén mi építünk: alacsony hőmérsékletű leadók, hidraulikus váltó, puffertároló és kevert körök.",
+    orientation: "portrait",
+    photo: hoszivattyuKulteri,
+    alt: "Mitsubishi Electric Zubadan levegő-víz hőszivattyú kültéri egysége betonlábakon, a ház fala mellett",
   },
 ];

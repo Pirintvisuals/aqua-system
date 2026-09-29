@@ -56,7 +56,8 @@ function BadgeIcon({ name }: { name: Service["badge"]["icon"] }) {
 }
 
 /* Rajzolt hőszivattyú - kültéri egység, hőleadás a ház felé.
-   Addig áll itt, amíg nincs saját fotónk egy elkészült telepítésről. */
+   Tartalék arra az esetre, ha egy szolgáltatásnak nincs saját fotója
+   (`photo: null`). A hőszivattyúnak 2026 szeptembere óta van. */
 function HeatPumpIllustration() {
   return (
     <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-sky via-white to-sky/60 p-8">
