@@ -48,7 +48,11 @@ export default function ServicesShowcase() {
           {SERVICES.map((s, i) => (
             <article
               key={s.slug}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-sky-200 bg-white shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)] transition-all duration-200 hover:-translate-y-1 hover:border-brand-light/50 hover:shadow-[0_30px_55px_-30px_rgba(15,42,94,0.5)]"
+              /* Ha a háromoszlopos rácsban az utolsó kártya egyedül maradna
+                 a sorában, a középső oszlopba kerül, ne lógjon balra. */
+              className={`${
+                i === SERVICES.length - 1 && SERVICES.length % 3 === 1 ? "lg:col-start-2 " : ""
+              }group flex flex-col overflow-hidden rounded-2xl border border-sky-200 bg-white shadow-[0_20px_45px_-30px_rgba(15,42,94,0.4)] transition-all duration-200 hover:-translate-y-1 hover:border-brand-light/50 hover:shadow-[0_30px_55px_-30px_rgba(15,42,94,0.5)]`}
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-sky/50">
                 {s.photo ? (
