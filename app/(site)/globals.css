@@ -33,9 +33,10 @@ h2,
 h3,
 .font-display {
   font-family: var(--font-display);
-  /* Fraunces: teljesen lekerekitett (SOFT 100), hajlo betuk (WONK 1).
-     Ettol lesz kevesbe szogletes, jatekosabb. */
-  font-variation-settings: "SOFT" 100, "WONK" 1;
+  /* Fraunces: felig lekerekitett (SOFT 50), hajlo betuk nelkul (WONK 0).
+     Nem szogletes, de komoly marad - a teljesen puha, hajlo valtozat tul
+     jatekos volt. */
+  font-variation-settings: "SOFT" 50, "WONK" 0;
   font-synthesis: none;
 }
 

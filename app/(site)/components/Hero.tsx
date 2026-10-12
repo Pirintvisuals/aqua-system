@@ -149,25 +149,24 @@ export default function Hero({
 
             <h1 className="mt-5 font-display text-[2.5rem] font-bold leading-[1.04] tracking-[-0.02em] text-ink sm:text-6xl lg:text-[3.5rem] xl:text-[3.9rem]">
               <span className="block">{titleHighlight}</span>
-              {/* Kezzel huzott, a vegen kunkorodo alahuzas a kek sor alatt -
-                  a logo hullamat idezi. Betolteskor "megrajzolodik"
+              {/* Egyetlen tiszta ivu vonas a kek sor alatt - a logo
+                  hullamat idezi. Betolteskor "megrajzolodik"
                   (globals.css: .hero-swirl). */}
               <span className="relative inline-block whitespace-nowrap text-brand">
                 {title}
                 <svg
-                  className="hero-swirl absolute -bottom-[0.32em] left-[-2%] h-[0.42em] w-[104%] text-cyan"
+                  className="hero-swirl absolute -bottom-[0.22em] left-0 h-[0.3em] w-full text-cyan"
                   viewBox="0 0 320 40"
                   preserveAspectRatio="none"
                   fill="none"
                   aria-hidden="true"
                 >
                   <path
-                    d="M4 24 C 50 12, 96 30, 150 20 S 238 8, 268 20 C 284 27, 292 36, 280 37 C 268 38, 270 22, 288 16 C 298 13, 308 14, 316 18"
+                    d="M4 30 C 90 14, 210 8, 316 16"
                     pathLength="1"
                     stroke="currentColor"
-                    strokeWidth="7"
+                    strokeWidth="6"
                     strokeLinecap="round"
-                    strokeLinejoin="round"
                   />
                 </svg>
               </span>
