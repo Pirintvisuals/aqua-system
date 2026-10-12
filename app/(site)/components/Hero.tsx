@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next-image-export-optimizer";
+import Link from "next/link";
 import Wave from "./Wave";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { CHATBOT_URL, CTA_NOTE, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
@@ -159,7 +160,7 @@ export default function Hero({
         </div>
         <WaveBackdrop />
 
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-y-10 px-6 pb-16 pt-16 lg:min-h-[640px] lg:grid-cols-2 lg:gap-12 lg:pb-20 lg:pt-20">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-y-12 px-6 pb-16 pt-16 lg:min-h-[640px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-12 lg:pb-20 lg:pt-20">
           {/* LEFT - copy */}
           <div className="fade-up">
             <div className="flex flex-wrap items-center gap-3">
@@ -171,7 +172,7 @@ export default function Hero({
               </span>
             </div>
 
-            <h1 className="mt-6 font-display text-[2rem] font-extrabold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="mt-6 font-display text-[2rem] font-extrabold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[2.9rem] xl:text-[3.2rem]">
               <span className="text-brand">{titleHighlight}</span>{" "}
               {title}
             </h1>
@@ -216,44 +217,79 @@ export default function Hero({
             </ul>
           </div>
 
-          {/* RIGHT - spacer that reserves the right half on desktop */}
-          <div className="hidden lg:block" aria-hidden="true" />
-        </div>
+          {/* RIGHT - a csapat fotoja. Asztalin a kep a kepernyo jobb szelere
+              nyulik (a doboz a belso oszlopbol kifelle csuszik), igy a
+              csoportkep nagy marad, de a szoveg melletti oszlop nem szukul.
+              A negativ jobb margo pontosan a tartalom es a kepernyo szele
+              kozotti savot fedi le. */}
+          <div className="relative lg:-mr-[max(0px,calc((100vw-80rem)/2+1.5rem))]">
+            {/* Mogotte: elcsusztatott, szinatmenetes lap - melyseget ad, es
+                a kep nem "ragad" a feher hatterre. */}
+            <div
+              className="pointer-events-none absolute -bottom-5 -left-5 right-0 top-8 hidden rounded-[2.5rem] bg-gradient-to-br from-brand-light/30 via-sky to-cyan/30 lg:block lg:rounded-r-none"
+              aria-hidden="true"
+            />
 
-        {/* PHOTO - in-flow card on mobile, full-bleed panel on desktop */}
-        <div className="relative mx-auto -mt-2 aspect-[4/5] w-[min(90%,26rem)] overflow-hidden rounded-3xl border border-sky-200 bg-sky shadow-[0_40px_80px_-30px_rgba(15,42,94,0.5)] lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:mt-0 lg:aspect-auto lg:w-[47vw] lg:rounded-l-[2.5rem] lg:rounded-r-none lg:border-0">
-          {/* A foto a szerkesztobol jon, a meretet nem ismerjuk elore. A
-              width/height csak a srcset-hez kell; a tenyleges meretet a
-              h-full w-full object-cover adja, ugyanugy, mint korabban. */}
-          <Image
-            src={photo}
-            alt={photoAlt}
-            width={1200}
-            height={1500}
-            priority
-            sizes="(max-width: 1024px) 90vw, 47vw"
-            className="hero-parallax h-full w-full object-cover object-center"
-          />
-          {/* subtle brand tint for cohesion */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-cta/25 via-transparent to-transparent" />
-          {/* left white fade blends the photo into the copy side (desktop only) */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-44 bg-gradient-to-r from-white to-transparent lg:block" />
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/70 bg-sky shadow-[0_50px_90px_-35px_rgba(15,42,94,0.65)] ring-1 ring-sky-200 lg:aspect-[3/2] lg:rounded-l-[2.5rem] lg:rounded-r-none lg:border-r-0">
+              {/* A foto a szerkesztobol jon, a meretet nem ismerjuk elore. A
+                  width/height csak a srcset-hez kell; a tenyleges meretet a
+                  h-full w-full object-cover adja. Az arcok a kep felso
+                  harmadaban vannak, ezert nem pontosan kozepre igazitjuk. */}
+              <Image
+                src={photo}
+                alt={photoAlt}
+                width={1600}
+                height={1067}
+                priority
+                sizes="(max-width: 1024px) 94vw, 58vw"
+                className="hero-parallax h-full w-full object-cover object-[50%_28%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]"
+              />
+              {/* meleg-hideg marka-szinezes + alulrol sotetites a feliratnak */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-cta/20 via-transparent to-cyan/10" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/85 via-ink/35 to-transparent" />
 
-          {/* floating guarantee card - overlaps the photo/white seam */}
-          <div className="absolute -left-3 bottom-6 animate-float-slow lg:left-8 lg:bottom-14">
-            <GuaranteeCard target={guaranteeValue} text={guaranteeText} />
-          </div>
+              {/* small chip */}
+              <div className="absolute right-4 top-4 animate-float-slow [animation-delay:-3s] lg:right-8 lg:top-8">
+                <div className="flex items-center gap-2 rounded-full bg-white/90 px-3.5 py-2 shadow-[0_18px_40px_-18px_rgba(15,42,94,0.45)] backdrop-blur">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky text-brand">
+                    <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M12 7v5l3 2" />
+                    </svg>
+                  </span>
+                  <span className="text-sm font-semibold text-ink">{chipText}</span>
+                </div>
+              </div>
 
-          {/* small chip */}
-          <div className="absolute right-4 top-4 animate-float-slow [animation-delay:-3s] lg:right-10 lg:top-12">
-            <div className="flex items-center gap-2 rounded-full bg-white/90 px-3.5 py-2 shadow-[0_18px_40px_-18px_rgba(15,42,94,0.45)] backdrop-blur">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky text-brand">
-                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M12 7v5l3 2" />
-                </svg>
-              </span>
-              <span className="text-sm font-semibold text-ink">{chipText}</span>
+              {/* Felirat: kik ezek az emberek, es innen tovabb a csapathoz.
+                  Ez az, ami a fotot nem dekoracioava, hanem bizalmi elemma
+                  teszi. */}
+              <Link
+                href="/rolunk#csapat"
+                className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-4 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:inset-x-8 lg:bottom-7 lg:pl-52"
+              >
+                <span>
+                  <span className="block text-xs font-semibold uppercase tracking-[0.16em] text-cyan">
+                    Akikre bízhatod
+                  </span>
+                  <span className="mt-1 block font-display text-lg font-bold leading-tight drop-shadow sm:text-xl">
+                    Az Aqua System csapata
+                  </span>
+                </span>
+                <span className="inline-flex flex-none items-center gap-1.5 rounded-full bg-white/15 px-3.5 py-2 text-sm font-semibold backdrop-blur-md ring-1 ring-white/30 transition-colors duration-200 group-hover:bg-white/25">
+                  A csapat
+                  <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </span>
+              </Link>
+            </div>
+
+            {/* floating guarantee card - overlaps the photo/white seam. Mobilon
+                elmarad: a kis kepen az arcokat takarna, a 100% garancia pedig
+                ott van a trust-sorban es kozvetlenul alatta a szamsavban. */}
+            <div className="absolute -left-8 bottom-10 hidden animate-float-slow lg:block">
+              <GuaranteeCard target={guaranteeValue} text={guaranteeText} />
             </div>
           </div>
         </div>

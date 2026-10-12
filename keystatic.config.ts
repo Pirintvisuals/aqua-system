@@ -90,7 +90,7 @@ export default config({
         photo: fields.image({
           label: "Fotó",
           description:
-            "Álló vagy négyzetes kép működik a legjobban. A kép közepe mindig látszik, a széleiből a képernyőtől függően levágódhat.",
+            "Fekvő (3:2 arányú) kép működik a legjobban, például csoportkép. A kép közepe mindig látszik, a széleiből a képernyőtől függően kicsit levágódhat.",
           directory: "public/images/fooldal",
           publicPath: "/images/fooldal/",
           validation: { isRequired: true },

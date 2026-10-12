@@ -13,6 +13,7 @@ import gepeszetKazanhaz from "../assets/munkak/gepeszet-kazanhaz.jpg";
 import kazancsereErgas from "../assets/munkak/kazancsere-ergas.jpg";
 import tortenetHegesztes from "../assets/munkak/tortenet-hegesztes.jpg";
 import tortenetCsapat from "../assets/munkak/tortenet-csapat.jpg";
+import csapatCsoportkep from "../assets/team/csapat-csoportkep.jpg";
 
 export const metadata: Metadata = {
   title: "Rólunk – ötven év épületgépészeti tapasztalat",
@@ -426,6 +427,31 @@ export default async function RolunkPage() {
           </div>
         </Reveal>
         <Wave className="text-white" size="md" variant="crest" flip layers="single" />
+      </section>
+
+      {/* A csapat egyutt: a szeles csoportkep a tagok kartyai fole kerul,
+          hogy eloszor az egesz csapatot lassa az ember, utana egyenkent. */}
+      <section className="bg-white pt-16 lg:pt-24">
+        <Reveal className="mx-auto max-w-7xl px-6">
+          <figure className="relative overflow-hidden rounded-3xl border border-sky-200 shadow-[0_50px_90px_-40px_rgba(15,42,94,0.55)]">
+            <Image
+              src={csapatCsoportkep}
+              alt="Az Aqua System Service csapata: nyolc szakember egy sorban, egyenruhában"
+              placeholder="blur"
+              sizes="(max-width: 1280px) 94vw, 1232px"
+              className="aspect-[4/3] w-full object-cover object-[50%_25%] sm:aspect-[16/9] lg:aspect-[2.2/1]"
+            />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink/80 to-transparent" />
+            <figcaption className="absolute inset-x-5 bottom-4 text-white sm:inset-x-8 sm:bottom-6">
+              <span className="block text-xs font-semibold uppercase tracking-[0.16em] text-cyan">
+                Aqua System Service
+              </span>
+              <span className="mt-1 block font-display text-xl font-bold drop-shadow sm:text-2xl">
+                A csapat, 2026 októbere
+              </span>
+            </figcaption>
+          </figure>
+        </Reveal>
       </section>
 
       <Team {...team} />

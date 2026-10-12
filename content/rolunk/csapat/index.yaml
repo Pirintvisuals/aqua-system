@@ -16,11 +16,17 @@ members:
     role: Műszaki előkészítő
     photo: /images/csapat/members/3/photo.png
   - name: Berghammer Balázs
-    role: Szerelő
+    role: Senior szerelő
     photo: /images/csapat/members/4/photo.png
   - name: Ozsváth Bálint
-    role: Szerelő
+    role: Senior szerelő
     photo: /images/csapat/members/5/photo.png
   - name: Rebbenszki Gábor
-    role: Szerelő
+    role: Senior szerelő
     photo: /images/csapat/members/6/photo.png
+  - name: Domi
+    role: Junior szerelő
+    photo: /images/csapat/members/7/photo.jpg
+  - name: Pisti
+    role: Junior szerelő
+    photo: /images/csapat/members/8/photo.jpg
