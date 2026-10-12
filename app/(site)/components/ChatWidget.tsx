@@ -26,16 +26,36 @@ const AGENT_ORIGIN = CHATBOT_URL.replace(/\/+$/, "");
 
 declare global {
   interface Window {
-    AQUA_CONFIG?: { apiUrl?: string; assetsUrl?: string };
+    AQUA_CONFIG?: { apiUrl?: string; assetsUrl?: string; autoOpenDelay?: number };
+    AquaWidget?: { open: () => void; close: () => void };
   }
+}
+
+/* A kazáncsere oldalon aki 15 mp-ig olvas, annak magától kinyílik az
+   asszisztens - egyszer látogatásonként, csak asztali gépen (ezt a widget
+   maga ellenőrzi). Máshol soha nem nyílik ki kéretlenül. */
+const AUTO_OPEN_PATHS = ["/kazancsere"];
+const AUTO_OPEN_DELAY_MS = 15000;
+
+/* `?ajanlat` vagy `#ajanlat` a linkben: azonnal nyíló asszisztens. Ezt a
+   linket lehet a Google cégprofilba, hirdetésbe, QR-kódra tenni. */
+function wantsDeepLink() {
+  return (
+    new URLSearchParams(window.location.search).has("ajanlat") ||
+    window.location.hash.startsWith("#ajanlat")
+  );
 }
 
 function loadWidget() {
   if (document.getElementById("aqua-widget-script")) return;
 
+  const autoOpen = AUTO_OPEN_PATHS.some((p) =>
+    window.location.pathname.startsWith(p),
+  );
   window.AQUA_CONFIG = {
     apiUrl: `${AGENT_ORIGIN}/api/faq-agent`,
     assetsUrl: AGENT_ORIGIN,
+    ...(autoOpen ? { autoOpenDelay: AUTO_OPEN_DELAY_MS } : {}),
   };
 
   const script = document.createElement("script");
@@ -48,6 +68,10 @@ function loadWidget() {
 /* Megnyitja a sarokban ülő widgetet a saját lebegő gombjával. A script
    ilyenkor még tölthet, ezért türelmesen próbálkozunk (kb. 9 mp-ig). */
 function openWidget(attempt = 0) {
+  if (window.AquaWidget) {
+    window.AquaWidget.open();
+    return;
+  }
   const launcher = document.querySelector<HTMLButtonElement>(
     ".faq-chat-launcher",
   );
@@ -60,6 +84,9 @@ function openWidget(attempt = 0) {
 
 export default function ChatWidget() {
   useEffect(() => {
+    // Közvetlen link: nem várunk interakcióra, a widget magától kinyílik.
+    if (wantsDeepLink()) loadWidget();
+
     // Első interakcióra töltünk. A `once` miatt magától leszerel.
     const events = ["pointerdown", "touchstart", "keydown", "scroll"] as const;
     const onFirstInteraction = () => {

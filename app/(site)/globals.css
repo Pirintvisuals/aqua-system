@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans: var(--font-source-sans), system-ui, sans-serif;
-  --font-display: var(--font-dm-serif), Georgia, serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
 
   /* Brand - Aqua System (bright, white + blue) */
   --color-ink: #232b36; /* charcoal body/headings */
@@ -33,7 +33,9 @@ h2,
 h3,
 .font-display {
   font-family: var(--font-display);
-  /* Egyetlen sulyu betu: a bongeszo ne vastagitsa mestersegesen. */
+  /* Fraunces: teljesen lekerekitett (SOFT 100), hajlo betuk (WONK 1).
+     Ettol lesz kevesbe szogletes, jatekosabb. */
+  font-variation-settings: "SOFT" 100, "WONK" 1;
   font-synthesis: none;
 }
 
@@ -646,4 +648,27 @@ h3,
 
 .legal-article > .legal-box p:first-child {
   margin-top: 0;
+}
+
+/* ---------- Hero: kezzel huzott alahuzas ----------
+   A pathLength="1" miatt a vonal hossza 1: 1-es dasharray es offset
+   elrejti, 0-ra futtatva "megrajzolodik". Csokkentett mozgasnal azonnal
+   kesz. */
+.hero-swirl path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: hero-swirl-draw 1.1s 0.45s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes hero-swirl-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-swirl path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
 }

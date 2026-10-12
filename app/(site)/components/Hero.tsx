@@ -137,9 +137,9 @@ export default function Hero({
         <WaveBackdrop />
 
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-y-12 px-6 pb-16 pt-14 lg:min-h-[640px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-14 lg:pb-20 lg:pt-20">
-          {/* LEFT - szoveg. Szandekosan visszafogott: nincs csillogo cimke,
-              aláhúzás vagy lebego kartya. Egy allitas, egy mondat, ket
-              gomb, alatta a bizonyitek. */}
+          {/* LEFT - szoveg. Szandekosan visszafogott: nincs csillogo cimke
+              vagy lebego kartya. Egy allitas, egy bekezdes, ket gomb,
+              alatta a bizonyitek. */}
           <div className="fade-up">
             <p className="text-sm font-medium text-ink-soft">
               <span className="font-semibold text-ink">{eyebrowStrong}</span>
@@ -149,17 +149,31 @@ export default function Hero({
 
             <h1 className="mt-5 font-display text-[2.5rem] font-bold leading-[1.04] tracking-[-0.02em] text-ink sm:text-6xl lg:text-[3.5rem] xl:text-[3.9rem]">
               <span className="block">{titleHighlight}</span>
-              {/* Kiemelo-csik a kek sor also feleben, mint egy filctoll.
-                  Hatterkepkent fut, ezert ket sorra torve is minden sor
-                  alatt ott van (box-decoration-break: clone). */}
-              <span className="block text-balance text-brand">
-                <span className="bg-[linear-gradient(transparent_62%,rgba(127,196,232,0.45)_62%,rgba(127,196,232,0.45)_90%,transparent_90%)] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
-                  {title}
-                </span>
+              {/* Kezzel huzott, a vegen kunkorodo alahuzas a kek sor alatt -
+                  a logo hullamat idezi. Betolteskor "megrajzolodik"
+                  (globals.css: .hero-swirl). */}
+              <span className="relative inline-block whitespace-nowrap text-brand">
+                {title}
+                <svg
+                  className="hero-swirl absolute -bottom-[0.32em] left-[-2%] h-[0.42em] w-[104%] text-cyan"
+                  viewBox="0 0 320 40"
+                  preserveAspectRatio="none"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 24 C 50 12, 96 30, 150 20 S 238 8, 268 20 C 284 27, 292 36, 280 37 C 268 38, 270 22, 288 16 C 298 13, 308 14, 316 18"
+                    pathLength="1"
+                    stroke="currentColor"
+                    strokeWidth="7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </span>
             </h1>
 
-            <div className="mt-6 max-w-lg text-lg leading-relaxed text-ink-soft sm:text-[1.2rem] sm:leading-relaxed [&>p+p]:mt-4">
+            <div className="mt-9 max-w-lg text-lg leading-relaxed text-ink-soft sm:text-[1.2rem] sm:leading-relaxed [&>p+p]:mt-4">
               {intro}
             </div>
 
