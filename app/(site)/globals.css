@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans: var(--font-source-sans), system-ui, sans-serif;
-  --font-display: var(--font-archivo), system-ui, sans-serif;
+  --font-display: var(--font-dm-serif), Georgia, serif;
 
   /* Brand - Aqua System (bright, white + blue) */
   --color-ink: #232b36; /* charcoal body/headings */
@@ -33,6 +33,8 @@ h2,
 h3,
 .font-display {
   font-family: var(--font-display);
+  /* Egyetlen sulyu betu: a bongeszo ne vastagitsa mestersegesen. */
+  font-synthesis: none;
 }
 
 /* ---------- Vilagoskek szekcio ----------

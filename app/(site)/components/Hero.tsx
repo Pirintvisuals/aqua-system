@@ -2,6 +2,7 @@
 
 import Image from "next-image-export-optimizer";
 import Link from "next/link";
+import nagyFerenc from "../assets/team/nagy-ferenc.png";
 import Wave from "./Wave";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { CHATBOT_URL, CTA_NOTE, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
@@ -14,7 +15,6 @@ export type HeroContent = {
   titleHighlight: string;
   title: string;
   intro: ReactNode;
-  trustPoints: readonly string[];
   photo: string;
   photoAlt: string;
   stats: readonly { value: number; suffix: string; label: string }[];
@@ -119,7 +119,6 @@ export default function Hero({
   titleHighlight,
   title,
   intro,
-  trustPoints,
   photo,
   photoAlt,
   stats,
@@ -180,12 +179,13 @@ export default function Hero({
 
             <p className="mt-3 text-sm text-ink-soft">{CTA_NOTE}</p>
 
-            {/* Bizonyitek: a valodi velemenyek atlaga es a harom igeret,
-                ket csendes sorban. */}
-            <div className="mt-9 max-w-lg border-t border-ink/10 pt-5 text-sm text-ink-soft">
+            {/* Bizonyitek es hang: a valodi velemenyek atlaga, alatta
+                Ferenc mondata a sajat arcaval. Ez az, ami nem sablon: egy
+                konkret ember, aki a nevet adja a munkahoz. */}
+            <div className="mt-9 max-w-lg border-t border-ink/10 pt-6">
               <a
                 href="#velemenyek"
-                className="inline-flex items-center gap-2 font-medium text-ink transition-colors hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+                className="inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
               >
                 <span className="flex gap-0.5 text-amber-400" aria-hidden="true">
                   {Array.from({ length: 5 }).map((_, i) => (
@@ -194,18 +194,27 @@ export default function Hero({
                     </svg>
                   ))}
                 </span>
-                {ratingText} / 5, {rating.count} aláírt ügyfélvélemény alapján
+                <span className="font-semibold">{ratingText}</span>
+                <span className="text-ink-soft">{rating.count} ügyfél értékelése alapján</span>
               </a>
-              <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
-                {trustPoints.map((t, i) => (
-                  <li key={`${t}-${i}`} className="inline-flex items-center gap-1.5">
-                    <svg className="h-4 w-4 flex-none text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M20 6 9 17l-5-5" />
-                    </svg>
-                    {t}
-                  </li>
-                ))}
-              </ul>
+
+              <figure className="mt-5 flex items-start gap-4">
+                <Image
+                  src={nagyFerenc}
+                  alt="Nagy Ferenc"
+                  sizes="48px"
+                  className="h-12 w-12 flex-none rounded-full object-cover object-top ring-2 ring-white shadow-sm"
+                />
+                <div>
+                  <blockquote className="text-[0.95rem] italic leading-snug text-ink">
+                    „Ugyanazzal a hozzáállással megyünk minden otthonba, mintha
+                    a sajátunk lenne.”
+                  </blockquote>
+                  <figcaption className="mt-1.5 text-sm text-ink-soft">
+                    <span className="font-semibold text-ink">Nagy Ferenc</span>, cégvezető
+                  </figcaption>
+                </div>
+              </figure>
             </div>
           </div>
 

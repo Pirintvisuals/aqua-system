@@ -81,12 +81,6 @@ export default config({
             "Kiemeléshez jelöld ki a szavakat, és nyomd meg a B gombot (vagy Ctrl+B).",
           options: boldOnly,
         }),
-        trustPoints: fields.array(shortText("Pont", 40), {
-          label: "Pipás pontok a gombok alatt",
-          description: "Legfeljebb 4 rövid pont.",
-          itemLabel: (props) => props.value || "Új pont",
-          validation: { length: { min: 1, max: 4 } },
-        }),
         photo: fields.image({
           label: "Fotó",
           description:

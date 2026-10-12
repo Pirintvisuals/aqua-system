@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Archivo, Source_Sans_3 } from "next/font/google";
+import { DM_Serif_Display, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -9,10 +9,13 @@ import StickyCta from "./components/StickyCta";
 import StructuredData from "./components/StructuredData";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "./lib/site";
 
-/* Cimsorok: Archivo - feszes, ipari groteszk. A korabbi Lexend kerek,
-   jatekos formai egy gepeszeti cegnel tul "appos" hatast keltettek. */
-const archivo = Archivo({
-  variable: "--font-archivo",
+/* Cimsorok: DM Serif Display. A Lexend tul jatekos, az Archivo tul
+   jellegtelen volt; a talpas betu egy otven eves csaladi ceghez illik, es
+   nem hasonlit a szokasos "app" kinezetre. Csak 400-as sulya van - a
+   globals.css-ben a font-synthesis kikapcsolja a hamis felkoveritest. */
+const dmSerif = DM_Serif_Display({
+  variable: "--font-dm-serif",
+  weight: "400",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
@@ -67,7 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="hu"
-      className={`${archivo.variable} ${sourceSans.variable} h-full antialiased`}
+      className={`${dmSerif.variable} ${sourceSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-ink pb-[76px] lg:pb-0">
         <StructuredData />
