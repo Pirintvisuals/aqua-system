@@ -12,11 +12,21 @@ import Faq from "./components/Faq";
 import Contact from "./components/Contact";
 import PriceBand from "./components/PriceBand";
 import { reader } from "./lib/content";
+import { REVIEWS } from "./lib/reviews";
 
 export default async function Home() {
   const hero = await reader.singletons.homeHero.readOrThrow({
     resolveLinkedFiles: true,
   });
+  const team = await reader.singletons.team.readOrThrow();
+
+  /* A hero bizonyitek-sora: negy arc a csapatbol es a valodi velemenyek
+     atlaga. Mindketto szamolt, nem beirt szam - igy nem tud elcsuszni. */
+  const avatars = team.members.slice(0, 4).map((m) => ({ photo: m.photo, name: m.name }));
+  const rating = {
+    average: REVIEWS.reduce((sum, r) => sum + r.rating, 0) / REVIEWS.length,
+    count: REVIEWS.length,
+  };
 
   return (
     <main className="flex-1">
@@ -48,7 +58,12 @@ export default async function Home() {
        *  fordítani, kulonben ket azonos szekcio er ossze, es abbol lesz a
        *  nagy ures feher sav.
        * ------------------------------------------------------------------ */}
-      <Hero {...hero} intro={<RichText node={hero.intro.node} />} />
+      <Hero
+        {...hero}
+        intro={<RichText node={hero.intro.node} />}
+        avatars={avatars}
+        rating={rating}
+      />
       <Testimonials />
       <Services />
       <ServicesShowcase />

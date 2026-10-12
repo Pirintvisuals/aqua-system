@@ -23,6 +23,13 @@ export type HeroContent = {
   stats: readonly { value: number; suffix: string; label: string }[];
 };
 
+/* Nem a szerkesztobol jon: a page.tsx szamolja a csapatbol es a valodi
+   ugyfelvelemenyekbol, hogy a szam mindig az legyen, ami tenyleg igaz. */
+export type HeroProof = {
+  avatars: readonly { photo: string; name: string }[];
+  rating: { average: number; count: number };
+};
+
 /* Count-up that respects reduced motion.
 
    A lassulas szandekosan eros: a szamok gyorsan indulnak, majd az utolso
@@ -146,7 +153,10 @@ export default function Hero({
   guaranteeText,
   chipText,
   stats,
-}: HeroContent) {
+  avatars,
+  rating,
+}: HeroContent & HeroProof) {
+  const ratingText = rating.average.toFixed(1).replace(".", ",");
   return (
     <>
       <section className="relative isolate overflow-clip bg-white">
@@ -161,30 +171,65 @@ export default function Hero({
         <WaveBackdrop />
 
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-y-12 px-6 pb-16 pt-16 lg:min-h-[640px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-12 lg:pb-20 lg:pt-20">
-          {/* LEFT - copy */}
+          {/* LEFT - copy. Harom reteg: kik vagyunk (arcok + 50 ev), mit
+              igerunk (cimsor + egy mondat), mi a kovetkezo lepes (gombok).
+              A bizonyitek - a valodi velemenyek atlaga - a gombok alatt all,
+              mert ott dont a latogato. */}
           <div className="fade-up">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft">
-                <svg className="h-4 w-4 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-                <span className="font-semibold text-ink">{eyebrowStrong}</span> {eyebrowText}
+            <div className="inline-flex items-center gap-3 rounded-full border border-sky-200 bg-white/80 py-1.5 pl-1.5 pr-4 shadow-[0_10px_30px_-18px_rgba(15,42,94,0.45)] backdrop-blur">
+              <span className="flex -space-x-2.5" aria-hidden="true">
+                {avatars.map((a) => (
+                  <span
+                    key={a.photo}
+                    className="relative block h-8 w-8 overflow-hidden rounded-full bg-sky ring-2 ring-white"
+                  >
+                    <Image
+                      src={a.photo}
+                      alt=""
+                      width={64}
+                      height={64}
+                      sizes="32px"
+                      className="h-full w-full object-cover object-top"
+                    />
+                  </span>
+                ))}
+              </span>
+              <span className="text-sm text-ink-soft">
+                <span className="font-semibold text-ink">{eyebrowStrong}</span>{" "}
+                {eyebrowText}
               </span>
             </div>
 
-            <h1 className="mt-6 font-display text-[2rem] font-extrabold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[2.9rem] xl:text-[3.2rem]">
-              <span className="text-brand">{titleHighlight}</span>{" "}
-              {title}
+            <h1 className="mt-7 font-display text-[2.6rem] font-extrabold leading-[1.02] tracking-[-0.025em] text-ink sm:text-6xl lg:text-[3.6rem] xl:text-[4.1rem]">
+              <span className="relative inline-block text-brand">
+                {titleHighlight}
+                {/* A logo iveit idezo alahuzas. */}
+                <svg
+                  className="absolute -bottom-2 left-0 h-3 w-full text-cyan sm:-bottom-3 sm:h-4"
+                  viewBox="0 0 300 16"
+                  preserveAspectRatio="none"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 11 C 70 3, 150 3, 297 9"
+                    stroke="currentColor"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+              <span className="mt-2 block text-balance sm:mt-3">{title}</span>
             </h1>
 
-            <div className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft [&>p+p]:mt-4">
+            <div className="mt-7 max-w-lg text-lg leading-relaxed text-ink-soft sm:text-xl sm:leading-relaxed [&_strong]:font-semibold [&_strong]:text-ink [&>p+p]:mt-4">
               {intro}
             </div>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href={CHATBOT_URL}
-                className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-cta px-7 py-4 text-base font-semibold text-white shadow-lg shadow-cta/20 transition-all duration-200 hover:bg-cta-700 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta"
+                className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-cta px-7 py-4 text-base font-semibold text-white shadow-lg shadow-cta/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cta-700 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta"
               >
                 {CTA_PRIMARY}
                 <svg className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -204,17 +249,43 @@ export default function Hero({
 
             <p className="mt-3 text-sm text-ink-soft">{CTA_NOTE}</p>
 
-            {/* trust row */}
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
-              {trustPoints.map((t, i) => (
-                <li key={`${t}-${i}`} className="inline-flex items-center gap-2 text-sm font-medium text-ink">
-                  <svg className="h-5 w-5 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
-                  {t}
-                </li>
-              ))}
-            </ul>
+            {/* Bizonyitek-sor: velemenyatlag balra, az igeretek jobbra,
+                vekony elvalasztoval - egy blokk, nem harom kulon zaj. */}
+            <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">
+              <a
+                href="#velemenyek"
+                className="group flex flex-none items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+              >
+                <span className="font-display text-3xl font-extrabold leading-none text-ink">
+                  {ratingText}
+                </span>
+                <span>
+                  <span className="flex gap-0.5 text-amber-400" aria-hidden="true">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <svg key={i} className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.8 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z" />
+                      </svg>
+                    ))}
+                  </span>
+                  <span className="mt-1 block text-xs font-medium text-ink-soft transition-colors group-hover:text-brand">
+                    {rating.count} aláírt ügyfélvélemény
+                  </span>
+                </span>
+              </a>
+
+              <span className="hidden h-12 w-px bg-sky-200 sm:block" aria-hidden="true" />
+
+              <ul className="flex flex-col gap-1.5">
+                {trustPoints.map((t, i) => (
+                  <li key={`${t}-${i}`} className="inline-flex items-center gap-2 text-sm font-medium text-ink">
+                    <svg className="h-4 w-4 flex-none text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* RIGHT - a csapat fotoja. Asztalin a kep a kepernyo jobb szelere
