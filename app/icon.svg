@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Aqua System: "A" betu, amit a logo hulláma szel at. Sotet navy
+       alapon, hogy a bongeszo fulen vilagos es sotet temaban is latsszon. -->
+  <rect width="64" height="64" rx="14" fill="#0f2a5e"/>
+  <path d="M19 47 L32 14 L45 47" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7 41 C 20 31, 36 45, 57 30" fill="none" stroke="#7fc4e8" stroke-width="5" stroke-linecap="round"/>
+  <path d="M15 50 C 28 44, 42 52, 56 40" fill="none" stroke="#4b7be5" stroke-width="3" stroke-linecap="round"/>
+</svg>
