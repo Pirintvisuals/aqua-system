@@ -149,7 +149,14 @@ export default function Hero({
 
             <h1 className="mt-5 font-display text-[2.5rem] font-bold leading-[1.04] tracking-[-0.02em] text-ink sm:text-6xl lg:text-[3.5rem] xl:text-[3.9rem]">
               <span className="block">{titleHighlight}</span>
-              <span className="block text-balance text-brand">{title}</span>
+              {/* Kiemelo-csik a kek sor also feleben, mint egy filctoll.
+                  Hatterkepkent fut, ezert ket sorra torve is minden sor
+                  alatt ott van (box-decoration-break: clone). */}
+              <span className="block text-balance text-brand">
+                <span className="bg-[linear-gradient(transparent_62%,rgba(127,196,232,0.45)_62%,rgba(127,196,232,0.45)_90%,transparent_90%)] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
+                  {title}
+                </span>
+              </span>
             </h1>
 
             <div className="mt-6 max-w-lg text-lg leading-relaxed text-ink-soft sm:text-[1.2rem] sm:leading-relaxed [&>p+p]:mt-4">
