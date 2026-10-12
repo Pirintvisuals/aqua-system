@@ -18,11 +18,9 @@ export default async function Home() {
   const hero = await reader.singletons.homeHero.readOrThrow({
     resolveLinkedFiles: true,
   });
-  const team = await reader.singletons.team.readOrThrow();
 
-  /* A hero bizonyitek-sora: negy arc a csapatbol es a valodi velemenyek
-     atlaga. Mindketto szamolt, nem beirt szam - igy nem tud elcsuszni. */
-  const avatars = team.members.slice(0, 4).map((m) => ({ photo: m.photo, name: m.name }));
+  /* A hero bizonyitek-sora: a valodi velemenyek atlaga. Szamolt, nem
+     beirt szam - igy nem tud elcsuszni. */
   const rating = {
     average: REVIEWS.reduce((sum, r) => sum + r.rating, 0) / REVIEWS.length,
     count: REVIEWS.length,
@@ -61,7 +59,6 @@ export default async function Home() {
       <Hero
         {...hero}
         intro={<RichText node={hero.intro.node} />}
-        avatars={avatars}
         rating={rating}
       />
       <Testimonials />

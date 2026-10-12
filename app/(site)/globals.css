@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans: var(--font-source-sans), system-ui, sans-serif;
-  --font-display: var(--font-lexend), system-ui, sans-serif;
+  --font-display: var(--font-archivo), system-ui, sans-serif;
 
   /* Brand - Aqua System (bright, white + blue) */
   --color-ink: #232b36; /* charcoal body/headings */

@@ -1,16 +1,13 @@
-eyebrowStrong: 50 év
-eyebrowText: családi vállalkozás
+eyebrowStrong: Családi vállalkozás
+eyebrowText: 50 éve a szakmában
 titleHighlight: Kazáncsere
-title: egyetlen nap alatt.
+title: egy nap alatt.
 trustPoints:
   - Engedélyes gázszerelők
   - Fix ár, írásban
   - A régi kazánt elvisszük
 photo: /images/fooldal/photo.jpg
 photoAlt: Az Aqua System Service csapata, nyolc szakember egy sorban, egyenruhában
-guaranteeValue: 100
-guaranteeText: garancia minden készülékre
-chipText: 1 nap alatt kész
 stats:
   - value: 500
     suffix: +

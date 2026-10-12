@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Lexend, Source_Sans_3 } from "next/font/google";
+import { Archivo, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -9,8 +9,10 @@ import StickyCta from "./components/StickyCta";
 import StructuredData from "./components/StructuredData";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "./lib/site";
 
-const lexend = Lexend({
-  variable: "--font-lexend",
+/* Cimsorok: Archivo - feszes, ipari groteszk. A korabbi Lexend kerek,
+   jatekos formai egy gepeszeti cegnel tul "appos" hatast keltettek. */
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
@@ -65,7 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="hu"
-      className={`${lexend.variable} ${sourceSans.variable} h-full antialiased`}
+      className={`${archivo.variable} ${sourceSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-ink pb-[76px] lg:pb-0">
         <StructuredData />

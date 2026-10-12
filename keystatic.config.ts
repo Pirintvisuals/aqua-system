@@ -58,7 +58,7 @@ export default config({
         eyebrowStrong: shortText(
           "Felső felirat – kiemelt rész",
           20,
-          "A címsor fölötti kis sor félkövér eleje, pl. „50+ év”.",
+          "A címsor fölötti kis sor félkövér eleje, pl. „Családi vállalkozás”.",
         ),
         eyebrowText: shortText(
           "Felső felirat – folytatás",
@@ -66,14 +66,14 @@ export default config({
           "A kiemelt rész után álló szöveg, pl. „tapasztalat”.",
         ),
         titleHighlight: shortText(
-          "Címsor – kék rész",
+          "Címsor – első sor",
           40,
-          "A nagy címsor kék színű eleje. Legfeljebb 40 karakter.",
+          "A nagy címsor első, sötét színű sora. Legfeljebb 40 karakter.",
         ),
         title: shortText(
-          "Címsor – folytatás",
+          "Címsor – második sor",
           70,
-          "A kék rész után álló, sötét színű szöveg. Legfeljebb 70 karakter.",
+          "A címsor kék színű második sora. Legfeljebb 70 karakter.",
         ),
         intro: fields.markdoc({
           label: "Bevezető szöveg",
@@ -99,16 +99,6 @@ export default config({
           "Mi látszik a fotón?",
           150,
           "Rövid leírás a Google-nek és a képernyőolvasóknak, pl. „Frissen beüzemelt kazán egy elkészült cserénél”.",
-        ),
-        guaranteeValue: fields.integer({
-          label: "Garancia kártya – szám (%)",
-          validation: { isRequired: true, min: 0, max: 100 },
-        }),
-        guaranteeText: shortText("Garancia kártya – szöveg", 40),
-        chipText: shortText(
-          "Kis címke a fotó sarkában",
-          25,
-          "Pl. „1 nap alatt kész”. Legfeljebb 25 karakter.",
         ),
         stats: fields.array(
           fields.object({

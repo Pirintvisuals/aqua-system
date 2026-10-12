@@ -17,16 +17,12 @@ export type HeroContent = {
   trustPoints: readonly string[];
   photo: string;
   photoAlt: string;
-  guaranteeValue: number;
-  guaranteeText: string;
-  chipText: string;
   stats: readonly { value: number; suffix: string; label: string }[];
 };
 
 /* Nem a szerkesztobol jon: a page.tsx szamolja a csapatbol es a valodi
    ugyfelvelemenyekbol, hogy a szam mindig az legyen, ami tenyleg igaz. */
 export type HeroProof = {
-  avatars: readonly { photo: string; name: string }[];
   rating: { average: number; count: number };
 };
 
@@ -101,29 +97,6 @@ function WaveBackdrop() {
   );
 }
 
-/* Floating glass guarantee card that overlaps the photo edge. */
-function GuaranteeCard({ target, text }: { target: number; text: string }) {
-  const { value, ref } = useCountUp(target);
-  return (
-    <div className="rounded-2xl border border-sky-200 bg-white/90 px-5 py-4 shadow-[0_22px_50px_-20px_rgba(15,42,94,0.45)] backdrop-blur">
-      <div className="flex items-center gap-3">
-        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky text-brand">
-          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z" />
-            <path d="M9 12l2 2 4-4" />
-          </svg>
-        </span>
-        <div>
-          <div className="font-display text-2xl font-bold text-cta">
-            <span ref={ref}>{value}</span>%
-          </div>
-          <div className="text-xs font-medium text-ink-soft">{text}</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function Stat({ value: target, suffix, label }: HeroContent["stats"][number]) {
   const { value, ref } = useCountUp(target);
   /* A szerkesztoben "év"-et irnak, nem " év"-et: betuvel kezdodo utotag
@@ -149,20 +122,14 @@ export default function Hero({
   trustPoints,
   photo,
   photoAlt,
-  guaranteeValue,
-  guaranteeText,
-  chipText,
   stats,
-  avatars,
   rating,
 }: HeroContent & HeroProof) {
   const ratingText = rating.average.toFixed(1).replace(".", ",");
   return (
     <>
       <section className="relative isolate overflow-clip bg-white">
-        {/* Retegelt hatter: lagy kek foltok es a markajelzo hullam. A
-            pontracs innen is kikerult: azt a texturat mindenhol a viz
-            valtja. */}
+        {/* Retegelt hatter: lagy kek foltok es a markajelzo hullam. */}
         <div className="pointer-events-none absolute inset-0 -z-20">
           <div className="absolute -left-24 -top-24 h-[440px] w-[440px] rounded-full bg-sky/80 blur-3xl animate-drift" />
           <div className="absolute right-1/3 top-24 h-[320px] w-[320px] rounded-full bg-cyan/25 blur-3xl animate-drift [animation-delay:-8s]" />
@@ -170,66 +137,30 @@ export default function Hero({
         </div>
         <WaveBackdrop />
 
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-y-12 px-6 pb-16 pt-16 lg:min-h-[640px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-12 lg:pb-20 lg:pt-20">
-          {/* LEFT - copy. Harom reteg: kik vagyunk (arcok + 50 ev), mit
-              igerunk (cimsor + egy mondat), mi a kovetkezo lepes (gombok).
-              A bizonyitek - a valodi velemenyek atlaga - a gombok alatt all,
-              mert ott dont a latogato. */}
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-y-12 px-6 pb-16 pt-14 lg:min-h-[640px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-14 lg:pb-20 lg:pt-20">
+          {/* LEFT - szoveg. Szandekosan visszafogott: nincs csillogo cimke,
+              aláhúzás vagy lebego kartya. Egy allitas, egy mondat, ket
+              gomb, alatta a bizonyitek. */}
           <div className="fade-up">
-            <div className="inline-flex items-center gap-3 rounded-full border border-sky-200 bg-white/80 py-1.5 pl-1.5 pr-4 shadow-[0_10px_30px_-18px_rgba(15,42,94,0.45)] backdrop-blur">
-              <span className="flex -space-x-2.5" aria-hidden="true">
-                {avatars.map((a) => (
-                  <span
-                    key={a.photo}
-                    className="relative block h-8 w-8 overflow-hidden rounded-full bg-sky ring-2 ring-white"
-                  >
-                    <Image
-                      src={a.photo}
-                      alt=""
-                      width={64}
-                      height={64}
-                      sizes="32px"
-                      className="h-full w-full object-cover object-top"
-                    />
-                  </span>
-                ))}
-              </span>
-              <span className="text-sm text-ink-soft">
-                <span className="font-semibold text-ink">{eyebrowStrong}</span>{" "}
-                {eyebrowText}
-              </span>
-            </div>
+            <p className="text-sm font-medium text-ink-soft">
+              <span className="font-semibold text-ink">{eyebrowStrong}</span>
+              <span className="mx-2 text-sky-300" aria-hidden="true">|</span>
+              {eyebrowText}
+            </p>
 
-            <h1 className="mt-7 font-display text-[2.6rem] font-extrabold leading-[1.02] tracking-[-0.025em] text-ink sm:text-6xl lg:text-[3.6rem] xl:text-[4.1rem]">
-              <span className="relative inline-block text-brand">
-                {titleHighlight}
-                {/* A logo iveit idezo alahuzas. */}
-                <svg
-                  className="absolute -bottom-2 left-0 h-3 w-full text-cyan sm:-bottom-3 sm:h-4"
-                  viewBox="0 0 300 16"
-                  preserveAspectRatio="none"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M3 11 C 70 3, 150 3, 297 9"
-                    stroke="currentColor"
-                    strokeWidth="5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-              <span className="mt-2 block text-balance sm:mt-3">{title}</span>
+            <h1 className="mt-5 font-display text-[2.5rem] font-bold leading-[1.04] tracking-[-0.02em] text-ink sm:text-6xl lg:text-[3.5rem] xl:text-[3.9rem]">
+              <span className="block">{titleHighlight}</span>
+              <span className="block text-balance text-brand">{title}</span>
             </h1>
 
-            <div className="mt-7 max-w-lg text-lg leading-relaxed text-ink-soft sm:text-xl sm:leading-relaxed [&_strong]:font-semibold [&_strong]:text-ink [&>p+p]:mt-4">
+            <div className="mt-6 max-w-lg text-lg leading-relaxed text-ink-soft sm:text-[1.2rem] sm:leading-relaxed [&>p+p]:mt-4">
               {intro}
             </div>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href={CHATBOT_URL}
-                className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-cta px-7 py-4 text-base font-semibold text-white shadow-lg shadow-cta/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cta-700 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta"
+                className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-cta px-7 py-4 text-base font-semibold text-white shadow-lg shadow-cta/20 transition-colors duration-200 hover:bg-cta-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta"
               >
                 {CTA_PRIMARY}
                 <svg className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -249,36 +180,26 @@ export default function Hero({
 
             <p className="mt-3 text-sm text-ink-soft">{CTA_NOTE}</p>
 
-            {/* Bizonyitek-sor: velemenyatlag balra, az igeretek jobbra,
-                vekony elvalasztoval - egy blokk, nem harom kulon zaj. */}
-            <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">
+            {/* Bizonyitek: a valodi velemenyek atlaga es a harom igeret,
+                ket csendes sorban. */}
+            <div className="mt-9 max-w-lg border-t border-ink/10 pt-5 text-sm text-ink-soft">
               <a
                 href="#velemenyek"
-                className="group flex flex-none items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+                className="inline-flex items-center gap-2 font-medium text-ink transition-colors hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
               >
-                <span className="font-display text-3xl font-extrabold leading-none text-ink">
-                  {ratingText}
+                <span className="flex gap-0.5 text-amber-400" aria-hidden="true">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.8 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z" />
+                    </svg>
+                  ))}
                 </span>
-                <span>
-                  <span className="flex gap-0.5 text-amber-400" aria-hidden="true">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <svg key={i} className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.8 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z" />
-                      </svg>
-                    ))}
-                  </span>
-                  <span className="mt-1 block text-xs font-medium text-ink-soft transition-colors group-hover:text-brand">
-                    {rating.count} aláírt ügyfélvélemény
-                  </span>
-                </span>
+                {ratingText} / 5, {rating.count} aláírt ügyfélvélemény alapján
               </a>
-
-              <span className="hidden h-12 w-px bg-sky-200 sm:block" aria-hidden="true" />
-
-              <ul className="flex flex-col gap-1.5">
+              <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
                 {trustPoints.map((t, i) => (
-                  <li key={`${t}-${i}`} className="inline-flex items-center gap-2 text-sm font-medium text-ink">
-                    <svg className="h-4 w-4 flex-none text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <li key={`${t}-${i}`} className="inline-flex items-center gap-1.5">
+                    <svg className="h-4 w-4 flex-none text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M20 6 9 17l-5-5" />
                     </svg>
                     {t}
@@ -289,22 +210,16 @@ export default function Hero({
           </div>
 
           {/* RIGHT - a csapat fotoja. Asztalin a kep a kepernyo jobb szelere
-              nyulik (a doboz a belso oszlopbol kifelle csuszik), igy a
-              csoportkep nagy marad, de a szoveg melletti oszlop nem szukul.
-              A negativ jobb margo pontosan a tartalom es a kepernyo szele
-              kozotti savot fedi le. */}
+              nyulik, igy a csoportkep nagy marad, de a szoveg oszlopa nem
+              szukul. A negativ jobb margo pontosan a tartalom es a kepernyo
+              szele kozotti savot fedi le. */}
           <div className="relative lg:-mr-[max(0px,calc((100vw-80rem)/2+1.5rem))]">
-            {/* Mogotte: elcsusztatott, szinatmenetes lap - melyseget ad, es
-                a kep nem "ragad" a feher hatterre. */}
-            <div
-              className="pointer-events-none absolute -bottom-5 -left-5 right-0 top-8 hidden rounded-[2.5rem] bg-gradient-to-br from-brand-light/30 via-sky to-cyan/30 lg:block lg:rounded-r-none"
-              aria-hidden="true"
-            />
-
-            <div className="group relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/70 bg-sky shadow-[0_50px_90px_-35px_rgba(15,42,94,0.65)] ring-1 ring-sky-200 lg:aspect-[3/2] lg:rounded-l-[2.5rem] lg:rounded-r-none lg:border-r-0">
+            <Link
+              href="/rolunk#csapat"
+              className="group relative block aspect-[4/3] overflow-hidden rounded-3xl bg-sky shadow-[0_40px_80px_-40px_rgba(15,42,94,0.6)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand lg:aspect-[3/2] lg:rounded-l-[2rem] lg:rounded-r-none"
+            >
               {/* A foto a szerkesztobol jon, a meretet nem ismerjuk elore. A
-                  width/height csak a srcset-hez kell; a tenyleges meretet a
-                  h-full w-full object-cover adja. Az arcok a kep felso
+                  width/height csak a srcset-hez kell. Az arcok a kep felso
                   harmadaban vannak, ezert nem pontosan kozepre igazitjuk. */}
               <Image
                 src={photo}
@@ -313,55 +228,16 @@ export default function Hero({
                 height={1067}
                 priority
                 sizes="(max-width: 1024px) 94vw, 58vw"
-                className="hero-parallax h-full w-full object-cover object-[50%_28%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]"
+                className="h-full w-full object-cover object-[50%_28%] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
               />
-              {/* meleg-hideg marka-szinezes + alulrol sotetites a feliratnak */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-cta/20 via-transparent to-cyan/10" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/85 via-ink/35 to-transparent" />
-
-              {/* small chip */}
-              <div className="absolute right-4 top-4 animate-float-slow [animation-delay:-3s] lg:right-8 lg:top-8">
-                <div className="flex items-center gap-2 rounded-full bg-white/90 px-3.5 py-2 shadow-[0_18px_40px_-18px_rgba(15,42,94,0.45)] backdrop-blur">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky text-brand">
-                    <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <circle cx="12" cy="12" r="9" />
-                      <path d="M12 7v5l3 2" />
-                    </svg>
-                  </span>
-                  <span className="text-sm font-semibold text-ink">{chipText}</span>
-                </div>
-              </div>
-
-              {/* Felirat: kik ezek az emberek, es innen tovabb a csapathoz.
-                  Ez az, ami a fotot nem dekoracioava, hanem bizalmi elemma
-                  teszi. */}
-              <Link
-                href="/rolunk#csapat"
-                className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-4 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:inset-x-8 lg:bottom-7 lg:pl-52"
-              >
-                <span>
-                  <span className="block text-xs font-semibold uppercase tracking-[0.16em] text-cyan">
-                    Akikre bízhatod
-                  </span>
-                  <span className="mt-1 block font-display text-lg font-bold leading-tight drop-shadow sm:text-xl">
-                    Az Aqua System csapata
-                  </span>
-                </span>
-                <span className="inline-flex flex-none items-center gap-1.5 rounded-full bg-white/15 px-3.5 py-2 text-sm font-semibold backdrop-blur-md ring-1 ring-white/30 transition-colors duration-200 group-hover:bg-white/25">
-                  A csapat
-                  <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </span>
-              </Link>
-            </div>
-
-            {/* floating guarantee card - overlaps the photo/white seam. Mobilon
-                elmarad: a kis kepen az arcokat takarna, a 100% garancia pedig
-                ott van a trust-sorban es kozvetlenul alatta a szamsavban. */}
-            <div className="absolute -left-8 bottom-10 hidden animate-float-slow lg:block">
-              <GuaranteeCard target={guaranteeValue} text={guaranteeText} />
-            </div>
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/70 to-transparent" />
+              <span className="absolute bottom-4 left-5 inline-flex items-center gap-1.5 text-sm font-semibold text-white drop-shadow lg:bottom-6 lg:left-7 lg:text-base">
+                Az Aqua System csapata
+                <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </span>
+            </Link>
           </div>
         </div>
       </section>
