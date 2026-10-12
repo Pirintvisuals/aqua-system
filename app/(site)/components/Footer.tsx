@@ -150,8 +150,11 @@ export default function Footer() {
           <Link href="/impresszum" className="transition-colors hover:text-brand">
             Impresszum
           </Link>
+          <Link href="/munkaerofejlesztesi-palyazat" className="transition-colors hover:text-brand">
+            Uniós pályázat: munkaerőfejlesztés
+          </Link>
           <Link href="/aquashield-control-projekt" className="transition-colors hover:text-brand">
-            Uniós pályázat
+            Uniós pályázat: Aquashield
           </Link>
         </div>
       </div>

@@ -18,7 +18,7 @@ export const BUSINESS = {
   legalName:
     "AQUA SYSTEM SERVICE Épületgépészeti Szolgáltató Korlátolt Felelősségű Társaság",
   telephone: "+36203990093",
-  email: "kazancsere@aqua-system.hu",
+  email: "info@aqua-system.hu",
 
   // Bejegyzett székhely. Ez a NAP (név / cím / telefon) alapja - ha
   //    változik, itt írd át, és mindenhol követi (lábléc, JSON-LD).
@@ -35,6 +35,15 @@ export const BUSINESS = {
   registration: {
     taxNumber: "12830433-2-13", // adószám
     companyNumber: "13-09-091027", // cégjegyzékszám
+  },
+
+  // Gázszerelői jogosultság. A nyilvántartási szám Nagy Ferencé (a cég
+  //    tulajdonosáé és cégvezetőjéé), nem a cégé - az impresszum így írja.
+  gasLicence: {
+    holder: "Nagy Ferenc",
+    qualification:
+      "Gázvezeték- és készülékszerelő, Gázipari műszaki-biztonsági felülvizsgáló",
+    number: "G/74517/2025",
   },
 
   // Kiszolgált települések. A második blokk a valós ügyfélvéleményekből

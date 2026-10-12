@@ -10,10 +10,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-/* ⚠ A gazszereloi/kamarai jogosultsagi szamokat Ferenctol kell kerni -
-   ha van ilyen nyilvantartasi szam, ide kerul, mert gazmunkanal ez
-   erositi a bizalmat. Amig nincs meg, ez a szakasz kimarad. */
-
 export default function ImpresszumPage() {
   return (
     <main className="flex-1">
@@ -44,6 +40,14 @@ export default function ImpresszumPage() {
               E-mail: <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
               <br />
               Telefon: <a href={`tel:${BUSINESS.telephone}`}>{BUSINESS.telephone}</a>
+            </p>
+
+            <h2>Szakmai jogosultság</h2>
+            <p>
+              {BUSINESS.gasLicence.holder} (tulajdonos, cégvezető):{" "}
+              {BUSINESS.gasLicence.qualification}.
+              <br />
+              Nyilvántartási szám: <strong>{BUSINESS.gasLicence.number}</strong>
             </p>
 
             <h2>Nyilvántartó bíróság</h2>

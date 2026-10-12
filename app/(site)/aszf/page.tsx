@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-/* ⚠ Ez a weboldal ES az arajanlo asszisztens HASZNALATANAK feltetelei -
+/* Ez a weboldal ES az arajanlo asszisztens HASZNALATANAK feltetelei -
    nem a kazancsere-szolgaltatas szerzodesi feltetelei. Az tenyleges
    munka mindig kulon, egyedi megallapodas alapjan jon letre a
-   helyszini felmeres utan. Elesites elott jogasszal atnezendo. */
+   helyszini felmeres utan. */
 
 const UPDATED = "2026. szeptember";
 
@@ -127,6 +127,15 @@ export default function AszfPage() {
               telefonszámon jelezheti. A konkrét, megrendelt munkával
               kapcsolatos panaszokra a felmérés után létrejött egyedi
               megállapodás feltételei az irányadók.
+            </p>
+            <p>
+              A panaszt a Szolgáltató a beérkezésétől számított 30 napon belül
+              írásban megválaszolja. Ha a fogyasztói jogvitát nem sikerül
+              közvetlenül rendezni, a fogyasztó a lakóhelye szerint illetékes
+              vagy a Szolgáltató székhelye szerint illetékes békéltető
+              testülethez fordulhat. A Szolgáltató székhelye szerint illetékes:
+              Pest Vármegyei Békéltető Testület (1055 Budapest, Balassi Bálint
+              utca 25. IV/2.). Bírósági eljárás is kezdeményezhető.
             </p>
 
             <h2>8. Alkalmazandó jog</h2>
