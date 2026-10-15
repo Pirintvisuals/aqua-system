@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Reveal from "./Reveal";
-import { CHATBOT_URL } from "../lib/links";
+import { CHATBOT_URL, QUOTING_AGENT_ON } from "../lib/links";
 
 /* ------------------------------------------------------------------ *
  *  ÁLLÍTHATÓ KÜSZÖBÖK - szakmai forrásokkal alátámasztva.
@@ -158,12 +158,13 @@ export default function BoilerCalculator() {
             </div>
 
             <p className="mt-6 text-xs text-ink-soft">
-              A kalkulátor tájékoztató jellegű. Konkrét árért indítsd el az{" "}
+              A kalkulátor tájékoztató jellegű. Konkrét árért{" "}
+              {QUOTING_AGENT_ON ? "indítsd el az " : ""}
               <a
                 href={CHATBOT_URL}
                 className="font-semibold text-brand underline-offset-2 hover:underline"
               >
-                online árajánló asszisztenst
+                {QUOTING_AGENT_ON ? "online árajánló asszisztenst" : "írj nekünk"}
               </a>
               , a pontos állapotot pedig mindig helyszíni felmérés alapján tudjuk
               megmondani.

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { CHATBOT_URL } from "../lib/links";
+import { AGENT_URL } from "../lib/links";
 
 /* ------------------------------------------------------------------ *
  *  Árajánló widget. A valódi asszisztens ül a sarokban: nem iframe-be
@@ -22,7 +22,7 @@ import { CHATBOT_URL } from "../lib/links";
  *  `AQUA_CONFIG`-gal mondjuk meg, hova küldje az API-hívásokat.
  * ------------------------------------------------------------------ */
 
-const AGENT_ORIGIN = CHATBOT_URL.replace(/\/+$/, "");
+const AGENT_ORIGIN = AGENT_URL.replace(/\/+$/, "");
 
 declare global {
   interface Window {

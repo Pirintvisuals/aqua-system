@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import ChatWidget from "./components/ChatWidget";
 import StickyCta from "./components/StickyCta";
 import StructuredData from "./components/StructuredData";
+import { QUOTING_AGENT_ON } from "./lib/links";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "./lib/site";
 
 /* Cimsorok: Fraunces. A DM Serif Display tul szogletes es merev volt, az
@@ -78,7 +79,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Navbar />
         {children}
         <Footer />
-        <ChatWidget />
+        {QUOTING_AGENT_ON && <ChatWidget />}
         <StickyCta />
         {/* Website analytics (PostHog): page views, phone/email clicks, forms. Stores nothing in the browser. */}
         <Script src="/site-analytics.js" data-site="aqua-system" strategy="afterInteractive" />

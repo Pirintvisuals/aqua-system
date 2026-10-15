@@ -10,6 +10,11 @@ export const SITE_URL = "https://aqua-system.hu";
 
 export const SITE_NAME = "Aqua System Service Kft.";
 
+// ⚠ Ajánlatkérő űrlap: Web3Forms access key. A kulcsot a Web3Forms a
+//    kazancsere@aqua-system.hu címre küldi, az üzenetek is oda mennek.
+//    Amíg üres, az űrlap a látogató levelezőprogramját nyitja meg.
+export const WEB3FORMS_KEY = "2707ee2a-3bc3-48f1-bf18-39e6082e4e02";
+
 export const SITE_DESCRIPTION =
   "Gyors, biztonságos és profi gázkészülék- és kazáncsere egyetlen nap alatt. 50 év tapasztalat, fix ár, 100% garancia minden készülékre. Már 500+ sikeres csere.";
 

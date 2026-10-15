@@ -1,7 +1,7 @@
 import Image from "next-image-export-optimizer";
 import ctaBg from "../assets/munkak/gepeszet-vitodens.jpg";
 import Reveal from "./Reveal";
-import { CHATBOT_URL, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
+import { CHATBOT_URL, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF, QUOTING_AGENT_ON } from "../lib/links";
 
 export default function TrustBanner() {
   return (
@@ -52,12 +52,18 @@ export default function TrustBanner() {
                 Több mint 500 sikeres csere tapasztalatával egyszerűen
                 elmagyarázzuk, mit miért csinálunk, mire számíthatsz, és hogyan
                 zajlik a csere. Nem siettetünk, nem beszélünk szakzsargonnal, és
-                mindig visszahívunk – hogy nyugodtan tudj dönteni. A kezdéshez
-                elég pár kérdés az{" "}
-                <span className="font-semibold text-white">
-                  online árajánló asszisztensünkben
-                </span>{" "}
-                és pár percen belül megvan a tájékoztató ár.
+                mindig visszahívunk – hogy nyugodtan tudj dönteni.
+                {QUOTING_AGENT_ON ? (
+                  <>
+                    {" "}A kezdéshez elég pár kérdés az{" "}
+                    <span className="font-semibold text-white">
+                      online árajánló asszisztensünkben
+                    </span>{" "}
+                    és pár percen belül megvan a tájékoztató ár.
+                  </>
+                ) : (
+                  " A kezdéshez elég egy rövid üzenet vagy egy hívás."
+                )}
               </p>
             </div>
 

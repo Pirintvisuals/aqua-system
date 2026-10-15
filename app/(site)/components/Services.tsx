@@ -2,7 +2,7 @@ import Image from "next-image-export-optimizer";
 import boilerPhoto from "../assets/munkak/gepeszet-kazanhaz.jpg";
 import Reveal from "./Reveal";
 import AnimatedHeading from "./AnimatedHeading";
-import { CHATBOT_URL, CTA_PRIMARY } from "../lib/links";
+import { CHATBOT_URL, CTA_PRIMARY, QUOTING_AGENT_ON } from "../lib/links";
 
 const INCLUDED = [
   "Helyszíni felmérés",
@@ -32,12 +32,18 @@ export default function Services() {
             mindent mi intézünk, a legfrissebb előírások szerint, dokumentáltan.
           </p>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-soft">
-            Nem tudod, hol kezdd? Az{" "}
-            <strong className="font-semibold text-ink">
-              online árajánló asszisztensünk
-            </strong>{" "}
-            pár egyszerű kérdés alapján azonnal ad egy tájékoztató árat – hívás
-            és várakozás nélkül.
+            {QUOTING_AGENT_ON ? (
+              <>
+                Nem tudod, hol kezdd? Az{" "}
+                <strong className="font-semibold text-ink">
+                  online árajánló asszisztensünk
+                </strong>{" "}
+                pár egyszerű kérdés alapján azonnal ad egy tájékoztató árat – hívás
+                és várakozás nélkül.
+              </>
+            ) : (
+              "Nem tudod, hol kezdd? Írd le pár mondatban, mi a helyzet, és segítünk eligazodni."
+            )}
           </p>
 
           <ul className="mt-8 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
 import Wave from "./Wave";
-import { CHATBOT_URL, CTA_NOTE, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
+import { CHATBOT_URL, CTA_NOTE, CTA_PRIMARY, PHONE_DISPLAY, PHONE_HREF, QUOTING_AGENT_ON } from "../lib/links";
 
 /* ------------------------------------------------------------------ *
  *  Záró CTA-sáv az oldalak aljára.
@@ -21,7 +21,9 @@ type Props = {
 
 export default function CtaBand({
   title = "Cseréljük le a régi gázkészüléket egyetlen nap alatt",
-  body = "Pár kérdés az online árajánló asszisztensünkben, és máris kapsz egy tájékoztató árat. Ha inkább beszélnél valakivel, hívj minket, vagy írj üzenetet.",
+  body = QUOTING_AGENT_ON
+    ? "Pár kérdés az online árajánló asszisztensünkben, és máris kapsz egy tájékoztató árat. Ha inkább beszélnél valakivel, hívj minket, vagy írj üzenetet."
+    : "Írd le pár mondatban, mi a helyzet, vagy hívj minket. A végleges árat helyszíni felmérés után, írásban adjuk.",
 }: Props) {
   return (
     <section className="relative overflow-clip bg-cta edge-glow">

@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { SITE_NAME } from "./lib/site";
+import { QUOTING_AGENT_ON } from "./lib/links";
 
 // Megosztási előnézet (Facebook, Messenger, WhatsApp, LinkedIn stb.).
 export const alt = `${SITE_NAME} – Egynapos gázkészülék csere`;
@@ -63,7 +64,7 @@ export default function OpengraphImage() {
             color: "#7fc4e8",
           }}
         >
-          Azonnali online árajánlat →
+          {QUOTING_AGENT_ON ? "Azonnali online árajánlat →" : "Kérj árajánlatot →"}
         </div>
       </div>
     ),

@@ -4,8 +4,8 @@ import { useState } from "react";
 import Reveal from "./Reveal";
 import Wave from "./Wave";
 import AnimatedHeading from "./AnimatedHeading";
-import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
-import { BUSINESS } from "../lib/site";
+import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF, QUOTING_AGENT_ON } from "../lib/links";
+import { BUSINESS, WEB3FORMS_KEY } from "../lib/site";
 
 // Ne legyen második másolat: az e-mail/telefon egy helyen él, különben
 // (mint korábban) észrevétlenül szétcsúszik a valóditól.
@@ -24,28 +24,53 @@ export default function Contact() {
   const [contact, setContact] = useState("");
   const [workType, setWorkType] = useState("");
   const [place, setPlace] = useState("");
-  const [photos, setPhotos] = useState<File[]>([]);
   const [message, setMessage] = useState("");
+  // Csapda a spamrobotoknak: ember nem látja, robot kitölti.
+  const [botcheck, setBotcheck] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const photoLine =
-      photos.length > 0
-        ? `\nCsatolt képek: ${photos
-            .map((f) => f.name)
-            .join(", ")} (kérlek, csatold őket az e-mailhez)`
-        : "";
-    const body =
-      `Név: ${name}\n` +
-      `Elérhetőség: ${contact}\n` +
-      `Milyen munka: ${workType || "nincs megadva"}\n` +
-      `Helyszín: ${place || "nincs megadva"}` +
-      photoLine +
-      `\n\n${message}`;
-    // Chatbot/űrlap-backend később; addig e-mail kliens nyílik meg.
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
-      "Ajánlatkérés – gázkészülék csere",
-    )}&body=${encodeURIComponent(body)}`;
+    const subject = "Ajánlatkérés – gázkészülék csere";
+
+    // Nincs még Web3Forms kulcs: a levelezőprogram nyílik meg, mint eddig.
+    if (!WEB3FORMS_KEY) {
+      const body =
+        `Név: ${name}\n` +
+        `Elérhetőség: ${contact}\n` +
+        `Milyen munka: ${workType || "nincs megadva"}\n` +
+        `Helyszín: ${place || "nincs megadva"}` +
+        `\n\n${message}`;
+      window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
+        subject,
+      )}&body=${encodeURIComponent(body)}`;
+      return;
+    }
+
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `${subject} – ${name}`,
+          from_name: "aqua-system.hu űrlap",
+          // Ha e-mail címet adott meg, a "Válasz" gomb egyből neki ír.
+          ...(contact.includes("@") ? { replyto: contact.trim() } : {}),
+          botcheck,
+          "Név": name,
+          "Elérhetőség": contact,
+          "Milyen munka": workType || "nincs megadva",
+          "Helyszín": place || "nincs megadva",
+          "Üzenet": message || "-",
+        }),
+      });
+      const data = await res.json();
+      setStatus(data.success ? "sent" : "error");
+    } catch {
+      setStatus("error");
+    }
   }
 
   const inputClass =
@@ -63,12 +88,13 @@ export default function Contact() {
               Vedd fel velünk a kapcsolatot
             </AnimatedHeading>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-soft">
-            A leggyorsabb út az árhoz az online árajánló asszisztensünk – pár
-            kérdés, és máris kapsz egy tájékoztató árat. Ha inkább írnál vagy
-            hívnál, azt is szívesen fogadjuk.
+            {QUOTING_AGENT_ON
+              ? "A leggyorsabb út az árhoz az online árajánló asszisztensünk – pár kérdés, és máris kapsz egy tájékoztató árat. Ha inkább írnál vagy hívnál, azt is szívesen fogadjuk."
+              : "Írj nekünk az űrlapon vagy e-mailben, esetleg hívj minket. A végleges, fix árat a helyszíni felmérés után adjuk."}
           </p>
 
           <div className="mt-8 space-y-4">
+            {QUOTING_AGENT_ON && (
             <a
               href={CHATBOT_URL}
               className="group flex items-center gap-4 rounded-2xl border border-brand/30 bg-brand/5 p-5 transition-colors hover:bg-brand/10"
@@ -88,6 +114,7 @@ export default function Contact() {
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
             </a>
+            )}
 
             <a
               href={`mailto:${EMAIL}`}
@@ -194,29 +221,6 @@ export default function Contact() {
               />
             </div>
             <div>
-              <label htmlFor="c-photo" className="text-sm font-medium text-ink">
-                Fénykép a készülékről{" "}
-                <span className="font-normal text-ink-soft">(opcionális)</span>
-              </label>
-              <input
-                id="c-photo"
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={(e) => setPhotos(Array.from(e.target.files ?? []))}
-                className="mt-1.5 w-full cursor-pointer rounded-xl border border-sky-200 bg-white px-4 py-3 text-sm text-ink-soft outline-none transition file:mr-4 file:cursor-pointer file:rounded-lg file:border-0 file:bg-sky file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand hover:file:bg-sky-200 focus:border-brand focus:ring-2 focus:ring-brand/20"
-              />
-              <p className="mt-1.5 text-xs text-ink-soft">
-                Egy fotó a jelenlegi kazánról / a helyszínről sokat segít a
-                pontos árban. A levelezőben tudod majd csatolni.
-              </p>
-              {photos.length > 0 && (
-                <p className="mt-1 text-xs font-medium text-brand">
-                  {photos.length} kép kiválasztva
-                </p>
-              )}
-            </div>
-            <div>
               <label htmlFor="c-msg" className="text-sm font-medium text-ink">
                 Miben segíthetünk?
               </label>
@@ -229,19 +233,53 @@ export default function Contact() {
                 className={inputClass}
               />
             </div>
-            <button
-              type="submit"
-              className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-cta px-7 py-4 text-base font-semibold text-white shadow-lg shadow-cta/20 transition-all duration-200 hover:bg-cta-700 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta"
-            >
-              Üzenet küldése
-              <svg className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </button>
-            <p className="text-xs text-ink-soft">
-              A gombra kattintva a levelezőprogramod nyílik meg. Ha azonnali
-              árat szeretnél, indítsd el fent az online árajánló asszisztenst.
-            </p>
+            <input
+              type="checkbox"
+              name="botcheck"
+              checked={botcheck}
+              onChange={(e) => setBotcheck(e.target.checked)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="hidden"
+            />
+            {status === "sent" ? (
+              <div role="status" className="rounded-xl border border-brand/30 bg-brand/5 p-5">
+                <p className="font-semibold text-ink">Köszönjük, megkaptuk az üzenetedet!</p>
+                <p className="mt-1 text-sm text-ink-soft">
+                  Hamarosan jelentkezünk. Ha sürgős, hívj minket:{" "}
+                  <a href={PHONE_HREF} className="font-semibold text-brand">
+                    {PHONE_DISPLAY}
+                  </a>
+                </p>
+              </div>
+            ) : (
+              <>
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-cta px-7 py-4 text-base font-semibold text-white shadow-lg shadow-cta/20 transition-all duration-200 hover:bg-cta-700 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta disabled:cursor-wait disabled:opacity-70"
+                >
+                  {status === "sending" ? "Küldés…" : "Üzenet küldése"}
+                  <svg className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </button>
+                {status === "error" && (
+                  <p role="alert" className="text-sm font-medium text-red-700">
+                    Valami hiba történt, az üzenet nem ment el. Próbáld újra, vagy
+                    hívj minket: <a href={PHONE_HREF} className="underline">{PHONE_DISPLAY}</a>
+                  </p>
+                )}
+                <p className="text-xs text-ink-soft">
+                  {WEB3FORMS_KEY
+                    ? "Az üzenetedre e-mailben vagy telefonon válaszolunk."
+                    : "A gombra kattintva a levelezőprogramod nyílik meg."}
+                  {QUOTING_AGENT_ON &&
+                    " Ha azonnali árat szeretnél, indítsd el fent az online árajánló asszisztenst."}
+                </p>
+              </>
+            )}
           </div>
         </form>
       </Reveal>

@@ -2,13 +2,13 @@ import Image from "next-image-export-optimizer";
 import Link from "next/link";
 import logo from "../assets/logo.png";
 import szechenyiBanner from "../assets/palyazat/szechenyi-terv-plusz.jpg";
-import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
+import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF, QUOTING_AGENT_ON } from "../lib/links";
 import { BUSINESS } from "../lib/site";
 
 const EMAIL = BUSINESS.email;
 
 const LINKS = [
-  { label: "Azonnali árajánlat", href: CHATBOT_URL },
+  { label: QUOTING_AGENT_ON ? "Azonnali árajánlat" : "Árajánlatkérés", href: CHATBOT_URL },
   { label: "Szolgáltatásaink", href: "/szolgaltatasok" },
   { label: "Kell-e új kazán?", href: "/kell-e-uj-kazan" },
   { label: "Munkáink", href: "/munkaink" },

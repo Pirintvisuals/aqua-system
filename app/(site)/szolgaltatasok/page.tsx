@@ -6,6 +6,7 @@ import CtaBand from "../components/CtaBand";
 import Reveal from "../components/Reveal";
 import { SERVICES } from "../lib/services";
 import { SITE_URL } from "../lib/site";
+import { QUOTING_AGENT_ON } from "../lib/links";
 import gepeszetKazanhaz from "../assets/munkak/gepeszet-kazanhaz.jpg";
 
 /* ------------------------------------------------------------------ *
@@ -203,19 +204,25 @@ export default function SzolgaltatasokPage() {
               rendszert, a kéményt és a gázvezetéket, és ezután adunk fix árat,
               írásban. Nem sávos becslést, nem telefonos tippet.
             </p>
+            {QUOTING_AGENT_ON && (
             <p className="mt-4 text-[17px] leading-relaxed text-ink-soft">
               Ha csak egy nagyságrendre vagy kíváncsi, az online árajánló
               asszisztensünk pár kérdés után ad egy tájékoztató árat, a nap
               bármely szakában. A pontos ajánlat ettől függetlenül mindig a
               felmérés után születik.
             </p>
+            )}
           </div>
         </div>
       </section>
 
       <CtaBand
         title="Nem tudod, melyik kell neked?"
-        body="Írd le pár mondatban, mi a helyzet. Az online árajánló asszisztensünk pár kérdés után megmondja, melyik szolgáltatás való hozzád, és mennyiből jön ki."
+        body={
+          QUOTING_AGENT_ON
+            ? "Írd le pár mondatban, mi a helyzet. Az online árajánló asszisztensünk pár kérdés után megmondja, melyik szolgáltatás való hozzád, és mennyiből jön ki."
+            : "Írd le pár mondatban, mi a helyzet, és megmondjuk, melyik szolgáltatás való hozzád."
+        }
       />
     </main>
   );

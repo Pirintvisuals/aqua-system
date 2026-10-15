@@ -8,7 +8,7 @@ import Reveal from "../components/Reveal";
 import Chapter from "../components/Chapter";
 import StepNav, { type Step } from "../components/StepNav";
 import Wave from "../components/Wave";
-import { CHATBOT_URL, CTA_PRIMARY } from "../lib/links";
+import { CHATBOT_URL, CTA_PRIMARY, QUOTING_AGENT_ON } from "../lib/links";
 import vezerlopanel from "../assets/munkak/vezerlopanel.jpg";
 
 /* ------------------------------------------------------------------ *
@@ -612,6 +612,7 @@ export default function KellEUjKazanPage() {
       {/* MARADT KERDESED. Nem ujabb kartya: egy kiemelt sav, ami az
           asszisztensre iranyit. Az oldal sok informaciot ad, es a
           leggyakoribb kovetkezo lepes egy konkret kerdes. */}
+      {QUOTING_AGENT_ON && (
       <section className="pb-20 lg:pb-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-col items-start gap-6 rounded-2xl border border-brand/25 bg-brand/5 p-7 sm:flex-row sm:items-center sm:p-8">
@@ -641,11 +642,16 @@ export default function KellEUjKazanPage() {
           </div>
         </div>
       </section>
+      )}
 
 
       <CtaBand
         title="Nem vagy biztos benne, mi a helyzet?"
-        body="Írd le pár mondatban, mennyi idős a készülék és mi a panasz. Az online árajánló asszisztensünk pár kérdés után megmondja, mire számíts."
+        body={
+          QUOTING_AGENT_ON
+            ? "Írd le pár mondatban, mennyi idős a készülék és mi a panasz. Az online árajánló asszisztensünk pár kérdés után megmondja, mire számíts."
+            : "Írd le pár mondatban, mennyi idős a készülék és mi a panasz, és megmondjuk, mire számíts."
+        }
       />
     </main>
   );

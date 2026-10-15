@@ -7,6 +7,7 @@ import Reveal from "../../components/Reveal";
 import { LOCATIONS, findLocation } from "../../lib/locations";
 import { SERVICES } from "../../lib/services";
 import { SITE_URL, BUSINESS } from "../../lib/site";
+import { QUOTING_AGENT_ON } from "../../lib/links";
 import gepeszetKazanhaz from "../../assets/munkak/gepeszet-kazanhaz.jpg";
 
 /* ------------------------------------------------------------------ *
@@ -194,7 +195,11 @@ export default async function LocationPage({
 
       <CtaBand
         title={`Kazáncsere ${loc.inName}: kérj tájékoztató árat`}
-        body="Pár kérdés az online árajánló asszisztensünkben, és máris kapsz egy tájékoztató árat. A véglegeset helyszíni felmérés után, írásban adjuk."
+        body={
+          QUOTING_AGENT_ON
+            ? "Pár kérdés az online árajánló asszisztensünkben, és máris kapsz egy tájékoztató árat. A véglegeset helyszíni felmérés után, írásban adjuk."
+            : "Írd le pár mondatban, mi a helyzet, vagy hívj minket. A végleges árat helyszíni felmérés után, írásban adjuk."
+        }
       />
     </main>
   );

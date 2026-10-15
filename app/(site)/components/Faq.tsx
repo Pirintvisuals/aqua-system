@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
-import { CHATBOT_URL, CTA_PRIMARY } from "../lib/links";
+import { CHATBOT_URL, CTA_PRIMARY, QUOTING_AGENT_ON } from "../lib/links";
 import { FAQS } from "../lib/faqs";
 
 /* ------------------------------------------------------------------ *
@@ -21,8 +21,9 @@ export default function Faq() {
             Gyakran ismételt kérdések
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-            Nem találod a választ? Kérdezd meg az online árajánló
-            asszisztensünket, vagy hívj minket, szívesen segítünk.
+            {QUOTING_AGENT_ON
+              ? "Nem találod a választ? Kérdezd meg az online árajánló asszisztensünket, vagy hívj minket, szívesen segítünk."
+              : "Nem találod a választ? Írj nekünk, vagy hívj minket, szívesen segítünk."}
           </p>
           <a
             href={CHATBOT_URL}

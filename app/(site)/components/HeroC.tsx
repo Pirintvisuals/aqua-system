@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { CHATBOT_URL, CTA_PRIMARY } from "../lib/links";
+import { CHATBOT_URL, CTA_PRIMARY, QUOTING_AGENT_ON } from "../lib/links";
 
 function useCountUp(target: number, duration = 1400) {
   const [value, setValue] = useState(0);
@@ -131,11 +131,16 @@ export default function HeroC() {
             Régi kazánját{" "}
             <strong className="font-semibold text-ink">egyetlen nap alatt</strong>{" "}
             cseréljük le modern, energiatakarékos készülékre. Engedélyes
-            szakemberek, fix ár, teljes garancia. Az{" "}
-            <strong className="font-semibold text-ink">
-              online árajánló asszisztensünktől
-            </strong>{" "}
-            pár perc alatt kap egy tájékoztató árat.
+            szakemberek, fix ár, teljes garancia.
+            {QUOTING_AGENT_ON && (
+              <>
+                {" "}Az{" "}
+                <strong className="font-semibold text-ink">
+                  online árajánló asszisztensünktől
+                </strong>{" "}
+                pár perc alatt kap egy tájékoztató árat.
+              </>
+            )}
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">

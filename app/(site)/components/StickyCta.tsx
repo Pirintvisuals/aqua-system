@@ -1,4 +1,4 @@
-import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF } from "../lib/links";
+import { CHATBOT_URL, PHONE_DISPLAY, PHONE_HREF, QUOTING_AGENT_ON } from "../lib/links";
 
 /* ------------------------------------------------------------------ *
  *  Ragadós mobil CTA-sáv.
@@ -45,7 +45,7 @@ export default function StickyCta() {
           href={CHATBOT_URL}
           className="inline-flex min-h-[52px] flex-[1.4] cursor-pointer items-center justify-center gap-2 rounded-xl bg-cta px-4 text-base font-semibold text-white shadow-lg shadow-cta/20 transition-colors duration-200 hover:bg-cta-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta"
         >
-          Azonnali árajánlat
+          {QUOTING_AGENT_ON ? "Azonnali árajánlat" : "Árajánlatot kérek"}
         </a>
       </div>
     </div>

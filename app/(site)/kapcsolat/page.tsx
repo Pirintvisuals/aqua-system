@@ -3,11 +3,14 @@ import PageHero from "../components/PageHero";
 import Contact from "../components/Contact";
 import Reveal from "../components/Reveal";
 import AreaChecker from "../components/AreaChecker";
+import { QUOTING_AGENT_ON } from "../lib/links";
 
 export const metadata: Metadata = {
-  title: "Kapcsolat – kérj azonnali árajánlatot",
+  title: QUOTING_AGENT_ON ? "Kapcsolat – kérj azonnali árajánlatot" : "Kapcsolat – kérj árajánlatot",
   description:
-    "Vedd fel velünk a kapcsolatot gázkészülék cseréhez vagy gázépítéshez. Online árajánló asszisztens, e-mail és telefon. Budapest és agglomerációja.",
+    QUOTING_AGENT_ON
+      ? "Vedd fel velünk a kapcsolatot gázkészülék cseréhez vagy gázépítéshez. Online árajánló asszisztens, e-mail és telefon. Budapest és agglomerációja."
+      : "Vedd fel velünk a kapcsolatot gázkészülék cseréhez vagy gázépítéshez. Űrlap, e-mail és telefon. Budapest és agglomerációja.",
   alternates: { canonical: "/kapcsolat" },
   openGraph: {
     type: "website",
@@ -15,7 +18,9 @@ export const metadata: Metadata = {
     url: "/kapcsolat",
     title: "Kapcsolat – Aqua System Service Kft.",
     description:
-      "Írj vagy hívj minket – vagy kérj azonnali, tájékoztató árat az online árajánló asszisztensünkkel.",
+      QUOTING_AGENT_ON
+        ? "Írj vagy hívj minket – vagy kérj azonnali, tájékoztató árat az online árajánló asszisztensünkkel."
+        : "Írj vagy hívj minket, szívesen segítünk.",
   },
 };
 
@@ -33,7 +38,11 @@ export default function KapcsolatPage() {
         actions
         eyebrow="Kapcsolat"
         title="Beszéljünk a gázkészülék cseréről"
-        intro="A leggyorsabb út az árhoz az online árajánló asszisztensünk – pár kérdés, és máris kapsz egy tájékoztató árat. Ha inkább írnál vagy telefonálnál, minden elérhetőségünk lent van."
+        intro={
+          QUOTING_AGENT_ON
+            ? "A leggyorsabb út az árhoz az online árajánló asszisztensünk – pár kérdés, és máris kapsz egy tájékoztató árat. Ha inkább írnál vagy telefonálnál, minden elérhetőségünk lent van."
+            : "Írj nekünk, vagy hívj minket – minden elérhetőségünk lent van. A végleges, fix árat a helyszíni felmérés után adjuk."
+        }
         breadcrumb={[
           { label: "Főoldal", href: "/" },
           { label: "Kapcsolat", href: "/kapcsolat" },
